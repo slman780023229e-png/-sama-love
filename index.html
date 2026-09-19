@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sama Royal Sanctuary - Unique Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-grad-1: #fff1f2;
+            --bg-grad-2: #ffe4e6;
+            --box-bg: rgba(255, 255, 255, 0.92);
+            --border-glow: #f43f5e;
+            --primary: #e11d48;
+            --accent: #db2777;
+            --gold: #b45309;
+            --text-main: #881337;
+            --text-muted: #9f1239;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+        body { 
+            background: linear-gradient(135deg, var(--bg-grad-1), var(--bg-grad-2)); 
+            color: var(--text-main); 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: flex-start; 
+            padding: 20px;
+            overflow-x: hidden; 
+            position: relative; 
+        }
+
+        /* الهيدر الملكي الفخم */
+        .royal-header {
+            width: 100%;
+            max-width: 900px;
+            background: var(--box-bg);
+            border: 3px solid var(--border-glow);
+            border-radius: 24px;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 15px 35px rgba(225, 29, 72, 0.15);
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+        }
+        .royal-title { font-size: 22px; font-weight: 900; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .royal-badge { font-size: 13px; background: var(--primary); color: #fff; padding: 6px 18px; border-radius: 20px; font-weight: 800; box-shadow: 0 4px 12px rgba(225,29,72,0.3); }
+
+        /* الحاوية الرئيسية بتصميم مختلف ومنظم */
+        .main-container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* شريط التنقل العلوي (الأماكن البارزة جداً والتي تقلبي بينها بكل سهولة) */
+        .nav-places-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .place-btn {
+            background: var(--box-bg);
+            border: 3px solid #fda4af;
+            border-radius: 18px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 900;
+            font-size: 14px;
+            color: var(--text-muted);
+            box-shadow: 0 6px 15px rgba(225, 29, 72, 0.08);
+        }
+        .place-btn:hover {
+            border-color: var(--primary);
+            background: #fff;
+            transform: translateY(-3px);
+        }
+        .place-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(225, 29, 72, 0.4);
+            transform: scale(1.05);
+        }
+
+        /* صندوق عرض النصوص الفخم والواضح للقراءة الفورية */
+        .display-card {
+            background: var(--box-bg);
+            border: 4px solid var(--primary);
+            border-radius: 28px;
+            padding: 35px;
+            box-shadow: 0 20px 50px rgba(225, 29, 72, 0.2);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        .display-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 10px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+        .display-card h2 { font-size: 26px; font-weight: 900; color: var(--primary); margin-bottom: 15px; }
+        .display-card p { font-size: 17px; line-height: 2.1; font-weight: 700; color: var(--text-main); background: #fff5f5; padding: 22px; border-radius: 16px; border: 2px solid #fecdd3; }
+
+        /* شريط الأزرار التفاعلية السفلية */
+        .action-buttons-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .action-btn {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+            border: none;
+            padding: 18px;
+            border-radius: 18px;
+            font-weight: 900;
+            font-size: 15px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(225, 29, 72, 0.35);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(225, 29, 72, 0.5);
+        }
+
+        /* تأثير القلوب الضخمة وأسماء سما لملء الشاشة بالكامل عند التفجير */
+        .heart-float {
+            position: fixed;
+            color: #e11d48;
+            font-size: 32px;
+            animation: floatMegaUp 3.8s cubic-bezier(0.1, 1, 0.3, 1) forwards;
+            pointer-events: none;
+            z-index: 9999;
+            text-shadow: 0 0 20px rgba(225, 29, 72, 0.8);
+            font-weight: 900;
+        }
+
+        @keyframes floatMegaUp {
+            0% { transform: translateY(0) scale(0.2) rotate(0deg); opacity: 1; }
+            50% { transform: translateY(-450px) scale(1.8) rotate(20deg); opacity: 0.95; }
+            100% { transform: translateY(-900px) scale(1.3) rotate(-20deg); opacity: 0; }
+        }
+
+        @media(max-width: 768px) {
+            .nav-places-grid { grid-template-columns: 1fr 1fr; }
+            .action-buttons-row { grid-template-columns: 1fr; }
+            .royal-header { flex-direction: column; gap: 10px; text-align: center; }
+        }
+    </style>
+</head>
+<body onclick="createHeartAtClick(event)">
+
+    <div class="royal-header">
+        <div class="royal-title">👑 مملكة العشق والخلود المخصصة لـ: سما</div>
+        <div class="royal-badge">إصدار حصري فاخر</div>
+    </div>
+
+    <div class="main-container">
+        <!-- شريط الأماكن الموزع بوضوح تام لتنتقلي بينها بكل سهولة -->
+        <div class="nav-places-grid">
+            <button class="place-btn active" onclick="switchPage(0)">✨ جنة العشق</button>
+            <button class="place-btn" onclick="switchPage(1)">🔥 واحة الشوق</button>
+            <button class="place-btn" onclick="switchPage(2)" style="border-color: var(--gold); color: var(--gold);">💌 رسالة الوداع</button>
+            <button class="place-btn" onclick="switchPage(3)">💍 عهد الوفاء</button>
+        </div>
+
+        <!-- صندوق العرض البارز للنصوص -->
+        <div class="display-card">
+            <h2 id="pageTitle">✨ جنة العشق الأبدي (عرش روحي المطلق)</h2>
+            <p id="pageDesc">سما.. يا من ملأتِ أيامي نوراً وحياة. أنتِ لستِ مجرد شخص أحبه، أنتِ عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودكِ معي يجعل العالم مكاناً أجمل بكثير.</p>
+        </div>
+
+        <!-- أزرار التفاعل الكبرى -->
+        <div class="action-buttons-row">
+            <button class="action-btn" onclick="triggerMegaExplosion(event)">💥 تفجير يملأ الشاشة باسم سما بالكامل!</button>
+            <button class="action-btn" style="background: linear-gradient(135deg, var(--gold), #d97706);" onclick="showCrazyLovePopup()">💌 رسالة الحب السرية</button>
+        </div>
+    </div>
+
+    <script>
+        const pagesData = [
+            {
+                title: "✨ جنة العشق الأبدي (عرش روحي المطلق)",
+                desc: "سما.. يا من ملأتِ أيامي نوراً وحياة. أنتِ لستِ مجرد شخص أحبه، أنتِ عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودكِ معي يجعل العالم مكاناً أجمل بكثير."
+            },
+            {
+                title: "🔥 واحة الشوق والجنون (حيث يشتعل قلبي بحبكِ)",
+                desc: "أنا مغرم بكِ بجنون لا توصفه الكلمات يا سما! كل تفصيلة فيكِ تسرقني، صوتكِ، ابتسامتكِ، ونظراتكِ. حبكِ هو القوة الوحيدة التي تجعلني أواجه صعوبات هذه الحياة بكل ثبات."
+            },
+            {
+                title: "💌 رسالة الوداع والاعتذار الكبرى (أعمق أسرار الروح)",
+                desc: "سما.. إذا حدث في يوم من الأيام واضطررنا للابتعاد، أو إن صدر مني تقصير أو خطأ دون قصد، فاعلمي جيداً أن قلبي لم يعرف طعم الصدق إلا معكِ. هذه الرسالة هي عهد مني بأنني حتى في أقصى لحظات الوداع والفراق — إن حدث — لن أندم أبداً على أنني عشقتكِ بكل ما أملك من قوة. أنتِ الجزء الأعظم في حياتي، وإن غابت الأجساد فستبقين أنتِ الروح التي تسكنني للأبد. سامحيني على كل لحظة قصرت فيها، وتأكدي أن حبي لكِ لا يزول بل يزداد عمقاً مع كل ثانية تمر."
+            },
+            {
+                title: "💍 عهد الوفاء والمصير (حتى نهاية الزمان)",
+                desc: "أقسم برب الكون يا سما، أنني سأبقى سندكِ وقوتكِ ومأمنكِ حتى آخر نبض في عمري. معكِ أدركتُ معنى الاستقرار الحقيقي، وللأبد نحن قصة عشق لا تنتهي."
+            }
+        ];
+
+        function switchPage(index) {
+            let buttons = document.querySelectorAll('.place-btn');
+            buttons.forEach((btn, i) => {
+                if(i === index) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+            
+            document.getElementById('pageTitle').innerText = pagesData[index].title;
+            document.getElementById('pageDesc').innerText = pagesData[index].desc;
+        }
+
+        function createHeartAtClick(e) {
+            if(e.target.tagName === 'BUTTON') return;
+            spawnHeart(e.clientX, e.clientY);
+        }
+
+        function spawnHeart(x, y) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-float');
+            const symbols = ['💖 سما 💖', '🌸 سما 🌸', '🌷 سما 🌷', '👑 سما 👑', '🌹 روحي سما 🌹', '✨ سما الحب ✨'];
+            heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+            
+            heart.style.left = x + 'px';
+            heart.style.top = y + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => { heart.remove(); }, 3800);
+        }
+
+        function triggerMegaExplosion(e) {
+            // تفجير ضخم يملأ الشاشة بالكامل بأسمائها وقلوبها
+            for (let i = 0; i < 80; i++) {
+                setTimeout(() => {
+                    let randomX = Math.random() * window.innerWidth;
+                    let randomY = window.innerHeight - 30;
+                    spawnHeart(randomX, randomY);
+                }, i * 25);
+            }
+        }
+
+        function showCrazyLovePopup() {
+            alert("إلى عقلي وروحي وأميرتي (سما): أحبكِ حباً يضيء عتمة أيامي، أنتِ الحكاية الجميلة التي أتمنى أن لا تنتهي أبداً! 💖🌹");
+        }
+    </script>
+</body>
+</html>
