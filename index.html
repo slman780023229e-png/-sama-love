@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sama Royal Sanctuary - Live Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- مكتبة Firebase للربط السحابي اللحظي -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <!-- مكتبة Socket.io المجانية للربط المباشر اللحظي -->
+    <script src="https://cdnjs.cloudflare.com/ajax5/libs/socket.io/4.7.2/socket.io.min.js"></script>
     <style>
         :root {
             --bg-grad-1: #fff1f2;
@@ -32,7 +31,6 @@
             justify-content: flex-start; 
             padding: 20px;
             overflow-x: hidden; 
-            position: relative; 
         }
 
         .royal-header {
@@ -110,7 +108,7 @@
         .display-card h2 { font-size: 26px; font-weight: 900; color: var(--primary); margin-bottom: 15px; }
         .display-card p { font-size: 17px; line-height: 2.1; font-weight: 700; color: var(--text-main); background: #fff5f5; padding: 22px; border-radius: 16px; border: 2px solid #fecdd3; }
 
-        /* --- واجهة واتساب سحابية متصلة بالكامل --- */
+        /* --- واجهة واتساب سحابية حقيقية --- */
         .whatsapp-container {
             display: none;
             background: #111b21;
@@ -296,7 +294,7 @@
 
     <div class="royal-header">
         <div class="royal-title">👑 مملكة العشق والخلود المخصصة لـ: سما</div>
-        <div class="royal-badge">إصدار سحابي مباشر 🚀</div>
+        <div class="royal-badge">إصدار مباشر ومزحوط 🚀</div>
     </div>
 
     <div class="main-container">
@@ -319,7 +317,7 @@
                         <div class="wa-avatar">👑</div>
                         <div>
                             <div style="color:#fff; font-weight:900; font-size:17px;">مملكة سلمان وسما 🩷</div>
-                            <div class="wa-status-text">● متصل سحابياً أونلاين</div>
+                            <div class="wa-status-text">● متصل أونلاين لحظياً</div>
                         </div>
                     </div>
                 </div>
@@ -327,7 +325,7 @@
                     <!-- تتحدث الرسائل تلقائياً وفورياً بين الجهازين -->
                 </div>
                 <div class="wa-input-footer">
-                    <input type="text" id="waText" placeholder="اكتب رسالتك السحابية هنا..." onkeypress="handleKeyPress(event)">
+                    <input type="text" id="waText" placeholder="اكتب رسالتك هنا..." onkeypress="handleKeyPress(event)">
                     <button class="wa-send-btn" onclick="sendWhatsAppMessage()">➤</button>
                 </div>
             </div>
@@ -353,7 +351,7 @@
     <div id="nameModal" class="modal-overlay">
         <div class="modal-card">
             <h3>✨ اسمك الكريم؟</h3>
-            <p style="font-size: 14px; margin-bottom: 15px; color: var(--text-muted); font-weight: 700;">أدخل اسمك مرة واحدة فقط (مثل: سلمان أو سما):</p>
+            <p style="font-size: 14px; margin-bottom: 15px; color: var(--text-muted); font-weight: 700;">أدخل اسمك (مثل: سلمان أو سما):</p>
             <input type="text" id="myNameInput" placeholder="اكتب اسمك هنا...">
             <br>
             <button class="action-btn" style="width: 100%; padding: 12px;" onclick="saveMyName()">حفظ ودخول الدردشة 🚀</button>
@@ -361,12 +359,9 @@
     </div>
 
     <script>
-        // إعدادات الاتصال بالسحابة المجانية
-        const firebaseConfig = {
-            databaseURL: "https://sama-chat-default-rtdb.firebaseio.com/"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
+        // قناة اتصال سحابية مجانية ومباشرة بدون إعدادات معقدة
+        const chatChannel = "sama_royal_sanctuary_chat_room_99";
+        const apiUrl = "https://ntfy.sh/" + chatChannel;
 
         const pagesData = [
             {
@@ -421,7 +416,7 @@
                     openChatRoom();
                 }
             } else {
-                alert('الرمز السري غير صحيح يا ملكتي، دقيقي بالحروف (awari_96)! ❌');
+                alert('الرمز السري غير صحيح، دقيقي بالحروف (awari_96)! ❌');
             }
         }
 
@@ -444,37 +439,40 @@
             document.getElementById('pageDesc').style.display = 'none';
             document.getElementById('whatsappBox').style.display = 'block';
             
-            listenToMessages();
+            startListeningMessages();
         }
 
-        // الاستماع الفوري للرسائل من السحابة
-        function listenToMessages() {
+        // استقبال الرسائل بشكل لحظي ومباشر
+        function startListeningMessages() {
+            const eventSource = new EventSource(apiUrl + "/sse");
+            
+            eventSource.onmessage = function(event) {
+                try {
+                    const data = JSON.parse(event.data);
+                    if (data.message) {
+                        const parsedData = JSON.parse(data.message);
+                        appendMessageToUI(parsedData.sender, parsedData.text, parsedData.time);
+                    }
+                } catch(e) {
+                    // تجاهل أي رسائل النظام الفارغة
+                }
+            };
+        }
+
+        function appendMessageToUI(sender, text, time) {
             const listDiv = document.getElementById('waMessagesList');
             let myName = localStorage.getItem('sama_chat_user_name') || 'أنا';
+            let isMe = (sender === myName);
 
-            db.ref('messages').on('value', (snapshot) => {
-                const data = snapshot.val();
-                listDiv.innerHTML = '';
-
-                if(!data) {
-                    listDiv.innerHTML = '<div style="text-align:center; color:#8696a0; font-size:14px; margin:auto; background:#111b21; padding:15px 25px; border-radius:14px; border:1px dashed #222d34;">🔒 الدردشة السحابية متصلة. اكتبوا أول رسالة لتظهر عند الطرفين فوراً!</div>';
-                    return;
-                }
-
-                let messages = Object.values(data);
-                messages.forEach(m => {
-                    let div = document.createElement('div');
-                    let isMe = (m.sender === myName);
-                    div.className = `wa-bubble ${isMe ? 'outgoing' : 'incoming'}`;
-                    div.innerHTML = `
-                        <div class="wa-sender-name">${m.sender}</div>
-                        <div>${m.text}</div>
-                        <div class="wa-time">${m.time}</div>
-                    `;
-                    listDiv.appendChild(div);
-                });
-                listDiv.scrollTop = listDiv.scrollHeight;
-            });
+            let div = document.createElement('div');
+            div.className = `wa-bubble ${isMe ? 'outgoing' : 'incoming'}`;
+            div.innerHTML = `
+                <div class="wa-sender-name">${sender}</div>
+                <div>${text}</div>
+                <div class="wa-time">${time}</div>
+            `;
+            listDiv.appendChild(div);
+            listDiv.scrollTop = listDiv.scrollHeight;
         }
 
         function sendWhatsAppMessage() {
@@ -484,15 +482,22 @@
             if(!text) return;
 
             const timeNow = new Date().toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'});
-
-            // إرسال الرسالة لقاعدة البيانات السحابية مباشرة
-            db.ref('messages').push({
+            
+            const payload = JSON.stringify({
                 sender: sender,
                 text: text,
                 time: timeNow
             });
 
-            document.getElementById('waText').value = '';
+            // إرسال الرسالة للسحابة لتصل فوراً عند الطرف الآخر
+            fetch(apiUrl, {
+                method: 'POST',
+                body: payload
+            }).then(() => {
+                document.getElementById('waText').value = '';
+            }).catch(err => {
+                alert('خطأ في إرسال الرسالة، تأكد من اتصال الإنترنت.');
+            });
         }
 
         function handleKeyPress(e) {
