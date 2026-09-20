@@ -33,7 +33,6 @@ button,input{font-family:Cairo,sans-serif}button{-webkit-tap-highlight-color:tra
 <div class="royal-title">👑 مملكة العشق والخلود المخصصة لـ: سما</div>
 <div class="header-tools"><button class="theme-btn" onclick="toggleDarkMode(event)">🌙</button><div class="royal-badge">النسخة الملكية ✨</div></div>
 </header>
-
 <div class="main-container">
 <div class="nav-places-grid">
 <button class="place-btn active" onclick="switchPage(0)">✨ جنة العشق</button>
@@ -43,44 +42,24 @@ button,input{font-family:Cairo,sans-serif}button{-webkit-tap-highlight-color:tra
 <button class="place-btn" onclick="switchPage(4)">📖 الستوريات</button>
 <button class="place-btn" onclick="openSecretModal()" style="background:var(--card2);border-color:var(--primary);color:var(--primary)">🩷 دردشة سما</button>
 </div>
-
 <div id="contentDisplayCard" class="display-card">
 <h2 id="pageTitle">✨ جنة العشق الأبدي</h2>
 <p id="pageDesc">سما.. يا من ملأت أيامي نورا وحياة. أنت لست مجرد شخص أحبه، أنت عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودك معي يجعل العالم مكانا أجمل بكثير.</p>
 <div class="love-stats"><div class="love-stat"><strong id="heartCounter">∞</strong><span>نبضة حب</span></div><div class="love-stat"><strong>🩷</strong><span>للأبد</span></div><div class="love-stat"><strong id="visitorCounter">0</strong><span>زيارة للجناح</span></div></div>
 <div id="storiesBox" class="stories-container"><div class="story-card"><div class="story-header">📸 شارك حالة أو ستوري ملكي جديد</div><div class="story-text">اكتب خاطرة أو حالة وستظهر في المملكة السحابية.</div><div class="story-input-box"><input type="text" id="storyTextInput" maxlength="500" placeholder="اكتب حالتك الأسطورية هنا..."><button class="story-post-btn" onclick="postStory()">نشر 🌟</button></div><div id="storiesList" class="stories-list"></div></div></div>
 </div>
-
 <div id="whatsappBox" class="whatsapp-container">
-<div class="wa-chat-header">
-<div class="wa-avatar-box"><div class="wa-avatar">👑</div><div><div style="color:#fff;font-weight:900;font-size:13px">مملكة سلمان وسما 🩷</div><div id="onlineStatusText" class="wa-status-text">● جاري فحص الاتصال...</div></div></div>
-<div class="header-chat-actions">
-<div class="notification-wrapper"><button id="notificationBellBtn" class="notification-bell-btn" onclick="toggleNotificationsPanel(event)">🔔<span id="notificationBadge" class="notification-badge">0</span></button></div>
-<button class="members-button" onclick="openMembersModal()">👥 الأعضاء (<span id="membersCountBadge">0</span>)</button>
-</div></div>
-
-<div id="notificationsPanel" class="notifications-panel">
-<div class="notifications-head"><div class="notifications-title">🔔 إشعارات المملكة</div><div class="notifications-tools">
-<button id="browserNotificationBtn" class="notification-small-btn" onclick="enableBrowserNotifications(event)">🌐 تفعيل المتصفح</button>
-<button id="soundToggleBtn" class="notification-small-btn" onclick="toggleNotificationSound(event)">🔊 الصوت</button>
-<button class="notification-small-btn" onclick="clearAllNotifications(event)">🗑️ مسح</button>
-</div></div>
-<div id="notificationsList" class="notifications-list"><div class="notification-empty">🔔 لا توجد إشعارات جديدة</div></div>
-</div>
-
+<div class="wa-chat-header"><div class="wa-avatar-box"><div class="wa-avatar">👑</div><div><div style="color:#fff;font-weight:900;font-size:13px">مملكة سلمان وسما 🩷</div><div id="onlineStatusText" class="wa-status-text">● جاري فحص الاتصال...</div></div></div>
+<div class="header-chat-actions"><div class="notification-wrapper"><button id="notificationBellBtn" class="notification-bell-btn" onclick="toggleNotificationsPanel(event)">🔔<span id="notificationBadge" class="notification-badge">0</span></button></div><button class="members-button" onclick="openMembersModal()">👥 الأعضاء (<span id="membersCountBadge">0</span>)</button></div></div>
+<div id="notificationsPanel" class="notifications-panel"><div class="notifications-head"><div class="notifications-title">🔔 إشعارات المملكة</div><div class="notifications-tools"><button id="browserNotificationBtn" class="notification-small-btn" onclick="enableBrowserNotifications(event)">🌐 تفعيل المتصفح</button><button id="soundToggleBtn" class="notification-small-btn" onclick="toggleNotificationSound(event)">🔊 الصوت</button><button class="notification-small-btn" onclick="clearAllNotifications(event)">🗑️ مسح</button></div></div><div id="notificationsList" class="notifications-list"><div class="notification-empty">🔔 لا توجد إشعارات جديدة</div></div></div>
 <div class="db-status-bar"><div class="db-status-indicator"><div id="dbDotIndicator" class="db-dot"></div><span id="dbStatusMessage">جاري الاتصال بقاعدة البيانات السحابية... ⏳</span></div></div>
 <div id="typingIndicator" class="typing-indicator">✍️ هناك نشاط في المملكة...</div>
 <div id="waMessagesList" class="wa-messages-area"><div class="empty-chat">👑 مرحبا بك في مملكة سلمان وسما 🩷<br>اكتب أول رسالة لبدء الحكاية...</div></div>
-
-<div id="stickersPanel" class="stickers-panel">
-<button class="sticker-item" onclick="sendSticker('💖')">💖</button><button class="sticker-item" onclick="sendSticker('👑')">👑</button><button class="sticker-item" onclick="sendSticker('🔥')">🔥</button><button class="sticker-item" onclick="sendSticker('🌹')">🌹</button><button class="sticker-item" onclick="sendSticker('✨')">✨</button><button class="sticker-item" onclick="sendSticker('💍')">💍</button><button class="sticker-item" onclick="sendSticker('🥺')">🥺</button><button class="sticker-item" onclick="sendSticker('🥰')">🥰</button><button class="sticker-item" onclick="sendSticker('🫶')">🫶</button><button class="sticker-item" onclick="sendSticker('💘')">💘</button>
-</div>
+<div id="stickersPanel" class="stickers-panel"><button class="sticker-item" onclick="sendSticker('💖')">💖</button><button class="sticker-item" onclick="sendSticker('👑')">👑</button><button class="sticker-item" onclick="sendSticker('🔥')">🔥</button><button class="sticker-item" onclick="sendSticker('🌹')">🌹</button><button class="sticker-item" onclick="sendSticker('✨')">✨</button><button class="sticker-item" onclick="sendSticker('💍')">💍</button><button class="sticker-item" onclick="sendSticker('🥺')">🥺</button><button class="sticker-item" onclick="sendSticker('🥰')">🥰</button><button class="sticker-item" onclick="sendSticker('🫶')">🫶</button><button class="sticker-item" onclick="sendSticker('💘')">💘</button></div>
 <div class="wa-input-footer"><button class="wa-action-icon-btn" onclick="toggleStickersPanel()">😊</button><button id="micBtn" class="wa-action-icon-btn" onclick="toggleVoiceRecording()">🎤</button><input type="text" id="waText" maxlength="2000" placeholder="اكتب رسالتك الملكية هنا..." onkeypress="handleKeyPress(event)"><button class="wa-send-btn" onclick="sendWhatsAppMessage()">➤</button></div>
 </div>
-
 <div class="action-buttons-row"><button class="action-btn" onclick="triggerMegaExplosion(event)">💥 تفجير يملأ الشاشة باسم سما!</button><button class="action-btn" style="background:linear-gradient(135deg,var(--gold),#d97706)" onclick="showCrazyLovePopup()">💌 رسالة الحب السرية</button></div>
 </div>
-
 <div id="secretModal" class="modal-overlay"><div class="modal-card"><h3>🩷 بوابة اللقاء السري</h3><p style="font-size:12px;margin-bottom:12px;color:var(--muted);font-weight:700">أدخل الرمز الصحيح للمتابعة</p><input type="password" id="modalPasswordInput" placeholder="أدخل الرمز السري هنا..." onkeypress="if(event.key==='Enter')verifySecretPassword()"><button class="action-btn" onclick="verifySecretPassword()">فتح الدردشة 💕</button><button style="background:none;border:0;color:#999;margin-top:8px;cursor:pointer;font-weight:700" onclick="closeSecretModal()">إلغاء</button></div></div>
 <div id="nameModal" class="modal-overlay"><div class="modal-card"><h3>✨ اسمك الكريم؟</h3><p style="font-size:12px;margin-bottom:12px;color:var(--muted);font-weight:700">أدخل الاسم الذي سيظهر في الدردشة</p><input type="text" id="myNameInput" maxlength="30" placeholder="مثل: سلمان أو سما..." onkeypress="if(event.key==='Enter')saveMyName()"><button class="action-btn" onclick="saveMyName()">حفظ ودخول الدردشة 🚀</button></div></div>
 <div id="membersModal" class="modal-overlay"><div class="modal-card"><h3>👥 الأعضاء المسجلون (<span id="modalTotalCount">0</span>)</h3><p style="font-size:11px;color:var(--muted);font-weight:700">سلمان محمي ولا يمكن حذفه</p><div id="membersListContainer" class="members-scroll-box"></div><h4 style="color:var(--primary);font-size:13px;text-align:right">🗑️ سلة المهملات</h4><div id="trashListContainer" class="members-scroll-box" style="max-height:140px"></div><button style="background:var(--primary);color:#fff;border:0;padding:10px;border-radius:14px;font-weight:900;cursor:pointer" onclick="closeMembersModal()">إغلاق ❌</button></div></div>
@@ -95,6 +74,8 @@ const firebaseConfig={apiKey:"AIzaSyCEXxF2WsyCa_ebK3PJ5yraCikCIkBgm8Q",authDomai
 const VAPID_KEY="BKjGBcIzn-o05QhOGUwsQNU-M05tCc6aszXhdWfkGsPC8AZjOErdpWPyT-E";
 let db=null,messagesRef=null,storiesRef=null,membersRef=null,trashRef=null,messaging=null,messagingSupported=false,isListenerActive=false;
 const clientId=(()=>{let x=localStorage.getItem("sama_fcm_client_id");if(!x){x=(crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2));localStorage.setItem("sama_fcm_client_id",x)}return x})();
+const FCM_TOKEN_KEY="sama_fcm_token";
+let fcmServiceWorkerRegistration=null;
 
 try{
  const app=initializeApp(firebaseConfig); db=getDatabase(app);
@@ -105,36 +86,123 @@ try{
  if(await isSupported()){messagingSupported=true;messaging=getMessaging(app)}
 }catch(e){console.error("Firebase Init Error",e);document.getElementById("dbStatusMessage").innerText="تعذر تشغيل قاعدة البيانات ❌"}
 
-async function setupFCM(){
- if(!messagingSupported||!messaging)return false;
+async function registerSamaServiceWorker(){
+ if(!("serviceWorker" in navigator))return null;
  try{
-  const reg=await navigator.serviceWorker.register("/firebase-messaging-sw.js",{scope:"/"});
-  if(Notification.permission!=="granted")return false;
+  fcmServiceWorkerRegistration=await navigator.serviceWorker.register("/firebase-messaging-sw.js",{scope:"/"});
+  await navigator.serviceWorker.ready;
+  return fcmServiceWorkerRegistration;
+ }catch(e){console.warn("Service Worker registration failed",e);return null}
+}
+
+async function setupFCM(){
+ if(!messagingSupported||!messaging||!db)return false;
+ try{
+  const reg=await registerSamaServiceWorker();
+  if(!reg||Notification.permission!=="granted")return false;
   const token=await getToken(messaging,{vapidKey:VAPID_KEY,serviceWorkerRegistration:reg});
   if(!token)return false;
+  const oldToken=localStorage.getItem(FCM_TOKEN_KEY);
+  if(oldToken&&oldToken!==token){
+    try{await remove(ref(db,"sama_royal_chat/notificationTokens/"+encodeURIComponent(oldToken)))}catch{}
+  }
   const name=localStorage.getItem("sama_chat_user_name")||"مستخدم";
-  await set(ref(db,"sama_royal_chat/notificationTokens/"+encodeURIComponent(token)),{token,clientId,name,updatedAt:Date.now()});
-  localStorage.setItem("sama_fcm_token",token);
+  await set(ref(db,"sama_royal_chat/notificationTokens/"+encodeURIComponent(token)),{
+    token,clientId,name,userAgent:navigator.userAgent.slice(0,300),updatedAt:Date.now()
+  });
+  localStorage.setItem(FCM_TOKEN_KEY,token);
   return true;
  }catch(e){console.warn("FCM setup error",e);return false}
 }
-window.enableFCM=async function(event){event?.stopPropagation();if(!messagingSupported){showNotification("هذا المتصفح لا يدعم إشعارات FCM ❌");return}try{const p=await Notification.requestPermission();if(p!=="granted"){showNotification("لم يتم السماح بالإشعارات");return}const ok=await setupFCM();updateBrowserNotificationButton();showNotification(ok?"تم تفعيل الإشعارات الملكية 🔔✨":"تعذر تسجيل الجهاز للإشعارات ❌")}catch(e){showNotification("تعذر تفعيل الإشعارات ❌")}};
-if(messagingSupported){onMessage(messaging,payload=>{const d=payload.data||payload.notification||{};if(d.messageId&&d.sender){addMessageNotification({id:d.messageId,sender:d.sender,text:d.body||"",time:d.time||"",timestamp:Number(d.timestamp||Date.now()),isVoice:d.isVoice==="true"});}})}
 
-window.initCloudChat=async function(){
- if(isListenerActive||!messagesRef)return;isListenerActive=true;const list=document.getElementById("waMessagesList");if(list)list.innerHTML="";
- const known=new Set();try{const s=await get(messagesRef);s.forEach(c=>known.add(c.key))}catch{}
- onChildAdded(messagesRef,s=>{const msg=s.val();if(!msg)return;const old=known.has(s.key);known.add(s.key);renderCloudBubble(s.key,msg.sender||"مجهول",msg.text||"",msg.time||"",!!msg.isVoice,msg.audioUrl||"");const me=localStorage.getItem("sama_chat_user_name")||"سلمان";if(!old&&String(msg.sender||"").trim()!==String(me).trim())addMessageNotification({id:s.key,sender:msg.sender,text:msg.text,time:msg.time,timestamp:msg.timestamp,isVoice:msg.isVoice})});
- onChildRemoved(messagesRef,s=>document.getElementById("msg-"+s.key)?.remove());
- onChildAdded(storiesRef,s=>{const st=s.val();if(!st)return;const box=document.getElementById("storiesList");if(!box||document.getElementById("story-"+s.key))return;const d=document.createElement("div");d.id="story-"+s.key;d.className="story-bubble";d.innerHTML=`<div><strong>${escapeHtml(st.sender||"مجهول")}:</strong> ${escapeHtml(st.text||"")}</div><span style="font-size:9px;color:#888;white-space:nowrap">${escapeHtml(st.time||"")}</span>`;box.prepend(d)});
+if(messagingSupported){
+ onMessage(messaging,payload=>{
+  const d=payload.data||payload.notification||{};
+  if(d.messageId&&d.sender){
+   addMessageNotification({id:d.messageId,sender:d.sender,text:d.body||"",time:d.time||"",timestamp:Number(d.timestamp||Date.now()),isVoice:d.isVoice==="true"});
+  }
+ });
+}
+
+if("serviceWorker" in navigator){
+ navigator.serviceWorker.addEventListener("message",event=>{
+  if(event.data?.type==="SAMA_OPEN_MESSAGE")openChatFromPush(event.data.messageId||"");
+ });
+}
+
+window.enableFCM=async function(event){
+ event?.stopPropagation();
+ if(!messagingSupported){showNotification("هذا المتصفح لا يدعم إشعارات FCM ❌");return false}
+ try{
+  if(!("Notification" in window)){showNotification("المتصفح لا يدعم إشعارات النظام ❌");return false}
+  let p=Notification.permission;
+  if(p!=="granted")p=await Notification.requestPermission();
+  if(p!=="granted"){updateBrowserNotificationButton();showNotification("لم يتم السماح بالإشعارات 🚫");return false}
+  const ok=await setupFCM();
+  updateBrowserNotificationButton();
+  showNotification(ok?"تم تفعيل إشعارات المملكة 🔔✨":"تعذر تسجيل الجهاز للإشعارات ❌");
+  return ok;
+ }catch(e){console.warn(e);showNotification("تعذر تفعيل الإشعارات ❌");return false}
 };
 
-window.registerMemberInCloud=name=>{if(!membersRef||!name)return;onValue(membersRef,s=>{const data=s.val()||{};if(Object.values(data).some(x=>x?.name?.trim().toLowerCase()===name.trim().toLowerCase()))return;set(push(membersRef),{name:name.trim(),time:new Date().toLocaleTimeString("ar-SA",{hour:"2-digit",minute:"2-digit"}),timestamp:Date.now()})},{onlyOnce:true})};
-window.removeMember=(key,name,time)=>{if(String(name).trim()==="سلمان"){showNotification("سلمان محمي للأبد ولا يمكن حذفه 🛡️👑");return}if(!confirm("هل تريد نقل "+name+" إلى سلة المهملات؟"))return;set(push(trashRef),{name,time,timestamp:Date.now()}).then(()=>remove(ref(db,"sama_royal_chat/members/"+key))).catch(()=>showNotification("تعذر حذف العضو ❌"))};
-window.restoreMember=(key,name,time)=>{set(push(membersRef),{name,time,timestamp:Date.now()}).then(()=>remove(ref(db,"sama_royal_chat/trash/"+key)))};
-window.sendCloudMessage=(text,isVoice=false,audioUrl="")=>{if(!messagesRef||!text)return;const sender=localStorage.getItem("sama_chat_user_name")||"سلمان";const time=new Date().toLocaleTimeString("ar-SA",{hour:"2-digit",minute:"2-digit"});set(push(messagesRef),{sender,text:String(text).slice(0,2000),isVoice:Boolean(isVoice),audioUrl:audioUrl||"",time,timestamp:Date.now(),clientId})};
-window.deleteCloudMessage=id=>{if(!confirm("حذف الرسالة للجميع؟"))return;remove(ref(db,"sama_royal_chat/messages/"+id)).then(()=>showNotification("تم حذف الرسالة 🗑️")).catch(()=>showNotification("تعذر حذف الرسالة ❌"))};
-window.postCloudStory=text=>{if(!storiesRef||!text)return;const sender=localStorage.getItem("sama_chat_user_name")||"سلمان";set(push(storiesRef),{sender,text:String(text).slice(0,500),time:new Date().toLocaleTimeString("ar-SA",{hour:"2-digit",minute:"2-digit"}),timestamp:Date.now()})};
+window.initCloudChat=async function(){
+ if(isListenerActive||!messagesRef)return;
+ isListenerActive=true;
+ const list=document.getElementById("waMessagesList");if(list)list.innerHTML="";
+ const known=new Set();
+ try{const s=await get(messagesRef);s.forEach(c=>known.add(c.key))}catch{}
+ onChildAdded(messagesRef,s=>{
+  const msg=s.val();if(!msg)return;
+  const old=known.has(s.key);known.add(s.key);
+  renderCloudBubble(s.key,msg.sender||"مجهول",msg.text||"",msg.time||"",!!msg.isVoice,msg.audioUrl||"");
+  const me=localStorage.getItem("sama_chat_user_name")||"سلمان";
+  if(!old&&String(msg.sender||"").trim()!==String(me).trim())addMessageNotification({id:s.key,sender:msg.sender,text:msg.text,time:msg.time,timestamp:msg.timestamp,isVoice:msg.isVoice});
+ });
+ onChildRemoved(messagesRef,s=>{
+  document.getElementById("msg-"+s.key)?.remove();
+  const l=getSavedNotifications().filter(x=>x.id!==s.key);
+  saveNotifications(l);renderNotifications();
+ });
+ onChildAdded(storiesRef,s=>{
+  const st=s.val();if(!st)return;
+  const box=document.getElementById("storiesList");if(!box||document.getElementById("story-"+s.key))return;
+  const d=document.createElement("div");d.id="story-"+s.key;d.className="story-bubble";
+  d.innerHTML=`<div><strong>${escapeHtml(st.sender||"مجهول")}:</strong> ${escapeHtml(st.text||"")}</div><span style="font-size:9px;color:#888;white-space:nowrap">${escapeHtml(st.time||"")}</span>`;
+  box.prepend(d);
+ });
+};
+
+window.registerMemberInCloud=name=>{
+ if(!membersRef||!name)return;
+ onValue(membersRef,s=>{
+  const data=s.val()||{};
+  if(Object.values(data).some(x=>x?.name?.trim().toLowerCase()===name.trim().toLowerCase()))return;
+  set(push(membersRef),{name:name.trim(),time:new Date().toLocaleTimeString("ar-SA",{hour:"2-digit",minute:"2-digit"}),timestamp:Date.now()});
+ },{onlyOnce:true});
+};
+window.removeMember=(key,name,time)=>{
+ if(String(name).trim()==="سلمان"){showNotification("سلمان محمي للأبد ولا يمكن حذفه 🛡️👑");return}
+ if(!confirm("هل تريد نقل "+name+" إلى سلة المهملات؟"))return;
+ set(push(trashRef),{name,time,timestamp:Date.now()}).then(()=>remove(ref(db,"sama_royal_chat/members/"+key))).catch(()=>showNotification("تعذر حذف العضو ❌"));
+};
+window.restoreMember=(key,name,time)=>{
+ set(push(membersRef),{name,time,timestamp:Date.now()}).then(()=>remove(ref(db,"sama_royal_chat/trash/"+key)));
+};
+window.sendCloudMessage=(text,isVoice=false,audioUrl="")=>{
+ if(!messagesRef||!text)return;
+ const sender=localStorage.getItem("sama_chat_user_name")||"سلمان";
+ const time=new Date().toLocaleTimeString("ar-SA",{hour:"2-digit",minute:"2-digit"});
+ set(push(messagesRef),{sender,text:String(text).slice(0,2000),isVoice:Boolean(isVoice),audioUrl:audioUrl||"",time,timestamp:Date.now(),clientId});
+};
+window.deleteCloudMessage=id=>{
+ if(!confirm("حذف الرسالة للجميع؟"))return;
+ remove(ref(db,"sama_royal_chat/messages/"+id)).then(()=>showNotification("تم حذف الرسالة 🗑️")).catch(()=>showNotification("تعذر حذف الرسالة ❌"));
+};
+window.postCloudStory=text=>{
+ if(!storiesRef||!text)return;
+ const sender=localStorage.getItem("sama_chat_user_name")||"سلمان";
+ set(push(storiesRef),{sender,text:String(text).slice(0,500),time:new Date().toLocaleTimeString("ar-SA",{hour:"2-digit",minute:"2-digit"}),timestamp:Date.now()});
+};
 function escapeHtml(v){return String(v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
 </script>
 
@@ -164,7 +232,7 @@ async function copyMessageText(t){try{await navigator.clipboard.writeText(t.repl
 function sendWhatsAppMessage(t){const i=document.getElementById("waText"),v=(typeof t==="string"?t:i.value).trim();if(!v)return;window.sendCloudMessage?.(v,false,"");if(!t)i.value=""}
 function createHeartAtClick(e){if(e.target.closest("#whatsappBox,button,input,.modal-card,#storiesBox"))return;spawnHeart(e.clientX,e.clientY)}
 function spawnHeart(x,y){const h=document.createElement("div");h.className="heart-float";h.innerText=["💖 سما 💖","🌸 سما 🌸","🌷 سما 🌷","👑 سما 👑","🌹 روحي سما 🌹","✨ سما الحب ✨"][Math.floor(Math.random()*6)];h.style.left=x+"px";h.style.top=y+"px";document.body.appendChild(h);setTimeout(()=>h.remove(),3400)}
-function triggerMegaExplosion(e){e?.stopPropagation();["💖","💗","💓","💞","💕","🌹","🌸","✨","👑","🩷"].forEach((s)=>{});for(let i=0;i<70;i++)setTimeout(()=>spawnHeart(Math.random()*innerWidth,innerHeight-20),i*18)}
+function triggerMegaExplosion(e){e?.stopPropagation();for(let i=0;i<70;i++)setTimeout(()=>spawnHeart(Math.random()*innerWidth,innerHeight-20),i*18)}
 function showCrazyLovePopup(){showNotification("إلى عقلي وروحي وأميرتي سما 🩷 أحبك حبا يضيء عتمة أيامي وأنت الحكاية الجميلة التي أتمنى ألا تنتهي أبدا 🌹")}
 function showNotification(m){const b=document.getElementById("notification");if(!b)return;b.innerText=m;b.classList.add("show");clearTimeout(window.notificationTimer);window.notificationTimer=setTimeout(()=>b.classList.remove("show"),3000)}
 function toggleDarkMode(e){e?.stopPropagation();document.body.classList.toggle("dark");const d=document.body.classList.contains("dark");localStorage.setItem("sama_dark_mode",d?"true":"false");document.querySelector(".theme-btn").innerText=d?"☀️":"🌙"}
@@ -175,19 +243,23 @@ function getSavedNotifications(){try{return JSON.parse(localStorage.getItem(NOTI
 function renderNotifications(){const box=document.getElementById("notificationsList"),l=getSavedNotifications();if(!box)return;box.innerHTML="";if(!l.length){box.innerHTML='<div class="notification-empty">🔔 لا توجد إشعارات جديدة</div>';updateNotificationBadge();return}l.forEach(x=>{const r=document.createElement("div");r.className="notification-item"+(x.read?"":" unread");r.onclick=()=>openNotificationMessage(x.id);r.innerHTML=`<div class="notification-icon">${x.isVoice?"🎙️":"💌"}</div><div class="notification-content"><div class="notification-sender">${escapeForDisplay(x.sender)}</div><div class="notification-preview">${escapeForDisplay(x.text||"رسالة جديدة")}</div><div class="notification-time">${escapeForDisplay(x.time||"")}</div></div>${x.read?"":"<div class='notification-unread-dot'></div>"}`;box.appendChild(r)});updateNotificationBadge()}
 function addMessageNotification(d){if(!d?.id)return;let l=getSavedNotifications();if(l.some(x=>x.id===d.id))return;l.unshift({id:String(d.id),sender:String(d.sender||"مجهول"),text:String(d.text||"").slice(0,500),time:String(d.time||""),timestamp:Number(d.timestamp||Date.now()),isVoice:Boolean(d.isVoice),read:false});saveNotifications(l);renderNotifications();playNotificationSound();showNotification("💌 رسالة جديدة من "+d.sender)}
 function openNotificationMessage(id){let l=getSavedNotifications(),x=l.find(a=>a.id===id);if(!x)return;x.read=true;saveNotifications(l);renderNotifications();document.getElementById("notificationsPanel").classList.remove("open");openChatRoom();setTimeout(()=>document.getElementById("msg-"+id)?.scrollIntoView({behavior:"smooth",block:"center"}),250)}
+function openChatFromPush(messageId=""){if(localStorage.getItem("sama_chat_auth_verified")!=="true"){openSecretModal();return}const n=localStorage.getItem("sama_chat_user_name");if(!n){document.getElementById("nameModal").style.display="flex";return}openChatRoom();if(messageId)setTimeout(()=>document.getElementById("msg-"+messageId)?.scrollIntoView({behavior:"smooth",block:"center"}),600)}
+function handlePushDeepLink(){const p=new URLSearchParams(location.search);if(p.get("chat")==="1"){const id=p.get("message")||"";setTimeout(()=>openChatFromPush(id),900)}}
 function toggleNotificationsPanel(e){e?.stopPropagation();initNotificationAudio();const p=document.getElementById("notificationsPanel");p.classList.toggle("open");if(p.classList.contains("open"))renderNotifications()}
 function clearAllNotifications(e){e?.stopPropagation();if(!getSavedNotifications().length){showNotification("لا توجد إشعارات لمسحها");return}if(confirm("هل تريد مسح جميع الإشعارات؟")){localStorage.removeItem(NOTIFICATIONS_STORAGE_KEY);renderNotifications();showNotification("تم مسح الإشعارات 🗑️")}}
-function initNotificationAudio(){try{const C=AudioContext||webkitAudioContext;if(!notificationAudioContext)notificationAudioContext=new C();notificationAudioContext.resume?.()}catch{}}
+function initNotificationAudio(){try{const C=window.AudioContext||window.webkitAudioContext;if(!notificationAudioContext)notificationAudioContext=new C();notificationAudioContext.resume?.()}catch{}}
 function playNotificationSound(){if(!notificationSoundEnabled)return;try{initNotificationAudio();const c=notificationAudioContext,o=c.createOscillator(),g=c.createGain();o.frequency.value=880;g.gain.setValueAtTime(.0001,c.currentTime);g.gain.exponentialRampToValueAtTime(.16,c.currentTime+.015);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+.25);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+.27)}catch{}}
 function toggleNotificationSound(e){e?.stopPropagation();notificationSoundEnabled=!notificationSoundEnabled;localStorage.setItem(NOTIFICATION_SOUND_KEY,notificationSoundEnabled);updateSoundButton();if(notificationSoundEnabled){initNotificationAudio();playNotificationSound()}}
 function updateSoundButton(){document.getElementById("soundToggleBtn").innerText=notificationSoundEnabled?"🔊 الصوت":"🔕 مكتوم"}
 function initNotificationUI(){updateNotificationBadge();renderNotifications();updateSoundButton();updateBrowserNotificationButton()}
+(async function initFCMOnLoad(){if(messagingSupported){await registerSamaServiceWorker();if("Notification"in window&&Notification.permission==="granted")await setupFCM()}})();
 (function(){if(localStorage.getItem("sama_dark_mode")==="true"){document.body.classList.add("dark");document.querySelector(".theme-btn").innerText="☀️"}let n=Number(localStorage.getItem("sama_visit_count")||0)+1;localStorage.setItem("sama_visit_count",n);document.getElementById("visitorCounter").innerText=n;let h=0,t=setInterval(()=>{h+=Math.floor(Math.random()*9)+1;if(h>=999){h=999;clearInterval(t)}document.getElementById("heartCounter").innerText=h},40)})();
 document.querySelectorAll(".modal-overlay").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)m.style.display="none"}));
 document.addEventListener("click",e=>{const p=document.getElementById("notificationsPanel"),b=document.getElementById("notificationBellBtn");if(p?.classList.contains("open")&&!p.contains(e.target)&&!b.contains(e.target))p.classList.remove("open")});
 document.getElementById("storyTextInput").addEventListener("keypress",e=>{if(e.key==="Enter")postStory()});
 initNotificationUI();
 setTimeout(()=>window.initCloudChat?.(),700);
+handlePushDeepLink();
 </script>
 </body>
 </html>
