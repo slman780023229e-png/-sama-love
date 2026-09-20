@@ -17,15 +17,19 @@ button,input{font-family:Cairo,sans-serif}button{-webkit-tap-highlight-color:tra
 .main-container{width:100%;max-width:900px;display:flex;flex-direction:column;gap:18px}.nav-places-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:7px}.place-btn{border:1.5px solid var(--border);border-radius:15px;padding:11px 4px;background:var(--card);color:var(--muted);font-weight:900;font-size:10.5px;cursor:pointer;transition:.3s;box-shadow:0 5px 15px rgba(225,29,72,.06)}.place-btn.active{color:#fff;border-color:var(--primary);background:linear-gradient(135deg,var(--primary),var(--primary2));box-shadow:0 8px 25px rgba(225,29,72,.3);transform:scale(1.02)}
 .display-card{background:var(--card);border:2px solid var(--primary);border-radius:26px;padding:25px;box-shadow:var(--shadow);position:relative;overflow:hidden}.display-card h2{font-size:22px;font-weight:900;color:var(--primary);margin-bottom:12px}.display-card>p{font-size:14.5px;line-height:2;font-weight:700;color:var(--text);background:var(--card2);padding:18px;border-radius:16px;border:1.5px solid var(--border)}.love-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}.love-stat{background:var(--card2);border:1.5px solid var(--border);border-radius:15px;padding:12px 6px;text-align:center}.love-stat strong{display:block;color:var(--primary);font-size:18px;font-weight:900}.love-stat span{font-size:10px;font-weight:800;color:var(--muted)}
 .stories-container{display:none;flex-direction:column;gap:12px;margin-top:15px}.story-card{background:linear-gradient(135deg,var(--card2),var(--card));border:1.5px solid var(--border);border-radius:19px;padding:17px}.story-header{color:var(--primary);font-size:15px;font-weight:900;margin-bottom:5px}.story-text{font-size:12px;font-weight:700;margin-bottom:10px}.story-input-box{display:flex;gap:7px}.story-input-box input{flex:1;min-width:0;padding:10px 13px;border:1.5px solid var(--border);background:var(--card);color:var(--text);border-radius:13px;outline:none}.story-post-btn{border:0;background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;padding:0 15px;border-radius:13px;font-weight:900;cursor:pointer}.stories-list{display:flex;flex-direction:column;gap:9px;margin-top:12px;max-height:320px;overflow-y:auto}.story-bubble{background:var(--card);border:1.5px solid var(--border);padding:11px 13px;border-radius:13px;font-weight:700;font-size:12.5px;display:flex;justify-content:space-between;gap:10px}
-.whatsapp-container{display:none;background:var(--wa-bg);border-radius:23px;border:2px solid var(--green);overflow:visible;box-shadow:0 18px 45px rgba(0,0,0,.35);width:100%;position:relative}.wa-chat-header{background:#1f2c34;color:#fff;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid #2a3942;border-radius:21px 21px 0 0}.wa-avatar-box{display:flex;align-items:center;gap:9px;min-width:0}.wa-avatar{width:42px;height:42px;flex-shrink:0;background:linear-gradient(135deg,#00a884,#005c4b);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}.wa-status-text{font-size:9.5px;color:#00a884;font-weight:800}.header-chat-actions{display:flex;align-items:center;gap:6px}.members-button{background:#00a884;border:0;color:#fff;padding:7px 11px;border-radius:12px;font-weight:900;font-size:10.5px;cursor:pointer;white-space:nowrap}
+.whatsapp-container{display:none;background:var(--wa-bg);border-radius:23px;border:2px solid var(--green);overflow:visible;box-shadow:0 18px 45px rgba(0,0,0,.35);width:100%;position:relative}.wa-chat-header{background:#1f2c34;color:#fff;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid #2a3942;border-radius:21px 21px 0 0}.wa-avatar-box{display:flex;align-items:center;gap:9px;min-width:0}.wa-avatar{width:42px;height:42px;flex-shrink:0;background:linear-gradient(135deg,#00a884,#005c4b);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}.wa-status-text{font-size:9.5px;color:#00a884;font-weight:800}.header-chat-actions{display:flex;align-items:center;gap:6px}.members-button{background:#00a884;border:0;color:#fff;padding:7px 11px;border-radius:12px;font-weight:900;font-size:10.5px;cursor:pointer;white-space:nowrap}.back-chat-btn{background:#111b21;border:1px solid #3b4a52;color:#fff;padding:7px 10px;border-radius:11px;font-weight:900;cursor:pointer}
 .notification-wrapper{position:relative}.notification-bell-btn{position:relative;width:38px;height:35px;border:1px solid #3b4a52;background:#111b21;color:#fff;border-radius:11px;cursor:pointer;font-size:17px}.notification-badge{position:absolute;top:-6px;left:-5px;min-width:18px;height:18px;padding:0 4px;border-radius:20px;background:#ef4444;color:#fff;font-size:9px;font-weight:900;display:none;align-items:center;justify-content:center;border:2px solid #1f2c34}.notification-badge.show{display:flex}
 .notifications-panel{display:none;position:absolute;top:52px;left:10px;right:10px;width:min(390px,calc(100% - 20px));margin:auto;background:#202c33;border:1px solid #3a4a52;border-radius:17px;box-shadow:0 18px 45px rgba(0,0,0,.55);z-index:5000;overflow:hidden}.notifications-panel.open{display:block}.notifications-head{padding:11px 13px;background:#111b21;display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid #2a3942}.notifications-title{color:#fff;font-size:12px;font-weight:900}.notifications-tools{display:flex;gap:5px;flex-wrap:wrap}.notification-small-btn{border:1px solid #3a4a52;background:#202c33;color:#d1d5db;border-radius:8px;padding:5px 8px;font-size:9px;font-weight:800;cursor:pointer}.notifications-list{max-height:330px;overflow-y:auto;display:flex;flex-direction:column}.notification-empty{color:#8696a0;text-align:center;padding:28px 15px;font-size:10px;font-weight:700}.notification-item{display:flex;align-items:flex-start;gap:9px;padding:11px 12px;border-bottom:1px solid #2a3942;cursor:pointer;background:#202c33}.notification-item.unread{background:#26343c;border-right:3px solid #00a884}.notification-icon{width:33px;height:33px;flex-shrink:0;border-radius:50%;background:linear-gradient(135deg,#00a884,#005c4b);display:flex;align-items:center;justify-content:center;font-size:14px}.notification-content{flex:1;min-width:0}.notification-sender{color:#53bdeb;font-size:10.5px;font-weight:900}.notification-preview{color:#e9edef;font-size:10.5px;font-weight:600;line-height:1.6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.notification-time{color:#8696a0;font-size:8px;margin-top:3px}.notification-unread-dot{width:7px;height:7px;border-radius:50%;background:#00a884;margin-top:7px;flex-shrink:0}
 .db-status-bar{background:#111b21;padding:6px 12px;font-size:9.5px;font-weight:700;display:flex;align-items:center;justify-content:space-between;color:#8696a0}.db-status-indicator{display:flex;align-items:center;gap:6px}.db-dot{width:7px;height:7px;border-radius:50%;background:#10b981;box-shadow:0 0 7px #10b981}.db-dot.error{background:#ef4444;box-shadow:0 0 7px #ef4444}
-.wa-messages-area{height:410px;overflow-y:auto;padding:14px 11px;display:flex;flex-direction:column;gap:7px;background:#0b141a;background-image:radial-gradient(#1f2c34 1px,transparent 1px);background-size:20px 20px}.wa-bubble{max-width:78%;padding:8px 11px 7px;border-radius:10px;position:relative;font-size:13px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.3);word-wrap:break-word}.wa-bubble.incoming{background:#202c33;align-self:flex-start;border-top-right-radius:3px;color:#e9edef}.wa-bubble.outgoing{background:#005c4b;align-self:flex-end;border-top-left-radius:3px;color:#e9edef}.wa-sender-name{font-size:10px;color:#53bdeb;font-weight:900;margin-bottom:3px}.msg-text-content{white-space:pre-wrap}.wa-msg-footer{display:flex;align-items:center;justify-content:flex-end;gap:4px;margin-top:4px;direction:ltr}.wa-time{font-size:8.5px;color:#8696a0}.wa-ticks{font-size:9px;color:#53bdeb;letter-spacing:-2px}.msg-tools{display:flex;align-items:center;gap:3px;margin-right:auto}.msg-tool{border:0;background:transparent;color:#8696a0;cursor:pointer;font-size:9px;padding:2px}.stickers-panel{display:none;background:#1f2c34;padding:8px 10px;border-top:1px solid #2a3942;gap:5px;overflow-x:auto}.sticker-item{background:#2a3942;border:0;padding:4px 8px;border-radius:8px;font-size:20px;cursor:pointer;flex-shrink:0}.wa-input-footer{background:#202c33;padding:9px 10px;display:flex;gap:6px;align-items:center;border-top:1px solid #2a3942;border-radius:0 0 21px 21px}.wa-input-footer input{flex:1;min-width:0;padding:10px 14px;background:#2a3942;border:2px solid transparent;color:#fff;border-radius:30px;outline:none;font-size:13px;text-align:right}.wa-action-icon-btn{background:none;border:0;font-size:19px;cursor:pointer;color:#8696a0;flex-shrink:0}.wa-send-btn{background:linear-gradient(135deg,#00a884,#008f6f);color:#fff;border:0;width:41px;height:41px;border-radius:50%;cursor:pointer;font-size:18px;flex-shrink:0}.wa-action-icon-btn.recording{color:#ef4444;animation:pulse 1s infinite}@keyframes pulse{50%{transform:scale(1.15)}}
+.wa-messages-area{height:410px;overflow-y:auto;padding:14px 11px;display:flex;flex-direction:column;gap:7px;background:#0b141a;background-image:radial-gradient(#1f2c34 1px,transparent 1px);background-size:20px 20px}.wa-bubble{max-width:78%;padding:8px 11px 7px;border-radius:10px;position:relative;font-size:13px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.3);word-wrap:break-word}.wa-bubble.incoming{background:#202c33;align-self:flex-start;border-top-right-radius:3px;color:#e9edef}.wa-bubble.outgoing{background:#005c4b;align-self:flex-end;border-top-left-radius:3px;color:#e9edef}.wa-sender-name{font-size:10px;color:#53bdeb;font-weight:900;margin-bottom:3px}.msg-text-content{white-space:pre-wrap}.wa-msg-footer{display:flex;align-items:center;justify-content:flex-end;gap:4px;margin-top:4px;direction:ltr}.wa-time{font-size:8.5px;color:#8696a0}.wa-ticks{font-size:9px;color:#53bdeb;letter-spacing:-2px}.msg-tools{display:flex;align-items:center;gap:3px;margin-right:auto}.msg-tool{border:0;background:transparent;color:#8696a0;cursor:pointer;font-size:9px;padding:2px}
+.stickers-panel{display:none;background:#1f2c34;padding:8px 10px;border-top:1px solid #2a3942;gap:5px;overflow-x:auto}.sticker-item{background:#2a3942;border:0;padding:4px 8px;border-radius:8px;font-size:20px;cursor:pointer;flex-shrink:0}.wa-input-footer{background:#202c33;padding:9px 10px;display:flex;gap:6px;align-items:center;border-top:1px solid #2a3942;border-radius:0 0 21px 21px}.wa-input-footer input{flex:1;min-width:0;padding:10px 14px;background:#2a3942;border:2px solid transparent;color:#fff;border-radius:30px;outline:none;font-size:13px;text-align:right}.wa-action-icon-btn{background:none;border:0;font-size:19px;cursor:pointer;color:#8696a0;flex-shrink:0}.wa-send-btn{background:linear-gradient(135deg,#00a884,#008f6f);color:#fff;border:0;width:41px;height:41px;border-radius:50%;cursor:pointer;font-size:18px;flex-shrink:0}.wa-action-icon-btn.recording{color:#ef4444;animation:pulse 1s infinite}@keyframes pulse{50%{transform:scale(1.15)}}
 .typing-indicator{display:none;padding:5px 13px;background:#111b21;color:#8696a0;font-size:9px;font-weight:700}.action-buttons-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.action-btn{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;border:0;padding:14px;border-radius:16px;font-weight:900;font-size:13px;cursor:pointer;box-shadow:0 7px 20px rgba(225,29,72,.25)}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;z-index:10000;padding:15px;backdrop-filter:blur(6px)}.modal-card{background:var(--card);color:var(--text);padding:22px;border-radius:22px;width:100%;max-width:430px;text-align:center;border:2px solid var(--primary);box-shadow:0 20px 50px rgba(0,0,0,.3);max-height:88vh;display:flex;flex-direction:column}.modal-card h3{color:var(--primary);font-size:19px;margin-bottom:9px;font-weight:900}.modal-card input{width:100%;padding:11px;border:1.5px solid var(--border);background:var(--card2);color:var(--text);border-radius:25px;text-align:center;font-size:14px;margin-bottom:10px;outline:none}.members-scroll-box{overflow-y:auto;margin:8px 0 12px;display:flex;flex-direction:column;gap:7px;max-height:230px;text-align:right}.member-row{background:var(--card2);padding:9px 11px;border-radius:12px;border:1.5px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:7px;font-weight:800;font-size:12.5px}.notification{position:fixed;bottom:20px;right:20px;left:20px;max-width:390px;margin:auto;z-index:20000;background:#1f2c34;color:#fff;border:1px solid #00a884;border-radius:14px;padding:11px 14px;box-shadow:0 10px 30px rgba(0,0,0,.3);text-align:center;font-size:12px;font-weight:800;transform:translateY(100px);opacity:0;pointer-events:none;transition:.3s}.notification.show{transform:translateY(0);opacity:1}.heart-float{position:fixed;color:#e11d48;font-size:26px;animation:heartUp 3.3s cubic-bezier(.1,1,.3,1) forwards;pointer-events:none;z-index:9999;font-weight:900}@keyframes heartUp{0%{transform:translateY(0) scale(.2);opacity:1}50%{transform:translateY(-380px) scale(1.5);opacity:.95}100%{transform:translateY(-760px) scale(1.1);opacity:0}}.empty-chat{margin:auto;color:#8696a0;text-align:center;font-size:12px;font-weight:700;padding:30px}
-@media(max-width:768px){body{padding:9px}.royal-header{padding:12px;border-radius:19px}.royal-title{font-size:12.5px}.royal-badge{font-size:9px;padding:5px 8px}.nav-places-grid{grid-template-columns:repeat(3,1fr)}.place-btn{min-height:47px}.display-card{padding:18px}.display-card h2{font-size:18px}.display-card>p{font-size:13px}.action-buttons-row{grid-template-columns:1fr}.wa-messages-area{height:calc(100dvh - 300px);min-height:350px;max-height:570px}.members-button{padding:6px 8px;font-size:9px}.notification-bell-btn{width:35px}}
-@media(max-width:420px){.royal-title{max-width:190px}.royal-badge{display:none}.story-input-box{flex-direction:column}.story-post-btn{padding:9px}.wa-bubble{max-width:84%}.wa-chat-header{padding:9px}.wa-avatar{width:38px;height:38px}.header-chat-actions{gap:3px}}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;z-index:10000;padding:15px;backdrop-filter:blur(6px)}.modal-card{background:var(--card);color:var(--text);padding:22px;border-radius:22px;width:100%;max-width:460px;text-align:center;border:2px solid var(--primary);box-shadow:0 20px 50px rgba(0,0,0,.3);max-height:88vh;display:flex;flex-direction:column}.modal-card h3{color:var(--primary);font-size:19px;margin-bottom:9px;font-weight:900}.modal-card input{width:100%;padding:11px;border:1.5px solid var(--border);background:var(--card2);color:var(--text);border-radius:25px;text-align:center;font-size:14px;margin-bottom:10px;outline:none}.members-scroll-box{overflow-y:auto;margin:8px 0 12px;display:flex;flex-direction:column;gap:7px;max-height:230px;text-align:right}.member-row{background:var(--card2);padding:9px 11px;border-radius:12px;border:1.5px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:7px;font-weight:800;font-size:12.5px}.member-main{display:flex;align-items:center;gap:8px;min-width:0}.member-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e11d48,#db2777);color:#fff;flex-shrink:0}.member-actions{display:flex;gap:5px;flex-shrink:0}.private-btn{background:#00a884;color:#fff;border:0;padding:5px 9px;border-radius:9px;cursor:pointer;font-size:10px;font-weight:900}.danger-btn{background:#ef4444;color:#fff;border:0;padding:5px 9px;border-radius:9px;cursor:pointer;font-size:10px;font-weight:900}
+.private-head{display:flex;align-items:center;gap:8px}.private-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#e11d48,#db2777);display:flex;align-items:center;justify-content:center;font-size:18px}.private-back{background:#111b21;border:0;color:#fff;font-size:20px;width:34px;height:34px;border-radius:10px;cursor:pointer}
+.private-empty{margin:auto;color:#8696a0;text-align:center;font-size:12px;font-weight:700;padding:30px}.private-label{font-size:8px;color:#00a884;margin-top:2px;font-weight:800}
+.notification{position:fixed;bottom:20px;right:20px;left:20px;max-width:390px;margin:auto;z-index:20000;background:#1f2c34;color:#fff;border:1px solid #00a884;border-radius:14px;padding:11px 14px;box-shadow:0 10px 30px rgba(0,0,0,.3);text-align:center;font-size:12px;font-weight:800;transform:translateY(100px);opacity:0;pointer-events:none;transition:.3s}.notification.show{transform:translateY(0);opacity:1}.heart-float{position:fixed;color:#e11d48;font-size:26px;animation:heartUp 3.3s cubic-bezier(.1,1,.3,1) forwards;pointer-events:none;z-index:9999;font-weight:900}@keyframes heartUp{0%{transform:translateY(0) scale(.2);opacity:1}50%{transform:translateY(-380px) scale(1.5);opacity:.95}100%{transform:translateY(-760px) scale(1.1);opacity:0}}.empty-chat{margin:auto;color:#8696a0;text-align:center;font-size:12px;font-weight:700;padding:30px}
+@media(max-width:768px){body{padding:9px}.royal-header{padding:12px;border-radius:19px}.royal-title{font-size:12.5px}.royal-badge{font-size:9px;padding:5px 8px}.nav-places-grid{grid-template-columns:repeat(3,1fr)}.place-btn{min-height:47px}.display-card{padding:18px}.display-card h2{font-size:18px}.display-card>p{font-size:13px}.action-buttons-row{grid-template-columns:1fr}.wa-messages-area{height:calc(100dvh - 300px);min-height:350px;max-height:570px}.members-button{padding:6px 8px;font-size:9px}.notification-bell-btn{width:35px}.back-chat-btn{padding:6px 8px;font-size:9px}}
+@media(max-width:420px){.royal-title{max-width:190px}.royal-badge{display:none}.story-input-box{flex-direction:column}.story-post-btn{padding:9px}.wa-bubble{max-width:84%}.wa-chat-header{padding:9px}.wa-avatar{width:38px;height:38px}.header-chat-actions{gap:3px}.private-avatar{width:36px;height:36px}}
 </style>
 </head>
 <body onclick="createHeartAtClick(event)">
@@ -33,6 +37,7 @@ button,input{font-family:Cairo,sans-serif}button{-webkit-tap-highlight-color:tra
 <div class="royal-title">👑 مملكة العشق والخلود المخصصة لـ: سما</div>
 <div class="header-tools"><button class="theme-btn" onclick="toggleDarkMode(event)">🌙</button><div class="royal-badge">النسخة الملكية ✨</div></div>
 </header>
+
 <div class="main-container">
 <div class="nav-places-grid">
 <button class="place-btn active" onclick="switchPage(0)">✨ جنة العشق</button>
@@ -42,133 +47,167 @@ button,input{font-family:Cairo,sans-serif}button{-webkit-tap-highlight-color:tra
 <button class="place-btn" onclick="switchPage(4)">📖 الستوريات</button>
 <button class="place-btn" onclick="openSecretModal()" style="background:var(--card2);border-color:var(--primary);color:var(--primary)">🩷 دردشة سما</button>
 </div>
+
 <div id="contentDisplayCard" class="display-card">
 <h2 id="pageTitle">✨ جنة العشق الأبدي</h2>
 <p id="pageDesc">سما.. يا من ملأت أيامي نورا وحياة. أنت لست مجرد شخص أحبه، أنت عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودك معي يجعل العالم مكانا أجمل بكثير.</p>
 <div class="love-stats"><div class="love-stat"><strong id="heartCounter">∞</strong><span>نبضة حب</span></div><div class="love-stat"><strong>🩷</strong><span>للأبد</span></div><div class="love-stat"><strong id="visitorCounter">0</strong><span>زيارة للجناح</span></div></div>
 <div id="storiesBox" class="stories-container"><div class="story-card"><div class="story-header">📸 شارك حالة أو ستوري ملكي جديد</div><div class="story-text">اكتب خاطرة أو حالة وستظهر في المملكة السحابية.</div><div class="story-input-box"><input type="text" id="storyTextInput" maxlength="500" placeholder="اكتب حالتك الأسطورية هنا..."><button class="story-post-btn" onclick="postStory()">نشر 🌟</button></div><div id="storiesList" class="stories-list"></div></div></div>
 </div>
+
 <div id="whatsappBox" class="whatsapp-container">
-<div class="wa-chat-header"><div class="wa-avatar-box"><div class="wa-avatar">👑</div><div><div style="color:#fff;font-weight:900;font-size:13px">مملكة سلمان وسما 🩷</div><div id="onlineStatusText" class="wa-status-text">● جاري فحص الاتصال...</div></div></div>
-<div class="header-chat-actions"><div class="notification-wrapper"><button id="notificationBellBtn" class="notification-bell-btn" onclick="toggleNotificationsPanel(event)">🔔<span id="notificationBadge" class="notification-badge">0</span></button></div><button class="members-button" onclick="openMembersModal()">👥 الأعضاء (<span id="membersCountBadge">0</span>)</button></div></div>
-<div id="notificationsPanel" class="notifications-panel"><div class="notifications-head"><div class="notifications-title">🔔 إشعارات المملكة</div><div class="notifications-tools"><button id="browserNotificationBtn" class="notification-small-btn" onclick="enableBrowserNotifications(event)">🌐 تفعيل المتصفح</button><button id="soundToggleBtn" class="notification-small-btn" onclick="toggleNotificationSound(event)">🔊 الصوت</button><button class="notification-small-btn" onclick="clearAllNotifications(event)">🗑️ مسح</button></div></div><div id="notificationsList" class="notifications-list"><div class="notification-empty">🔔 لا توجد إشعارات جديدة</div></div></div>
+<div class="wa-chat-header">
+<div id="chatIdentity" class="wa-avatar-box">
+<div class="wa-avatar">👑</div>
+<div><div id="chatTitleText" style="color:#fff;font-weight:900;font-size:13px">مملكة سلمان وسما 🩷</div><div id="onlineStatusText" class="wa-status-text">● جاري فحص الاتصال...</div></div>
+</div>
+<div class="header-chat-actions">
+<button id="privateBackBtn" class="back-chat-btn" style="display:none" onclick="backToPublicChat()">↩️ رجوع</button>
+<div class="notification-wrapper"><button id="notificationBellBtn" class="notification-bell-btn" onclick="toggleNotificationsPanel(event)">🔔<span id="notificationBadge" class="notification-badge">0</span></button></div>
+<button class="members-button" onclick="openMembersModal()">👥 الأعضاء (<span id="membersCountBadge">0</span>)</button>
+</div></div>
+
+<div id="notificationsPanel" class="notifications-panel">
+<div class="notifications-head"><div class="notifications-title">🔔 إشعارات المملكة</div><div class="notifications-tools">
+<button id="browserNotificationBtn" class="notification-small-btn" onclick="enableBrowserNotifications(event)">🌐 تفعيل المتصفح</button>
+<button id="soundToggleBtn" class="notification-small-btn" onclick="toggleNotificationSound(event)">🔊 الصوت</button>
+<button class="notification-small-btn" onclick="clearAllNotifications(event)">🗑️ مسح</button>
+</div></div>
+<div id="notificationsList" class="notifications-list"><div class="notification-empty">🔔 لا توجد إشعارات جديدة</div></div>
+</div>
+
 <div class="db-status-bar"><div class="db-status-indicator"><div id="dbDotIndicator" class="db-dot"></div><span id="dbStatusMessage">جاري الاتصال بقاعدة البيانات السحابية... ⏳</span></div></div>
 <div id="typingIndicator" class="typing-indicator">✍️ هناك نشاط في المملكة...</div>
 <div id="waMessagesList" class="wa-messages-area"><div class="empty-chat">👑 مرحبا بك في مملكة سلمان وسما 🩷<br>اكتب أول رسالة لبدء الحكاية...</div></div>
-<div id="stickersPanel" class="stickers-panel"><button class="sticker-item" onclick="sendSticker('💖')">💖</button><button class="sticker-item" onclick="sendSticker('👑')">👑</button><button class="sticker-item" onclick="sendSticker('🔥')">🔥</button><button class="sticker-item" onclick="sendSticker('🌹')">🌹</button><button class="sticker-item" onclick="sendSticker('✨')">✨</button><button class="sticker-item" onclick="sendSticker('💍')">💍</button><button class="sticker-item" onclick="sendSticker('🥺')">🥺</button><button class="sticker-item" onclick="sendSticker('🥰')">🥰</button><button class="sticker-item" onclick="sendSticker('🫶')">🫶</button><button class="sticker-item" onclick="sendSticker('💘')">💘</button></div>
+
+<div id="stickersPanel" class="stickers-panel">
+<button class="sticker-item" onclick="sendSticker('💖')">💖</button><button class="sticker-item" onclick="sendSticker('👑')">👑</button><button class="sticker-item" onclick="sendSticker('🔥')">🔥</button><button class="sticker-item" onclick="sendSticker('🌹')">🌹</button><button class="sticker-item" onclick="sendSticker('✨')">✨</button><button class="sticker-item" onclick="sendSticker('💍')">💍</button><button class="sticker-item" onclick="sendSticker('🥺')">🥺</button><button class="sticker-item" onclick="sendSticker('🥰')">🥰</button><button class="sticker-item" onclick="sendSticker('🫶')">🫶</button><button class="sticker-item" onclick="sendSticker('💘')">💘</button>
+</div>
 <div class="wa-input-footer"><button class="wa-action-icon-btn" onclick="toggleStickersPanel()">😊</button><button id="micBtn" class="wa-action-icon-btn" onclick="toggleVoiceRecording()">🎤</button><input type="text" id="waText" maxlength="2000" placeholder="اكتب رسالتك الملكية هنا..." onkeypress="handleKeyPress(event)"><button class="wa-send-btn" onclick="sendWhatsAppMessage()">➤</button></div>
 </div>
+
 <div class="action-buttons-row"><button class="action-btn" onclick="triggerMegaExplosion(event)">💥 تفجير يملأ الشاشة باسم سما!</button><button class="action-btn" style="background:linear-gradient(135deg,var(--gold),#d97706)" onclick="showCrazyLovePopup()">💌 رسالة الحب السرية</button></div>
 </div>
+
 <div id="secretModal" class="modal-overlay"><div class="modal-card"><h3>🩷 بوابة اللقاء السري</h3><p style="font-size:12px;margin-bottom:12px;color:var(--muted);font-weight:700">أدخل الرمز الصحيح للمتابعة</p><input type="password" id="modalPasswordInput" placeholder="أدخل الرمز السري هنا..." onkeypress="if(event.key==='Enter')verifySecretPassword()"><button class="action-btn" onclick="verifySecretPassword()">فتح الدردشة 💕</button><button style="background:none;border:0;color:#999;margin-top:8px;cursor:pointer;font-weight:700" onclick="closeSecretModal()">إلغاء</button></div></div>
 <div id="nameModal" class="modal-overlay"><div class="modal-card"><h3>✨ اسمك الكريم؟</h3><p style="font-size:12px;margin-bottom:12px;color:var(--muted);font-weight:700">أدخل الاسم الذي سيظهر في الدردشة</p><input type="text" id="myNameInput" maxlength="30" placeholder="مثل: سلمان أو سما..." onkeypress="if(event.key==='Enter')saveMyName()"><button class="action-btn" onclick="saveMyName()">حفظ ودخول الدردشة 🚀</button></div></div>
-<div id="membersModal" class="modal-overlay"><div class="modal-card"><h3>👥 الأعضاء المسجلون (<span id="modalTotalCount">0</span>)</h3><p style="font-size:11px;color:var(--muted);font-weight:700">سلمان محمي ولا يمكن حذفه</p><div id="membersListContainer" class="members-scroll-box"></div><h4 style="color:var(--primary);font-size:13px;text-align:right">🗑️ سلة المهملات</h4><div id="trashListContainer" class="members-scroll-box" style="max-height:140px"></div><button style="background:var(--primary);color:#fff;border:0;padding:10px;border-radius:14px;font-weight:900;cursor:pointer" onclick="closeMembersModal()">إغلاق ❌</button></div></div>
+
+<div id="membersModal" class="modal-overlay"><div class="modal-card">
+<h3>👥 الأعضاء المسجلون (<span id="modalTotalCount">0</span>)</h3>
+<p style="font-size:11px;color:var(--muted);font-weight:700">اضغط 💬 خاص لفتح محادثة منفصلة مع العضو</p>
+<div id="membersListContainer" class="members-scroll-box"></div>
+<h4 style="color:var(--primary);font-size:13px;text-align:right">🗑️ سلة المهملات</h4>
+<div id="trashListContainer" class="members-scroll-box" style="max-height:140px"></div>
+<button style="background:var(--primary);color:#fff;border:0;padding:10px;border-radius:14px;font-weight:900;cursor:pointer" onclick="closeMembersModal()">إغلاق ❌</button>
+</div></div>
 <div id="notification" class="notification"></div>
 
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-import {getDatabase,ref,push,set,remove,onChildAdded,onChildRemoved,onValue,get} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+import {getDatabase,ref,push,set,remove,onChildAdded,onChildRemoved,onValue,get,query,orderByChild} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
 import {getMessaging,getToken,onMessage,isSupported} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging.js";
 
 const firebaseConfig={apiKey:"AIzaSyCEXxF2WsyCa_ebK3PJ5yraCikCIkBgm8Q",authDomain:"slmane.firebaseapp.com",databaseURL:"https://slmane-default-rtdb.firebaseio.com",projectId:"slmane",storageBucket:"slmane.firebasestorage.app",messagingSenderId:"957015187792",appId:"1:957015187792:web:56ca1c0567d6228cba4c55",measurementId:"G-WF8MN20DLV"};
 const VAPID_KEY="BKjGBcIzn-o05QhOGUwsQNU-M05tCc6aszXhdWfkGsPC8AZjOErdpWPyT-E";
+
 let db=null,messagesRef=null,storiesRef=null,membersRef=null,trashRef=null,messaging=null,messagingSupported=false,isListenerActive=false;
+let privateConversationId=null,privatePartnerName=null,privateMessagesRef=null,privateListenerKey=null;
 const clientId=(()=>{let x=localStorage.getItem("sama_fcm_client_id");if(!x){x=(crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2));localStorage.setItem("sama_fcm_client_id",x)}return x})();
-const FCM_TOKEN_KEY="sama_fcm_token";
-let fcmServiceWorkerRegistration=null;
 
 try{
  const app=initializeApp(firebaseConfig); db=getDatabase(app);
- messagesRef=ref(db,"sama_royal_chat/messages");storiesRef=ref(db,"sama_royal_chat/stories");membersRef=ref(db,"sama_royal_chat/members");trashRef=ref(db,"sama_royal_chat/trash");
- onValue(ref(db,".info/connected"),s=>{const d=document.getElementById("dbDotIndicator"),m=document.getElementById("dbStatusMessage"),st=document.getElementById("onlineStatusText");if(s.val()){d?.classList.remove("error");if(m)m.innerText="الاتصال السحابي شغال ⚡";if(st)st.innerText="● متصل سحابيا"}else{d?.classList.add("error");if(m)m.innerText="الاتصال بالسحابة منقطع ❌";if(st)st.innerText="● منقطع"}});
- onValue(membersRef,s=>{const data=s.val()||{},list=document.getElementById("membersListContainer");if(list)list.innerHTML="";let count=0;Object.entries(data).forEach(([key,member])=>{if(!member?.name)return;count++;if(list){const row=document.createElement("div");row.className="member-row";const span=document.createElement("span");span.innerHTML=`👑 ${escapeHtml(member.name)} <small style="color:#888;font-size:9px">(${escapeHtml(member.time||"")})</small>`;row.appendChild(span);if(member.name.trim()==="سلمان"){const p=document.createElement("span");p.innerText="محمي 🛡️";p.style.cssText="color:#10b981;font-size:10px";row.appendChild(p)}else{const b=document.createElement("button");b.innerText="حذف 🗑️";b.style.cssText="background:#ef4444;color:#fff;border:0;padding:4px 9px;border-radius:8px;cursor:pointer;font-size:10px;font-weight:800";b.onclick=()=>window.removeMember(key,member.name,member.time||"");row.appendChild(b)}list.appendChild(row)}});document.getElementById("membersCountBadge").innerText=count;document.getElementById("modalTotalCount").innerText=count});
- onValue(trashRef,s=>{const data=s.val()||{},box=document.getElementById("trashListContainer");if(!box)return;box.innerHTML="";Object.entries(data).forEach(([key,item])=>{if(!item?.name)return;const row=document.createElement("div");row.className="member-row";const n=document.createElement("span");n.innerText="🗑️ "+item.name;const b=document.createElement("button");b.innerText="استرجاع ♻️";b.style.cssText="background:#10b981;color:#fff;border:0;padding:4px 9px;border-radius:8px;cursor:pointer;font-size:10px;font-weight:800";b.onclick=()=>window.restoreMember(key,item.name,item.time||"");row.append(n,b);box.appendChild(row)})});
+ messagesRef=ref(db,"sama_royal_chat/messages");
+ storiesRef=ref(db,"sama_royal_chat/stories");
+ membersRef=ref(db,"sama_royal_chat/members");
+ trashRef=ref(db,"sama_royal_chat/trash");
+
+ onValue(ref(db,".info/connected"),s=>{
+  const d=document.getElementById("dbDotIndicator"),m=document.getElementById("dbStatusMessage"),st=document.getElementById("onlineStatusText");
+  if(s.val()){d?.classList.remove("error");if(m)m.innerText="الاتصال السحابي شغال ⚡";if(st)st.innerText="● متصل سحابيا"}
+  else{d?.classList.add("error");if(m)m.innerText="الاتصال بالسحابة منقطع ❌";if(st)st.innerText="● منقطع"}
+ });
+
+ onValue(membersRef,s=>{
+  const data=s.val()||{},list=document.getElementById("membersListContainer");if(list)list.innerHTML="";
+  let count=0;
+  Object.entries(data).forEach(([key,member])=>{
+   if(!member?.name)return;count++;
+   if(list){
+    const row=document.createElement("div");row.className="member-row";
+    const main=document.createElement("div");main.className="member-main";
+    const avatar=document.createElement("div");avatar.className="member-avatar";avatar.innerText="👤";
+    const span=document.createElement("span");span.innerHTML=`<b>${escapeHtml(member.name)}</b><small style="display:block;color:#888;font-size:9px">دخل ${escapeHtml(member.time||"")}</small>`;
+    main.append(avatar,span);row.appendChild(main);
+    const actions=document.createElement("div");actions.className="member-actions";
+    if(member.name.trim()!=="سلمان"){
+      const p=document.createElement("button");p.className="private-btn";p.innerText="💬 خاص";p.onclick=()=>openPrivateChat(member.name);actions.appendChild(p);
+      const b=document.createElement("button");b.className="danger-btn";b.innerText="حذف 🗑️";b.onclick=()=>window.removeMember(key,member.name,member.time||"");actions.appendChild(b);
+    }else{
+      const p=document.createElement("button");p.className="private-btn";p.innerText="💬 خاص";p.onclick=()=>openPrivateChat(member.name);actions.appendChild(p);
+      const safe=document.createElement("span");safe.innerText="🛡️";safe.style.cssText="font-size:14px";actions.appendChild(safe);
+    }
+    row.appendChild(actions);list.appendChild(row);
+   }
+  });
+  document.getElementById("membersCountBadge").innerText=count;
+  document.getElementById("modalTotalCount").innerText=count;
+ });
+
+ onValue(trashRef,s=>{
+  const data=s.val()||{},box=document.getElementById("trashListContainer");if(!box)return;box.innerHTML="";
+  Object.entries(data).forEach(([key,item])=>{
+   if(!item?.name)return;
+   const row=document.createElement("div");row.className="member-row";
+   const n=document.createElement("span");n.innerText="🗑️ "+item.name;
+   const b=document.createElement("button");b.className="private-btn";b.innerText="استرجاع ♻️";b.onclick=()=>window.restoreMember(key,item.name,item.time||"");
+   row.append(n,b);box.appendChild(row);
+  })
+ });
+
  if(await isSupported()){messagingSupported=true;messaging=getMessaging(app)}
 }catch(e){console.error("Firebase Init Error",e);document.getElementById("dbStatusMessage").innerText="تعذر تشغيل قاعدة البيانات ❌"}
 
-async function registerSamaServiceWorker(){
- if(!("serviceWorker" in navigator))return null;
- try{
-  fcmServiceWorkerRegistration=await navigator.serviceWorker.register("/firebase-messaging-sw.js",{scope:"/"});
-  await navigator.serviceWorker.ready;
-  return fcmServiceWorkerRegistration;
- }catch(e){console.warn("Service Worker registration failed",e);return null}
-}
-
 async function setupFCM(){
- if(!messagingSupported||!messaging||!db)return false;
+ if(!messagingSupported||!messaging)return false;
  try{
-  const reg=await registerSamaServiceWorker();
-  if(!reg||Notification.permission!=="granted")return false;
+  const reg=await navigator.serviceWorker.register("/firebase-messaging-sw.js",{scope:"/"});
+  if(Notification.permission!=="granted")return false;
   const token=await getToken(messaging,{vapidKey:VAPID_KEY,serviceWorkerRegistration:reg});
   if(!token)return false;
-  const oldToken=localStorage.getItem(FCM_TOKEN_KEY);
-  if(oldToken&&oldToken!==token){
-    try{await remove(ref(db,"sama_royal_chat/notificationTokens/"+encodeURIComponent(oldToken)))}catch{}
-  }
   const name=localStorage.getItem("sama_chat_user_name")||"مستخدم";
-  await set(ref(db,"sama_royal_chat/notificationTokens/"+encodeURIComponent(token)),{
-    token,clientId,name,userAgent:navigator.userAgent.slice(0,300),updatedAt:Date.now()
-  });
-  localStorage.setItem(FCM_TOKEN_KEY,token);
-  return true;
+  await set(ref(db,"sama_royal_chat/notificationTokens/"+encodeURIComponent(token)),{token,clientId,name,updatedAt:Date.now()});
+  localStorage.setItem("sama_fcm_token",token);return true;
  }catch(e){console.warn("FCM setup error",e);return false}
 }
-
-if(messagingSupported){
- onMessage(messaging,payload=>{
-  const d=payload.data||payload.notification||{};
-  if(d.messageId&&d.sender){
-   addMessageNotification({id:d.messageId,sender:d.sender,text:d.body||"",time:d.time||"",timestamp:Number(d.timestamp||Date.now()),isVoice:d.isVoice==="true"});
-  }
- });
-}
-
-if("serviceWorker" in navigator){
- navigator.serviceWorker.addEventListener("message",event=>{
-  if(event.data?.type==="SAMA_OPEN_MESSAGE")openChatFromPush(event.data.messageId||"");
- });
-}
-
 window.enableFCM=async function(event){
- event?.stopPropagation();
- if(!messagingSupported){showNotification("هذا المتصفح لا يدعم إشعارات FCM ❌");return false}
- try{
-  if(!("Notification" in window)){showNotification("المتصفح لا يدعم إشعارات النظام ❌");return false}
-  let p=Notification.permission;
-  if(p!=="granted")p=await Notification.requestPermission();
-  if(p!=="granted"){updateBrowserNotificationButton();showNotification("لم يتم السماح بالإشعارات 🚫");return false}
-  const ok=await setupFCM();
-  updateBrowserNotificationButton();
-  showNotification(ok?"تم تفعيل إشعارات المملكة 🔔✨":"تعذر تسجيل الجهاز للإشعارات ❌");
-  return ok;
- }catch(e){console.warn(e);showNotification("تعذر تفعيل الإشعارات ❌");return false}
+ event?.stopPropagation();if(!messagingSupported){showNotification("هذا المتصفح لا يدعم إشعارات FCM ❌");return false}
+ try{const p=await Notification.requestPermission();if(p!=="granted"){showNotification("لم يتم السماح بالإشعارات");return false}
+ const ok=await setupFCM();updateBrowserNotificationButton();showNotification(ok?"تم تفعيل الإشعارات الملكية 🔔✨":"تعذر تسجيل الجهاز للإشعارات ❌");return ok
+ }catch(e){showNotification("تعذر تفعيل الإشعارات ❌");return false}
 };
+if(messagingSupported)onMessage(messaging,payload=>{
+ const d=payload.data||payload.notification||{};
+ if(d.messageId&&d.sender)addMessageNotification({id:d.messageId,sender:d.sender,text:d.body||"",time:d.time||"",timestamp:Number(d.timestamp||Date.now()),isVoice:d.isVoice==="true"});
+});
 
 window.initCloudChat=async function(){
  if(isListenerActive||!messagesRef)return;
- isListenerActive=true;
- const list=document.getElementById("waMessagesList");if(list)list.innerHTML="";
- const known=new Set();
- try{const s=await get(messagesRef);s.forEach(c=>known.add(c.key))}catch{}
+ isListenerActive=true;const list=document.getElementById("waMessagesList");if(list)list.innerHTML="";
+ const known=new Set();try{const s=await get(messagesRef);s.forEach(c=>known.add(c.key))}catch{}
  onChildAdded(messagesRef,s=>{
-  const msg=s.val();if(!msg)return;
-  const old=known.has(s.key);known.add(s.key);
-  renderCloudBubble(s.key,msg.sender||"مجهول",msg.text||"",msg.time||"",!!msg.isVoice,msg.audioUrl||"");
+  const msg=s.val();if(!msg)return;const old=known.has(s.key);known.add(s.key);
+  if(privateConversationId)return;
+  renderCloudBubble(s.key,msg.sender||"مجهول",msg.text||"",msg.time||"",!!msg.isVoice,msg.audioUrl||"",false);
   const me=localStorage.getItem("sama_chat_user_name")||"سلمان";
   if(!old&&String(msg.sender||"").trim()!==String(me).trim())addMessageNotification({id:s.key,sender:msg.sender,text:msg.text,time:msg.time,timestamp:msg.timestamp,isVoice:msg.isVoice});
  });
- onChildRemoved(messagesRef,s=>{
-  document.getElementById("msg-"+s.key)?.remove();
-  const l=getSavedNotifications().filter(x=>x.id!==s.key);
-  saveNotifications(l);renderNotifications();
- });
+ onChildRemoved(messagesRef,s=>document.getElementById("msg-"+s.key)?.remove());
+
  onChildAdded(storiesRef,s=>{
-  const st=s.val();if(!st)return;
-  const box=document.getElementById("storiesList");if(!box||document.getElementById("story-"+s.key))return;
+  const st=s.val();if(!st)return;const box=document.getElementById("storiesList");if(!box||document.getElementById("story-"+s.key))return;
   const d=document.createElement("div");d.id="story-"+s.key;d.className="story-bubble";
   d.innerHTML=`<div><strong>${escapeHtml(st.sender||"مجهول")}:</strong> ${escapeHtml(st.text||"")}</div><span style="font-size:9px;color:#888;white-space:nowrap">${escapeHtml(st.time||"")}</span>`;
-  box.prepend(d);
+  box.prepend(d)
  });
 };
 
@@ -177,33 +216,124 @@ window.registerMemberInCloud=name=>{
  onValue(membersRef,s=>{
   const data=s.val()||{};
   if(Object.values(data).some(x=>x?.name?.trim().toLowerCase()===name.trim().toLowerCase()))return;
-  set(push(membersRef),{name:name.trim(),time:new Date().toLocaleTimeString("ar-SA",{hour:"2-digit",minute:"2-digit"}),timestamp:Date.now()});
- },{onlyOnce:true});
+  set(push(membersRef),{name:name.trim(),time:new Date().toLocaleTimeString("ar-SA",{hour:"2-digit",minute:"2-digit"}),timestamp:Date.now()})
+ },{onlyOnce:true})
 };
+
 window.removeMember=(key,name,time)=>{
  if(String(name).trim()==="سلمان"){showNotification("سلمان محمي للأبد ولا يمكن حذفه 🛡️👑");return}
  if(!confirm("هل تريد نقل "+name+" إلى سلة المهملات؟"))return;
- set(push(trashRef),{name,time,timestamp:Date.now()}).then(()=>remove(ref(db,"sama_royal_chat/members/"+key))).catch(()=>showNotification("تعذر حذف العضو ❌"));
+ set(push(trashRef),{name,time,timestamp:Date.now()}).then(()=>remove(ref(db,"sama_royal_chat/members/"+key))).catch(()=>showNotification("تعذر حذف العضو ❌"))
 };
-window.restoreMember=(key,name,time)=>{
- set(push(membersRef),{name,time,timestamp:Date.now()}).then(()=>remove(ref(db,"sama_royal_chat/trash/"+key)));
-};
+window.restoreMember=(key,name,time)=>set(push(membersRef),{name,time,timestamp:Date.now()}).then(()=>remove(ref(db,"sama_royal_chat/trash/"+key)));
+
 window.sendCloudMessage=(text,isVoice=false,audioUrl="")=>{
  if(!messagesRef||!text)return;
- const sender=localStorage.getItem("sama_chat_user_name")||"سلمان";
- const time=new Date().toLocaleTimeString("ar-SA",{hour:"2-digit",minute:"2-digit"});
- set(push(messagesRef),{sender,text:String(text).slice(0,2000),isVoice:Boolean(isVoice),audioUrl:audioUrl||"",time,timestamp:Date.now(),clientId});
+ const sender=localStorage.getItem("sama_chat_user_name")||"سلمان",time=new Date().toLocaleTimeString("ar-SA",{hour:"2-digit",minute:"2-digit"});
+ set(push(messagesRef),{sender,text:String(text).slice(0,2000),isVoice:Boolean(isVoice),audioUrl:audioUrl||"",time,timestamp:Date.now(),clientId})
 };
+
 window.deleteCloudMessage=id=>{
  if(!confirm("حذف الرسالة للجميع؟"))return;
- remove(ref(db,"sama_royal_chat/messages/"+id)).then(()=>showNotification("تم حذف الرسالة 🗑️")).catch(()=>showNotification("تعذر حذف الرسالة ❌"));
+ remove(ref(db,"sama_royal_chat/messages/"+id)).then(()=>showNotification("تم حذف الرسالة 🗑️")).catch(()=>showNotification("تعذر حذف الرسالة ❌"))
 };
+
 window.postCloudStory=text=>{
  if(!storiesRef||!text)return;
  const sender=localStorage.getItem("sama_chat_user_name")||"سلمان";
- set(push(storiesRef),{sender,text:String(text).slice(0,500),time:new Date().toLocaleTimeString("ar-SA",{hour:"2-digit",minute:"2-digit"}),timestamp:Date.now()});
+ set(push(storiesRef),{sender,text:String(text).slice(0,500),time:new Date().toLocaleTimeString("ar-SA",{hour:"2-digit",minute:"2-digit"}),timestamp:Date.now()})
 };
+
+/* =========================
+   PRIVATE CHAT - مثل واتساب
+   كل زوج من المستخدمين له مسار محادثة ثابت
+   ========================= */
+function normalizeUserName(name){return String(name||"").trim().toLowerCase().replace(/\s+/g," ")}
+function privateRoomId(a,b){
+ const x=normalizeUserName(a),y=normalizeUserName(b);
+ return [x,y].sort().map(v=>encodeURIComponent(v)).join("__");
+}
+function stopPrivateListener(){
+ if(privateListenerKey){privateListenerKey();privateListenerKey=null}
+}
+window.openPrivateChat=async function(partner){
+ const me=localStorage.getItem("sama_chat_user_name");
+ if(!me){closeMembersModal();document.getElementById("nameModal").style.display="flex";showNotification("احفظ اسمك أولا لفتح الخاص ✨");return}
+ if(normalizeUserName(me)===normalizeUserName(partner)){showNotification("لا يمكنك فتح محادثة خاصة مع نفسك 😄");return}
+ closeMembersModal();
+ privatePartnerName=partner;
+ privateConversationId=privateRoomId(me,partner);
+ privateMessagesRef=ref(db,"sama_royal_chat/privateChats/"+privateConversationId+"/messages");
+ privateListenerKey=null;
+ document.getElementById("contentDisplayCard").style.display="none";
+ document.getElementById("whatsappBox").style.display="block";
+ document.getElementById("privateBackBtn").style.display="block";
+ document.getElementById("chatTitleText").innerText="💬 "+partner;
+ document.getElementById("onlineStatusText").innerText="● محادثة خاصة";
+ document.getElementById("waText").placeholder="اكتب رسالة خاصة لـ "+partner+"...";
+ document.getElementById("waMessagesList").innerHTML='<div class="private-empty">🔐 هذه محادثة خاصة<br>لا تظهر رسائلها في الدردشة العامة</div>';
+ await loadPrivateMessages();
+};
+
+async function loadPrivateMessages(){
+ stopPrivateListener();
+ if(!privateMessagesRef)return;
+ const list=document.getElementById("waMessagesList");
+ const known=new Set();
+ try{
+  const snap=await get(privateMessagesRef);
+  snap.forEach(c=>{known.add(c.key);const m=c.val();renderPrivateBubble(c.key,m)})
+ }catch(e){console.warn(e)}
+ privateListenerKey=onChildAdded(privateMessagesRef,s=>{
+  const m=s.val();if(!m)return;
+  if(!known.has(s.key)){known.add(s.key);renderPrivateBubble(s.key,m)}
+ });
+ onChildRemoved(privateMessagesRef,s=>document.getElementById("private-msg-"+s.key)?.remove());
+ list.scrollTop=list.scrollHeight;
+}
+
+function renderPrivateBubble(id,msg){
+ const list=document.getElementById("waMessagesList");if(!list)return;
+ list.querySelector(".private-empty")?.remove();
+ if(document.getElementById("private-msg-"+id))return;
+ const me=localStorage.getItem("sama_chat_user_name")||"سلمان";
+ const b=document.createElement("div");
+ b.id="private-msg-"+id;
+ b.className="wa-bubble "+(normalizeUserName(msg.sender)===normalizeUserName(me)?"outgoing":"incoming");
+ const isVoice=!!msg.isVoice&&!!msg.audioUrl;
+ const content=isVoice?`<div>🎙️ رسالة صوتية خاصة</div><audio controls src="${escapeForDisplay(msg.audioUrl)}" style="width:180px;max-width:100%;margin-top:5px"></audio>`:`<div class="msg-text-content">${escapeForDisplay(msg.text||"")}</div>`;
+ b.innerHTML=`<div class="wa-sender-name">${escapeForDisplay(msg.sender||"مجهول")}</div><div class="private-label">🔒 خاص</div>${content}<div class="wa-msg-footer"><div class="msg-tools"><button class="msg-tool" onclick="copyMessageText('${escapeForAttribute(msg.text||"")}')">نسخ</button><button class="msg-tool" onclick="deletePrivateMessage('${id}')">🗑️</button></div><span class="wa-time">${escapeForDisplay(msg.time||"")}</span><span class="wa-ticks">✓✓</span></div>`;
+ list.appendChild(b);list.scrollTop=list.scrollHeight;
+}
+
+window.sendPrivateMessage=function(text,isVoice=false,audioUrl=""){
+ if(!privateMessagesRef||!privatePartnerName)return;
+ const v=String(text||"").trim();if(!v)return;
+ const sender=localStorage.getItem("sama_chat_user_name")||"سلمان";
+ const time=new Date().toLocaleTimeString("ar-SA",{hour:"2-digit",minute:"2-digit"});
+ set(push(privateMessagesRef),{sender,text:v.slice(0,2000),isVoice:Boolean(isVoice),audioUrl:audioUrl||"",time,timestamp:Date.now(),clientId,partner:privatePartnerName})
+ .catch(()=>showNotification("تعذر إرسال الرسالة الخاصة ❌"));
+};
+
+window.deletePrivateMessage=function(id){
+ if(!privateConversationId)return;
+ if(!confirm("حذف الرسالة الخاصة للجميع؟"))return;
+ remove(ref(db,"sama_royal_chat/privateChats/"+privateConversationId+"/messages/"+id)).then(()=>showNotification("تم حذف الرسالة الخاصة 🗑️")).catch(()=>showNotification("تعذر الحذف ❌"))
+};
+
+window.backToPublicChat=function(){
+ stopPrivateListener();
+ privateConversationId=null;privatePartnerName=null;privateMessagesRef=null;
+ document.getElementById("privateBackBtn").style.display="none";
+ document.getElementById("chatTitleText").innerText="مملكة سلمان وسما 🩷";
+ document.getElementById("onlineStatusText").innerText="● متصل سحابيا";
+ document.getElementById("waText").placeholder="اكتب رسالتك الملكية هنا...";
+ document.getElementById("waMessagesList").innerHTML='<div class="empty-chat">👑 مرحبا بك في مملكة سلمان وسما 🩷<br>الدردشة العامة</div>';
+ window.initCloudChat?.();
+};
+
 function escapeHtml(v){return String(v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
+window.getPrivateRoomId=(a,b)=>privateRoomId(a,b);
 </script>
 
 <script>
@@ -214,22 +344,80 @@ const pagesData=[
 {title:"💍 عهد الوفاء والمصير",desc:"أقسم برب الكون يا سما، أنني سأبقى سندك وقوتك ومأمنك حتى آخر نبض في عمري. معك أدركت معنى الاستقرار الحقيقي، وللأبد نحن قصة عشق لا تنتهي."},
 {title:"📖 ستوريات وحالات المملكة الملكية",desc:"شارك أفكارك ومشاعرك وحالاتك الرومانسية لتظهر في السحابة وتخلد هنا."}];
 
-function switchPage(i){document.getElementById("whatsappBox").style.display="none";document.getElementById("contentDisplayCard").style.display="block";document.getElementById("storiesBox").style.display="none";document.querySelectorAll(".place-btn").forEach((b,n)=>b.classList.toggle("active",n===i));document.getElementById("pageTitle").innerText=pagesData[i].title;document.getElementById("pageDesc").innerText=pagesData[i].desc;if(i===4){document.getElementById("storiesBox").style.display="flex";window.initCloudChat?.()}}
+function switchPage(i){
+ window.backToPublicChat?.();
+ document.getElementById("whatsappBox").style.display="none";
+ document.getElementById("contentDisplayCard").style.display="block";
+ document.getElementById("storiesBox").style.display="none";
+ document.querySelectorAll(".place-btn").forEach((b,n)=>b.classList.toggle("active",n===i));
+ document.getElementById("pageTitle").innerText=pagesData[i].title;
+ document.getElementById("pageDesc").innerText=pagesData[i].desc;
+ if(i===4){document.getElementById("storiesBox").style.display="flex";window.initCloudChat?.()}
+}
 function openSecretModal(){if(localStorage.getItem("sama_chat_auth_verified")==="true")checkNameAndOpenChat();else document.getElementById("secretModal").style.display="flex"}
 function closeSecretModal(){document.getElementById("secretModal").style.display="none";document.getElementById("modalPasswordInput").value=""}
 function verifySecretPassword(){if(document.getElementById("modalPasswordInput").value.trim()==="ang_el99m"){localStorage.setItem("sama_chat_auth_verified","true");closeSecretModal();checkNameAndOpenChat()}else showNotification("الرمز السري غير صحيح ❌")}
 function checkNameAndOpenChat(){const n=localStorage.getItem("sama_chat_user_name");if(!n)document.getElementById("nameModal").style.display="flex";else openChatRoom()}
-async function saveMyName(){const n=document.getElementById("myNameInput").value.trim();if(!n){showNotification("اكتب اسمك أولا ✨");return}localStorage.setItem("sama_chat_user_name",n);document.getElementById("nameModal").style.display="none";window.registerMemberInCloud?.(n);openChatRoom();if("Notification"in window&&Notification.permission==="granted")await window.enableFCM?.(new Event("click"))}
-function openChatRoom(){document.querySelectorAll(".place-btn").forEach(b=>b.classList.remove("active"));document.getElementById("contentDisplayCard").style.display="none";document.getElementById("whatsappBox").style.display="block";initNotificationUI();window.initCloudChat?.();updateBrowserNotificationButton()}
-function openMembersModal(){document.getElementById("membersModal").style.display="flex"}function closeMembersModal(){document.getElementById("membersModal").style.display="none"}
-function toggleStickersPanel(){const p=document.getElementById("stickersPanel");p.style.display=p.style.display==="flex"?"none":"flex"}function sendSticker(e){sendWhatsAppMessage(e);document.getElementById("stickersPanel").style.display="none"}
-function postStory(){const i=document.getElementById("storyTextInput"),v=i.value.trim();if(!v){showNotification("اكتب شيئا لنشره ✨");return}window.postCloudStory?.(v);i.value="";showNotification("تم نشر الحالة في المملكة 🌟")}
+async function saveMyName(){
+ const n=document.getElementById("myNameInput").value.trim();if(!n){showNotification("اكتب اسمك أولا ✨");return}
+ localStorage.setItem("sama_chat_user_name",n);document.getElementById("nameModal").style.display="none";
+ window.registerMemberInCloud?.(n);openChatRoom();
+ if("Notification"in window&&Notification.permission==="granted")await window.enableFCM?.(new Event("click"))
+}
+function openChatRoom(){
+ document.querySelectorAll(".place-btn").forEach(b=>b.classList.remove("active"));
+ document.getElementById("contentDisplayCard").style.display="none";
+ document.getElementById("whatsappBox").style.display="block";
+ document.getElementById("privateBackBtn").style.display="none";
+ document.getElementById("chatTitleText").innerText="مملكة سلمان وسما 🩷";
+ document.getElementById("waText").placeholder="اكتب رسالتك الملكية هنا...";
+ initNotificationUI();window.initCloudChat?.();updateBrowserNotificationButton()
+}
+function openMembersModal(){document.getElementById("membersModal").style.display="flex"}
+function closeMembersModal(){document.getElementById("membersModal").style.display="none"}
+function toggleStickersPanel(){const p=document.getElementById("stickersPanel");p.style.display=p.style.display==="flex"?"none":"flex"}
+function sendSticker(e){privateConversationId?window.sendPrivateMessage?.(e,false,""):sendWhatsAppMessage(e);document.getElementById("stickersPanel").style.display="none"}
+
 let mediaRecorder=null,audioChunks=[],isRecording=false;
-async function toggleVoiceRecording(){const mic=document.getElementById("micBtn");if(!isRecording){try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});mediaRecorder=new MediaRecorder(stream);audioChunks=[];mediaRecorder.ondataavailable=e=>e.data.size&&audioChunks.push(e.data);mediaRecorder.onstop=()=>{stream.getTracks().forEach(t=>t.stop());const blob=new Blob(audioChunks,{type:"audio/webm"});window.sendCloudMessage?.("🎙️ رسالة صوتية ملكية",true,URL.createObjectURL(blob))};mediaRecorder.start();isRecording=true;mic.classList.add("recording");showNotification("جاري التسجيل... اضغط الميكروفون للإرسال 🎤")}catch{showNotification("تعذر الوصول إلى الميكروفون ❌")}}else{mediaRecorder?.stop();isRecording=false;mic.classList.remove("recording")}}
-function renderCloudBubble(id,sender,text,time,isVoice,audioUrl){const list=document.getElementById("waMessagesList");if(!list||document.getElementById("msg-"+id))return;list.querySelector(".empty-chat")?.remove();const me=localStorage.getItem("sama_chat_user_name")||"أنا",b=document.createElement("div");b.id="msg-"+id;b.className="wa-bubble "+(sender===me?"outgoing":"incoming");let content=isVoice&&audioUrl?`<div>🎙️ رسالة صوتية</div><audio controls src="${escapeForDisplay(audioUrl)}" style="width:180px;max-width:100%;margin-top:5px"></audio>`:`<div class="msg-text-content">${escapeForDisplay(text)}</div>`;b.innerHTML=`<div class="wa-sender-name">${escapeForDisplay(sender)}</div>${content}<div class="wa-msg-footer"><div class="msg-tools"><button class="msg-tool" onclick="copyMessageText('${escapeForAttribute(text)}')">نسخ</button><button class="msg-tool" onclick="deleteMessageFromUI('${id}')">🗑️</button></div><span class="wa-time">${escapeForDisplay(time)}</span><span class="wa-ticks">✓✓</span></div>`;list.appendChild(b);list.scrollTop=list.scrollHeight}
-function escapeForDisplay(v){return String(v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}function escapeForAttribute(v){return String(v).replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/\n/g,"\\n").replace(/\r/g,"")}
-async function copyMessageText(t){try{await navigator.clipboard.writeText(t.replace(/\\n/g,"\n").replace(/\\'/g,"'"));showNotification("تم نسخ الرسالة 📋")}catch{showNotification("تعذر نسخ الرسالة")}}function deleteMessageFromUI(id){window.deleteCloudMessage?.(id)}function handleKeyPress(e){if(e.key==="Enter"){e.preventDefault();sendWhatsAppMessage()}}
-function sendWhatsAppMessage(t){const i=document.getElementById("waText"),v=(typeof t==="string"?t:i.value).trim();if(!v)return;window.sendCloudMessage?.(v,false,"");if(!t)i.value=""}
+async function toggleVoiceRecording(){
+ const mic=document.getElementById("micBtn");
+ if(!isRecording){
+  try{
+   const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+   mediaRecorder=new MediaRecorder(stream);audioChunks=[];
+   mediaRecorder.ondataavailable=e=>e.data.size&&audioChunks.push(e.data);
+   mediaRecorder.onstop=()=>{
+    stream.getTracks().forEach(t=>t.stop());
+    const blob=new Blob(audioChunks,{type:"audio/webm"});
+    const url=URL.createObjectURL(blob);
+    if(privateConversationId)window.sendPrivateMessage?.("🎙️ رسالة صوتية خاصة",true,url);
+    else window.sendCloudMessage?.("🎙️ رسالة صوتية ملكية",true,url);
+   };
+   mediaRecorder.start();isRecording=true;mic.classList.add("recording");showNotification("جاري التسجيل... اضغط الميكروفون للإرسال 🎤")
+  }catch{showNotification("تعذر الوصول إلى الميكروفون ❌")}
+ }else{mediaRecorder?.stop();isRecording=false;mic.classList.remove("recording")}
+}
+
+function renderCloudBubble(id,sender,text,time,isVoice,audioUrl){
+ const list=document.getElementById("waMessagesList");if(!list||document.getElementById("msg-"+id))return;
+ list.querySelector(".empty-chat")?.remove();
+ const me=localStorage.getItem("sama_chat_user_name")||"أنا",b=document.createElement("div");
+ b.id="msg-"+id;b.className="wa-bubble "+(sender===me?"outgoing":"incoming");
+ let content=isVoice&&audioUrl?`<div>🎙️ رسالة صوتية</div><audio controls src="${escapeForDisplay(audioUrl)}" style="width:180px;max-width:100%;margin-top:5px"></audio>`:`<div class="msg-text-content">${escapeForDisplay(text)}</div>`;
+ b.innerHTML=`<div class="wa-sender-name">${escapeForDisplay(sender)}</div>${content}<div class="wa-msg-footer"><div class="msg-tools"><button class="msg-tool" onclick="copyMessageText('${escapeForAttribute(text)}')">نسخ</button><button class="msg-tool" onclick="deleteMessageFromUI('${id}')">🗑️</button></div><span class="wa-time">${escapeForDisplay(time)}</span><span class="wa-ticks">✓✓</span></div>`;
+ list.appendChild(b);list.scrollTop=list.scrollHeight
+}
+function escapeForDisplay(v){return String(v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
+function escapeForAttribute(v){return String(v).replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/\n/g,"\\n").replace(/\r/g,"")}
+async function copyMessageText(t){try{await navigator.clipboard.writeText(t.replace(/\\n/g,"\n").replace(/\\'/g,"'"));showNotification("تم نسخ الرسالة 📋")}catch{showNotification("تعذر نسخ الرسالة")}}
+function deleteMessageFromUI(id){window.deleteCloudMessage?.(id)}
+function handleKeyPress(e){if(e.key==="Enter"){e.preventDefault();sendWhatsAppMessage()}}
+function sendWhatsAppMessage(t){
+ const i=document.getElementById("waText"),v=(typeof t==="string"?t:i.value).trim();if(!v)return;
+ if(privateConversationId)window.sendPrivateMessage?.(v,false,"");else window.sendCloudMessage?.(v,false,"");
+ if(!t)i.value=""
+}
+function postStory(){const i=document.getElementById("storyTextInput"),v=i.value.trim();if(!v){showNotification("اكتب شيئا لنشره ✨");return}window.postCloudStory?.(v);i.value="";showNotification("تم نشر الحالة في المملكة 🌟")}
 function createHeartAtClick(e){if(e.target.closest("#whatsappBox,button,input,.modal-card,#storiesBox"))return;spawnHeart(e.clientX,e.clientY)}
 function spawnHeart(x,y){const h=document.createElement("div");h.className="heart-float";h.innerText=["💖 سما 💖","🌸 سما 🌸","🌷 سما 🌷","👑 سما 👑","🌹 روحي سما 🌹","✨ سما الحب ✨"][Math.floor(Math.random()*6)];h.style.left=x+"px";h.style.top=y+"px";document.body.appendChild(h);setTimeout(()=>h.remove(),3400)}
 function triggerMegaExplosion(e){e?.stopPropagation();for(let i=0;i<70;i++)setTimeout(()=>spawnHeart(Math.random()*innerWidth,innerHeight-20),i*18)}
@@ -238,13 +426,25 @@ function showNotification(m){const b=document.getElementById("notification");if(
 function toggleDarkMode(e){e?.stopPropagation();document.body.classList.toggle("dark");const d=document.body.classList.contains("dark");localStorage.setItem("sama_dark_mode",d?"true":"false");document.querySelector(".theme-btn").innerText=d?"☀️":"🌙"}
 function updateBrowserNotificationButton(){const b=document.getElementById("browserNotificationBtn");if(!b)return;if(!("Notification"in window)){b.innerText="🌐 غير مدعوم";return}b.innerText=Notification.permission==="granted"?"✅ الإشعارات مفعلة":Notification.permission==="denied"?"🚫 محظور":"🌐 تفعيل الإشعارات"}
 async function enableBrowserNotifications(e){e?.stopPropagation();if(!("Notification"in window)){showNotification("المتصفح لا يدعم إشعارات النظام ❌");return}if(Notification.permission==="granted"){await window.enableFCM?.(e);updateBrowserNotificationButton();return}const p=await Notification.requestPermission();if(p==="granted"){const ok=await window.enableFCM?.(e);showNotification(ok===false?"تعذر تسجيل الجهاز للإشعارات ❌":"تم تفعيل إشعارات المملكة 🔔✨")}else showNotification("لم يتم السماح بالإشعارات");updateBrowserNotificationButton()}
-const NOTIFICATIONS_STORAGE_KEY="sama_chat_notifications",NOTIFICATION_SOUND_KEY="sama_notification_sound";let notificationSoundEnabled=localStorage.getItem(NOTIFICATION_SOUND_KEY)!=="false",notificationAudioContext=null;
-function getSavedNotifications(){try{return JSON.parse(localStorage.getItem(NOTIFICATIONS_STORAGE_KEY)||"[]")}catch{return[]}}function saveNotifications(l){localStorage.setItem(NOTIFICATIONS_STORAGE_KEY,JSON.stringify(l.slice(0,100)))}function updateNotificationBadge(){const b=document.getElementById("notificationBadge"),n=getSavedNotifications().filter(x=>!x.read).length;if(!b)return;b.innerText=n>99?"99+":n;b.classList.toggle("show",n>0)}
-function renderNotifications(){const box=document.getElementById("notificationsList"),l=getSavedNotifications();if(!box)return;box.innerHTML="";if(!l.length){box.innerHTML='<div class="notification-empty">🔔 لا توجد إشعارات جديدة</div>';updateNotificationBadge();return}l.forEach(x=>{const r=document.createElement("div");r.className="notification-item"+(x.read?"":" unread");r.onclick=()=>openNotificationMessage(x.id);r.innerHTML=`<div class="notification-icon">${x.isVoice?"🎙️":"💌"}</div><div class="notification-content"><div class="notification-sender">${escapeForDisplay(x.sender)}</div><div class="notification-preview">${escapeForDisplay(x.text||"رسالة جديدة")}</div><div class="notification-time">${escapeForDisplay(x.time||"")}</div></div>${x.read?"":"<div class='notification-unread-dot'></div>"}`;box.appendChild(r)});updateNotificationBadge()}
-function addMessageNotification(d){if(!d?.id)return;let l=getSavedNotifications();if(l.some(x=>x.id===d.id))return;l.unshift({id:String(d.id),sender:String(d.sender||"مجهول"),text:String(d.text||"").slice(0,500),time:String(d.time||""),timestamp:Number(d.timestamp||Date.now()),isVoice:Boolean(d.isVoice),read:false});saveNotifications(l);renderNotifications();playNotificationSound();showNotification("💌 رسالة جديدة من "+d.sender)}
+
+const NOTIFICATIONS_STORAGE_KEY="sama_chat_notifications",NOTIFICATION_SOUND_KEY="sama_notification_sound";
+let notificationSoundEnabled=localStorage.getItem(NOTIFICATION_SOUND_KEY)!=="false",notificationAudioContext=null;
+function getSavedNotifications(){try{return JSON.parse(localStorage.getItem(NOTIFICATIONS_STORAGE_KEY)||"[]")}catch{return[]}}
+function saveNotifications(l){localStorage.setItem(NOTIFICATIONS_STORAGE_KEY,JSON.stringify(l.slice(0,100)))}
+function updateNotificationBadge(){const b=document.getElementById("notificationBadge"),n=getSavedNotifications().filter(x=>!x.read).length;if(!b)return;b.innerText=n>99?"99+":n;b.classList.toggle("show",n>0)}
+function renderNotifications(){
+ const box=document.getElementById("notificationsList"),l=getSavedNotifications();if(!box)return;box.innerHTML="";
+ if(!l.length){box.innerHTML='<div class="notification-empty">🔔 لا توجد إشعارات جديدة</div>';updateNotificationBadge();return}
+ l.forEach(x=>{const r=document.createElement("div");r.className="notification-item"+(x.read?"":" unread");r.onclick=()=>openNotificationMessage(x.id);
+ r.innerHTML=`<div class="notification-icon">${x.isVoice?"🎙️":"💌"}</div><div class="notification-content"><div class="notification-sender">${escapeForDisplay(x.sender)}</div><div class="notification-preview">${escapeForDisplay(x.text||"رسالة جديدة")}</div><div class="notification-time">${escapeForDisplay(x.time||"")}</div></div>${x.read?"":"<div class='notification-unread-dot'></div>"}`;box.appendChild(r)});
+ updateNotificationBadge()
+}
+function addMessageNotification(d){
+ if(!d?.id)return;let l=getSavedNotifications();if(l.some(x=>x.id===d.id))return;
+ l.unshift({id:String(d.id),sender:String(d.sender||"مجهول"),text:String(d.text||"").slice(0,500),time:String(d.time||""),timestamp:Number(d.timestamp||Date.now()),isVoice:Boolean(d.isVoice),read:false});
+ saveNotifications(l);renderNotifications();playNotificationSound();showNotification("💌 رسالة جديدة من "+d.sender)
+}
 function openNotificationMessage(id){let l=getSavedNotifications(),x=l.find(a=>a.id===id);if(!x)return;x.read=true;saveNotifications(l);renderNotifications();document.getElementById("notificationsPanel").classList.remove("open");openChatRoom();setTimeout(()=>document.getElementById("msg-"+id)?.scrollIntoView({behavior:"smooth",block:"center"}),250)}
-function openChatFromPush(messageId=""){if(localStorage.getItem("sama_chat_auth_verified")!=="true"){openSecretModal();return}const n=localStorage.getItem("sama_chat_user_name");if(!n){document.getElementById("nameModal").style.display="flex";return}openChatRoom();if(messageId)setTimeout(()=>document.getElementById("msg-"+messageId)?.scrollIntoView({behavior:"smooth",block:"center"}),600)}
-function handlePushDeepLink(){const p=new URLSearchParams(location.search);if(p.get("chat")==="1"){const id=p.get("message")||"";setTimeout(()=>openChatFromPush(id),900)}}
 function toggleNotificationsPanel(e){e?.stopPropagation();initNotificationAudio();const p=document.getElementById("notificationsPanel");p.classList.toggle("open");if(p.classList.contains("open"))renderNotifications()}
 function clearAllNotifications(e){e?.stopPropagation();if(!getSavedNotifications().length){showNotification("لا توجد إشعارات لمسحها");return}if(confirm("هل تريد مسح جميع الإشعارات؟")){localStorage.removeItem(NOTIFICATIONS_STORAGE_KEY);renderNotifications();showNotification("تم مسح الإشعارات 🗑️")}}
 function initNotificationAudio(){try{const C=window.AudioContext||window.webkitAudioContext;if(!notificationAudioContext)notificationAudioContext=new C();notificationAudioContext.resume?.()}catch{}}
@@ -252,14 +452,17 @@ function playNotificationSound(){if(!notificationSoundEnabled)return;try{initNot
 function toggleNotificationSound(e){e?.stopPropagation();notificationSoundEnabled=!notificationSoundEnabled;localStorage.setItem(NOTIFICATION_SOUND_KEY,notificationSoundEnabled);updateSoundButton();if(notificationSoundEnabled){initNotificationAudio();playNotificationSound()}}
 function updateSoundButton(){document.getElementById("soundToggleBtn").innerText=notificationSoundEnabled?"🔊 الصوت":"🔕 مكتوم"}
 function initNotificationUI(){updateNotificationBadge();renderNotifications();updateSoundButton();updateBrowserNotificationButton()}
-(async function initFCMOnLoad(){if(messagingSupported){await registerSamaServiceWorker();if("Notification"in window&&Notification.permission==="granted")await setupFCM()}})();
-(function(){if(localStorage.getItem("sama_dark_mode")==="true"){document.body.classList.add("dark");document.querySelector(".theme-btn").innerText="☀️"}let n=Number(localStorage.getItem("sama_visit_count")||0)+1;localStorage.setItem("sama_visit_count",n);document.getElementById("visitorCounter").innerText=n;let h=0,t=setInterval(()=>{h+=Math.floor(Math.random()*9)+1;if(h>=999){h=999;clearInterval(t)}document.getElementById("heartCounter").innerText=h},40)})();
+
+(function(){
+ if(localStorage.getItem("sama_dark_mode")==="true"){document.body.classList.add("dark");document.querySelector(".theme-btn").innerText="☀️"}
+ let n=Number(localStorage.getItem("sama_visit_count")||0)+1;localStorage.setItem("sama_visit_count",n);document.getElementById("visitorCounter").innerText=n;
+ let h=0,t=setInterval(()=>{h+=Math.floor(Math.random()*9)+1;if(h>=999){h=999;clearInterval(t)}document.getElementById("heartCounter").innerText=h},40)
+})();
 document.querySelectorAll(".modal-overlay").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)m.style.display="none"}));
 document.addEventListener("click",e=>{const p=document.getElementById("notificationsPanel"),b=document.getElementById("notificationBellBtn");if(p?.classList.contains("open")&&!p.contains(e.target)&&!b.contains(e.target))p.classList.remove("open")});
 document.getElementById("storyTextInput").addEventListener("keypress",e=>{if(e.key==="Enter")postStory()});
 initNotificationUI();
 setTimeout(()=>window.initCloudChat?.(),700);
-handlePushDeepLink();
 </script>
 </body>
 </html>
