@@ -1,938 +1,2876 @@
-<!DOCTYPE html>  
-<html lang="ar" dir="rtl">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Sama Royal Sanctuary - Ultimate WhatsApp Edition</title>  
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">  
-    <style>  
-        :root {  
-            --bg-grad-1: #fff1f2;  
-            --bg-grad-2: #ffe4e6;  
-            --box-bg: rgba(255, 255, 255, 0.96);  
-            --border-glow: #f43f5e;  
-            --primary: #e11d48;  
-            --accent: #db2777;  
-            --gold: #b45309;  
-            --text-main: #881337;  
-            --text-muted: #9f1239;  
-        }  
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }  
-        body {   
-            background: linear-gradient(135deg, var(--bg-grad-1), var(--bg-grad-2));   
-            color: var(--text-main);   
-            min-height: 100vh;   
-            display: flex;   
-            flex-direction: column;   
-            align-items: center;   
-            justify-content: flex-start;   
-            padding: 15px;  
-            overflow-x: hidden;   
-        }  
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#e11d48">
+<title>Sama Royal Sanctuary — Ultimate Edition</title>
 
-        .royal-header {  
-            width: 100%;  
-            max-width: 850px;  
-            background: var(--box-bg);  
-            border: 3px solid var(--border-glow);  
-            border-radius: 20px;  
-            padding: 15px 20px;  
-            display: flex;  
-            align-items: center;  
-            justify-content: space-between;  
-            box-shadow: 0 10px 25px rgba(225, 29, 72, 0.15);  
-            margin-bottom: 20px;  
-            backdrop-filter: blur(10px);  
-        }  
-        .royal-title { font-size: 18px; font-weight: 900; color: var(--primary); display: flex; align-items: center; gap: 8px; }  
-        .royal-badge { font-size: 12px; background: var(--primary); color: #fff; padding: 5px 14px; border-radius: 20px; font-weight: 800; }  
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
-        .main-container {  
-            width: 100%;  
-            max-width: 850px;  
-            display: flex;  
-            flex-direction: column;  
-            gap: 20px;  
-        }  
+<style>
+:root{
+    --bg1:#fff1f2;
+    --bg2:#ffe4e6;
+    --card:rgba(255,255,255,.94);
+    --card2:#fff7f8;
+    --primary:#e11d48;
+    --primary2:#db2777;
+    --gold:#b45309;
+    --text:#881337;
+    --muted:#9f1239;
+    --border:#fda4af;
+    --shadow:0 15px 40px rgba(225,29,72,.15);
+    --green:#00a884;
+    --wa-bg:#0b141a;
+    --wa-card:#202c33;
+    --transition:.3s ease;
+}
 
-        .nav-places-grid {  
-            display: grid;  
-            grid-template-columns: repeat(6, 1fr);  
-            gap: 8px;  
-        }  
-        .place-btn {  
-            background: var(--box-bg);  
-            border: 2px solid #fda4af;  
-            border-radius: 14px;  
-            padding: 12px 4px;  
-            text-align: center;  
-            cursor: pointer;  
-            transition: all 0.3s ease;  
-            font-weight: 900;  
-            font-size: 11px;  
-            color: var(--text-muted);  
-            box-shadow: 0 4px 10px rgba(225, 29, 72, 0.05);  
-        }  
-        .place-btn:hover {  
-            border-color: var(--primary);  
-            background: #fff;  
-            transform: translateY(-2px);  
-        }  
-        .place-btn.active {  
-            background: var(--primary);  
-            color: #fff;  
-            border-color: var(--accent);  
-            box-shadow: 0 0 20px rgba(225, 29, 72, 0.4);  
-            transform: scale(1.03);  
-        }  
+body.dark{
+    --bg1:#180b12;
+    --bg2:#300d1b;
+    --card:rgba(30,16,23,.95);
+    --card2:#26131c;
+    --primary:#fb7185;
+    --primary2:#f472b6;
+    --gold:#f59e0b;
+    --text:#ffe4e6;
+    --muted:#fda4af;
+    --border:#9f1239;
+    --shadow:0 15px 40px rgba(0,0,0,.35);
+}
 
-        .display-card {  
-            background: var(--box-bg);  
-            border: 3px solid var(--primary);  
-            border-radius: 24px;  
-            padding: 25px;  
-            box-shadow: 0 15px 35px rgba(225, 29, 72, 0.15);  
-            position: relative;  
-            overflow: hidden;  
-            backdrop-filter: blur(10px);  
-        }  
-        .display-card h2 { font-size: 22px; font-weight: 900; color: var(--primary); margin-bottom: 12px; }  
-        .display-card p { font-size: 15px; line-height: 1.9; font-weight: 700; color: var(--text-main); background: #fff5f5; padding: 18px; border-radius: 14px; border: 2px solid #fecdd3; }  
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Cairo,sans-serif;
+}
 
-        /* --- واجهة الستوريات والحالات --- */  
-        .stories-container {  
-            display: none;  
-            flex-direction: column;  
-            gap: 15px;  
-        }  
-        .story-card {  
-            background: linear-gradient(135deg, #fff, #fff1f2);  
-            border: 2px solid #fda4af;  
-            border-radius: 18px;  
-            padding: 18px;  
-        }  
-        .story-header { font-weight: 900; color: var(--primary); font-size: 15px; margin-bottom: 6px; }  
-        .story-text { font-size: 14px; font-weight: 700; color: var(--text-main); margin-bottom: 10px; }  
-        .story-input-box { display: flex; gap: 8px; }  
-        .story-input-box input { flex: 1; padding: 10px 14px; border: 2px solid #fda4af; border-radius: 12px; outline: none; font-size: 13px; }  
-        .story-post-btn { background: var(--primary); color: #fff; border: none; padding: 0 16px; border-radius: 12px; font-weight: 900; cursor: pointer; }  
-        .stories-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; max-height: 300px; overflow-y: auto; }  
-        .story-bubble { background: #fff; border: 2px solid #fecdd3; padding: 12px 15px; border-radius: 12px; font-weight: 700; font-size: 13px; display: flex; justify-content: space-between; align-items: center; }  
+html{
+    scroll-behavior:smooth;
+}
 
-        /* --- واجهة الشات المنفصلة والمرتبة --- */  
-        .whatsapp-container {  
-            display: none;  
-            background: #0b141a;  
-            border-radius: 20px;  
-            border: 3px solid #00a884;  
-            overflow: hidden;  
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);  
-            width: 100%;  
-        }  
-        .wa-chat-header {  
-            background: #1f2c34;  
-            color: #fff;  
-            padding: 12px 18px;  
-            display: flex;  
-            align-items: center;  
-            justify-content: space-between;  
-            border-bottom: 1px solid #2a3942;  
-        }  
-        .wa-avatar-box { display: flex; align-items: center; gap: 10px; }  
-        .wa-avatar {  
-            width: 40px; height: 40px; background: linear-gradient(135deg, #00a884, #005c4b); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 0 10px rgba(0,168,132,0.4); flex-shrink: 0;  
-        }  
-        .wa-status-text { font-size: 10px; color: #00a884; font-weight: 700; margin-top: 1px; }  
-          
-        .db-status-bar {  
-            background: #111b21;  
-            padding: 6px 15px;  
-            font-size: 10.5px;  
-            font-weight: 700;  
-            display: flex;  
-            align-items: center;  
-            justify-content: space-between;  
-            border-bottom: 1px solid #222d34;  
-            color: #8696a0;  
-        }  
-        .db-status-indicator { display: flex; align-items: center; gap: 6px; }  
-        .db-dot { width: 7px; height: 7px; border-radius: 50%; background: #10b981; box-shadow: 0 0 6px #10b981; flex-shrink: 0; }  
-        .db-dot.error { background: #ef4444; box-shadow: 0 0 6px #ef4444; }  
+body{
+    min-height:100vh;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 10% 10%,rgba(244,63,94,.12),transparent 25%),
+        radial-gradient(circle at 90% 20%,rgba(219,39,119,.10),transparent 25%),
+        linear-gradient(135deg,var(--bg1),var(--bg2));
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:15px;
+    overflow-x:hidden;
+    transition:background .4s,color .4s;
+}
 
-        .wa-messages-area {  
-            height: 380px;  
-            overflow-y: auto;  
-            padding: 15px;  
-            display: flex;  
-            flex-direction: column;  
-            gap: 8px;  
-            background-color: #0b141a;  
-            background-image: radial-gradient(#1f2c34 1px, transparent 1px);  
-            background-size: 20px 20px;  
-        }  
-        .wa-bubble {  
-            max-width: 75%;  
-            padding: 8px 12px 6px 12px;  
-            border-radius: 10px;  
-            position: relative;  
-            font-size: 14px;  
-            font-weight: 600;  
-            box-shadow: 0 1px 2px rgba(0,0,0,0.3);  
-            word-wrap: break-word;  
-            animation: fadeInBubble 0.2s ease;  
-        }  
-        @keyframes fadeInBubble {  
-            from { opacity: 0; transform: translateY(4px); }  
-            to { opacity: 1; transform: translateY(0); }  
-        }  
-        .wa-bubble.incoming {  
-            background: #202c33;  
-            align-self: flex-start;  
-            border-top-right-radius: 3px;  
-            color: #e9edef;  
-        }  
-        .wa-bubble.outgoing {  
-            background: #005c4b;  
-            align-self: flex-end;  
-            border-top-left-radius: 3px;  
-            color: #e9edef;  
-        }  
-        .wa-sender-name { font-size: 10.5px; color: #53bdeb; font-weight: 800; margin-bottom: 2px; }  
-          
-        .wa-msg-footer {  
-            display: flex;  
-            align-items: center;  
-            justify-content: flex-end;  
-            gap: 4px;  
-            margin-top: 2px;  
-            float: left;  
-            position: relative;  
-            bottom: -2px;  
-            margin-right: 4px;  
-        }  
-        .wa-time { font-size: 9px; color: #8696a0; }  
-        .wa-ticks { font-size: 10px; font-weight: 900; color: #53bdeb; letter-spacing: -2px; }  
-          
-        .delete-msg-btn {  
-            background: none;  
-            border: none;  
-            color: #ef4444;  
-            font-size: 11px;  
-            cursor: pointer;  
-            margin-right: 6px;  
-            font-weight: 700;  
-            opacity: 0.7;  
-            transition: 0.2s;  
-        }  
-        .delete-msg-btn:hover { opacity: 1; }  
+button,input{
+    font-family:Cairo,sans-serif;
+}
 
-        .stickers-panel {  
-            display: none;  
-            background: #1f2c34;  
-            padding: 8px 12px;  
-            border-top: 1px solid #2a3942;  
-            gap: 6px;  
-            overflow-x: auto;  
-            white-space: nowrap;  
-        }  
-        .sticker-item {  
-            background: #2a3942;  
-            border: none;  
-            padding: 4px 8px;  
-            border-radius: 8px;  
-            font-size: 20px;  
-            cursor: pointer;  
-            flex-shrink: 0;  
-        }  
+button{
+    -webkit-tap-highlight-color:transparent;
+}
 
-        .wa-input-footer {  
-            background: #202c33;  
-            padding: 10px 14px;  
-            display: flex;  
-            gap: 8px;  
-            align-items: center;  
-            border-top: 1px solid #2a3942;  
-        }  
-        .wa-input-footer input {  
-            flex: 1;  
-            padding: 10px 16px;  
-            background: #2a3942;  
-            border: 2px solid transparent;  
-            color: #fff;  
-            border-radius: 30px;  
-            outline: none;  
-            font-family: 'Cairo', sans-serif;  
-            font-size: 13.5px;  
-            text-align: right;  
-            direction: rtl;  
-            transition: 0.3s;  
-        }  
-        .wa-input-footer input:focus { border-color: #00a884; background: #111b21; }  
-        .wa-action-icon-btn { background: none; border: none; font-size: 20px; cursor: pointer; color: #8696a0; transition: 0.2s; flex-shrink: 0; }  
-        .wa-action-icon-btn:hover { color: #00a884; }  
-        .wa-action-icon-btn.recording { color: #ef4444; animation: pulseRecord 1s infinite; }  
-        @keyframes pulseRecord { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }  
+.royal-header{
+    width:100%;
+    max-width:900px;
+    background:var(--card);
+    border:2px solid var(--border);
+    border-radius:24px;
+    padding:15px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    box-shadow:var(--shadow);
+    margin-bottom:18px;
+    backdrop-filter:blur(15px);
+    position:relative;
+    overflow:hidden;
+}
 
-        .wa-send-btn {  
-            background: linear-gradient(135deg, #00a884, #008f6f);  
-            color: #fff;  
-            border: none;  
-            width: 42px; height: 42px;  
-            border-radius: 50%;  
-            cursor: pointer;  
-            display: flex; align-items: center; justify-content: center;  
-            font-size: 18px;  
-            box-shadow: 0 4px 10px rgba(0,168,132,0.4);  
-            flex-shrink: 0;  
-        }  
+.royal-header:before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    background:rgba(244,63,94,.08);
+    border-radius:50%;
+    top:-120px;
+    left:-40px;
+}
 
-        .action-buttons-row {  
-            display: grid;  
-            grid-template-columns: 1fr 1fr;  
-            gap: 12px;  
-        }  
-        .action-btn {  
-            background: linear-gradient(135deg, var(--primary), var(--accent));  
-            color: #fff;  
-            border: none;  
-            padding: 15px;  
-            border-radius: 16px;  
-            font-weight: 900;  
-            font-size: 14px;  
-            cursor: pointer;  
-            box-shadow: 0 6px 20px rgba(225, 29, 72, 0.3);  
-            transition: 0.3s;  
-            display: flex; align-items: center; justify-content: center; gap: 8px;  
-        }  
-        .action-btn:hover { transform: translateY(-2px); }  
+.royal-title{
+    font-size:16px;
+    font-weight:900;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    position:relative;
+}
 
-        .modal-overlay {  
-            position: fixed;  
-            top: 0; left: 0; width: 100%; height: 100%;  
-            background: rgba(0,0,0,0.6);  
-            display: none;  
-            align-items: center;  
-            justify-content: center;  
-            z-index: 10000;  
-            backdrop-filter: blur(4px);  
-        }  
-        .modal-card {  
-            background: #fff;  
-            padding: 25px;  
-            border-radius: 20px;  
-            width: 90%;  
-            max-width: 420px;  
-            text-align: center;  
-            border: 3px solid var(--primary);  
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);  
-            max-height: 85vh;  
-            display: flex;  
-            flex-direction: column;  
-        }  
-        .modal-card h3 { color: var(--primary); font-size: 20px; margin-bottom: 12px; font-weight: 900; }  
-        .modal-card input { width: 100%; padding: 12px; border: 2px solid #fda4af; border-radius: 25px; text-align: center; font-size: 15px; margin-bottom: 12px; outline: none; }  
+.royal-badge{
+    font-size:11px;
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    color:#fff;
+    padding:6px 12px;
+    border-radius:20px;
+    font-weight:900;
+    white-space:nowrap;
+}
 
-        .members-scroll-box {  
-            flex: 1;  
-            overflow-y: auto;  
-            margin-top: 10px;  
-            margin-bottom: 15px;  
-            display: flex;  
-            flex-direction: column;  
-            gap: 8px;  
-            text-align: right;  
-            max-height: 250px;  
-        }  
-        .member-row {  
-            background: #fff5f5;  
-            padding: 10px 14px;  
-            border-radius: 12px;  
-            border: 2px solid #fecdd3;  
-            display: flex;  
-            justify-content: space-between;  
-            align-items: center;  
-            font-weight: 800;  
-            font-size: 13.5px;  
-        }  
+.header-tools{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
 
-        .heart-float {  
-            position: fixed;  
-            color: #e11d48;  
-            font-size: 28px;  
-            animation: floatMegaUp 3.5s cubic-bezier(0.1, 1, 0.3, 1) forwards;  
-            pointer-events: none;  
-            z-index: 9999;  
-            font-weight: 900;  
-        }  
-        @keyframes floatMegaUp {  
-            0% { transform: translateY(0) scale(0.2) rotate(0deg); opacity: 1; }  
-            50% { transform: translateY(-400px) scale(1.6) rotate(15deg); opacity: 0.95; }  
-            100% { transform: translateY(-800px) scale(1.2) rotate(-15deg); opacity: 0; }  
-        }  
+.theme-btn{
+    border:1px solid var(--border);
+    background:var(--card2);
+    color:var(--text);
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:17px;
+}
 
-        @media(max-width: 768px) {  
-            .nav-places-grid { grid-template-columns: repeat(3, 1fr); }  
-            .action-buttons-row { grid-template-columns: 1fr; }  
-        }  
-    </style>
-</head>  
-<body onclick="createHeartAtClick(event)">  
+.main-container{
+    width:100%;
+    max-width:900px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
 
-<div class="royal-header">  
-    <div class="royal-title">👑 مملكة العشق والخلود المخصصة لـ: سما</div>  
-    <div class="royal-badge">النسخة الملكية 🚀</div>  
-</div>  
+.nav-places-grid{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:7px;
+}
 
-<div class="main-container">  
-    <div class="nav-places-grid">  
-        <button class="place-btn active" onclick="switchPage(0)">✨ جنة العشق</button>  
-        <button class="place-btn" onclick="switchPage(1)">🔥 واحة الشوق</button>  
-        <button class="place-btn" onclick="switchPage(2)" style="border-color: var(--gold); color: var(--gold);">💌 رسالة الوداع</button>  
-        <button class="place-btn" onclick="switchPage(3)">💍 عهد الوفاء</button>  
-        <button class="place-btn" onclick="switchPage(4)">📖 الستوريات</button>  
-        <button class="place-btn" onclick="openSecretModal()" style="background: #fff1f2; border-color: var(--primary); color: var(--primary);">🩷 دردشة سما</button>  
-    </div>  
+.place-btn{
+    border:1.5px solid var(--border);
+    border-radius:15px;
+    padding:11px 4px;
+    background:var(--card);
+    color:var(--muted);
+    font-weight:900;
+    font-size:10.5px;
+    cursor:pointer;
+    transition:var(--transition);
+    box-shadow:0 5px 15px rgba(225,29,72,.06);
+}
 
-    <!-- حاوية العرض العامة -->  
-    <div id="contentDisplayCard" class="display-card">  
-        <h2 id="pageTitle">✨ جنة العشق الأبدي (عرش روحي المطلق)</h2>  
-        <p id="pageDesc">سما.. يا من ملأتِ أيامي نوراً وحياة. أنتِ لستِ مجرد شخص أحبه، أنتِ عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودكِ معي يجعل العالم مكاناً أجمل بكثير.</p>  
-          
-        <!-- قسم الستوريات والحالات -->  
-        <div id="storiesBox" class="stories-container">  
-            <div class="story-card">  
-                <div class="story-header">📸 شارك حالة أو ستوري ملكي جديد</div>  
-                <div class="story-text">اكتب خاطرة أو حالة أسطورية تظهر هنا للجميع لحظياً:</div>  
-                <div class="story-input-box">  
-                    <input type="text" id="storyTextInput" placeholder="اكتب حالتك أو ستوريك الأسطوري هنا...">  
-                    <button class="story-post-btn" onclick="postStory()">نشر 🌟</button>  
-                </div>  
-                <div id="storiesList" class="stories-list"></div>  
-            </div>  
-        </div>  
-    </div>  
+.place-btn:hover{
+    transform:translateY(-2px);
+}
 
-    <!-- واجهة الشات المنفصلة بالكامل -->  
-    <div id="whatsappBox" class="whatsapp-container">  
-        <div class="wa-chat-header">  
-            <div class="wa-avatar-box">  
-                <div class="wa-avatar">👑</div>  
-                <div>  
-                    <div style="color:#fff; font-weight:900; font-size:14px;">مملكة سلمان وسما 🩷</div>  
-                    <div id="onlineStatusText" class="wa-status-text">● جاري فحص الاتصال...</div>  
-                </div>  
-            </div>  
-            <!-- زر الأعضاء المتواجدين مع عدادهم -->  
-            <button onclick="openMembersModal()" style="background: #00a884; border: none; color: #fff; padding: 6px 12px; border-radius: 12px; font-weight: 900; font-size: 11.5px; cursor: pointer; box-shadow: 0 0 10px rgba(0,168,132,0.4);">
-                👥 الأعضاء (<span id="membersCountBadge">0</span>)
-            </button>  
-        </div>  
+.place-btn.active{
+    color:#fff;
+    border-color:var(--primary);
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    box-shadow:0 8px 25px rgba(225,29,72,.3);
+    transform:scale(1.02);
+}
 
-        <div class="db-status-bar">  
-            <div class="db-status-indicator">  
-                <div id="dbDotIndicator" class="db-dot"></div>  
-                <span id="dbStatusMessage">جاري الاتصال بقاعدة البيانات السحابية... ⏳</span>  
-            </div>  
-        </div>  
+.display-card{
+    background:var(--card);
+    border:2px solid var(--primary);
+    border-radius:26px;
+    padding:25px;
+    box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
+    backdrop-filter:blur(15px);
+}
 
-        <div id="waMessagesList" class="wa-messages-area"></div>  
+.display-card:after{
+    content:"♥";
+    position:absolute;
+    left:-15px;
+    bottom:-40px;
+    font-size:150px;
+    color:rgba(225,29,72,.035);
+    pointer-events:none;
+}
 
-        <div id="stickersPanel" class="stickers-panel">  
-            <button class="sticker-item" onclick="sendSticker('💖')">💖</button>  
-            <button class="sticker-item" onclick="sendSticker('👑')">👑</button>  
-            <button class="sticker-item" onclick="sendSticker('🔥')">🔥</button>  
-            <button class="sticker-item" onclick="sendSticker('🌹')">🌹</button>  
-            <button class="sticker-item" onclick="sendSticker('✨')">✨</button>  
-            <button class="sticker-item" onclick="sendSticker('💍')">💍</button>  
-            <button class="sticker-item" onclick="sendSticker('🥺')">🥺</button>  
-            <button class="sticker-item" onclick="sendSticker('💋')">💋</button>  
-            <button class="sticker-item" onclick="sendSticker('🥰')">🥰</button>  
-            <button class="sticker-item" onclick="sendSticker('🫶')">🫶</button>  
-            <button class="sticker-item" onclick="sendSticker('💘')">💘</button>  
-        </div>  
+.display-card h2{
+    font-size:22px;
+    font-weight:900;
+    color:var(--primary);
+    margin-bottom:12px;
+}
 
-        <div class="wa-input-footer">  
-            <button class="wa-action-icon-btn" onclick="toggleStickersPanel()" title="الملصقات">😊</button>  
-            <button id="micBtn" class="wa-action-icon-btn" onclick="toggleVoiceRecording()" title="تسجيل صوتي">🎤</button>  
-            <input type="text" id="waText" placeholder="اكتب رسالتك الملكية هنا..." onkeypress="handleKeyPress(event)">  
-            <button class="wa-send-btn" onclick="sendWhatsAppMessage()" title="إرسال">➤</button>  
-        </div>  
-    </div>  
+.display-card>p{
+    font-size:14.5px;
+    line-height:2;
+    font-weight:700;
+    color:var(--text);
+    background:var(--card2);
+    padding:18px;
+    border-radius:16px;
+    border:1.5px solid var(--border);
+    position:relative;
+    z-index:1;
+}
 
-    <div class="action-buttons-row">  
-        <button class="action-btn" onclick="triggerMegaExplosion(event)">💥 تفجير يملأ الشاشة باسم سما!</button>  
-        <button class="action-btn" style="background: linear-gradient(135deg, var(--gold), #d97706);" onclick="showCrazyLovePopup()">💌 رسالة الحب السرية</button>  
-    </div>  
-</div>  
+.love-stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+    margin-top:14px;
+}
 
-<!-- مودال كلمة السر -->  
-<div id="secretModal" class="modal-overlay">  
-    <div class="modal-card">  
-        <h3>🩷 بوابة اللقاء السري</h3>  
-        <p style="font-size: 13px; margin-bottom: 12px; color: var(--text-muted); font-weight: 700;">أدخل الرمز الصحيح للمتابعة (`ang_el99m`):</p>  
-        <input type="password" id="modalPasswordInput" placeholder="أدخل الرمز السري هنا...">  
-        <br>  
-        <button class="action-btn" style="width: 100%; padding: 10px; justify-content: center;" onclick="verifySecretPassword()">فتح الدردشة 💕</button>  
-        <button style="background: none; border: none; color: #999; margin-top: 8px; cursor: pointer; font-weight: 700;" onclick="closeSecretModal()">إلغاء</button>  
-    </div>  
-</div>  
+.love-stat{
+    background:var(--card2);
+    border:1.5px solid var(--border);
+    border-radius:15px;
+    padding:12px 6px;
+    text-align:center;
+}
 
-<!-- مودال إدخال الاسم بعد كلمة السر -->  
-<div id="nameModal" class="modal-overlay">  
-    <div class="modal-card">  
-        <h3>✨ اسمك الكريم؟</h3>  
-        <p style="font-size: 13px; margin-bottom: 12px; color: var(--text-muted); font-weight: 700;">أدخل اسمك (مثل: سلمان أو سما):</p>  
-        <input type="text" id="myNameInput" placeholder="اكتب اسمك هنا...">  
-        <br>  
-        <button class="action-btn" style="width: 100%; padding: 10px; justify-content: center;" onclick="saveMyName()">حفظ ودخول الدردشة 🚀</button>  
-    </div>  
-</div>  
+.love-stat strong{
+    display:block;
+    color:var(--primary);
+    font-size:18px;
+    font-weight:900;
+}
 
-<!-- مودال إدارة الأعضاء المتواجدين وسلة المهملات -->  
-<div id="membersModal" class="modal-overlay">  
-    <div class="modal-card">  
-        <h3>👥 الأعضاء المسجلون (<span id="modalTotalCount">0</span>)</h3>  
-        <p style="font-size: 12px; color: var(--text-muted); font-weight: 700; margin-bottom: 5px;">يمكنك حذف أي عضو (ما عدا سلمان محمي للأبد):</p>  
-        
-        <div id="membersListContainer" class="members-scroll-box"></div>  
+.love-stat span{
+    font-size:10px;
+    font-weight:800;
+    color:var(--muted);
+}
 
-        <h4 style="color: var(--primary); font-size: 14px; margin-top: 5px; font-weight: 900; text-align: right;">🗑️ سلة المهملات (لاسترجاع المحذوفين):</h4>  
-        <div id="trashListContainer" class="members-scroll-box" style="max-height: 140px; background: #fffdfd;"></div>  
+.stories-container{
+    display:none;
+    flex-direction:column;
+    gap:12px;
+    margin-top:15px;
+    position:relative;
+    z-index:2;
+}
 
-        <button style="background: var(--primary); color: #fff; border: none; padding: 10px; border-radius: 14px; font-weight: 900; cursor: pointer; margin-top: 5px;" onclick="closeMembersModal()">إغلاق القائمة ❌</button>  
-    </div>  
-</div>  
+.story-card{
+    background:linear-gradient(135deg,var(--card2),var(--card));
+    border:1.5px solid var(--border);
+    border-radius:19px;
+    padding:17px;
+}
 
-<!-- ربط مكتبات Firebase عبر الـ CDN -->  
-<script type="module">  
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";  
-    import { getDatabase, ref, push, set, remove, onChildAdded, onChildRemoved, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";  
+.story-header{
+    color:var(--primary);
+    font-size:15px;
+    font-weight:900;
+    margin-bottom:5px;
+}
 
-    const firebaseConfig = {  
-        databaseURL: "https://slmane-default-rtdb.firebaseio.com/"  
-    };  
+.story-text{
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:10px;
+}
 
-    let db, messagesRef, storiesRef, membersRef, trashRef;
-    let isListenerActive = false;  
+.story-input-box{
+    display:flex;
+    gap:7px;
+}
 
-    try {
-        const app = initializeApp(firebaseConfig);  
-        db = getDatabase(app);  
-        messagesRef = ref(db, 'sama_royal_chat/messages');  
-        storiesRef = ref(db, 'sama_royal_chat/stories');  
-        membersRef = ref(db, 'sama_royal_chat/members');
-        trashRef = ref(db, 'sama_royal_chat/trash');
+.story-input-box input{
+    flex:1;
+    min-width:0;
+    padding:10px 13px;
+    border:1.5px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    border-radius:13px;
+    outline:none;
+}
 
-        const connectedRef = ref(db, ".info/connected");
-        onValue(connectedRef, (snap) => {
-            const statusDot = document.getElementById('dbDotIndicator');
-            const statusMsg = document.getElementById('dbStatusMessage');
-            const statusText = document.getElementById('onlineStatusText');
+.story-post-btn{
+    border:0;
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    color:#fff;
+    padding:0 15px;
+    border-radius:13px;
+    font-weight:900;
+    cursor:pointer;
+}
 
-            if (snap.val() === true) {
-                if(statusDot) statusDot.className = "db-dot";
-                if(statusMsg) statusMsg.innerText = "الاتصال سحابياً شغال ⚡";
-                if(statusText) statusText.innerText = "● متصل سحابياً";
-            } else {
-                if(statusDot) statusDot.className = "db-dot error";
-                if(statusMsg) statusMsg.innerText = "خطأ في الاتصال ❌";
-                if(statusText) statusText.innerText = "● منقطع";
-            }
-        });
+.stories-list{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+    margin-top:12px;
+    max-height:320px;
+    overflow-y:auto;
+}
 
-        // مزامنة الأعضاء وحساب العدد
-        onValue(membersRef, (snapshot) => {
-            const data = snapshot.val();
-            const listEl = document.getElementById('membersListContainer');
-            const countBadge = document.getElementById('membersCountBadge');
-            const modalTotalCount = document.getElementById('modalTotalCount');
-            if(listEl) listEl.innerHTML = '';
-            
-            let count = 0;
-            if(data) {
-                Object.keys(data).forEach(key => {
-                    const m = data[key];
-                    count++;
-                    if(listEl) {
-                        let isSalman = (m.name.trim() === 'سلمان');
-                        let row = document.createElement('div');
-                        row.className = 'member-row';
-                        row.innerHTML = `
-                            <span>👑 ${m.name} <small style="color:#888; font-size:10px;">(${m.time})</small></span>
-                            ${isSalman ? '<span style="color:#059669; font-size:12px;">محمي للأبد 🛡️</span>' : `<button onclick="window.removeMember('${key}', '${m.name}', '${m.time}')" style="background:#ef4444; color:#fff; border:none; padding:4px 10px; border-radius:8px; cursor:pointer; font-size:11px; font-weight:800;">حذف 🗑️</button>`}
-                        `;
-                        listEl.appendChild(row);
+.story-bubble{
+    background:var(--card);
+    border:1.5px solid var(--border);
+    padding:11px 13px;
+    border-radius:13px;
+    font-weight:700;
+    font-size:12.5px;
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.whatsapp-container{
+    display:none;
+    background:var(--wa-bg);
+    border-radius:23px;
+    border:2px solid var(--green);
+    overflow:hidden;
+    box-shadow:0 18px 45px rgba(0,0,0,.35);
+    width:100%;
+}
+
+.wa-chat-header{
+    background:#1f2c34;
+    color:#fff;
+    padding:11px 14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    border-bottom:1px solid #2a3942;
+}
+
+.wa-avatar-box{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    min-width:0;
+}
+
+.wa-avatar{
+    width:42px;
+    height:42px;
+    flex-shrink:0;
+    background:linear-gradient(135deg,#00a884,#005c4b);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    box-shadow:0 0 12px rgba(0,168,132,.4);
+}
+
+.wa-status-text{
+    font-size:9.5px;
+    color:#00a884;
+    font-weight:800;
+}
+
+.members-button{
+    background:#00a884;
+    border:0;
+    color:#fff;
+    padding:7px 11px;
+    border-radius:12px;
+    font-weight:900;
+    font-size:10.5px;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.db-status-bar{
+    background:#111b21;
+    padding:6px 12px;
+    font-size:9.5px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:#8696a0;
+}
+
+.db-status-indicator{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.db-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#10b981;
+    box-shadow:0 0 7px #10b981;
+}
+
+.db-dot.error{
+    background:#ef4444;
+    box-shadow:0 0 7px #ef4444;
+}
+
+.wa-messages-area{
+    height:410px;
+    overflow-y:auto;
+    padding:14px 11px;
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+    background-color:#0b141a;
+    background-image:
+        radial-gradient(#1f2c34 1px,transparent 1px);
+    background-size:20px 20px;
+}
+
+.wa-bubble{
+    max-width:78%;
+    padding:8px 11px 7px;
+    border-radius:10px;
+    position:relative;
+    font-size:13px;
+    font-weight:600;
+    box-shadow:0 1px 2px rgba(0,0,0,.3);
+    word-wrap:break-word;
+    animation:fadeBubble .2s ease;
+}
+
+@keyframes fadeBubble{
+    from{opacity:0;transform:translateY(5px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+.wa-bubble.incoming{
+    background:#202c33;
+    align-self:flex-start;
+    border-top-right-radius:3px;
+    color:#e9edef;
+}
+
+.wa-bubble.outgoing{
+    background:#005c4b;
+    align-self:flex-end;
+    border-top-left-radius:3px;
+    color:#e9edef;
+}
+
+.wa-sender-name{
+    font-size:10px;
+    color:#53bdeb;
+    font-weight:900;
+    margin-bottom:3px;
+}
+
+.msg-text-content{
+    white-space:pre-wrap;
+}
+
+.wa-msg-footer{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:4px;
+    margin-top:4px;
+    direction:ltr;
+}
+
+.wa-time{
+    font-size:8.5px;
+    color:#8696a0;
+}
+
+.wa-ticks{
+    font-size:9px;
+    color:#53bdeb;
+    letter-spacing:-2px;
+}
+
+.msg-tools{
+    display:flex;
+    align-items:center;
+    gap:3px;
+    margin-right:auto;
+}
+
+.msg-tool{
+    border:0;
+    background:transparent;
+    color:#8696a0;
+    cursor:pointer;
+    font-size:9px;
+    padding:2px;
+}
+
+.msg-tool:hover{
+    color:#fff;
+}
+
+.stickers-panel{
+    display:none;
+    background:#1f2c34;
+    padding:8px 10px;
+    border-top:1px solid #2a3942;
+    gap:5px;
+    overflow-x:auto;
+}
+
+.sticker-item{
+    background:#2a3942;
+    border:0;
+    padding:4px 8px;
+    border-radius:8px;
+    font-size:20px;
+    cursor:pointer;
+    flex-shrink:0;
+}
+
+.wa-input-footer{
+    background:#202c33;
+    padding:9px 10px;
+    display:flex;
+    gap:6px;
+    align-items:center;
+    border-top:1px solid #2a3942;
+}
+
+.wa-input-footer input{
+    flex:1;
+    min-width:0;
+    padding:10px 14px;
+    background:#2a3942;
+    border:2px solid transparent;
+    color:#fff;
+    border-radius:30px;
+    outline:none;
+    font-size:13px;
+    text-align:right;
+    direction:rtl;
+}
+
+.wa-input-footer input:focus{
+    border-color:#00a884;
+    background:#111b21;
+}
+
+.wa-action-icon-btn{
+    background:none;
+    border:0;
+    font-size:19px;
+    cursor:pointer;
+    color:#8696a0;
+    flex-shrink:0;
+}
+
+.wa-action-icon-btn.recording{
+    color:#ef4444;
+    animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+    50%{transform:scale(1.15)}
+}
+
+.wa-send-btn{
+    background:linear-gradient(135deg,#00a884,#008f6f);
+    color:#fff;
+    border:0;
+    width:41px;
+    height:41px;
+    border-radius:50%;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    flex-shrink:0;
+}
+
+.typing-indicator{
+    display:none;
+    padding:5px 13px;
+    background:#111b21;
+    color:#8696a0;
+    font-size:9px;
+    font-weight:700;
+}
+
+.action-buttons-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.action-btn{
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    color:#fff;
+    border:0;
+    padding:14px;
+    border-radius:16px;
+    font-weight:900;
+    font-size:13px;
+    cursor:pointer;
+    box-shadow:0 7px 20px rgba(225,29,72,.25);
+    transition:.25s;
+}
+
+.action-btn:hover{
+    transform:translateY(-2px);
+}
+
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:10000;
+    padding:15px;
+    backdrop-filter:blur(6px);
+}
+
+.modal-card{
+    background:var(--card);
+    color:var(--text);
+    padding:22px;
+    border-radius:22px;
+    width:100%;
+    max-width:430px;
+    text-align:center;
+    border:2px solid var(--primary);
+    box-shadow:0 20px 50px rgba(0,0,0,.3);
+    max-height:88vh;
+    display:flex;
+    flex-direction:column;
+}
+
+.modal-card h3{
+    color:var(--primary);
+    font-size:19px;
+    margin-bottom:9px;
+    font-weight:900;
+}
+
+.modal-card input{
+    width:100%;
+    padding:11px;
+    border:1.5px solid var(--border);
+    background:var(--card2);
+    color:var(--text);
+    border-radius:25px;
+    text-align:center;
+    font-size:14px;
+    margin-bottom:10px;
+    outline:none;
+}
+
+.members-scroll-box{
+    overflow-y:auto;
+    margin:8px 0 12px;
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+    max-height:230px;
+    text-align:right;
+}
+
+.member-row{
+    background:var(--card2);
+    padding:9px 11px;
+    border-radius:12px;
+    border:1.5px solid var(--border);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:7px;
+    font-weight:800;
+    font-size:12.5px;
+}
+
+.notification{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    left:20px;
+    max-width:390px;
+    margin:auto;
+    z-index:20000;
+    background:#1f2c34;
+    color:#fff;
+    border:1px solid #00a884;
+    border-radius:14px;
+    padding:11px 14px;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+    text-align:center;
+    font-size:12px;
+    font-weight:800;
+    transform:translateY(100px);
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+}
+
+.notification.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+.heart-float{
+    position:fixed;
+    color:#e11d48;
+    font-size:26px;
+    animation:heartUp 3.3s cubic-bezier(.1,1,.3,1) forwards;
+    pointer-events:none;
+    z-index:9999;
+    font-weight:900;
+    text-shadow:0 3px 15px rgba(225,29,72,.3);
+}
+
+@keyframes heartUp{
+    0%{
+        transform:translateY(0) scale(.2) rotate(0);
+        opacity:1;
+    }
+    50%{
+        transform:translateY(-380px) scale(1.5) rotate(12deg);
+        opacity:.95;
+    }
+    100%{
+        transform:translateY(-760px) scale(1.1) rotate(-12deg);
+        opacity:0;
+    }
+}
+
+.spark{
+    position:fixed;
+    pointer-events:none;
+    z-index:9998;
+    animation:sparkUp 1.3s ease-out forwards;
+}
+
+@keyframes sparkUp{
+    from{opacity:1;transform:translate(0,0) scale(1)}
+    to{opacity:0;transform:translate(var(--x),var(--y)) scale(.2)}
+}
+
+.empty-chat{
+    margin:auto;
+    color:#8696a0;
+    text-align:center;
+    font-size:12px;
+    font-weight:700;
+    padding:30px;
+}
+
+@media(max-width:768px){
+    body{
+        padding:9px;
+    }
+
+    .royal-header{
+        padding:12px;
+        border-radius:19px;
+    }
+
+    .royal-title{
+        font-size:12.5px;
+    }
+
+    .royal-badge{
+        font-size:9px;
+        padding:5px 8px;
+    }
+
+    .nav-places-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .place-btn{
+        min-height:47px;
+    }
+
+    .display-card{
+        padding:18px;
+    }
+
+    .display-card h2{
+        font-size:18px;
+    }
+
+    .display-card>p{
+        font-size:13px;
+        line-height:1.9;
+    }
+
+    .love-stats{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .action-buttons-row{
+        grid-template-columns:1fr;
+    }
+
+    .wa-messages-area{
+        height:calc(100dvh - 300px);
+        min-height:350px;
+        max-height:570px;
+    }
+}
+
+@media(max-width:420px){
+    .royal-title{
+        max-width:190px;
+    }
+
+    .royal-badge{
+        display:none;
+    }
+
+    .story-input-box{
+        flex-direction:column;
+    }
+
+    .story-post-btn{
+        padding:9px;
+    }
+
+    .wa-bubble{
+        max-width:84%;
+    }
+}
+</style>
+</head>
+
+<body onclick="createHeartAtClick(event)">
+
+<header class="royal-header">
+    <div class="royal-title">👑 مملكة العشق والخلود المخصصة لـ: سما</div>
+
+    <div class="header-tools">
+        <button class="theme-btn" onclick="toggleDarkMode(event)" title="الوضع الليلي">🌙</button>
+        <div class="royal-badge">النسخة الملكية ✨</div>
+    </div>
+</header>
+
+<div class="main-container">
+
+    <div class="nav-places-grid">
+
+        <button class="place-btn active" onclick="switchPage(0)">
+            ✨ جنة العشق
+        </button>
+
+        <button class="place-btn" onclick="switchPage(1)">
+            🔥 واحة الشوق
+        </button>
+
+        <button class="place-btn" onclick="switchPage(2)"
+                style="border-color:var(--gold);color:var(--gold)">
+            💌 رسالة الوداع
+        </button>
+
+        <button class="place-btn" onclick="switchPage(3)">
+            💍 عهد الوفاء
+        </button>
+
+        <button class="place-btn" onclick="switchPage(4)">
+            📖 الستوريات
+        </button>
+
+        <button class="place-btn"
+                onclick="openSecretModal()"
+                style="background:var(--card2);border-color:var(--primary);color:var(--primary)">
+            🩷 دردشة سما
+        </button>
+
+    </div>
+
+    <div id="contentDisplayCard" class="display-card">
+
+        <h2 id="pageTitle">
+            ✨ جنة العشق الأبدي
+        </h2>
+
+        <p id="pageDesc">
+            سما.. يا من ملأت أيامي نورا وحياة.
+            أنت لست مجرد شخص أحبه، أنت عمري كله،
+            والجوهرة الثمينة التي أخشى عليها من نسمة الهواء.
+            وجودك معي يجعل العالم مكانا أجمل بكثير.
+        </p>
+
+        <div class="love-stats">
+            <div class="love-stat">
+                <strong id="heartCounter">∞</strong>
+                <span>نبضة حب</span>
+            </div>
+
+            <div class="love-stat">
+                <strong>🩷</strong>
+                <span>للأبد</span>
+            </div>
+
+            <div class="love-stat">
+                <strong id="visitorCounter">0</strong>
+                <span>زيارة للجناح</span>
+            </div>
+        </div>
+
+        <div id="storiesBox" class="stories-container">
+
+            <div class="story-card">
+
+                <div class="story-header">
+                    📸 شارك حالة أو ستوري ملكي جديد
+                </div>
+
+                <div class="story-text">
+                    اكتب خاطرة أو حالة وستظهر في المملكة السحابية.
+                </div>
+
+                <div class="story-input-box">
+
+                    <input
+                        type="text"
+                        id="storyTextInput"
+                        maxlength="500"
+                        placeholder="اكتب حالتك الأسطورية هنا..."
+                    >
+
+                    <button
+                        class="story-post-btn"
+                        onclick="postStory()">
+                        نشر 🌟
+                    </button>
+
+                </div>
+
+                <div id="storiesList" class="stories-list"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- CHAT -->
+
+    <div id="whatsappBox" class="whatsapp-container">
+
+        <div class="wa-chat-header">
+
+            <div class="wa-avatar-box">
+
+                <div class="wa-avatar">👑</div>
+
+                <div>
+                    <div style="color:#fff;font-weight:900;font-size:13px">
+                        مملكة سلمان وسما 🩷
+                    </div>
+
+                    <div id="onlineStatusText" class="wa-status-text">
+                        ● جاري فحص الاتصال...
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="members-button" onclick="openMembersModal()">
+                👥 الأعضاء
+                (<span id="membersCountBadge">0</span>)
+            </button>
+
+        </div>
+
+        <div class="db-status-bar">
+
+            <div class="db-status-indicator">
+
+                <div id="dbDotIndicator" class="db-dot"></div>
+
+                <span id="dbStatusMessage">
+                    جاري الاتصال بقاعدة البيانات السحابية... ⏳
+                </span>
+
+            </div>
+
+        </div>
+
+        <div id="typingIndicator" class="typing-indicator">
+            ✍️ هناك نشاط في المملكة...
+        </div>
+
+        <div id="waMessagesList" class="wa-messages-area">
+
+            <div class="empty-chat">
+                👑 مرحبا بك في مملكة سلمان وسما 🩷
+                <br>
+                اكتب أول رسالة لبدء الحكاية...
+            </div>
+
+        </div>
+
+        <div id="stickersPanel" class="stickers-panel">
+
+            <button class="sticker-item" onclick="sendSticker('💖')">💖</button>
+            <button class="sticker-item" onclick="sendSticker('👑')">👑</button>
+            <button class="sticker-item" onclick="sendSticker('🔥')">🔥</button>
+            <button class="sticker-item" onclick="sendSticker('🌹')">🌹</button>
+            <button class="sticker-item" onclick="sendSticker('✨')">✨</button>
+            <button class="sticker-item" onclick="sendSticker('💍')">💍</button>
+            <button class="sticker-item" onclick="sendSticker('🥺')">🥺</button>
+            <button class="sticker-item" onclick="sendSticker('🥰')">🥰</button>
+            <button class="sticker-item" onclick="sendSticker('🫶')">🫶</button>
+            <button class="sticker-item" onclick="sendSticker('💘')">💘</button>
+
+        </div>
+
+        <div class="wa-input-footer">
+
+            <button
+                class="wa-action-icon-btn"
+                onclick="toggleStickersPanel()">
+                😊
+            </button>
+
+            <button
+                id="micBtn"
+                class="wa-action-icon-btn"
+                onclick="toggleVoiceRecording()">
+                🎤
+            </button>
+
+            <input
+                type="text"
+                id="waText"
+                maxlength="2000"
+                placeholder="اكتب رسالتك الملكية هنا..."
+                onkeypress="handleKeyPress(event)"
+            >
+
+            <button
+                class="wa-send-btn"
+                onclick="sendWhatsAppMessage()">
+                ➤
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="action-buttons-row">
+
+        <button class="action-btn" onclick="triggerMegaExplosion(event)">
+            💥 تفجير يملأ الشاشة باسم سما!
+        </button>
+
+        <button
+            class="action-btn"
+            style="background:linear-gradient(135deg,var(--gold),#d97706)"
+            onclick="showCrazyLovePopup()">
+            💌 رسالة الحب السرية
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- PASSWORD MODAL -->
+
+<div id="secretModal" class="modal-overlay">
+
+    <div class="modal-card">
+
+        <h3>🩷 بوابة اللقاء السري</h3>
+
+        <p style="font-size:12px;margin-bottom:12px;color:var(--muted);font-weight:700">
+            أدخل الرمز الصحيح للمتابعة
+        </p>
+
+        <input
+            type="password"
+            id="modalPasswordInput"
+            placeholder="أدخل الرمز السري هنا..."
+            onkeypress="if(event.key==='Enter')verifySecretPassword()"
+        >
+
+        <button
+            class="action-btn"
+            onclick="verifySecretPassword()">
+            فتح الدردشة 💕
+        </button>
+
+        <button
+            style="background:none;border:0;color:#999;margin-top:8px;cursor:pointer;font-weight:700"
+            onclick="closeSecretModal()">
+            إلغاء
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- NAME MODAL -->
+
+<div id="nameModal" class="modal-overlay">
+
+    <div class="modal-card">
+
+        <h3>✨ اسمك الكريم؟</h3>
+
+        <p style="font-size:12px;margin-bottom:12px;color:var(--muted);font-weight:700">
+            أدخل الاسم الذي سيظهر في الدردشة
+        </p>
+
+        <input
+            type="text"
+            id="myNameInput"
+            maxlength="30"
+            placeholder="مثل: سلمان أو سما..."
+            onkeypress="if(event.key==='Enter')saveMyName()"
+        >
+
+        <button
+            class="action-btn"
+            onclick="saveMyName()">
+            حفظ ودخول الدردشة 🚀
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- MEMBERS -->
+
+<div id="membersModal" class="modal-overlay">
+
+    <div class="modal-card">
+
+        <h3>
+            👥 الأعضاء المسجلون
+            (<span id="modalTotalCount">0</span>)
+        </h3>
+
+        <p style="font-size:11px;color:var(--muted);font-weight:700">
+            سلمان محمي ولا يمكن حذفه
+        </p>
+
+        <div id="membersListContainer" class="members-scroll-box"></div>
+
+        <h4 style="color:var(--primary);font-size:13px;text-align:right">
+            🗑️ سلة المهملات
+        </h4>
+
+        <div
+            id="trashListContainer"
+            class="members-scroll-box"
+            style="max-height:140px">
+        </div>
+
+        <button
+            style="background:var(--primary);color:#fff;border:0;padding:10px;border-radius:14px;font-weight:900;cursor:pointer"
+            onclick="closeMembersModal()">
+            إغلاق ❌
+        </button>
+
+    </div>
+
+</div>
+
+
+<div id="notification" class="notification"></div>
+
+
+<script type="module">
+
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+
+import {
+    getDatabase,
+    ref,
+    push,
+    set,
+    remove,
+    onChildAdded,
+    onChildRemoved,
+    onValue,
+    update
+} from
+"https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+
+const firebaseConfig = {
+    databaseURL:"https://slmane-default-rtdb.firebaseio.com/"
+};
+
+
+let db = null;
+let messagesRef = null;
+let storiesRef = null;
+let membersRef = null;
+let trashRef = null;
+
+let isListenerActive = false;
+
+try{
+
+    const app = initializeApp(firebaseConfig);
+
+    db = getDatabase(app);
+
+    messagesRef =
+        ref(db,"sama_royal_chat/messages");
+
+    storiesRef =
+        ref(db,"sama_royal_chat/stories");
+
+    membersRef =
+        ref(db,"sama_royal_chat/members");
+
+    trashRef =
+        ref(db,"sama_royal_chat/trash");
+
+
+    const connectedRef =
+        ref(db,".info/connected");
+
+
+    onValue(connectedRef,(snap)=>{
+
+        const dot =
+            document.getElementById("dbDotIndicator");
+
+        const message =
+            document.getElementById("dbStatusMessage");
+
+        const status =
+            document.getElementById("onlineStatusText");
+
+
+        if(snap.val() === true){
+
+            if(dot)
+                dot.className="db-dot";
+
+            if(message)
+                message.innerText="الاتصال السحابي شغال ⚡";
+
+            if(status)
+                status.innerText="● متصل سحابيا";
+
+        }else{
+
+            if(dot)
+                dot.className="db-dot error";
+
+            if(message)
+                message.innerText="الاتصال بالسحابة منقطع ❌";
+
+            if(status)
+                status.innerText="● منقطع";
+
+        }
+
+    });
+
+
+    /* MEMBERS */
+
+    onValue(membersRef,(snapshot)=>{
+
+        const data=snapshot.val();
+
+        const list=
+            document.getElementById("membersListContainer");
+
+        const badge=
+            document.getElementById("membersCountBadge");
+
+        const total=
+            document.getElementById("modalTotalCount");
+
+
+        if(list)
+            list.innerHTML="";
+
+
+        let count=0;
+
+        if(data){
+
+            Object.keys(data).forEach(key=>{
+
+                const member=data[key];
+
+                if(!member || !member.name)
+                    return;
+
+                count++;
+
+
+                if(list){
+
+                    const row=
+                        document.createElement("div");
+
+                    row.className="member-row";
+
+
+                    const isSalman=
+                        member.name.trim()==="سلمان";
+
+
+                    const nameSpan=
+                        document.createElement("span");
+
+                    nameSpan.innerHTML=
+                        `👑 ${escapeHtml(member.name)}
+                         <small style="color:#888;font-size:9px">
+                         (${escapeHtml(member.time || "")})
+                         </small>`;
+
+
+                    row.appendChild(nameSpan);
+
+
+                    if(isSalman){
+
+                        const protectedText=
+                            document.createElement("span");
+
+                        protectedText.innerText=
+                            "محمي 🛡️";
+
+                        protectedText.style.color="#10b981";
+                        protectedText.style.fontSize="10px";
+
+                        row.appendChild(protectedText);
+
+                    }else{
+
+                        const deleteBtn=
+                            document.createElement("button");
+
+                        deleteBtn.innerText="حذف 🗑️";
+
+                        deleteBtn.style.cssText=
+                            "background:#ef4444;color:#fff;border:0;padding:4px 9px;border-radius:8px;cursor:pointer;font-size:10px;font-weight:800";
+
+                        deleteBtn.onclick=()=>{
+                            window.removeMember(
+                                key,
+                                member.name,
+                                member.time || ""
+                            );
+                        };
+
+                        row.appendChild(deleteBtn);
+
                     }
-                });
-            }
-            if(countBadge) countBadge.innerText = count;
-            if(modalTotalCount) modalTotalCount.innerText = count;
-        });
 
-        // مزامنة سلة المهملات
-        onValue(trashRef, (snapshot) => {
-            const data = snapshot.val();
-            const trashEl = document.getElementById('trashListContainer');
-            if(trashEl) trashEl.innerHTML = '';
-            if(data) {
-                Object.keys(data).forEach(key => {
-                    const t = data[key];
-                    let row = document.createElement('div');
-                    row.className = 'member-row';
-                    row.style.background = '#f3f4f6';
-                    row.innerHTML = `
-                        <span>🗑️ ${t.name}</span>
-                        <button onclick="window.restoreMember('${key}', '${t.name}', '${t.time}')" style="background:#10b981; color:#fff; border:none; padding:4px 10px; border-radius:8px; cursor:pointer; font-size:11px; font-weight:800;">استرجاع ♻️</button>
-                    `;
-                    trashEl.appendChild(row);
-                });
-            }
-        });
+                    list.appendChild(row);
 
-    } catch (err) {
-        console.error("Firebase Init Error:", err);
-    }
+                }
 
-    window.initCloudChat = function() {  
-        if (isListenerActive || !messagesRef) return;  
-        isListenerActive = true;  
-
-        const listDiv = document.getElementById('waMessagesList');  
-        listDiv.innerHTML = '';  
-
-        onChildAdded(messagesRef, (snapshot) => {  
-            const msg = snapshot.val();  
-            if (msg) {  
-                renderCloudBubble(snapshot.key, msg.sender, msg.text, msg.time, msg.isVoice, msg.audioUrl);  
-            }  
-        });  
-
-        onChildRemoved(messagesRef, (snapshot) => {
-            const msgEl = document.getElementById('msg-' + snapshot.key);
-            if(msgEl) msgEl.remove();
-        });
-
-        const storiesListDiv = document.getElementById('storiesList');
-        onChildAdded(storiesRef, (snapshot) => {
-            const st = snapshot.val();
-            if(st && storiesListDiv) {
-                let div = document.createElement('div');
-                div.id = 'story-' + snapshot.key;
-                div.className = 'story-bubble';
-                div.innerHTML = `<div><strong>${st.sender}:</strong> ${st.text}</div> <span style="font-size:10px; color:#888;">${st.time}</span>`;
-                storiesListDiv.prepend(div);
-            }
-        });
-    };  
-
-    window.registerMemberInCloud = function(name) {
-        if(!membersRef) return;
-        const timeNow = new Date().toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'});
-        const newRef = push(membersRef);
-        set(newRef, {
-            name: name,
-            time: timeNow,
-            timestamp: Date.now()
-        });
-    };
-
-    window.removeMember = function(key, name, time) {
-        if(name.trim() === 'سلمان') {
-            alert('عذراً، اسم (سلمان) محمي للأبد ولا يمكن حذفه نهائياً! 🛡️👑');
-            return;
-        }
-        // نقله إلى المهملات أولاً
-        const newTrashRef = push(trashRef);
-        set(newTrashRef, { name: name, time: time });
-
-        // حذفه من الأعضاء النشطين
-        remove(ref(db, 'sama_royal_chat/members/' + key));
-    };
-
-    window.restoreMember = function(key, name, time) {
-        // إعادته لقائمة الأعضاء
-        const newMemberRef = push(membersRef);
-        set(newMemberRef, { name: name, time: time, timestamp: Date.now() });
-
-        // حذفه من المهملات
-        remove(ref(db, 'sama_royal_chat/trash/' + key));
-    };
-
-    window.sendCloudMessage = function(text, isVoice = false, audioUrl = '') {  
-        if (!messagesRef) return;
-        const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';  
-        const timeNow = new Date().toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'});  
-          
-        const newMsgRef = push(messagesRef);  
-        set(newMsgRef, {  
-            sender: sender,  
-            text: text,  
-            isVoice: isVoice,
-            audioUrl: audioUrl,
-            time: timeNow,  
-            timestamp: Date.now()  
-        });  
-    };  
-
-    window.deleteCloudMessage = function(id) {
-        if(!messagesRef) return;
-        const targetRef = ref(db, 'sama_royal_chat/messages/' + id);
-        remove(targetRef).then(() => {
-            const el = document.getElementById('msg-' + id);
-            if(el) el.remove();
-        }).catch(() => {
-            alert('تعذر حذف الرسالة ❌');
-        });
-    };
-
-    window.postCloudStory = function(text) {
-        if(!storiesRef) return;
-        const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';
-        const timeNow = new Date().toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'});
-        const newStoryRef = push(storiesRef);
-        set(newStoryRef, {
-            sender: sender,
-            text: text,
-            time: timeNow,
-            timestamp: Date.now()
-        });
-    }
-</script>  
-
-<script>  
-    const pagesData = [  
-        {  
-            title: "✨ جنة العشق الأبدي (عرش روحي المطلق)",  
-            desc: "سما.. يا من ملأتِ أيامي نوراً وحياة. أنتِ لستِ مجرد شخص أحبه، أنتِ عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودكِ معي يجعل العالم مكاناً أجمل بكثير."  
-        },  
-        {  
-            title: "🔥 واحة الشوق والجنون (حيث يشتعل قلبي بحبكِ)",  
-            desc: "أنا مغرم بكِ بجنون لا توصفه الكلمات يا سما! كل تفصيلة فيكِ تسرقني، صوتكِ، ابتسامتكِ، ونظراتكِ. حبكِ هو القوة الوحيدة التي تجعلني أواجه صعوبات هذه الحياة بكل ثبات."  
-        },  
-        {  
-            title: "💌 رسالة الوداع والاعتذار الكبرى (أعمق أسرار الروح)",  
-            desc: "سما.. إذا حدث في يوم من الأيام واضطررنا للابتعاد، أو إن صدر مني تقصير أو خطأ دون قصد، فاعلمي جيداً أن قلبي لم يعرف طعم الصدق إلا معكِ. هذه الرسالة هي عهد مني بأنني حتى في أقصى لحظات الوداع والفراق — إن حدث — لن أندم أبداً على أنني عشقتكِ بكل ما أملك من قوة. أنتِ الجزء الأعظم في حياتي، وإن غابت الأجساد فستبقين أنتِ الروح التي تسكنني للأبد. سامحيني على كل لحظة قصرت فيها، وتأكدي أن حبي لكِ لا يزول بل يزداد عمقاً مع كل ثانية تمر."  
-        },  
-        {  
-            title: "💍 عهد الوفاء والمصير (حتى نهاية الزمان)",  
-            desc: "أقسم برب الكون يا سما، أنني سأبقى سندكِ وقوتكِ ومأمنكِ حتى آخر نبض في عمري. معكِ أدركتُ معنى الاستقرار الحقيقي، وللأبد نحن قصة عشق لا تنتهي."  
-        },  
-        {  
-            title: "📖 ستوريات وحالات المملكة الملكية الأسطورية",  
-            desc: "شارك أفكارك، مشاعرك، وحالاتك الرومانسية لتظهر في السحابة فوراً وتخلد هنا للأبد."  
-        }  
-    ];  
-
-    function switchPage(index) {  
-        document.getElementById('whatsappBox').style.display = 'none';  
-        document.getElementById('contentDisplayCard').style.display = 'block';  
-        document.getElementById('storiesBox').style.display = 'none';  
-        document.getElementById('pageTitle').style.display = 'block';  
-        document.getElementById('pageDesc').style.display = 'block';  
-
-        let buttons = document.querySelectorAll('.place-btn');  
-        buttons.forEach((btn, i) => {  
-            if(i === index) btn.classList.add('active');  
-            else btn.classList.remove('active');  
-        });  
-          
-        document.getElementById('pageTitle').innerText = pagesData[index].title;  
-        document.getElementById('pageDesc').innerText = pagesData[index].desc;  
-
-        if(index === 4) {
-            document.getElementById('storiesBox').style.display = 'flex';
-        }
-    }  
-
-    function openSecretModal() {  
-        const isPasswordSaved = localStorage.getItem('sama_chat_auth_verified');  
-        if (isPasswordSaved === 'true') {  
-            checkNameAndOpenChat();  
-        } else {  
-            document.getElementById('secretModal').style.display = 'flex';  
-        }  
-    }  
-
-    function closeSecretModal() {  
-        document.getElementById('secretModal').style.display = 'none';  
-        document.getElementById('modalPasswordInput').value = '';  
-    }  
-
-    function verifySecretPassword() {  
-        const val = document.getElementById('modalPasswordInput').value.trim();  
-        if(val === 'ang_el99m') {  
-            localStorage.setItem('sama_chat_auth_verified', 'true');  
-            closeSecretModal();  
-            checkNameAndOpenChat();  
-        } else {  
-            alert('الرمز السري غير صحيح! تأكد من كتابة (ang_el99m) بدقة ❌');  
-        }  
-    }  
-
-    function checkNameAndOpenChat() {  
-        let savedName = localStorage.getItem('sama_chat_user_name');  
-        if(!savedName) {  
-            document.getElementById('nameModal').style.display = 'flex';  
-        } else {  
-            openChatRoom();  
-        }  
-    }  
-
-    function saveMyName() {  
-        const nameVal = document.getElementById('myNameInput').value.trim();  
-        if(!nameVal) { alert('الرجاء كتابة اسمك أولاً! ✨'); return; }  
-        localStorage.setItem('sama_chat_user_name', nameVal);  
-        document.getElementById('nameModal').style.display = 'none';  
-        
-        // تسجيل العضو في قاعدة البيانات سحابياً عند كتابة كلمة السر والاسم
-        if(typeof window.registerMemberInCloud === 'function') {
-            window.registerMemberInCloud(nameVal);
-        }
-
-        openChatRoom();  
-    }  
-
-    function openChatRoom() {  
-        let buttons = document.querySelectorAll('.place-btn');  
-        buttons.forEach(btn => btn.classList.remove('active'));  
-          
-        document.getElementById('contentDisplayCard').style.display = 'none';  
-        document.getElementById('whatsappBox').style.display = 'block';  
-          
-        if(typeof window.initCloudChat === 'function') {  
-            window.initCloudChat();  
-        }  
-    }  
-
-    function openMembersModal() {
-        document.getElementById('membersModal').style.display = 'flex';
-    }
-
-    function closeMembersModal() {
-        document.getElementById('membersModal').style.display = 'none';
-    }
-
-    function toggleStickersPanel() {  
-        const panel = document.getElementById('stickersPanel');  
-        panel.style.display = (panel.style.display === 'flex') ? 'none' : 'flex';  
-    }  
-
-    function sendSticker(stickerEmoji) {  
-        sendCloudMessage(stickerEmoji);  
-        toggleStickersPanel();  
-    }  
-
-    function postStory() {
-        const input = document.getElementById('storyTextInput');
-        const val = input.value.trim();
-        if(!val) { alert('اكتب شيئاً لنشره في الستوري الأسطوري! ✨'); return; }
-        window.postCloudStory(val);
-        input.value = '';
-        alert('تم نشر حالتك الأسطورية السحابية بنجاح! 🌟');
-    }
-
-    let mediaRecorder;
-    let audioChunks = [];
-    let isRecording = false;
-
-    function toggleVoiceRecording() {
-        const micBtn = document.getElementById('micBtn');
-        if (!isRecording) {
-            navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-                mediaRecorder = new MediaRecorder(stream);
-                audioChunks = [];
-                mediaRecorder.ondataavailable = event => {
-                    audioChunks.push(event.data);
-                };
-                mediaRecorder.onstop = () => {
-                    const audioBlob = new Blob(audioChunks, { type: 'audio/mp3' });
-                    const audioUrl = URL.createObjectURL(audioBlob);
-                    sendCloudMessage('🎙️ رسالة صوتية ملكية', true, audioUrl);
-                };
-                mediaRecorder.start();
-                isRecording = true;
-                micBtn.classList.add('recording');
-                alert('جاري تسجيل الصوت... اضغط على الميكروفون مرة أخرى للإرسال 🎤');
-            }).catch(() => {
-                alert('عذراً، ميكروفون الجوال غير متاح أو مرفوض الإذن ❌');
             });
-        } else {
-            mediaRecorder.stop();
-            isRecording = false;
-            micBtn.classList.remove('recording');
+
         }
+
+
+        if(badge)
+            badge.innerText=count;
+
+        if(total)
+            total.innerText=count;
+
+    });
+
+
+    /* TRASH */
+
+    onValue(trashRef,(snapshot)=>{
+
+        const data=snapshot.val();
+
+        const box=
+            document.getElementById("trashListContainer");
+
+        if(box)
+            box.innerHTML="";
+
+
+        if(!data)
+            return;
+
+
+        Object.keys(data).forEach(key=>{
+
+            const item=data[key];
+
+            if(!item || !item.name)
+                return;
+
+
+            const row=
+                document.createElement("div");
+
+            row.className="member-row";
+
+            row.style.background="#f3f4f6";
+
+
+            const name=
+                document.createElement("span");
+
+            name.innerText="🗑️ "+item.name;
+
+
+            const restore=
+                document.createElement("button");
+
+            restore.innerText="استرجاع ♻️";
+
+            restore.style.cssText=
+                "background:#10b981;color:#fff;border:0;padding:4px 9px;border-radius:8px;cursor:pointer;font-size:10px;font-weight:800";
+
+            restore.onclick=()=>{
+                window.restoreMember(
+                    key,
+                    item.name,
+                    item.time || ""
+                );
+            };
+
+
+            row.appendChild(name);
+            row.appendChild(restore);
+
+            box.appendChild(row);
+
+        });
+
+    });
+
+
+}catch(error){
+
+    console.error("Firebase Init Error:",error);
+
+    const message=
+        document.getElementById("dbStatusMessage");
+
+    if(message)
+        message.innerText=
+            "تعذر تشغيل قاعدة البيانات ❌";
+
+}
+
+
+/* CHAT LISTENER */
+
+window.initCloudChat=function(){
+
+    if(isListenerActive || !messagesRef)
+        return;
+
+    isListenerActive=true;
+
+
+    const list=
+        document.getElementById("waMessagesList");
+
+    if(list)
+        list.innerHTML="";
+
+
+    onChildAdded(messagesRef,(snapshot)=>{
+
+        const msg=snapshot.val();
+
+        if(!msg)
+            return;
+
+
+        renderCloudBubble(
+            snapshot.key,
+            msg.sender || "مجهول",
+            msg.text || "",
+            msg.time || "",
+            msg.isVoice || false,
+            msg.audioUrl || ""
+        );
+
+    });
+
+
+    onChildRemoved(messagesRef,(snapshot)=>{
+
+        const el=
+            document.getElementById(
+                "msg-"+snapshot.key
+            );
+
+        if(el)
+            el.remove();
+
+    });
+
+
+    /* STORIES */
+
+    onChildAdded(storiesRef,(snapshot)=>{
+
+        const st=snapshot.val();
+
+        if(!st)
+            return;
+
+
+        const box=
+            document.getElementById("storiesList");
+
+        if(!box)
+            return;
+
+
+        const div=
+            document.createElement("div");
+
+        div.id="story-"+snapshot.key;
+
+        div.className="story-bubble";
+
+
+        const content=
+            document.createElement("div");
+
+        content.innerHTML=
+            `<strong>${escapeHtml(st.sender || "مجهول")}:</strong>
+             ${escapeHtml(st.text || "")}`;
+
+
+        const time=
+            document.createElement("span");
+
+        time.innerText=st.time || "";
+
+        time.style.cssText=
+            "font-size:9px;color:#888;white-space:nowrap";
+
+
+        div.appendChild(content);
+        div.appendChild(time);
+
+        box.prepend(div);
+
+    });
+
+};
+
+
+/* REGISTER MEMBER */
+
+window.registerMemberInCloud=function(name){
+
+    if(!membersRef || !name)
+        return;
+
+
+    const cleanName=name.trim();
+
+
+    /*
+      منع إنشاء عضو جديد كل مرة يدخل فيها
+      بنفس الاسم
+    */
+
+    onValue(
+        membersRef,
+        (snapshot)=>{
+
+            const data=snapshot.val() || {};
+
+            let exists=false;
+
+            Object.keys(data).forEach(key=>{
+
+                if(
+                    data[key] &&
+                    String(data[key].name || "")
+                        .trim()
+                        .toLowerCase()
+                    ===
+                    cleanName.toLowerCase()
+                ){
+
+                    exists=true;
+
+                }
+
+            });
+
+
+            if(exists)
+                return;
+
+
+            const timeNow=
+                new Date().toLocaleTimeString(
+                    "ar-SA",
+                    {
+                        hour:"2-digit",
+                        minute:"2-digit"
+                    }
+                );
+
+
+            const newRef=push(membersRef);
+
+
+            set(newRef,{
+                name:cleanName,
+                time:timeNow,
+                timestamp:Date.now()
+            });
+
+        },
+        {onlyOnce:true}
+    );
+
+};
+
+
+/* DELETE MEMBER */
+
+window.removeMember=function(key,name,time){
+
+    if(String(name).trim()==="سلمان"){
+
+        showNotification(
+            "سلمان محمي للأبد ولا يمكن حذفه 🛡️👑"
+        );
+
+        return;
+
     }
 
-    function renderCloudBubble(id, sender, text, time, isVoice, audioUrl) {  
-        const listDiv = document.getElementById('waMessagesList');  
-        let myName = localStorage.getItem('sama_chat_user_name') || 'أنا';  
-        let isMe = (sender === myName);  
 
-        if(document.getElementById('msg-' + id)) return;  
+    if(!confirm(
+        "هل تريد نقل "+name+" إلى سلة المهملات؟"
+    ))
+        return;
 
-        let div = document.createElement('div');  
-        div.id = 'msg-' + id;  
-        div.className = `wa-bubble ${isMe ? 'outgoing' : 'incoming'}`;  
 
-        let contentHTML = `<div class="msg-text-content">${text}</div>`;
-        if(isVoice && audioUrl) {
-            contentHTML = `<div>🎙️ رسالة صوتية</div><audio controls src="${audioUrl}" style="width:180px; margin-top:4px;"></audio>`;
-        }
+    const newTrashRef=push(trashRef);
 
-        div.innerHTML = `  
-            <div class="wa-sender-name">${sender}</div>  
-            ${contentHTML}  
-            <div class="wa-msg-footer">  
-                <button class="delete-msg-btn" onclick="window.deleteCloudMessage('${id}')" title="حذف للجميع">🗑️ حذف</button>  
-                <span class="wa-time">${time}</span>  
-                <span class="wa-ticks">✓✓</span>  
-            </div>  
-            <div style="clear: both;"></div>
-        `;  
-        listDiv.appendChild(div);  
-        listDiv.scrollTop = listDiv.scrollHeight;  
-    }  
 
-    function handleKeyPress(e) {   
-        if(e.key === 'Enter') sendWhatsAppMessage();   
-    }  
+    set(newTrashRef,{
+        name:name,
+        time:time,
+        timestamp:Date.now()
+    })
+    .then(()=>{
 
-    function sendWhatsAppMessage() {  
-        const textInput = document.getElementById('waText');  
-        const text = textInput.value.trim();  
-        if(!text) return;  
-        window.sendCloudMessage(text, false, '');  
-        textInput.value = '';  
-    }  
+        return remove(
+            ref(db,
+                "sama_royal_chat/members/"+key
+            )
+        );
 
-    function createHeartAtClick(e) {  
-        if(e.target.closest('#whatsappBox') || e.target.closest('button') || e.target.closest('input') || e.target.closest('.modal-card') || e.target.closest('#storiesBox')) return;  
-        spawnHeart(e.clientX, e.clientY);  
-    }  
+    })
+    .catch(()=>{
 
-    function spawnHeart(x, y) {  
-        const heart = document.createElement('div');  
-        heart.classList.add('heart-float');  
-        const symbols = ['💖 سما 💖', '🌸 سما 🌸', '🌷 سما 🌷', '👑 سما 👑', '🌹 روحي سما 🌹', '✨ سما الحب ✨'];  
-        heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];  
-        heart.style.left = x + 'px';  
-        heart.style.top = y + 'px';  
-        document.body.appendChild(heart);  
-        setTimeout(() => { heart.remove(); }, 3500);  
-    }  
+        showNotification(
+            "تعذر حذف العضو ❌"
+        );
 
-    function triggerMegaExplosion(e) {  
-        for (let i = 0; i < 70; i++) {  
-            setTimeout(() => {  
-                spawnHeart(Math.random() * window.innerWidth, window.innerHeight - 30);  
-            }, i * 20);  
-        }  
-    }  
+    });
 
-    function showCrazyLovePopup() {  
-        alert("إلى عقلي وروحي وأميرتي (سما): أحبكِ حباً يضيء عتمة أيامي، أنتِ الحكاية الجميلة التي أتمنى أن لا تنتهي أبداً! 💖🌹");  
-    }  
+};
+
+
+/* RESTORE */
+
+window.restoreMember=function(
+    key,
+    name,
+    time
+){
+
+    if(!membersRef || !trashRef)
+        return;
+
+
+    const newMemberRef=
+        push(membersRef);
+
+
+    set(newMemberRef,{
+        name:name,
+        time:time,
+        timestamp:Date.now()
+    })
+    .then(()=>{
+
+        return remove(
+            ref(db,
+                "sama_royal_chat/trash/"+key
+            )
+        );
+
+    });
+
+};
+
+
+/* SEND MESSAGE */
+
+window.sendCloudMessage=function(
+    text,
+    isVoice=false,
+    audioUrl=""
+){
+
+    if(!messagesRef || !text)
+        return;
+
+
+    const sender=
+        localStorage.getItem(
+            "sama_chat_user_name"
+        ) || "سلمان";
+
+
+    const timeNow=
+        new Date().toLocaleTimeString(
+            "ar-SA",
+            {
+                hour:"2-digit",
+                minute:"2-digit"
+            }
+        );
+
+
+    const newMsgRef=
+        push(messagesRef);
+
+
+    set(newMsgRef,{
+
+        sender:sender,
+
+        text:String(text).slice(0,2000),
+
+        isVoice:Boolean(isVoice),
+
+        /*
+          ملاحظة:
+          audioUrl المحلي سيعمل في نفس الصفحة فقط.
+          أبقيناه حتى لا تتغير بنية بياناتك الحالية.
+        */
+
+        audioUrl:audioUrl || "",
+
+        time:timeNow,
+
+        timestamp:Date.now()
+
+    });
+
+};
+
+
+/* DELETE MESSAGE */
+
+window.deleteCloudMessage=function(id){
+
+    if(!messagesRef)
+        return;
+
+
+    if(!confirm("حذف الرسالة للجميع؟"))
+        return;
+
+
+    remove(
+        ref(
+            db,
+            "sama_royal_chat/messages/"+id
+        )
+    )
+    .then(()=>{
+
+        showNotification(
+            "تم حذف الرسالة 🗑️"
+        );
+
+    })
+    .catch(()=>{
+
+        showNotification(
+            "تعذر حذف الرسالة ❌"
+        );
+
+    });
+
+};
+
+
+/* STORY */
+
+window.postCloudStory=function(text){
+
+    if(!storiesRef || !text)
+        return;
+
+
+    const sender=
+        localStorage.getItem(
+            "sama_chat_user_name"
+        ) || "سلمان";
+
+
+    const timeNow=
+        new Date().toLocaleTimeString(
+            "ar-SA",
+            {
+                hour:"2-digit",
+                minute:"2-digit"
+            }
+        );
+
+
+    const newStoryRef=
+        push(storiesRef);
+
+
+    set(newStoryRef,{
+
+        sender:sender,
+
+        text:String(text).slice(0,500),
+
+        time:timeNow,
+
+        timestamp:Date.now()
+
+    });
+
+};
+
+
+/* HTML SAFE */
+
+function escapeHtml(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
 </script>
 
-</body>  
+
+<script>
+
+const pagesData=[
+
+{
+    title:"✨ جنة العشق الأبدي (عرش روحي المطلق)",
+    desc:"سما.. يا من ملأت أيامي نورا وحياة. أنت لست مجرد شخص أحبه، أنت عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودك معي يجعل العالم مكانا أجمل بكثير."
+},
+
+{
+    title:"🔥 واحة الشوق والجنون (حيث يشتعل قلبي بحبك)",
+    desc:"أنا مغرم بك بجنون لا توصفه الكلمات يا سما. كل تفصيلة فيك تسرقني، صوتك، ابتسامتك، ونظراتك. حبك هو القوة الوحيدة التي تجعلني أواجه صعوبات هذه الحياة بكل ثبات."
+},
+
+{
+    title:"💌 رسالة الوداع والاعتذار الكبرى",
+    desc:"سما.. إذا حدث في يوم من الأيام واضطررنا للابتعاد، أو إن صدر مني تقصير أو خطأ دون قصد، فاعلمي جيدا أن قلبي لم يعرف طعم الصدق إلا معك. سامحيني على كل لحظة قصرت فيها، وتأكدي أن حبي لك لا يزول بل يزداد عمقا مع كل ثانية تمر."
+},
+
+{
+    title:"💍 عهد الوفاء والمصير",
+    desc:"أقسم برب الكون يا سما، أنني سأبقى سندك وقوتك ومأمنك حتى آخر نبض في عمري. معك أدركت معنى الاستقرار الحقيقي، وللأبد نحن قصة عشق لا تنتهي."
+},
+
+{
+    title:"📖 ستوريات وحالات المملكة الملكية",
+    desc:"شارك أفكارك ومشاعرك وحالاتك الرومانسية لتظهر في السحابة وتخلد هنا."
+}
+
+];
+
+
+function switchPage(index){
+
+    document.getElementById("whatsappBox")
+        .style.display="none";
+
+    document.getElementById("contentDisplayCard")
+        .style.display="block";
+
+    document.getElementById("storiesBox")
+        .style.display="none";
+
+    document.getElementById("pageTitle")
+        .style.display="block";
+
+    document.getElementById("pageDesc")
+        .style.display="block";
+
+
+    document.querySelectorAll(".place-btn")
+        .forEach((btn,i)=>{
+
+            btn.classList.toggle(
+                "active",
+                i===index
+            );
+
+        });
+
+
+    document.getElementById("pageTitle")
+        .innerText=pagesData[index].title;
+
+    document.getElementById("pageDesc")
+        .innerText=pagesData[index].desc;
+
+
+    if(index===4){
+
+        document.getElementById("storiesBox")
+            .style.display="flex";
+
+        if(typeof window.initCloudChat==="function")
+            window.initCloudChat();
+
+    }
+
+}
+
+
+function openSecretModal(){
+
+    const saved=
+        localStorage.getItem(
+            "sama_chat_auth_verified"
+        );
+
+
+    if(saved==="true"){
+
+        checkNameAndOpenChat();
+
+    }else{
+
+        document.getElementById(
+            "secretModal"
+        ).style.display="flex";
+
+    }
+
+}
+
+
+function closeSecretModal(){
+
+    document.getElementById(
+        "secretModal"
+    ).style.display="none";
+
+    document.getElementById(
+        "modalPasswordInput"
+    ).value="";
+
+}
+
+
+function verifySecretPassword(){
+
+    const value=
+        document.getElementById(
+            "modalPasswordInput"
+        ).value.trim();
+
+
+    if(value==="ang_el99m"){
+
+        localStorage.setItem(
+            "sama_chat_auth_verified",
+            "true"
+        );
+
+        closeSecretModal();
+
+        checkNameAndOpenChat();
+
+    }else{
+
+        showNotification(
+            "الرمز السري غير صحيح ❌"
+        );
+
+    }
+
+}
+
+
+function checkNameAndOpenChat(){
+
+    const savedName=
+        localStorage.getItem(
+            "sama_chat_user_name"
+        );
+
+
+    if(!savedName){
+
+        document.getElementById(
+            "nameModal"
+        ).style.display="flex";
+
+    }else{
+
+        openChatRoom();
+
+    }
+
+}
+
+
+function saveMyName(){
+
+    const input=
+        document.getElementById(
+            "myNameInput"
+        );
+
+
+    const name=input.value.trim();
+
+
+    if(!name){
+
+        showNotification(
+            "اكتب اسمك أولا ✨"
+        );
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "sama_chat_user_name",
+        name
+    );
+
+
+    document.getElementById(
+        "nameModal"
+    ).style.display="none";
+
+
+    if(typeof window.registerMemberInCloud==="function")
+        window.registerMemberInCloud(name);
+
+
+    openChatRoom();
+
+}
+
+
+function openChatRoom(){
+
+    document.querySelectorAll(".place-btn")
+        .forEach(btn=>btn.classList.remove("active"));
+
+
+    document.getElementById(
+        "contentDisplayCard"
+    ).style.display="none";
+
+
+    document.getElementById(
+        "whatsappBox"
+    ).style.display="block";
+
+
+    if(typeof window.initCloudChat==="function")
+        window.initCloudChat();
+
+}
+
+
+function openMembersModal(){
+
+    document.getElementById(
+        "membersModal"
+    ).style.display="flex";
+
+}
+
+
+function closeMembersModal(){
+
+    document.getElementById(
+        "membersModal"
+    ).style.display="none";
+
+}
+
+
+function toggleStickersPanel(){
+
+    const panel=
+        document.getElementById(
+            "stickersPanel"
+        );
+
+
+    panel.style.display=
+        panel.style.display==="flex"
+        ? "none"
+        : "flex";
+
+}
+
+
+function sendSticker(emoji){
+
+    sendWhatsAppMessage(emoji);
+
+    document.getElementById(
+        "stickersPanel"
+    ).style.display="none";
+
+}
+
+
+function postStory(){
+
+    const input=
+        document.getElementById(
+            "storyTextInput"
+        );
+
+
+    const value=input.value.trim();
+
+
+    if(!value){
+
+        showNotification(
+            "اكتب شيئا لنشره ✨"
+        );
+
+        return;
+
+    }
+
+
+    if(typeof window.postCloudStory==="function"){
+
+        window.postCloudStory(value);
+
+        input.value="";
+
+        showNotification(
+            "تم نشر الحالة في المملكة 🌟"
+        );
+
+    }
+
+}
+
+
+let mediaRecorder=null;
+let audioChunks=[];
+let isRecording=false;
+
+
+async function toggleVoiceRecording(){
+
+    const mic=
+        document.getElementById("micBtn");
+
+
+    if(!isRecording){
+
+        try{
+
+            const stream=
+                await navigator.mediaDevices
+                .getUserMedia({
+                    audio:true
+                });
+
+
+            mediaRecorder=
+                new MediaRecorder(stream);
+
+
+            audioChunks=[];
+
+
+            mediaRecorder.ondataavailable=
+                event=>{
+
+                    if(event.data.size>0)
+                        audioChunks.push(event.data);
+
+                };
+
+
+            mediaRecorder.onstop=()=>{
+
+                stream.getTracks()
+                    .forEach(track=>track.stop());
+
+
+                const blob=
+                    new Blob(
+                        audioChunks,
+                        {type:"audio/webm"}
+                    );
+
+
+                const url=
+                    URL.createObjectURL(blob);
+
+
+                if(typeof window.sendCloudMessage==="function"){
+
+                    window.sendCloudMessage(
+                        "🎙️ رسالة صوتية ملكية",
+                        true,
+                        url
+                    );
+
+                }
+
+            };
+
+
+            mediaRecorder.start();
+
+            isRecording=true;
+
+            mic.classList.add("recording");
+
+            showNotification(
+                "جاري التسجيل... اضغط الميكروفون للإرسال 🎤"
+            );
+
+
+        }catch(error){
+
+            showNotification(
+                "تعذر الوصول إلى الميكروفون ❌"
+            );
+
+        }
+
+
+    }else{
+
+        if(mediaRecorder)
+            mediaRecorder.stop();
+
+        isRecording=false;
+
+        mic.classList.remove("recording");
+
+    }
+
+}
+
+
+function renderCloudBubble(
+    id,
+    sender,
+    text,
+    time,
+    isVoice,
+    audioUrl
+){
+
+    const list=
+        document.getElementById(
+            "waMessagesList"
+        );
+
+
+    if(!list)
+        return;
+
+
+    if(document.getElementById("msg-"+id))
+        return;
+
+
+    const empty=
+        list.querySelector(".empty-chat");
+
+    if(empty)
+        empty.remove();
+
+
+    const myName=
+        localStorage.getItem(
+            "sama_chat_user_name"
+        ) || "أنا";
+
+
+    const isMe=
+        sender===myName;
+
+
+    const bubble=
+        document.createElement("div");
+
+
+    bubble.id="msg-"+id;
+
+    bubble.className=
+        "wa-bubble "+
+        (isMe ? "outgoing":"incoming");
+
+
+    const safeSender=
+        escapeForDisplay(sender);
+
+    const safeText=
+        escapeForDisplay(text);
+
+
+    let content="";
+
+
+    if(isVoice && audioUrl){
+
+        content=`
+            <div>🎙️ رسالة صوتية</div>
+            <audio
+                controls
+                src="${audioUrl}"
+                style="width:180px;max-width:100%;margin-top:5px">
+            </audio>
+        `;
+
+    }else{
+
+        content=
+            `<div class="msg-text-content">${safeText}</div>`;
+
+    }
+
+
+    bubble.innerHTML=`
+
+        <div class="wa-sender-name">
+            ${safeSender}
+        </div>
+
+        ${content}
+
+        <div class="wa-msg-footer">
+
+            <div class="msg-tools">
+
+                <button
+                    class="msg-tool"
+                    onclick="copyMessageText('${escapeForAttribute(text)}')"
+                    title="نسخ">
+                    نسخ
+                </button>
+
+                <button
+                    class="msg-tool"
+                    onclick="deleteMessageFromUI('${id}')"
+                    title="حذف">
+                    🗑️
+                </button>
+
+            </div>
+
+            <span class="wa-time">
+                ${escapeForDisplay(time)}
+            </span>
+
+            <span class="wa-ticks">
+                ✓✓
+            </span>
+
+        </div>
+    `;
+
+
+    list.appendChild(bubble);
+
+    list.scrollTop=list.scrollHeight;
+
+
+    if(!isMe){
+
+        showNotification(
+            "💌 رسالة جديدة من "+sender
+        );
+
+    }
+
+}
+
+
+function escapeForDisplay(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeForAttribute(value){
+
+    return String(value)
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/\n/g,"\\n")
+        .replace(/\r/g,"");
+
+}
+
+
+async function copyMessageText(text){
+
+    try{
+
+        const decoded=
+            text
+            .replace(/\\n/g,"\n")
+            .replace(/\\'/g,"'");
+
+
+        await navigator.clipboard.writeText(decoded);
+
+        showNotification(
+            "تم نسخ الرسالة 📋"
+        );
+
+    }catch{
+
+        showNotification(
+            "تعذر نسخ الرسالة"
+        );
+
+    }
+
+}
+
+
+function deleteMessageFromUI(id){
+
+    if(typeof window.deleteCloudMessage==="function")
+        window.deleteCloudMessage(id);
+
+}
+
+
+function handleKeyPress(event){
+
+    if(event.key==="Enter"){
+
+        event.preventDefault();
+
+        sendWhatsAppMessage();
+
+    }
+
+}
+
+
+function sendWhatsAppMessage(customText){
+
+    const input=
+        document.getElementById("waText");
+
+
+    const text=
+        typeof customText==="string"
+        ? customText.trim()
+        : input.value.trim();
+
+
+    if(!text)
+        return;
+
+
+    if(typeof window.sendCloudMessage==="function"){
+
+        window.sendCloudMessage(
+            text,
+            false,
+            ""
+        );
+
+    }
+
+
+    if(!customText)
+        input.value="";
+
+}
+
+
+function createHeartAtClick(event){
+
+    if(
+        event.target.closest("#whatsappBox") ||
+        event.target.closest("button") ||
+        event.target.closest("input") ||
+        event.target.closest(".modal-card") ||
+        event.target.closest("#storiesBox")
+    )
+        return;
+
+
+    spawnHeart(
+        event.clientX,
+        event.clientY
+    );
+
+}
+
+
+function spawnHeart(x,y){
+
+    const heart=
+        document.createElement("div");
+
+
+    heart.className="heart-float";
+
+
+    const symbols=[
+        "💖 سما 💖",
+        "🌸 سما 🌸",
+        "🌷 سما 🌷",
+        "👑 سما 👑",
+        "🌹 روحي سما 🌹",
+        "✨ سما الحب ✨"
+    ];
+
+
+    heart.innerText=
+        symbols[
+            Math.floor(
+                Math.random()*symbols.length
+            )
+        ];
+
+
+    heart.style.left=x+"px";
+    heart.style.top=y+"px";
+
+
+    document.body.appendChild(heart);
+
+
+    setTimeout(()=>{
+        heart.remove();
+    },3400);
+
+}
+
+
+function triggerMegaExplosion(event){
+
+    if(event)
+        event.stopPropagation();
+
+
+    const symbols=[
+        "💖","💗","💓","💞",
+        "💕","🌹","🌸","✨",
+        "👑","🩷"
+    ];
+
+
+    for(let i=0;i<70;i++){
+
+        setTimeout(()=>{
+
+            const heart=
+                document.createElement("div");
+
+
+            heart.className="heart-float";
+
+
+            heart.innerText=
+                symbols[
+                    Math.floor(
+                        Math.random()*symbols.length
+                    )
+                ];
+
+
+            heart.style.left=
+                Math.random()*window.innerWidth+"px";
+
+
+            heart.style.top=
+                window.innerHeight-20+"px";
+
+
+            document.body.appendChild(heart);
+
+
+            setTimeout(()=>{
+                heart.remove();
+            },3400);
+
+        },i*18);
+
+    }
+
+}
+
+
+function showCrazyLovePopup(){
+
+    showNotification(
+        "إلى عقلي وروحي وأميرتي سما 🩷 أحبك حبا يضيء عتمة أيامي وأنت الحكاية الجميلة التي أتمنى ألا تنتهي أبدا 🌹"
+    );
+
+}
+
+
+function showNotification(message){
+
+    const box=
+        document.getElementById(
+            "notification"
+        );
+
+
+    if(!box)
+        return;
+
+
+    box.innerText=message;
+
+    box.classList.add("show");
+
+
+    clearTimeout(
+        window.notificationTimer
+    );
+
+
+    window.notificationTimer=
+        setTimeout(()=>{
+
+            box.classList.remove("show");
+
+        },3000);
+
+}
+
+
+/* DARK MODE */
+
+function toggleDarkMode(event){
+
+    if(event)
+        event.stopPropagation();
+
+
+    document.body.classList.toggle("dark");
+
+
+    const dark=
+        document.body.classList.contains("dark");
+
+
+    localStorage.setItem(
+        "sama_dark_mode",
+        dark ? "true":"false"
+    );
+
+
+    const button=
+        document.querySelector(".theme-btn");
+
+
+    if(button)
+        button.innerText=
+            dark ? "☀️":"🌙";
+
+}
+
+
+(function loadDarkMode(){
+
+    const dark=
+        localStorage.getItem(
+            "sama_dark_mode"
+        );
+
+
+    if(dark==="true"){
+
+        document.body.classList.add("dark");
+
+        const button=
+            document.querySelector(".theme-btn");
+
+        if(button)
+            button.innerText="☀️";
+
+    }
+
+})();
+
+
+/* VISITOR COUNTER LOCAL */
+
+(function(){
+
+    let count=
+        Number(
+            localStorage.getItem(
+                "sama_visit_count"
+            ) || 0
+        );
+
+
+    count++;
+
+
+    localStorage.setItem(
+        "sama_visit_count",
+        count
+    );
+
+
+    const element=
+        document.getElementById(
+            "visitorCounter"
+        );
+
+
+    if(element)
+        element.innerText=count;
+
+})();
+
+
+/* HEART COUNTER ANIMATION */
+
+(function(){
+
+    const element=
+        document.getElementById(
+            "heartCounter"
+        );
+
+
+    if(!element)
+        return;
+
+
+    let n=0;
+
+    const timer=
+        setInterval(()=>{
+
+            n+=Math.floor(
+                Math.random()*9
+            )+1;
+
+
+            if(n>=999){
+
+                n=999;
+
+                clearInterval(timer);
+
+            }
+
+
+            element.innerText=n;
+
+        },40);
+
+})();
+
+
+/* CLOSE MODALS WHEN CLICKING OUTSIDE */
+
+document.querySelectorAll(".modal-overlay")
+.forEach(modal=>{
+
+    modal.addEventListener("click",event=>{
+
+        if(event.target===modal)
+            modal.style.display="none";
+
+    });
+
+});
+
+
+/* STORY ENTER */
+
+const storyInput=
+    document.getElementById(
+        "storyTextInput"
+    );
+
+
+if(storyInput){
+
+    storyInput.addEventListener(
+        "keypress",
+        event=>{
+
+            if(event.key==="Enter")
+                postStory();
+
+        }
+    );
+
+}
+
+
+/* AUTO INITIALIZATION */
+
+setTimeout(()=>{
+
+    if(typeof window.initCloudChat==="function")
+        window.initCloudChat();
+
+},700);
+
+</script>
+
+</body>
 </html>
