@@ -75,6 +75,8 @@
             font-size: 13px;
             color: var(--text-muted);
             box-shadow: 0 6px 15px rgba(225, 29, 72, 0.08);
+            position: relative;
+            z-index: 5;
         }
         .place-btn:hover {
             border-color: var(--primary);
@@ -118,6 +120,8 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.4);
             margin-top: 5px;
             width: 100%;
+            position: relative;
+            z-index: 5;
         }
         
         .db-status-bar {
@@ -314,6 +318,8 @@
             box-shadow: 0 8px 25px rgba(225, 29, 72, 0.35);
             transition: 0.3s;
             display: flex; align-items: center; justify-content: center; gap: 10px;
+            position: relative;
+            z-index: 5;
         }
         .action-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(225, 29, 72, 0.5); }
 
@@ -363,7 +369,7 @@
         }
     </style>
 </head>
-<body onclick="createHeartAtClick(event)">
+<body>
 
     <div class="royal-header">
         <div class="royal-title">👑 مملكة العشق والخلود المخصصة لـ: سما</div>
@@ -751,10 +757,11 @@
 
         function handleKeyPress(e) { if(e.key === 'Enter') sendWhatsAppMessage(); }
 
-        function createHeartAtClick(e) {
-            if(e.target.closest('#whatsappBox') || e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT') return;
+        // تفعيل تفاعل القلوب عند النقر في المساحات الفارغة فقط دون إزعاج الأزرار
+        window.addEventListener('click', function(e) {
+            if(e.target.closest('button') || e.target.closest('input') || e.target.closest('.whatsapp-container') || e.target.closest('.modal-overlay')) return;
             spawnHeart(e.clientX, e.clientY);
-        }
+        });
 
         function spawnHeart(x, y) {
             const heart = document.createElement('div');
