@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp Fullscreen + Profile & Status - سما</title>
+    <title>مملكة سما وسلمان - الانتقال لواتساب</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
         body { 
-            background: #0b141a; 
-            color: #e9edef; 
+            background: #fff1f2; 
+            color: #881337; 
             height: 100vh; 
             display: flex; 
             flex-direction: column; 
             overflow: hidden; 
         }
 
-        /* --- واجهة القائمة الرئيسية --- */
+        /* --- الواجهة الرئيسية السابقة كما كانت --- */
         #homeMainView {
             display: flex;
             flex-direction: column;
@@ -24,7 +24,6 @@
             justify-content: center;
             height: 100vh;
             background: linear-gradient(135deg, #fff1f2, #ffe4e6);
-            color: #881337;
             padding: 20px;
             text-align: center;
             position: absolute;
@@ -56,7 +55,7 @@
         }
         .enter-chat-btn:hover { background: #008f6f; transform: scale(1.03); }
 
-        /* --- واجهة واتساب الكاملة --- */
+        /* --- واجهة واتساب الجديدة التي تظهر عند الضغط --- */
         #whatsappBox {
             display: none;
             flex-direction: column;
@@ -98,7 +97,6 @@
         }
         .wa-control-btn:hover { background: #374248; }
         .wa-control-btn.danger { background: #552222; color: #ff8888; }
-        .wa-control-btn.danger:hover { background: #772222; }
 
         .wa-messages-area {
             flex: 1;
@@ -118,81 +116,16 @@
             position: relative;
             font-size: 15px;
             font-weight: 700;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             word-wrap: break-word;
-            animation: fadeInBubble 0.2s ease;
         }
-        @keyframes fadeInBubble {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .wa-bubble.incoming {
-            background: #202c33;
-            align-self: flex-start;
-            border-top-right-radius: 4px;
-            color: #e9edef;
-            border-right: 4px solid #00a884;
-        }
-        .wa-bubble.outgoing {
-            background: #005c4b;
-            align-self: flex-end;
-            border-top-left-radius: 4px;
-            color: #e9edef;
-            border-left: 4px solid #00a884;
-        }
+        .wa-bubble.incoming { background: #202c33; align-self: flex-start; border-top-right-radius: 4px; color: #e9edef; border-right: 4px solid #00a884; }
+        .wa-bubble.outgoing { background: #005c4b; align-self: flex-end; border-top-left-radius: 4px; color: #e9edef; border-left: 4px solid #00a884; }
         .wa-sender-name { font-size: 11px; color: #00a884; font-weight: 900; margin-bottom: 3px; }
         
-        .wa-msg-footer {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 6px;
-            margin-top: 4px;
-        }
+        .wa-msg-footer { display: flex; align-items: center; justify-content: flex-end; gap: 6px; margin-top: 4px; }
         .wa-time { font-size: 10px; color: #8696a0; }
-        .wa-ticks { font-size: 12px; font-weight: 900; color: #8696a0; letter-spacing: -3px; }
+        .wa-ticks { font-size: 12px; font-weight: 900; color: #8696a0; }
         .wa-ticks.read { color: #53bdeb; }
-
-        .msg-options {
-            display: inline-flex;
-            gap: 4px;
-            margin-right: 8px;
-            opacity: 0;
-            transition: 0.2s;
-        }
-        .wa-bubble:hover .msg-options { opacity: 1; }
-        .msg-opt-btn {
-            background: rgba(0,0,0,0.3);
-            border: none;
-            color: #ccc;
-            font-size: 10px;
-            padding: 2px 5px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .msg-opt-btn:hover { background: #00a884; color: #fff; }
-
-        /* لوحة الملصقات المدمجة */
-        .stickers-panel {
-            display: none;
-            background: #1f2c34;
-            padding: 10px 15px;
-            border-top: 1px solid #222d34;
-            gap: 8px;
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-        .sticker-item {
-            background: #2a3942;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 12px;
-            font-size: 22px;
-            cursor: pointer;
-            transition: 0.2s;
-            flex-shrink: 0;
-        }
-        .sticker-item:hover { transform: scale(1.15); background: #374248; }
 
         .wa-input-footer {
             background: #202c33;
@@ -210,14 +143,9 @@
             color: #fff;
             border-radius: 30px;
             outline: none;
-            font-family: 'Cairo', sans-serif;
             font-size: 15px;
-            transition: 0.3s;
         }
         .wa-input-footer input:focus { border-color: #00a884; background: #111b21; }
-        .wa-action-icon-btn { background: none; border: none; font-size: 22px; cursor: pointer; color: #8696a0; transition: 0.2s; }
-        .wa-action-icon-btn:hover { color: #00a884; }
-
         .wa-send-btn {
             background: #00a884;
             color: #fff;
@@ -227,90 +155,52 @@
             cursor: pointer;
             display: flex; align-items: center; justify-content: center;
             font-size: 18px;
-            transition: 0.3s;
-            box-shadow: 0 4px 12px rgba(0,168,132,0.4);
-            flex-shrink: 0;
         }
-        .wa-send-btn:hover { background: #008f6f; transform: scale(1.08); }
 
-        /* النوافذ المنبثقة */
+        /* النوافذ المنبثقة للبروفايل والحماية */
         .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            backdrop-filter: blur(5px);
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); display: none; align-items: center; justify-content: center; z-index: 2000;
         }
         .modal-card {
-            background: #fff;
-            padding: 30px;
-            border-radius: 24px;
-            width: 90%;
-            max-width: 380px;
-            text-align: center;
-            border: 3px solid #e11d48;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            background: #fff; padding: 30px; border-radius: 24px; width: 90%; max-width: 380px; text-align: center; border: 3px solid #e11d48;
         }
         .modal-card h3 { color: #e11d48; font-size: 20px; margin-bottom: 12px; font-weight: 900; }
-        .modal-card input, .modal-card select { width: 100%; padding: 12px; border: 2px solid #fda4af; border-radius: 20px; text-align: center; font-size: 15px; margin-bottom: 15px; outline: none; font-family: 'Cairo', sans-serif; background: #fff; }
-        .modal-btn {
-            background: linear-gradient(135deg, #e11d48, #db2777);
-            color: #fff; border: none; padding: 12px; width: 100%; border-radius: 25px; font-weight: 900; font-size: 15px; cursor: pointer;
-        }
+        .modal-card input, .modal-card select { width: 100%; padding: 12px; border: 2px solid #fda4af; border-radius: 20px; text-align: center; font-size: 15px; margin-bottom: 15px; outline: none; background: #fff; }
+        .modal-btn { background: #e11d48; color: #fff; border: none; padding: 12px; width: 100%; border-radius: 25px; font-weight: 900; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <!-- الواجهة الرئيسية -->
+    <!-- الواجهة الرئيسية كما كانت -->
     <div id="homeMainView">
         <div class="home-card">
             <h1>👑 مملكة سما وسلمان</h1>
-            <p>انقر للدخول إلى شات واتساب الشامل مع إمكانية تعديل بروفايلك الشخصي وحالتك الخاصة بلحظتها!</p>
-            <button class="enter-chat-btn" onclick="openSecretModal()">💬 الدخول إلى شات واتساب</button>
+            <p>اضغط على زر غرفة الدردشة أدناه للانتقال الفوري لواجهة واتساب الخاصة بكم!</p>
+            <button class="enter-chat-btn" onclick="openSecretModal()">💬 غرفة الدردشة (واتساب)</button>
         </div>
     </div>
 
-    <!-- واجهة واتساب الكاملة -->
+    <!-- واجهة واتساب الكاملة التي ستفتح -->
     <div id="whatsappBox">
         <div class="wa-chat-header">
-            <div class="wa-avatar-box" onclick="openProfileModal()" title="تعديل البروفايل والحالة">
+            <div class="wa-avatar-box" onclick="openProfileModal()">
                 <div id="headerUserAvatar" class="wa-avatar">👑</div>
                 <div class="wa-chat-info">
-                    <div id="headerChatTitle" class="wa-title-name">مملكة سلمان وسما 🩷</div>
+                    <div class="wa-title-name">مملكة سلمان وسما 🩷</div>
                     <div id="onlineStatusText" class="wa-status-text">● متصل الآن...</div>
                 </div>
             </div>
             <div class="wa-controls">
                 <button class="wa-control-btn" onclick="openProfileModal()">👤 بروفايلي</button>
                 <button class="wa-control-btn" onclick="exitToHome()">🏠 الرئيسية</button>
-                <button class="wa-control-btn danger" onclick="clearAllMessages()">🗑️ حذف</button>
             </div>
         </div>
 
-        <div id="waMessagesList" class="wa-messages-area" onscroll="markAllAsRead()">
-            <!-- الرسائل -->
-        </div>
-
-        <!-- لوحة الملصقات -->
-        <div id="stickersPanel" class="stickers-panel">
-            <button class="sticker-item" onclick="sendSticker('💖')">💖</button>
-            <button class="sticker-item" onclick="sendSticker('👑')">👑</button>
-            <button class="sticker-item" onclick="sendSticker('🔥')">🔥</button>
-            <button class="sticker-item" onclick="sendSticker('🌹')">🌹</button>
-            <button class="sticker-item" onclick="sendSticker('✨')">✨</button>
-            <button class="sticker-item" onclick="sendSticker('💍')">💍</button>
-            <button class="sticker-item" onclick="sendSticker('🥺')">🥺</button>
-            <button class="sticker-item" onclick="sendSticker('💋')">💋</button>
-            <button class="sticker-item" onclick="sendSticker('🥰')">🥰</button>
-            <button class="sticker-item" onclick="sendSticker('🫶')">🫶</button>
-        </div>
+        <div id="waMessagesList" class="wa-messages-area"></div>
 
         <div class="wa-input-footer">
-            <button class="wa-action-icon-btn" onclick="toggleStickersPanel()" title="الملصقات">😊</button>
-            <input type="text" id="waText" placeholder="اكتب رسالتك هنا..." oninput="sendTypingIndicator()" onkeypress="handleKeyPress(event)">
+            <input type="text" id="waText" placeholder="اكتب رسالتك هنا..." onkeypress="handleKeyPress(event)">
             <button class="wa-send-btn" onclick="sendWhatsAppMessage()">➤</button>
         </div>
     </div>
@@ -336,7 +226,7 @@
         </div>
     </div>
 
-    <!-- نافذة تعديل البروفايل والحالة الشخصية -->
+    <!-- نافذة تعديل البروفايل والحالة -->
     <div id="profileModal" class="modal-overlay">
         <div class="modal-card">
             <h3>👤 تعديل البروفايل والحالة</h3>
@@ -346,14 +236,12 @@
             <p style="font-size: 12px; color: #881337; font-weight: 700; margin-bottom: 5px; text-align: right;">حالتك الشخصية (Bio):</p>
             <input type="text" id="editProfileStatus" placeholder="مثلاً: متواجد في مملكة العشق 👑">
 
-            <p style="font-size: 12px; color: #881337; font-weight: 700; margin-bottom: 5px; text-align: right;">أيقونة البروفايل:</p>
+            <p style="font-size: 12px; color: #881337; font-weight: 700; margin-bottom: 5px; text-align: right;">الأيقونة:</p>
             <select id="editProfileAvatar">
                 <option value="👑">👑 تاج الملك</option>
                 <option value="🩷">🩷 قلب وردي</option>
                 <option value="🌹">🌹 وردة حمراء</option>
                 <option value="✨">✨ نجمة متألقة</option>
-                <option value="🔥">🔥 شعلة نار</option>
-                <option value="💎">💎 جوهرة ثمينة</option>
             </select>
 
             <button class="modal-btn" onclick="saveProfileChanges()" style="margin-top: 10px;">حفظ التغييرات ✨</button>
@@ -364,11 +252,9 @@
     <script>
         const chatChannel = "sama_royal_sanctuary_chat_room_99";
         const apiUrl = "https://ntfy.sh/" + chatChannel;
-        let typingTimeout = null;
 
         function openSecretModal() {
-            const isPasswordSaved = localStorage.getItem('sama_chat_auth_verified');
-            if (isPasswordSaved === 'true') {
+            if (localStorage.getItem('sama_chat_auth_verified') === 'true') {
                 checkNameAndOpenChat();
             } else {
                 document.getElementById('secretModal').style.display = 'flex';
@@ -377,23 +263,20 @@
 
         function closeSecretModal() {
             document.getElementById('secretModal').style.display = 'none';
-            document.getElementById('modalPasswordInput').value = '';
         }
 
         function verifySecretPassword() {
-            const val = document.getElementById('modalPasswordInput').value.trim();
-            if(val === 'ang_el99m') {
+            if(document.getElementById('modalPasswordInput').value.trim() === 'ang_el99m') {
                 localStorage.setItem('sama_chat_auth_verified', 'true');
                 closeSecretModal();
                 checkNameAndOpenChat();
             } else {
-                alert('الرمز السري غير صحيح (ang_el99m)! ❌');
+                alert('الرمز السري غير صحيح! ❌');
             }
         }
 
         function checkNameAndOpenChat() {
-            let savedName = localStorage.getItem('sama_chat_user_name');
-            if(!savedName) {
+            if(!localStorage.getItem('sama_chat_user_name')) {
                 document.getElementById('nameModal').style.display = 'flex';
             } else {
                 launchWhatsAppFullscreen();
@@ -402,14 +285,10 @@
 
         function saveMyName() {
             const nameVal = document.getElementById('myNameInput').value.trim();
-            if(!nameVal) { alert('الرجاء كتابة اسمك أولاً! ✨'); return; }
+            if(!nameVal) { alert('الرجاء كتابة اسمك!'); return; }
             localStorage.setItem('sama_chat_user_name', nameVal);
-            if(!localStorage.getItem('sama_chat_user_status')) {
-                localStorage.setItem('sama_chat_user_status', 'متصل في مملكة العشق 🩷');
-            }
-            if(!localStorage.getItem('sama_chat_user_avatar')) {
-                localStorage.setItem('sama_chat_user_avatar', '👑');
-            }
+            localStorage.setItem('sama_chat_user_status', 'متصل الآن 🩷');
+            localStorage.setItem('sama_chat_user_avatar', '👑');
             document.getElementById('nameModal').style.display = 'none';
             launchWhatsAppFullscreen();
         }
@@ -417,12 +296,9 @@
         function launchWhatsAppFullscreen() {
             document.getElementById('homeMainView').style.display = 'none';
             document.getElementById('whatsappBox').style.display = 'flex';
-            
             updateHeaderProfileUI();
             loadSavedMessages();
             startListeningMessages();
-            sendProfileBroadcast();
-            setInterval(sendProfileBroadcast, 15000);
         }
 
         function exitToHome() {
@@ -432,296 +308,89 @@
 
         function openProfileModal() {
             document.getElementById('editProfileName').value = localStorage.getItem('sama_chat_user_name') || '';
-            document.getElementById('editProfileStatus').value = localStorage.getItem('sama_chat_user_status') || 'متصل الآن';
+            document.getElementById('editProfileStatus').value = localStorage.getItem('sama_chat_user_status') || '';
             document.getElementById('editProfileAvatar').value = localStorage.getItem('sama_chat_user_avatar') || '👑';
             document.getElementById('profileModal').style.display = 'flex';
         }
 
-        function closeProfileModal() {
-            document.getElementById('profileModal').style.display = 'none';
-        }
+        function closeProfileModal() { document.getElementById('profileModal').style.display = 'none'; }
 
         function saveProfileChanges() {
-            const name = document.getElementById('editProfileName').value.trim();
-            const status = document.getElementById('editProfileStatus').value.trim();
-            const avatar = document.getElementById('editProfileAvatar').value;
-
-            if(!name) { alert('الرجاء كتابة الاسم!'); return; }
-
-            localStorage.setItem('sama_chat_user_name', name);
-            localStorage.setItem('sama_chat_user_status', status || 'متصل الآن');
-            localStorage.setItem('sama_chat_user_avatar', avatar);
-
+            localStorage.setItem('sama_chat_user_name', document.getElementById('editProfileName').value);
+            localStorage.setItem('sama_chat_user_status', document.getElementById('editProfileStatus').value);
+            localStorage.setItem('sama_chat_user_avatar', document.getElementById('editProfileAvatar').value);
             closeProfileModal();
             updateHeaderProfileUI();
-            sendProfileBroadcast();
         }
 
         function updateHeaderProfileUI() {
-            const avatar = localStorage.getItem('sama_chat_user_avatar') || '👑';
-            const status = localStorage.getItem('sama_chat_user_status') || 'متصل الآن...';
-            document.getElementById('headerUserAvatar').innerText = avatar;
-            document.getElementById('onlineStatusText').innerText = `● ${status}`;
-        }
-
-        function sendProfileBroadcast() {
-            const name = localStorage.getItem('sama_chat_user_name') || 'سلمان';
-            const status = localStorage.getItem('sama_chat_user_status') || 'متصل الآن';
-            const avatar = localStorage.getItem('sama_chat_user_avatar') || '👑';
-
-            fetch(apiUrl, {
-                method: 'POST',
-                body: JSON.stringify({ type: 'profile', sender: name, status: status, avatar: avatar })
-            }).catch(e => {});
+            document.getElementById('headerUserAvatar').innerText = localStorage.getItem('sama_chat_user_avatar') || '👑';
+            document.getElementById('onlineStatusText').innerText = '● ' + (localStorage.getItem('sama_chat_user_status') || 'متصل الآن');
         }
 
         function loadSavedMessages() {
             const saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
             const listDiv = document.getElementById('waMessagesList');
             listDiv.innerHTML = '';
-            saved.forEach(msg => {
-                renderBubble(msg.id, msg.sender, msg.text, msg.time, msg.isRead);
-            });
+            saved.forEach(msg => renderBubble(msg));
         }
 
-        function saveMessageToStorage(msgObj) {
-            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
-            let index = saved.findIndex(m => m.id === msgObj.id);
-            if(index !== -1) {
-                saved[index] = msgObj;
-            } else {
-                saved.push(msgObj);
-                if(saved.length > 200) saved.shift();
-            }
-            localStorage.setItem('sama_saved_chat_history', JSON.stringify(saved));
-        }
-
-        function clearAllMessages() {
-            if(confirm('هل أنت متأكد من حذف جميع رسائل الشات؟')) {
-                localStorage.removeItem('sama_saved_chat_history');
-                document.getElementById('waMessagesList').innerHTML = '';
-            }
-        }
-
-        function toggleStickersPanel() {
-            const panel = document.getElementById('stickersPanel');
-            panel.style.display = (panel.style.display === 'flex') ? 'none' : 'flex';
-        }
-
-        function sendSticker(stickerEmoji) {
-            sendTextMessage(stickerEmoji);
-            toggleStickersPanel();
-        }
-
-        function startListeningMessages() {
-            try {
-                const eventSource = new EventSource(apiUrl + "/sse");
-                eventSource.onmessage = function(event) {
-                    try {
-                        const data = JSON.parse(event.data);
-                        if (data.message) {
-                            const parsed = JSON.parse(data.message);
-                            
-                            if(parsed.type === 'profile') {
-                                let myName = localStorage.getItem('sama_chat_user_name');
-                                if(parsed.sender !== myName) {
-                                    document.getElementById('onlineStatusText').innerText = `● ${parsed.status} (${parsed.sender})`;
-                                }
-                            } else if(parsed.type === 'typing') {
-                                showTypingStatus(parsed.sender);
-                            } else if(parsed.type === 'chat') {
-                                saveMessageToStorage(parsed);
-                                renderOrUpdateBubble(parsed);
-                            } else if(parsed.type === 'delete') {
-                                removeMessageFromStorage(parsed.id);
-                                let el = document.getElementById('msg-' + parsed.id);
-                                if(el) el.remove();
-                            } else if(parsed.type === 'read') {
-                                markMessageReadLocal(parsed.id);
-                            }
-                        }
-                    } catch(e) {}
-                };
-            } catch(e) {}
-        }
-
-        function sendTypingIndicator() {
-            const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';
-            if(typingTimeout) return;
-            typingTimeout = setTimeout(() => { typingTimeout = null; }, 3000);
-            
-            fetch(apiUrl, {
-                method: 'POST',
-                body: JSON.stringify({ type: 'typing', sender: sender })
-            }).catch(e => {});
-        }
-
-        function showTypingStatus(sender) {
-            let myName = localStorage.getItem('sama_chat_user_name');
-            if(sender === myName) return;
-            let statusEl = document.getElementById('onlineStatusText');
-            statusEl.innerText = `● ${sender} يكتب الآن...`;
-            setTimeout(() => {
-                let status = localStorage.getItem('sama_chat_user_status') || 'متصل الآن';
-                statusEl.innerText = `● ${status}`;
-            }, 3000);
-        }
-
-        function renderOrUpdateBubble(msg) {
-            let existingEl = document.getElementById('msg-' + msg.id);
-            if(existingEl) {
-                let textContainer = existingEl.querySelector('.msg-text-content');
-                if(textContainer) textContainer.innerText = msg.text;
-                let ticksContainer = existingEl.querySelector('.wa-ticks');
-                if(ticksContainer && msg.isRead) {
-                    ticksContainer.className = 'wa-ticks read';
-                    ticksContainer.innerText = '✓✓';
-                }
-            } else {
-                renderBubble(msg.id, msg.sender, msg.text, msg.time, msg.isRead);
-            }
-        }
-
-        function renderBubble(id, sender, text, time, isRead) {
+        function renderBubble(msg) {
             const listDiv = document.getElementById('waMessagesList');
-            let myName = localStorage.getItem('sama_chat_user_name') || 'أنا';
-            let isMe = (sender === myName);
+            const myName = localStorage.getItem('sama_chat_user_name');
+            const isMe = (msg.sender === myName);
 
             let div = document.createElement('div');
-            div.id = 'msg-' + id;
             div.className = `wa-bubble ${isMe ? 'outgoing' : 'incoming'}`;
-            
-            let optionsHtml = '';
-            if(isMe) {
-                optionsHtml = `
-                    <span class="msg-options">
-                        <button class="msg-opt-btn" onclick="editMessage('${id}')">تعديل</button>
-                        <button class="msg-opt-btn" onclick="deleteMessage('${id}')">حذف</button>
-                    </span>
-                `;
-            }
-
             div.innerHTML = `
-                <div class="wa-sender-name">${sender}</div>
-                <div class="msg-text-content">${text}</div>
+                <div class="wa-sender-name">${msg.sender}</div>
+                <div>${msg.text}</div>
                 <div class="wa-msg-footer">
-                    ${optionsHtml}
-                    <span class="wa-time">${time}</span>
-                    <span class="wa-ticks ${isRead ? 'read' : ''}">✓✓</span>
+                    <span class="wa-time">${msg.time}</span>
+                    <span class="wa-ticks read">✓✓</span>
                 </div>
             `;
             listDiv.appendChild(div);
             listDiv.scrollTop = listDiv.scrollHeight;
-
-            if(!isMe && !isRead) {
-                notifyRead(id);
-            }
         }
 
         function sendWhatsAppMessage() {
             const textInput = document.getElementById('waText');
             const text = textInput.value.trim();
             if(!text) return;
-            sendTextMessage(text);
-            textInput.value = '';
-        }
 
-        function sendTextMessage(text) {
-            const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';
-            const timeNow = new Date().toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'});
-            const msgId = 'm_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7);
-            
             const msgObj = {
-                type: 'chat',
-                id: msgId,
-                sender: sender,
+                sender: localStorage.getItem('sama_chat_user_name'),
                 text: text,
-                time: timeNow,
-                isRead: false
+                time: new Date().toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'})
             };
 
-            saveMessageToStorage(msgObj);
-            renderOrUpdateBubble(msgObj);
-
-            fetch(apiUrl, {
-                method: 'POST',
-                body: JSON.stringify(msgObj)
-            }).catch(err => {});
-        }
-
-        function editMessage(id) {
             let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
-            let msg = saved.find(m => m.id === id);
-            if(!msg) return;
-
-            let newText = prompt("عدل رسالتك:", msg.text);
-            if(newText !== null && newText.trim() !== "") {
-                msg.text = newText.trim();
-                saveMessageToStorage(msg);
-                renderOrUpdateBubble(msg);
-
-                fetch(apiUrl, {
-                    method: 'POST',
-                    body: JSON.stringify(msg)
-                }).catch(e => {});
-            }
-        }
-
-        function deleteMessage(id) {
-            if(confirm("هل تريد حذف هذه الرسالة؟")) {
-                removeMessageFromStorage(id);
-                let el = document.getElementById('msg-' + id);
-                if(el) el.remove();
-
-                fetch(apiUrl, {
-                    method: 'POST',
-                    body: JSON.stringify({ type: 'delete', id: id })
-                }).catch(e => {});
-            }
-        }
-
-        function removeMessageFromStorage(id) {
-            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
-            saved = saved.filter(m => m.id !== id);
+            saved.push(msgObj);
             localStorage.setItem('sama_saved_chat_history', JSON.stringify(saved));
+
+            renderBubble(msgObj);
+            textInput.value = '';
+
+            fetch(apiUrl, { method: 'POST', body: JSON.stringify(msgObj) }).catch(e => {});
         }
 
-        function notifyRead(id) {
-            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
-            let msg = saved.find(m => m.id === id);
-            if(msg && !msg.isRead) {
-                msg.isRead = true;
-                saveMessageToStorage(msg);
-                
-                fetch(apiUrl, {
-                    method: 'POST',
-                    body: JSON.stringify({ type: 'read', id: id })
-                }).catch(e => {});
-            }
-        }
-
-        function markMessageReadLocal(id) {
-            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
-            let msg = saved.find(m => m.id === id);
-            if(msg) {
-                msg.isRead = true;
-                saveMessageToStorage(msg);
-                let ticks = document.querySelector(`#msg-${id} .wa-ticks`);
-                if(ticks) {
-                    ticks.className = 'wa-ticks read';
-                    ticks.innerText = '✓✓';
-                }
-            }
-        }
-
-        function markAllAsRead() {
-            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
-            let myName = localStorage.getItem('sama_chat_user_name');
-            saved.forEach(msg => {
-                if(msg.sender !== myName && !msg.isRead) {
-                    notifyRead(msg.id);
-                }
-            });
+        function startListeningMessages() {
+            try {
+                const eventSource = new EventSource(apiUrl + "/sse");
+                eventSource.onmessage = function(event) {
+                    const data = JSON.parse(event.data);
+                    if (data.message) {
+                        const parsed = JSON.parse(data.message);
+                        if(parsed.sender !== localStorage.getItem('sama_chat_user_name')) {
+                            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
+                            saved.push(parsed);
+                            localStorage.setItem('sama_saved_chat_history', JSON.stringify(saved));
+                            renderBubble(parsed);
+                        }
+                    }
+                };
+            } catch(e) {}
         }
 
         function handleKeyPress(e) { if(e.key === 'Enter') sendWhatsAppMessage(); }
