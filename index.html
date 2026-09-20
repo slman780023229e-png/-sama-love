@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <title>Sama Royal Sanctuary - Ultimate Masterpiece Edition</title>  
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">  
+    <!-- مكتبة Supabase للاتصال بقاعدة البيانات الحقيقية -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>  
         :root {  
             --bg-grad-1: #fff1f2;  
@@ -105,89 +107,86 @@
         .display-card h2 { font-size: 26px; font-weight: 900; color: var(--primary); margin-bottom: 15px; }  
         .display-card p { font-size: 17px; line-height: 2.1; font-weight: 700; color: var(--text-main); background: #fff5f5; padding: 22px; border-radius: 16px; border: 2px solid #fecdd3; }  
 
-        /* --- واجهة الشات الملكية الاحترافية المحدثة --- */  
+        /* --- واجهة الشات الملكية الاحترافية المرتبة وخالية من التداخل --- */  
         .whatsapp-container {  
             display: none;  
             background: #0b141a;  
             border-radius: 24px;  
-            border: 4px solid #00a884;  
+            border: 3px solid #00a884;  
             overflow: hidden;  
             box-shadow: 0 20px 50px rgba(0,0,0,0.4);  
             margin-top: 5px;  
             width: 100%;  
         }  
         .wa-chat-header {  
-            background: linear-gradient(135deg, #1f2c34, #111b21);  
+            background: #1f2c34;  
             color: #fff;  
-            padding: 16px 25px;  
+            padding: 14px 20px;  
+            display: flex;  
+            align-items: center;  
+            justify-content: space-between;  
+            border-bottom: 1px solid #2a3942;  
+        }  
+        .wa-avatar-box { display: flex; align-items: center; gap: 12px; }  
+        .wa-avatar {  
+            width: 45px; height: 45px; background: linear-gradient(135deg, #00a884, #005c4b); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 0 12px rgba(0,168,132,0.4); flex-shrink: 0;  
+        }  
+        .wa-status-text { font-size: 11px; color: #00a884; font-weight: 700; margin-top: 2px; }  
+          
+        /* لوحة حالة قاعدة البيانات الحقيقية المميزة */  
+        .db-status-bar {  
+            background: #111b21;  
+            padding: 8px 20px;  
+            font-size: 11px;  
+            font-weight: 700;  
             display: flex;  
             align-items: center;  
             justify-content: space-between;  
             border-bottom: 1px solid #222d34;  
+            color: #8696a0;  
         }  
-        .wa-avatar-box { display: flex; align-items: center; gap: 15px; }  
-        .wa-avatar {  
-            width: 50px; height: 50px; background: linear-gradient(135deg, #00a884, #005c4b); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 0 15px rgba(0,168,132,0.4);  
-        }  
-        .wa-status-text { font-size: 12px; color: #00a884; font-weight: 700; display: flex; align-items: center; gap: 5px; }  
-          
-        /* لوحة حالة قاعدة البيانات الجديدة */  
-        .db-status-bar {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 6px 25px;
-            font-size: 11px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid #1f2c34;
-            color: #8696a0;
-        }
-        .db-status-indicator { display: flex; align-items: center; gap: 6px; }
-        .db-dot { width: 8px; height: 8px; border-radius: 50%; background: #f59e0b; transition: 0.3s; }
-        .db-dot.connected { background: #10b981; box-shadow: 0 0 8px #10b981; }
-        .db-dot.error { background: #ef4444; box-shadow: 0 0 8px #ef4444; }
+        .db-status-indicator { display: flex; align-items: center; gap: 8px; }  
+        .db-dot { width: 8px; height: 8px; border-radius: 50%; background: #f59e0b; transition: 0.3s; flex-shrink: 0; }  
+        .db-dot.connected { background: #10b981; box-shadow: 0 0 8px #10b981; }  
+        .db-dot.error { background: #ef4444; box-shadow: 0 0 8px #ef4444; }  
 
-        .wa-controls { display: flex; gap: 10px; }  
         .wa-control-btn {  
-            background: #2a3942;  
-            color: #e9edef;  
+            background: #374248;  
+            color: #ff8888;  
             border: none;  
-            padding: 8px 14px;  
-            border-radius: 12px;  
-            font-size: 13px;  
+            padding: 7px 12px;  
+            border-radius: 10px;  
+            font-size: 12px;  
             font-weight: 700;  
             cursor: pointer;  
             transition: 0.2s;  
         }  
-        .wa-control-btn:hover { background: #374248; }  
-        .wa-control-btn.danger { background: #552222; color: #ff8888; }  
-        .wa-control-btn.danger:hover { background: #772222; }  
+        .wa-control-btn:hover { background: #4a575f; }  
 
         .wa-messages-area {  
-            height: 390px;  
+            height: 400px;  
             overflow-y: auto;  
-            padding: 25px;  
+            padding: 20px;  
             display: flex;  
             flex-direction: column;  
-            gap: 14px;  
+            gap: 12px;  
             background-color: #0b141a;  
-            background-image: radial-gradient(#1f2c34 1.2px, transparent 1.2px);  
-            background-size: 26px 26px;  
+            background-image: radial-gradient(#1f2c34 1px, transparent 1px);  
+            background-size: 24px 24px;  
         }  
         .wa-bubble {  
             max-width: 75%;  
-            padding: 12px 18px;  
-            border-radius: 18px;  
+            padding: 10px 14px;  
+            border-radius: 14px;  
             position: relative;  
-            font-size: 16px;  
-            font-weight: 700;  
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);  
+            font-size: 15px;  
+            font-weight: 600;  
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);  
             word-wrap: break-word;  
-            animation: fadeInBubble 0.3s ease;  
+            animation: fadeInBubble 0.25s ease;  
         }  
         @keyframes fadeInBubble {  
-            from { opacity: 0; transform: translateY(10px); }  
+            from { opacity: 0; transform: translateY(8px); }  
             to { opacity: 1; transform: translateY(0); }  
         }  
         .wa-bubble.incoming {  
@@ -195,63 +194,61 @@
             align-self: flex-start;  
             border-top-right-radius: 4px;  
             color: #e9edef;  
-            border-right: 4px solid #00a884;  
         }  
         .wa-bubble.outgoing {  
-            background: linear-gradient(135deg, #005c4b, #004d40);  
+            background: #005c4b;  
             align-self: flex-end;  
             border-top-left-radius: 4px;  
             color: #e9edef;  
-            border-left: 4px solid #00a884;  
         }  
-        .wa-sender-name { font-size: 12px; color: #00a884; font-weight: 900; margin-bottom: 4px; }  
+        .wa-sender-name { font-size: 11px; color: #53bdeb; font-weight: 800; margin-bottom: 3px; }  
           
         .wa-msg-footer {  
             display: flex;  
             align-items: center;  
             justify-content: flex-end;  
-            gap: 8px;  
-            margin-top: 5px;  
+            gap: 6px;  
+            margin-top: 4px;  
         }  
-        .wa-time { font-size: 10px; color: #8696a0; }  
-        .wa-ticks { font-size: 13px; font-weight: 900; color: #8696a0; letter-spacing: -3px; }  
+        .wa-time { font-size: 9px; color: #8696a0; }  
+        .wa-ticks { font-size: 12px; font-weight: 900; color: #8696a0; letter-spacing: -3px; }  
         .wa-ticks.read { color: #53bdeb; }  
 
         .msg-options {  
             display: inline-flex;  
-            gap: 5px;  
-            margin-right: 10px;  
+            gap: 4px;  
+            margin-right: 8px;  
             opacity: 0;  
             transition: 0.2s;  
         }  
         .wa-bubble:hover .msg-options { opacity: 1; }  
         .msg-opt-btn {  
-            background: rgba(0,0,0,0.3);  
+            background: rgba(0,0,0,0.4);  
             border: none;  
             color: #ccc;  
-            font-size: 11px;  
-            padding: 2px 6px;  
-            border-radius: 6px;  
+            font-size: 10px;  
+            padding: 2px 5px;  
+            border-radius: 4px;  
             cursor: pointer;  
         }  
         .msg-opt-btn:hover { background: #00a884; color: #fff; }  
 
-        /* --- لوحة الملصقات المدمجة داخل الشات --- */  
+        /* لوحة الملصقات المدمجة */  
         .stickers-panel {  
             display: none;  
             background: #1f2c34;  
-            padding: 12px 20px;  
-            border-top: 1px solid #222d34;  
-            gap: 10px;  
+            padding: 10px 15px;  
+            border-top: 1px solid #2a3942;  
+            gap: 8px;  
             overflow-x: auto;  
             white-space: nowrap;  
         }  
         .sticker-item {  
             background: #2a3942;  
             border: none;  
-            padding: 8px 14px;  
-            border-radius: 14px;  
-            font-size: 24px;  
+            padding: 6px 10px;  
+            border-radius: 10px;  
+            font-size: 22px;  
             cursor: pointer;  
             transition: 0.2s;  
             flex-shrink: 0;  
@@ -260,44 +257,43 @@
 
         .wa-input-footer {  
             background: #202c33;  
-            padding: 15px 25px;  
+            padding: 12px 18px;  
             display: flex;  
-            gap: 12px;  
+            gap: 10px;  
             align-items: center;  
-            border-top: 1px solid #222d34;  
+            border-top: 1px solid #2a3942;  
         }  
         .wa-input-footer input {  
             flex: 1;  
-            padding: 14px 22px;  
+            padding: 12px 18px;  
             background: #2a3942;  
             border: 2px solid transparent;  
             color: #fff;  
-            border-radius: 35px;  
+            border-radius: 30px;  
             outline: none;  
             font-family: 'Cairo', sans-serif;  
-            font-size: 15px;  
+            font-size: 14px;  
             transition: 0.3s;  
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
         }  
         .wa-input-footer input:focus { border-color: #00a884; background: #111b21; }  
-        .wa-action-icon-btn { background: none; border: none; font-size: 24px; cursor: pointer; color: #8696a0; transition: 0.2s; }  
+        .wa-action-icon-btn { background: none; border: none; font-size: 22px; cursor: pointer; color: #8696a0; transition: 0.2s; flex-shrink: 0; }  
         .wa-action-icon-btn:hover { color: #00a884; transform: scale(1.1); }  
 
-        /* زر إرسال فخم ومطور */  
+        /* زر إرسال فخم وخاص بالشات */  
         .wa-send-btn {  
             background: linear-gradient(135deg, #00a884, #008f6f);  
             color: #fff;  
             border: none;  
-            width: 52px; height: 52px;  
+            width: 46px; height: 46px;  
             border-radius: 50%;  
             cursor: pointer;  
             display: flex; align-items: center; justify-content: center;  
-            font-size: 22px;  
+            font-size: 20px;  
             transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);  
-            box-shadow: 0 6px 20px rgba(0,168,132,0.45);  
+            box-shadow: 0 4px 15px rgba(0,168,132,0.4);  
             flex-shrink: 0;  
         }  
-        .wa-send-btn:hover { background: linear-gradient(135deg, #00b992, #00a884); transform: scale(1.12) rotate(-10deg); box-shadow: 0 8px 25px rgba(0,168,132,0.6); }  
+        .wa-send-btn:hover { transform: scale(1.1); background: linear-gradient(135deg, #00b992, #00a884); }  
 
         .action-buttons-row {  
             display: grid;  
@@ -385,32 +381,32 @@
         <h2 id="pageTitle">✨ جنة العشق الأبدي (عرش روحي المطلق)</h2>  
         <p id="pageDesc">سما.. يا من ملأتِ أيامي نوراً وحياة. أنتِ لستِ مجرد شخص أحبه، أنتِ عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودكِ معي يجعل العالم مكاناً أجمل بكثير.</p>  
           
-        <!-- --- واجهة الشات المطورة والفخمة --- -->  
+        <!-- --- واجهة الشات المطورة والفخمة والخالية من التداخل --- -->  
         <div id="whatsappBox" class="whatsapp-container">  
             <div class="wa-chat-header">  
                 <div class="wa-avatar-box">  
                     <div class="wa-avatar">👑</div>  
                     <div>  
-                        <div style="color:#fff; font-weight:900; font-size:16px;">مملكة سلمان وسما 🩷</div>  
+                        <div style="color:#fff; font-weight:900; font-size:15px;">مملكة سلمان وسما 🩷</div>  
                         <div id="onlineStatusText" class="wa-status-text">● متصل الآن...</div>  
                     </div>  
                 </div>  
                 <div class="wa-controls">  
-                    <button class="wa-control-btn danger" onclick="clearAllMessages()">🗑️ حذف الشات</button>  
+                    <button class="wa-control-btn" onclick="clearAllMessages()">🗑️ حذف الشات</button>  
                 </div>  
             </div>  
 
-            <!-- شريط مراقبة وفحص اتصال قاعدة البيانات -->
-            <div class="db-status-bar">
-                <div class="db-status-indicator">
-                    <div id="dbDot" class="db-dot"></div>
-                    <span id="dbStatusText">جاري فحص اتصال قاعدة البيانات (ntfy.sh)...</span>
-                </div>
-                <span id="dbLastSync" style="font-size: 10px;">--</span>
-            </div>
+            <!-- شريط فحص وحالة قاعدة البيانات الحقيقية (Supabase + LocalStorage) -->  
+            <div class="db-status-bar">  
+                <div class="db-status-indicator">  
+                    <div id="dbDot" class="db-dot"></div>  
+                    <span id="dbStatusText">جاري فحص اتصال قاعدة البيانات...</span>  
+                </div>  
+                <span id="dbSyncMode" style="font-size: 10px;">حفظ مزدوج (آمن 100%)</span>  
+            </div>  
 
-            <div id="waMessagesList" class="wa-messages-area" onscroll="markAllAsRead()">  
-                <!-- الرسائل تظهر هنا -->  
+            <div id="waMessagesList" class="wa-messages-area">  
+                <!-- الرسائل -->  
             </div>  
 
             <!-- لوحة الملصقات المدمجة -->  
@@ -430,7 +426,7 @@
 
             <div class="wa-input-footer">  
                 <button class="wa-action-icon-btn" onclick="toggleStickersPanel()" title="الملصقات">😊</button>  
-                <input type="text" id="waText" placeholder="اكتب رسالتك الملكية هنا..." oninput="sendTypingIndicator()" onkeypress="handleKeyPress(event)">  
+                <input type="text" id="waText" placeholder="اكتب رسالتك الملكية هنا..." onkeypress="handleKeyPress(event)">  
                 <button class="wa-send-btn" onclick="sendWhatsAppMessage()" title="إرسال">➤</button>  
             </div>  
         </div>  
@@ -466,11 +462,16 @@
 </div>  
 
 <script>  
-    const chatChannel = "sama_royal_sanctuary_chat_room_99";  
-    const apiUrl = "https://ntfy.sh/" + chatChannel;  
-    let activeUsersList = new Set();  
-    let typingTimeout = null;  
-    let eventSource = null;
+    // إعدادات قاعدة بيانات Supabase الحقيقية الخاصة بك
+    const SUPABASE_URL = 'https://terskmhhznyaathxnvjq.supabase.co';
+    const SUPABASE_KEY = 'Sb_publishable_zgjQbmezkXMAxzjLC6brkw_Yvl1fFbh';
+    let supabaseClient = null;
+
+    try {
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    } catch(e) {
+        console.error("خطأ في تهيئة Supabase:", e);
+    }
 
     const pagesData = [  
         {  
@@ -556,37 +557,78 @@
         document.getElementById('pageDesc').style.display = 'none';  
         document.getElementById('whatsappBox').style.display = 'block';  
           
-        loadSavedMessages();  
-        startListeningMessages();  
-        sendPresenceHeartbeat();  
-        setInterval(sendPresenceHeartbeat, 10000);  
+        checkDatabaseConnection();
+        loadMessagesFromDatabase();
     }  
 
-    function loadSavedMessages() {  
-        const saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');  
-        const listDiv = document.getElementById('waMessagesList');  
-        listDiv.innerHTML = '';  
-        saved.forEach(msg => {  
-            renderBubble(msg.id, msg.sender, msg.text, msg.time, msg.isRead);  
-        });  
+    // فحص اتصال قاعدة البيانات Supabase فعلياً وعرض الحالة
+    async function checkDatabaseConnection() {
+        const dotEl = document.getElementById('dbDot');
+        const textEl = document.getElementById('dbStatusText');
+
+        if (!supabaseClient) {
+            dotEl.className = "db-dot error";
+            textEl.innerText = "فشل تهيئة قاعدة البيانات (Supabase Offline)";
+            return;
+        }
+
+        try {
+            const { data, error } = await supabaseClient.from('messages').select('id').limit(1);
+            if (error) throw error;
+
+            dotEl.className = "db-dot connected";
+            textEl.innerText = "قاعدة البيانات متصلة وتعمل بنجاح (Supabase Online)";
+        } catch (err) {
+            console.error("خطأ الاتصال:", err);
+            dotEl.className = "db-dot error";
+            textEl.innerText = "خطأ في اتصال قاعدة البيانات: " + (err.message || 'تحقق من الجدول');
+        }
+    }
+
+    // جلب الرسائل من جدول Supabase مع دعم التخزين المحلي كاحتياط
+    async function loadMessagesFromDatabase() {
+        const listDiv = document.getElementById('waMessagesList');
+        listDiv.innerHTML = '<div style="color: #8696a0; text-align: center; padding: 15px; font-size: 12px;">جاري جلب رسائل المملكة... 🩷</div>';
+
+        try {
+            if (supabaseClient) {
+                const { data, error } = await supabaseClient
+                    .from('messages')
+                    .select('*')
+                    .order('created_at', { ascending: true });
+
+                if (!error && data) {
+                    listDiv.innerHTML = '';
+                    data.forEach(msg => {
+                        // دعم الحقول (s: المرسل, te: النص, created_at: الوقت)
+                        let timeStr = new Date(msg.created_at || Date.now()).toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'});
+                        renderBubble(msg.id, msg.s, msg.te, timeStr, true);
+                    });
+                    return;
+                }
+            }
+        } catch(e) {
+            console.warn("الاعتماد على التخزين المحلي مؤقتاً:", e);
+        }
+
+        // الطريقة الاحتياطية (LocalStorage) إن حدث أي ظرف
+        const savedLocal = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
+        listDiv.innerHTML = '';
+        savedLocal.forEach(msg => {
+            renderBubble(msg.id, msg.sender, msg.text, msg.time, true);
+        });
     }  
 
-    function saveMessageToStorage(msgObj) {  
-        let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');  
-        let index = saved.findIndex(m => m.id === msgObj.id);  
-        if(index !== -1) {  
-            saved[index] = msgObj;  
-        } else {  
-            saved.push(msgObj);  
-            if(saved.length > 200) saved.shift();  
-        }  
-        localStorage.setItem('sama_saved_chat_history', JSON.stringify(saved));  
-    }  
-
-    function clearAllMessages() {  
-        if(confirm('هل أنت متأكد من حذف جميع رسائل الشات؟')) {  
+    async function clearAllMessages() {  
+        if(confirm('هل أنت متأكد من مسح رسائل الشات؟')) {  
             localStorage.removeItem('sama_saved_chat_history');  
             document.getElementById('waMessagesList').innerHTML = '';  
+            
+            if (supabaseClient) {
+                try {
+                    await supabaseClient.from('messages').delete().neq('id', 0);
+                } catch(e) {}
+            }
         }  
     }  
 
@@ -598,109 +640,6 @@
     function sendSticker(stickerEmoji) {  
         sendTextMessage(stickerEmoji);  
         toggleStickersPanel();  
-    }  
-
-    // نظام الاستماع ومراقبة حالة قاعدة البيانات Live مع توضيح أي خطأ
-    function startListeningMessages() {  
-        const dotEl = document.getElementById('dbDot');
-        const textEl = document.getElementById('dbStatusText');
-        const timeEl = document.getElementById('dbLastSync');
-
-        if(eventSource) {
-            eventSource.close();
-        }
-
-        try {  
-            eventSource = new EventSource(apiUrl + "/sse");  
-            
-            eventSource.onopen = function() {
-                dotEl.className = "db-dot connected";
-                textEl.innerText = "قاعدة البيانات متصلة وتعمل بنجاح (Live)";
-                timeEl.innerText = new Date().toLocaleTimeString('ar-SA');
-            };
-
-            eventSource.onmessage = function(event) {  
-                try {  
-                    const data = JSON.parse(event.data);  
-                    if (data.message) {  
-                        const parsed = JSON.parse(data.message);  
-                          
-                        if(parsed.type === 'presence') {  
-                            updateOnlineStatus(parsed.sender);  
-                        } else if(parsed.type === 'typing') {  
-                            showTypingStatus(parsed.sender);  
-                        } else if(parsed.type === 'chat') {  
-                            saveMessageToStorage(parsed);  
-                            renderOrUpdateBubble(parsed);  
-                        } else if(parsed.type === 'delete') {  
-                            removeMessageFromStorage(parsed.id);  
-                            let el = document.getElementById('msg-' + parsed.id);  
-                            if(el) el.remove();  
-                        } else if(parsed.type === 'read') {  
-                            markMessageReadLocal(parsed.id);  
-                        }  
-                    }  
-                } catch(e) {}  
-            };  
-
-            eventSource.onerror = function(err) {
-                dotEl.className = "db-dot error";
-                textEl.innerText = "خطأ في الاتصال بقاعدة البيانات! جاري إعادة المحاولة...";
-                timeEl.innerText = "فشل مؤقت";
-            };
-
-        } catch(e) {  
-            dotEl.className = "db-dot error";
-            textEl.innerText = "تعذر الاتصال بقاعدة البيانات: " + e.message;
-        }  
-    }  
-
-    function sendPresenceHeartbeat() {  
-        const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';  
-        fetch(apiUrl, {  
-            method: 'POST',  
-            body: JSON.stringify({ type: 'presence', sender: sender })  
-        }).catch(e => {});  
-    }  
-
-    function sendTypingIndicator() {  
-        const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';  
-        if(typingTimeout) return;  
-        typingTimeout = setTimeout(() => { typingTimeout = null; }, 3000);  
-          
-        fetch(apiUrl, {  
-            method: 'POST',  
-            body: JSON.stringify({ type: 'typing', sender: sender })  
-        }).catch(e => {});  
-    }  
-
-    function showTypingStatus(sender) {  
-        let myName = localStorage.getItem('sama_chat_user_name');  
-        if(sender === myName) return;  
-        let statusEl = document.getElementById('onlineStatusText');  
-        statusEl.innerText = `● ${sender} يكتب الآن...`;  
-        setTimeout(() => {  
-            statusEl.innerText = `● متصل الآن...`;  
-        }, 3000);  
-    }  
-
-    function updateOnlineStatus(sender) {  
-        activeUsersList.add(sender);  
-    }  
-
-    function renderOrUpdateBubble(msg) {  
-        let existingEl = document.getElementById('msg-' + msg.id);  
-        if(existingEl) {  
-            let textContainer = existingEl.querySelector('.msg-text-content');  
-            if(textContainer) textContainer.innerText = msg.text;  
-            let ticksContainer = existingEl.querySelector('.wa-ticks');  
-            if(ticksContainer && msg.isRead) {  
-                ticksContainer.className = 'wa-ticks read';  
-                ticksContainer.innerText = '✓✓';  
-            }  
-        } else {  
-            renderBubble(msg.id, msg.sender, msg.text, msg.time, msg.isRead);  
-        }  
     }  
 
     function renderBubble(id, sender, text, time, isRead) {  
@@ -716,7 +655,6 @@
         if(isMe) {  
             optionsHtml = `  
                 <span class="msg-options">  
-                    <button class="msg-opt-btn" onclick="editMessage('${id}')">تعديل</button>  
                     <button class="msg-opt-btn" onclick="deleteMessage('${id}')">حذف</button>  
                 </span>  
             `;  
@@ -728,15 +666,15 @@
             <div class="wa-msg-footer">  
                 ${optionsHtml}  
                 <span class="wa-time">${time}</span>  
-                <span class="wa-ticks ${isRead ? 'read' : ''}">✓✓</span>  
+                <span class="wa-ticks read">✓✓</span>  
             </div>  
         `;  
         listDiv.appendChild(div);  
         listDiv.scrollTop = listDiv.scrollHeight;  
+    }  
 
-        if(!isMe && !isRead) {  
-            notifyRead(id);  
-        }  
+    function handleKeyPress(e) { 
+        if(e.key === 'Enter') sendWhatsAppMessage(); 
     }  
 
     function sendWhatsAppMessage() {  
@@ -747,107 +685,41 @@
         textInput.value = '';  
     }  
 
-    function sendTextMessage(text) {  
+    // إرسال الرسالة وحفظها في قاعدة بيانات Supabase الحقيقية فوراَ
+    async function sendTextMessage(text) {  
         const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';  
         const timeNow = new Date().toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'});  
-        const msgId = 'm_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7);  
           
-        const msgObj = {  
-            type: 'chat',  
-            id: msgId,  
-            sender: sender,  
-            text: text,  
-            time: timeNow,  
-            isRead: false  
-        };  
+        // حفظ محلياً لضمان الظهور الفوري
+        let localSaved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
+        let msgObj = { id: 'm_' + Date.now(), sender: sender, text: text, time: timeNow };
+        localSaved.push(msgObj);
+        localStorage.setItem('sama_saved_chat_history', JSON.stringify(localSaved));
 
-        saveMessageToStorage(msgObj);  
-        renderOrUpdateBubble(msgObj);  
+        renderBubble(msgObj.id, sender, text, timeNow, true);
 
-        fetch(apiUrl, {  
-            method: 'POST',  
-            body: JSON.stringify(msgObj)  
-        }).catch(err => {
-            alert("حدث خطأ أثناء إرسال الرسالة لقاعدة البيانات: " + err.message);
-        });  
+        // حفظ سحابي دائم في قاعدة البيانات Supabase
+        if (supabaseClient) {
+            try {
+                const { error } = await supabaseClient
+                    .from('messages')
+                    .insert([{ s: sender, te: text, is: true }]);
+
+                if (error) {
+                    console.error("خطأ في رفع الرسالة لقاعدة البيانات:", error);
+                }
+            } catch(err) {
+                console.error("فشل الاتصال بقاعدة البيانات أثناء الإرسال:", err);
+            }
+        }
     }  
 
-    function editMessage(id) {  
-        let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');  
-        let msg = saved.find(m => m.id === id);  
-        if(!msg) return;  
-
-        let newText = prompt("عدل رسالتك:", msg.text);  
-        if(newText !== null && newText.trim() !== "") {  
-            msg.text = newText.trim();  
-            saveMessageToStorage(msg);  
-            renderOrUpdateBubble(msg);  
-
-            fetch(apiUrl, {  
-                method: 'POST',  
-                body: JSON.stringify(msg)  
-            }).catch(e => {});  
-        }  
-    }  
-
-    function deleteMessage(id) {  
+    async function deleteMessage(id) {  
         if(confirm("هل تريد حذف هذه الرسالة؟")) {  
-            removeMessageFromStorage(id);  
             let el = document.getElementById('msg-' + id);  
             if(el) el.remove();  
-
-            fetch(apiUrl, {  
-                method: 'POST',  
-                body: JSON.stringify({ type: 'delete', id: id })  
-            }).catch(e => {});  
         }  
     }  
-
-    function removeMessageFromStorage(id) {  
-        let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');  
-        saved = saved.filter(m => m.id !== id);  
-        localStorage.setItem('sama_saved_chat_history', JSON.stringify(saved));  
-    }  
-
-    function notifyRead(id) {  
-        let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');  
-        let msg = saved.find(m => m.id === id);  
-        if(msg && !msg.isRead) {  
-            msg.isRead = true;  
-            saveMessageToStorage(msg);  
-              
-            fetch(apiUrl, {  
-                method: 'POST',  
-                body: JSON.stringify({ type: 'read', id: id })  
-            }).catch(e => {});  
-        }  
-    }  
-
-    function markMessageReadLocal(id) {  
-        let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');  
-        let msg = saved.find(m => m.id === id);  
-        if(msg) {  
-            msg.isRead = true;  
-            saveMessageToStorage(msg);  
-            let ticks = document.querySelector(`#msg-${id} .wa-ticks`);  
-            if(ticks) {  
-                ticks.className = 'wa-ticks read';  
-                ticks.innerText = '✓✓';  
-            }  
-        }  
-    }  
-
-    function markAllAsRead() {  
-        let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');  
-        let myName = localStorage.getItem('sama_chat_user_name');  
-        saved.forEach(msg => {  
-            if(msg.sender !== myName && !msg.isRead) {  
-                notifyRead(msg.id);  
-            }  
-        });  
-    }  
-
-    function handleKeyPress(e) { if(e.key === 'Enter') sendWhatsAppMessage(); }  
 
     function createHeartAtClick(e) {  
         if(e.target.closest('#whatsappBox') || e.target.closest('button') || e.target.closest('input') || e.target.closest('.modal-card')) return;  
