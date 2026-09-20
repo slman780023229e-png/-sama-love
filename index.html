@@ -3,364 +3,824 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مملكة سما وسلمان - شات واتساب الملكي</title>
+    <title>Sama Royal Sanctuary - Ultimate Masterpiece Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-grad-1: #fff1f2;
+            --bg-grad-2: #ffe4e6;
+            --box-bg: rgba(255, 255, 255, 0.96);
+            --border-glow: #f43f5e;
+            --primary: #e11d48;
+            --accent: #db2777;
+            --gold: #b45309;
+            --text-main: #881337;
+            --text-muted: #9f1239;
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
         body { 
-            background: #0f172a; 
-            color: #f8fafc; 
-            height: 100vh; 
+            background: linear-gradient(135deg, var(--bg-grad-1), var(--bg-grad-2)); 
+            color: var(--text-main); 
+            min-height: 100vh; 
             display: flex; 
             flex-direction: column; 
-            overflow: hidden; 
+            align-items: center; 
+            justify-content: flex-start; 
+            padding: 20px;
+            overflow-x: hidden; 
         }
 
-        /* --- واجهة الغزل والمملكة الرئيسية --- */
-        #homeMainView {
+        .royal-header {
+            width: 100%;
+            max-width: 950px;
+            background: var(--box-bg);
+            border: 3px solid var(--border-glow);
+            border-radius: 24px;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 15px 35px rgba(225, 29, 72, 0.15);
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+        }
+        .royal-title { font-size: 21px; font-weight: 900; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .royal-badge { font-size: 13px; background: var(--primary); color: #fff; padding: 6px 18px; border-radius: 20px; font-weight: 800; box-shadow: 0 4px 12px rgba(225,29,72,0.3); }
+
+        .main-container {
+            width: 100%;
+            max-width: 950px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #4c0519, #881337, #1e1b4b);
-            padding: 20px;
-            text-align: center;
-            position: absolute;
-            top: 0; left: 0; width: 100%; z-index: 500;
+            gap: 25px;
         }
-        .home-card {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(12px);
-            padding: 40px;
-            border-radius: 35px;
-            border: 3px solid #fb7185;
-            box-shadow: 0 0 50px rgba(251, 113, 133, 0.3);
-            max-width: 520px;
-            width: 100%;
-        }
-        .home-card h1 { font-size: 28px; font-weight: 900; color: #fda4af; margin-bottom: 15px; text-shadow: 0 2px 10px rgba(225,29,72,0.5); }
-        .home-card p { font-size: 16px; font-weight: 700; color: #fecdd3; margin-bottom: 25px; line-height: 1.8; }
-        .enter-chat-btn {
-            background: linear-gradient(135deg, #00a884, #005c4b);
-            color: #fff;
-            border: none;
-            padding: 16px 30px;
-            border-radius: 35px;
-            font-size: 18px;
-            font-weight: 900;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(0,168,132,0.4);
-            transition: 0.3s;
-            width: 100%;
-        }
-        .enter-chat-btn:hover { transform: scale(1.04); background: linear-gradient(135deg, #00bf9a, #006b57); }
 
-        /* --- واجهة واتساب الكاملة (عند الضغط للدخول) --- */
-        #whatsappBox {
-            display: none;
-            flex-direction: column;
-            height: 100vh;
-            width: 100vw;
-            background: #0b141a;
+        .nav-places-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+        }
+        .place-btn {
+            background: var(--box-bg);
+            border: 3px solid #fda4af;
+            border-radius: 18px;
+            padding: 16px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 900;
+            font-size: 13px;
+            color: var(--text-muted);
+            box-shadow: 0 6px 15px rgba(225, 29, 72, 0.08);
+        }
+        .place-btn:hover {
+            border-color: var(--primary);
+            background: #fff;
+            transform: translateY(-3px);
+        }
+        .place-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 0 25px rgba(225, 29, 72, 0.45);
+            transform: scale(1.05);
+        }
+
+        .display-card {
+            background: var(--box-bg);
+            border: 4px solid var(--primary);
+            border-radius: 28px;
+            padding: 35px;
+            box-shadow: 0 20px 50px rgba(225, 29, 72, 0.2);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        .display-card::before {
+            content: '';
             position: absolute;
-            top: 0; left: 0; z-index: 1000;
+            top: 0; right: 0; width: 10px; height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+        .display-card h2 { font-size: 26px; font-weight: 900; color: var(--primary); margin-bottom: 15px; }
+        .display-card p { font-size: 17px; line-height: 2.1; font-weight: 700; color: var(--text-main); background: #fff5f5; padding: 22px; border-radius: 16px; border: 2px solid #fecdd3; }
+
+        /* --- واجهة الشات الملكية الاحترافية --- */
+        .whatsapp-container {
+            display: none;
+            background: #0b141a;
+            border-radius: 24px;
+            border: 4px solid #00a884;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            margin-top: 5px;
+            width: 100%;
         }
         .wa-chat-header {
-            background: #1f2c34;
+            background: linear-gradient(135deg, #1f2c34, #111b21);
             color: #fff;
-            padding: 12px 20px;
+            padding: 16px 25px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             border-bottom: 1px solid #222d34;
-            height: 75px;
         }
-        .wa-avatar-box { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        .wa-avatar-box { display: flex; align-items: center; gap: 15px; }
         .wa-avatar {
-            width: 48px; height: 48px; background: linear-gradient(135deg, #00a884, #005c4b); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 0 10px rgba(0,168,132,0.4);
+            width: 50px; height: 50px; background: linear-gradient(135deg, #00a884, #005c4b); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 0 15px rgba(0,168,132,0.4);
         }
-        .wa-chat-info { display: flex; flex-direction: column; }
-        .wa-title-name { color: #fff; font-weight: 900; font-size: 15px; }
-        .wa-status-text { font-size: 12px; color: #00a884; font-weight: 700; max-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .wa-status-text { font-size: 12px; color: #00a884; font-weight: 700; }
         
-        .wa-controls { display: flex; gap: 8px; }
+        .wa-controls { display: flex; gap: 10px; }
         .wa-control-btn {
             background: #2a3942;
             color: #e9edef;
             border: none;
-            padding: 8px 12px;
-            border-radius: 10px;
-            font-size: 12px;
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-size: 13px;
             font-weight: 700;
             cursor: pointer;
             transition: 0.2s;
         }
         .wa-control-btn:hover { background: #374248; }
+        .wa-control-btn.danger { background: #552222; color: #ff8888; }
+        .wa-control-btn.danger:hover { background: #772222; }
 
         .wa-messages-area {
-            flex: 1;
+            height: 420px;
             overflow-y: auto;
-            padding: 20px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
             background-color: #0b141a;
             background-image: radial-gradient(#1f2c34 1.2px, transparent 1.2px);
             background-size: 26px 26px;
         }
         .wa-bubble {
             max-width: 75%;
-            padding: 10px 16px;
-            border-radius: 14px;
+            padding: 12px 18px;
+            border-radius: 18px;
             position: relative;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
             word-wrap: break-word;
+            animation: fadeInBubble 0.3s ease;
         }
-        .wa-bubble.incoming { background: #202c33; align-self: flex-start; border-top-right-radius: 4px; color: #e9edef; border-right: 4px solid #00a884; }
-        .wa-bubble.outgoing { background: #005c4b; align-self: flex-end; border-top-left-radius: 4px; color: #e9edef; border-left: 4px solid #00a884; }
-        .wa-sender-name { font-size: 11px; color: #00a884; font-weight: 900; margin-bottom: 3px; }
+        @keyframes fadeInBubble {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .wa-bubble.incoming {
+            background: #202c33;
+            align-self: flex-start;
+            border-top-right-radius: 4px;
+            color: #e9edef;
+            border-right: 4px solid #00a884;
+        }
+        .wa-bubble.outgoing {
+            background: #005c4b;
+            align-self: flex-end;
+            border-top-left-radius: 4px;
+            color: #e9edef;
+            border-left: 4px solid #00a884;
+        }
+        .wa-sender-name { font-size: 12px; color: #00a884; font-weight: 900; margin-bottom: 4px; }
         
-        .wa-msg-footer { display: flex; align-items: center; justify-content: flex-end; gap: 6px; margin-top: 4px; }
+        .wa-msg-footer {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 5px;
+        }
         .wa-time { font-size: 10px; color: #8696a0; }
-        .wa-ticks { font-size: 12px; font-weight: 900; color: #53bdeb; }
+        .wa-ticks { font-size: 13px; font-weight: 900; color: #8696a0; letter-spacing: -3px; }
+        .wa-ticks.read { color: #53bdeb; }
+
+        .msg-options {
+            display: inline-flex;
+            gap: 5px;
+            margin-right: 10px;
+            opacity: 0;
+            transition: 0.2s;
+        }
+        .wa-bubble:hover .msg-options { opacity: 1; }
+        .msg-opt-btn {
+            background: rgba(0,0,0,0.3);
+            border: none;
+            color: #ccc;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .msg-opt-btn:hover { background: #00a884; color: #fff; }
+
+        /* --- لوحة الملصقات المدمجة داخل الشات --- */
+        .stickers-panel {
+            display: none;
+            background: #1f2c34;
+            padding: 12px 20px;
+            border-top: 1px solid #222d34;
+            gap: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .sticker-item {
+            background: #2a3942;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 14px;
+            font-size: 24px;
+            cursor: pointer;
+            transition: 0.2s;
+            flex-shrink: 0;
+        }
+        .sticker-item:hover { transform: scale(1.15); background: #374248; }
 
         .wa-input-footer {
             background: #202c33;
-            padding: 12px 20px;
+            padding: 15px 25px;
             display: flex;
-            gap: 10px;
+            gap: 12px;
             align-items: center;
             border-top: 1px solid #222d34;
         }
         .wa-input-footer input {
             flex: 1;
-            padding: 12px 18px;
+            padding: 14px 20px;
             background: #2a3942;
             border: 2px solid transparent;
             color: #fff;
-            border-radius: 30px;
+            border-radius: 35px;
             outline: none;
-            font-size: 15px;
             font-family: 'Cairo', sans-serif;
+            font-size: 15px;
+            transition: 0.3s;
         }
         .wa-input-footer input:focus { border-color: #00a884; background: #111b21; }
+        .wa-action-icon-btn { background: none; border: none; font-size: 24px; cursor: pointer; color: #8696a0; transition: 0.2s; }
+        .wa-action-icon-btn:hover { color: #00a884; }
+
         .wa-send-btn {
             background: #00a884;
             color: #fff;
             border: none;
-            width: 45px; height: 45px;
+            width: 50px; height: 50px;
             border-radius: 50%;
             cursor: pointer;
             display: flex; align-items: center; justify-content: center;
-            font-size: 18px;
+            font-size: 20px;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,168,132,0.4);
+            flex-shrink: 0;
         }
+        .wa-send-btn:hover { background: #008f6f; transform: scale(1.1); }
 
-        /* نافذة إدخال الاسم فقط (أول مرة) */
+        .action-buttons-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .action-btn {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+            border: none;
+            padding: 18px;
+            border-radius: 18px;
+            font-weight: 900;
+            font-size: 15px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(225, 29, 72, 0.35);
+            transition: 0.3s;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .action-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(225, 29, 72, 0.5); }
+
         .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); display: none; align-items: center; justify-content: center; z-index: 2000;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            backdrop-filter: blur(5px);
         }
         .modal-card {
-            background: #1e1b4b; padding: 30px; border-radius: 24px; width: 90%; max-width: 380px; text-align: center; border: 3px solid #fb7185; box-shadow: 0 0 30px rgba(251,113,133,0.3);
+            background: #fff;
+            padding: 30px;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            border: 3px solid var(--primary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
-        .modal-card h3 { color: #fda4af; font-size: 20px; margin-bottom: 12px; font-weight: 900; }
-        .modal-card input, .modal-card select { width: 100%; padding: 12px; border: 2px solid #fb7185; border-radius: 20px; text-align: center; font-size: 15px; margin-bottom: 15px; outline: none; background: #0f172a; color: #fff; font-family: 'Cairo', sans-serif; }
-        .modal-btn { background: linear-gradient(135deg, #e11d48, #db2777); color: #fff; border: none; padding: 12px; width: 100%; border-radius: 25px; font-weight: 900; cursor: pointer; }
+        .modal-card h3 { color: var(--primary); font-size: 22px; margin-bottom: 15px; font-weight: 900; }
+        .modal-card input { width: 100%; padding: 14px; border: 2px solid #fda4af; border-radius: 30px; text-align: center; font-size: 16px; margin-bottom: 15px; outline: none; font-family: 'Cairo', sans-serif; }
+
+        .heart-float {
+            position: fixed;
+            color: #e11d48;
+            font-size: 32px;
+            animation: floatMegaUp 3.8s cubic-bezier(0.1, 1, 0.3, 1) forwards;
+            pointer-events: none;
+            z-index: 9999;
+            text-shadow: 0 0 20px rgba(225, 29, 72, 0.8);
+            font-weight: 900;
+        }
+        @keyframes floatMegaUp {
+            0% { transform: translateY(0) scale(0.2) rotate(0deg); opacity: 1; }
+            50% { transform: translateY(-450px) scale(1.8) rotate(20deg); opacity: 0.95; }
+            100% { transform: translateY(-900px) scale(1.3) rotate(-20deg); opacity: 0; }
+        }
+
+        @media(max-width: 768px) {
+            .nav-places-grid { grid-template-columns: repeat(3, 1fr); }
+            .action-buttons-row { grid-template-columns: 1fr; }
+            .royal-header { flex-direction: column; gap: 10px; text-align: center; }
+        }
     </style>
 </head>
-<body>
+<body onclick="createHeartAtClick(event)">
 
-    <!-- الواجهة الرئيسية الكلاسيكية مع الغزل والتفاصيل السابقة -->
-    <div id="homeMainView">
-        <div class="home-card">
-            <h1>👑 مملكة العشق والصفاء</h1>
-            <p>حيث يلتقي نبض سلمان بسما في واحة من الجمال والأحاسيس الراقية... اضغط أدناه للانتقال لغرفة الشات الخاصة بكم.</p>
-            <button class="enter-chat-btn" onclick="checkNameAndOpenChat()">💬 الدخول إلى غرفة الشات (واتساب)</button>
-        </div>
+    <div class="royal-header">
+        <div class="royal-title">👑 مملكة العشق والخلود المخصصة لـ: سما</div>
+        <div class="royal-badge">النسخة النهائية المثالية 🚀</div>
     </div>
 
-    <!-- واجهة واتساب الكاملة -->
-    <div id="whatsappBox">
-        <div class="wa-chat-header">
-            <div class="wa-avatar-box" onclick="openProfileModal()" title="اضغط لتعديل بروفايلك وحالتك">
-                <div id="headerUserAvatar" class="wa-avatar">👑</div>
-                <div class="wa-chat-info">
-                    <div class="wa-title-name">مملكة سلمان وسما 🩷</div>
-                    <div id="onlineStatusText" class="wa-status-text">● متصل الآن...</div>
+    <div class="main-container">
+        <div class="nav-places-grid">
+            <button class="place-btn active" onclick="switchPage(0)">✨ جنة العشق</button>
+            <button class="place-btn" onclick="switchPage(1)">🔥 واحة الشوق</button>
+            <button class="place-btn" onclick="switchPage(2)" style="border-color: var(--gold); color: var(--gold);">💌 رسالة الوداع</button>
+            <button class="place-btn" onclick="switchPage(3)">💍 عهد الوفاء</button>
+            <button class="place-btn" onclick="openSecretModal()" style="background: #fff1f2; border-color: var(--primary); color: var(--primary);">🩷 دردشة سما</button>
+        </div>
+
+        <div class="display-card">
+            <h2 id="pageTitle">✨ جنة العشق الأبدي (عرش روحي المطلق)</h2>
+            <p id="pageDesc">سما.. يا من ملأتِ أيامي نوراً وحياة. أنتِ لستِ مجرد شخص أحبه، أنتِ عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودكِ معي يجعل العالم مكاناً أجمل بكثير.</p>
+            
+            <!-- --- واجهة الشات المطورة --- -->
+            <div id="whatsappBox" class="whatsapp-container">
+                <div class="wa-chat-header">
+                    <div class="wa-avatar-box">
+                        <div class="wa-avatar">👑</div>
+                        <div>
+                            <div style="color:#fff; font-weight:900; font-size:16px;">مملكة سلمان وسما 🩷</div>
+                            <div id="onlineStatusText" class="wa-status-text">● متصل الآن...</div>
+                        </div>
+                    </div>
+                    <div class="wa-controls">
+                        <button class="wa-control-btn danger" onclick="clearAllMessages()">🗑️ حذف الشات</button>
+                    </div>
+                </div>
+
+                <div id="waMessagesList" class="wa-messages-area" onscroll="markAllAsRead()">
+                    <!-- الرسائل تظهر هنا -->
+                </div>
+
+                <!-- لوحة الملصقات المدمجة -->
+                <div id="stickersPanel" class="stickers-panel">
+                    <button class="sticker-item" onclick="sendSticker('💖')">💖</button>
+                    <button class="sticker-item" onclick="sendSticker('👑')">👑</button>
+                    <button class="sticker-item" onclick="sendSticker('🔥')">🔥</button>
+                    <button class="sticker-item" onclick="sendSticker('🌹')">🌹</button>
+                    <button class="sticker-item" onclick="sendSticker('✨')">✨</button>
+                    <button class="sticker-item" onclick="sendSticker('💍')">💍</button>
+                    <button class="sticker-item" onclick="sendSticker('🥺')">🥺</button>
+                    <button class="sticker-item" onclick="sendSticker('💋')">💋</button>
+                    <button class="sticker-item" onclick="sendSticker('🥰')">🥰</button>
+                    <button class="sticker-item" onclick="sendSticker('🫶')">🫶</button>
+                    <button class="sticker-item" onclick="sendSticker('💘')">💘</button>
+                </div>
+
+                <div class="wa-input-footer">
+                    <button class="wa-action-icon-btn" onclick="toggleStickersPanel()" title="الملصقات">😊</button>
+                    <input type="text" id="waText" placeholder="اكتب رسالتك هنا..." oninput="sendTypingIndicator()" onkeypress="handleKeyPress(event)">
+                    <button class="wa-send-btn" onclick="sendWhatsAppMessage()">➤</button>
                 </div>
             </div>
-            <div class="wa-controls">
-                <button class="wa-control-btn" onclick="openProfileModal()">👤 بروفايلي</button>
-                <button class="wa-control-btn" onclick="exitToHome()">🏠 الرئيسية</button>
-            </div>
         </div>
 
-        <div id="waMessagesList" class="wa-messages-area"></div>
-
-        <div class="wa-input-footer">
-            <input type="text" id="waText" placeholder="اكتب رسالتك هنا..." onkeypress="handleKeyPress(event)">
-            <button class="wa-send-btn" onclick="sendWhatsAppMessage()">➤</button>
+        <div class="action-buttons-row">
+            <button class="action-btn" onclick="triggerMegaExplosion(event)">💥 تفجير يملأ الشاشة باسم سما بالكامل!</button>
+            <button class="action-btn" style="background: linear-gradient(135deg, var(--gold), #d97706);" onclick="showCrazyLovePopup()">💌 رسالة الحب السرية</button>
         </div>
     </div>
 
-    <!-- نافذة إدخال الاسم (تظهر أول مرة فقط بدون كلمة سر معقدة) -->
+    <!-- نافذة كلمة المرور -->
+    <div id="secretModal" class="modal-overlay">
+        <div class="modal-card">
+            <h3>🩷 بوابة اللقاء السري</h3>
+            <p style="font-size: 14px; margin-bottom: 15px; color: var(--text-muted); font-weight: 700;">أدخل الرمز السري (`ang_el99m`):</p>
+            <input type="text" id="modalPasswordInput" placeholder="اكتب الرمز هنا...">
+            <br>
+            <button class="action-btn" style="width: 100%; padding: 12px; justify-content: center;" onclick="verifySecretPassword()">فتح الدردشة 💕</button>
+            <button style="background: none; border: none; color: #999; margin-top: 10px; cursor: pointer; font-weight: 700;" onclick="closeSecretModal()">إلغاء</button>
+        </div>
+    </div>
+
+    <!-- نافذة إدخال الاسم -->
     <div id="nameModal" class="modal-overlay">
         <div class="modal-card">
-            <h3>✨ من أنتَ / من أنتِ؟</h3>
-            <p style="font-size: 13px; margin-bottom: 12px; color: #fecdd3; font-weight: 700;">أدخل اسمك (سلمان أو سما):</p>
+            <h3>✨ اسمك الكريم؟</h3>
+            <p style="font-size: 14px; margin-bottom: 15px; color: var(--text-muted); font-weight: 700;">أدخل اسمك (مثل: سلمان أو سما):</p>
             <input type="text" id="myNameInput" placeholder="اكتب اسمك هنا...">
-            <button class="modal-btn" onclick="saveMyName()">دخول المملكة 🚀</button>
-        </div>
-    </div>
-
-    <!-- نافذة تعديل البروفايل والحالة الشخصية -->
-    <div id="profileModal" class="modal-overlay">
-        <div class="modal-card">
-            <h3>👤 تعديل البروفايل والحالة</h3>
-            <p style="font-size: 12px; color: #fecdd3; font-weight: 700; margin-bottom: 5px; text-align: right;">اسمك:</p>
-            <input type="text" id="editProfileName" placeholder="اسمك...">
-            
-            <p style="font-size: 12px; color: #fecdd3; font-weight: 700; margin-bottom: 5px; text-align: right;">حالتك الشخصية (Bio):</p>
-            <input type="text" id="editProfileStatus" placeholder="مثلاً: متواجد في مملكة العشق 👑">
-
-            <p style="font-size: 12px; color: #fecdd3; font-weight: 700; margin-bottom: 5px; text-align: right;">الأيقونة:</p>
-            <select id="editProfileAvatar">
-                <option value="👑">👑 تاج الملك</option>
-                <option value="🩷">🩷 قلب وردي</option>
-                <option value="🌹">🌹 وردة حمراء</option>
-                <option value="✨">✨ نجمة متألقة</option>
-            </select>
-
-            <button class="modal-btn" onclick="saveProfileChanges()" style="margin-top: 10px;">حفظ التغييرات ✨</button>
-            <button style="background: none; border: none; color: #888; margin-top: 10px; cursor: pointer; font-weight: 700;" onclick="closeProfileModal()">إلغاء</button>
+            <br>
+            <button class="action-btn" style="width: 100%; padding: 12px; justify-content: center;" onclick="saveMyName()">حفظ ودخول الدردشة 🚀</button>
         </div>
     </div>
 
     <script>
         const chatChannel = "sama_royal_sanctuary_chat_room_99";
         const apiUrl = "https://ntfy.sh/" + chatChannel;
+        let activeUsersList = new Set();
+        let typingTimeout = null;
+
+        const pagesData = [
+            {
+                title: "✨ جنة العشق الأبدي (عرش روحي المطلق)",
+                desc: "سما.. يا من ملأتِ أيامي نوراً وحياة. أنتِ لستِ مجرد شخص أحبه، أنتِ عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودكِ معي يجعل العالم مكاناً أجمل بكثير."
+            },
+            {
+                title: "🔥 واحة الشوق والجنون (حيث يشتعل قلبي بحبكِ)",
+                desc: "أنا مغرم بكِ بجنون لا توصفه الكلمات يا سما! كل تفصيلة فيكِ تسرقني، صوتكِ، ابتسامتكِ، ونظراتكِ. حبكِ هو القوة الوحيدة التي تجعلني أواجه صعوبات هذه الحياة بكل ثبات."
+            },
+            {
+                title: "💌 رسالة الوداع والاعتذار الكبرى (أعمق أسرار الروح)",
+                desc: "سما.. إذا حدث في يوم من الأيام واضطررنا للابتعاد، أو إن صدر مني تقصير أو خطأ دون قصد، فاعلمي جيداً أن قلبي لم يعرف طعم الصدق إلا معكِ. هذه الرسالة هي عهد مني بأنني حتى في أقصى لحظات الوداع والفراق — إن حدث — لن أندم أبداً على أنني عشقتكِ بكل ما أملك من قوة. أنتِ الجزء الأعظم في حياتي، وإن غابت الأجساد فستبقين أنتِ الروح التي تسكنني للأبد. سامحيني على كل لحظة قصرت فيها، وتأكدي أن حبي لكِ لا يزول بل يزداد عمقاً مع كل ثانية تمر."
+            },
+            {
+                title: "💍 عهد الوفاء والمصير (حتى نهاية الزمان)",
+                desc: "أقسم برب الكون يا سما، أنني سأبقى سندكِ وقوتكِ ومأمنكِ حتى آخر نبض في عمري. معكِ أدركتُ معنى الاستقرار الحقيقي، وللأبد نحن قصة عشق لا تنتهي."
+            }
+        ];
+
+        function switchPage(index) {
+            document.getElementById('whatsappBox').style.display = 'none';
+            document.getElementById('pageTitle').style.display = 'block';
+            document.getElementById('pageDesc').style.display = 'block';
+
+            let buttons = document.querySelectorAll('.place-btn');
+            buttons.forEach((btn, i) => {
+                if(i === index) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+            
+            document.getElementById('pageTitle').innerText = pagesData[index].title;
+            document.getElementById('pageDesc').innerText = pagesData[index].desc;
+        }
+
+        function openSecretModal() {
+            const isPasswordSaved = localStorage.getItem('sama_chat_auth_verified');
+            if (isPasswordSaved === 'true') {
+                checkNameAndOpenChat();
+            } else {
+                document.getElementById('secretModal').style.display = 'flex';
+            }
+        }
+
+        function closeSecretModal() {
+            document.getElementById('secretModal').style.display = 'none';
+            document.getElementById('modalPasswordInput').value = '';
+        }
+
+        function verifySecretPassword() {
+            const val = document.getElementById('modalPasswordInput').value.trim();
+            if(val === 'ang_el99m') {
+                localStorage.setItem('sama_chat_auth_verified', 'true');
+                closeSecretModal();
+                checkNameAndOpenChat();
+            } else {
+                alert('الرمز السري غير صحيح (ang_el99m)! ❌');
+            }
+        }
 
         function checkNameAndOpenChat() {
-            if(!localStorage.getItem('sama_chat_user_name')) {
+            let savedName = localStorage.getItem('sama_chat_user_name');
+            if(!savedName) {
                 document.getElementById('nameModal').style.display = 'flex';
             } else {
-                launchWhatsAppFullscreen();
+                openChatRoom();
             }
         }
 
         function saveMyName() {
             const nameVal = document.getElementById('myNameInput').value.trim();
-            if(!nameVal) { alert('الرجاء كتابة اسمك!'); return; }
+            if(!nameVal) { alert('الرجاء كتابة اسمك أولاً! ✨'); return; }
             localStorage.setItem('sama_chat_user_name', nameVal);
-            localStorage.setItem('sama_chat_user_status', 'متصل في مملكة العشق 🩷');
-            localStorage.setItem('sama_chat_user_avatar', '👑');
             document.getElementById('nameModal').style.display = 'none';
-            launchWhatsAppFullscreen();
+            openChatRoom();
         }
 
-        function launchWhatsAppFullscreen() {
-            document.getElementById('homeMainView').style.display = 'none';
-            document.getElementById('whatsappBox').style.display = 'flex';
-            updateHeaderProfileUI();
+        function openChatRoom() {
+            let buttons = document.querySelectorAll('.place-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById('pageTitle').style.display = 'none';
+            document.getElementById('pageDesc').style.display = 'none';
+            document.getElementById('whatsappBox').style.display = 'block';
+            
             loadSavedMessages();
             startListeningMessages();
-        }
-
-        function exitToHome() {
-            document.getElementById('whatsappBox').style.display = 'none';
-            document.getElementById('homeMainView').style.display = 'flex';
-        }
-
-        function openProfileModal() {
-            document.getElementById('editProfileName').value = localStorage.getItem('sama_chat_user_name') || '';
-            document.getElementById('editProfileStatus').value = localStorage.getItem('sama_chat_user_status') || '';
-            document.getElementById('editProfileAvatar').value = localStorage.getItem('sama_chat_user_avatar') || '👑';
-            document.getElementById('profileModal').style.display = 'flex';
-        }
-
-        function closeProfileModal() { document.getElementById('profileModal').style.display = 'none'; }
-
-        function saveProfileChanges() {
-            localStorage.setItem('sama_chat_user_name', document.getElementById('editProfileName').value);
-            localStorage.setItem('sama_chat_user_status', document.getElementById('editProfileStatus').value);
-            localStorage.setItem('sama_chat_user_avatar', document.getElementById('editProfileAvatar').value);
-            closeProfileModal();
-            updateHeaderProfileUI();
-        }
-
-        function updateHeaderProfileUI() {
-            document.getElementById('headerUserAvatar').innerText = localStorage.getItem('sama_chat_user_avatar') || '👑';
-            document.getElementById('onlineStatusText').innerText = '● ' + (localStorage.getItem('sama_chat_user_status') || 'متصل الآن');
+            sendPresenceHeartbeat();
+            setInterval(sendPresenceHeartbeat, 10000);
         }
 
         function loadSavedMessages() {
             const saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
             const listDiv = document.getElementById('waMessagesList');
             listDiv.innerHTML = '';
-            saved.forEach(msg => renderBubble(msg));
+            saved.forEach(msg => {
+                renderBubble(msg.id, msg.sender, msg.text, msg.time, msg.isRead);
+            });
         }
 
-        function renderBubble(msg) {
-            const listDiv = document.getElementById('waMessagesList');
-            const myName = localStorage.getItem('sama_chat_user_name');
-            const isMe = (msg.sender === myName);
-
-            let div = document.createElement('div');
-            div.className = `wa-bubble ${isMe ? 'outgoing' : 'incoming'}`;
-            div.innerHTML = `
-                <div class="wa-sender-name">${msg.sender}</div>
-                <div>${msg.text}</div>
-                <div class="wa-msg-footer">
-                    <span class="wa-time">${msg.time}</span>
-                    <span class="wa-ticks">✓✓</span>
-                </div>
-            `;
-            listDiv.appendChild(div);
-            listDiv.scrollTop = listDiv.scrollHeight;
-        }
-
-        function sendWhatsAppMessage() {
-            const textInput = document.getElementById('waText');
-            const text = textInput.value.trim();
-            if(!text) return;
-
-            const msgObj = {
-                sender: localStorage.getItem('sama_chat_user_name'),
-                text: text,
-                time: new Date().toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'})
-            };
-
+        function saveMessageToStorage(msgObj) {
             let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
-            saved.push(msgObj);
+            let index = saved.findIndex(m => m.id === msgObj.id);
+            if(index !== -1) {
+                saved[index] = msgObj;
+            } else {
+                saved.push(msgObj);
+                if(saved.length > 200) saved.shift();
+            }
             localStorage.setItem('sama_saved_chat_history', JSON.stringify(saved));
+        }
 
-            renderBubble(msgObj);
-            textInput.value = '';
+        function clearAllMessages() {
+            if(confirm('هل أنت متأكد من حذف جميع رسائل الشات؟')) {
+                localStorage.removeItem('sama_saved_chat_history');
+                document.getElementById('waMessagesList').innerHTML = '';
+            }
+        }
 
-            fetch(apiUrl, { method: 'POST', body: JSON.stringify(msgObj) }).catch(e => {});
+        function toggleStickersPanel() {
+            const panel = document.getElementById('stickersPanel');
+            panel.style.display = (panel.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        function sendSticker(stickerEmoji) {
+            sendTextMessage(stickerEmoji);
+            toggleStickersPanel();
         }
 
         function startListeningMessages() {
             try {
                 const eventSource = new EventSource(apiUrl + "/sse");
                 eventSource.onmessage = function(event) {
-                    const data = JSON.parse(event.data);
-                    if (data.message) {
-                        const parsed = JSON.parse(data.message);
-                        if(parsed.sender !== localStorage.getItem('sama_chat_user_name')) {
-                            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
-                            saved.push(parsed);
-                            localStorage.setItem('sama_saved_chat_history', JSON.stringify(saved));
-                            renderBubble(parsed);
+                    try {
+                        const data = JSON.parse(event.data);
+                        if (data.message) {
+                            const parsed = JSON.parse(data.message);
+                            
+                            if(parsed.type === 'presence') {
+                                updateOnlineStatus(parsed.sender);
+                            } else if(parsed.type === 'typing') {
+                                showTypingStatus(parsed.sender);
+                            } else if(parsed.type === 'chat') {
+                                saveMessageToStorage(parsed);
+                                renderOrUpdateBubble(parsed);
+                            } else if(parsed.type === 'delete') {
+                                removeMessageFromStorage(parsed.id);
+                                let el = document.getElementById('msg-' + parsed.id);
+                                if(el) el.remove();
+                            } else if(parsed.type === 'read') {
+                                markMessageReadLocal(parsed.id);
+                            }
                         }
-                    }
+                    } catch(e) {}
                 };
             } catch(e) {}
         }
 
+        function sendPresenceHeartbeat() {
+            const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';
+            fetch(apiUrl, {
+                method: 'POST',
+                body: JSON.stringify({ type: 'presence', sender: sender })
+            }).catch(e => {});
+        }
+
+        function sendTypingIndicator() {
+            const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';
+            if(typingTimeout) return;
+            typingTimeout = setTimeout(() => { typingTimeout = null; }, 3000);
+            
+            fetch(apiUrl, {
+                method: 'POST',
+                body: JSON.stringify({ type: 'typing', sender: sender })
+            }).catch(e => {});
+        }
+
+        function showTypingStatus(sender) {
+            let myName = localStorage.getItem('sama_chat_user_name');
+            if(sender === myName) return;
+            let statusEl = document.getElementById('onlineStatusText');
+            statusEl.innerText = `● ${sender} يكتب الآن...`;
+            setTimeout(() => {
+                statusEl.innerText = `● متصل الآن...`;
+            }, 3000);
+        }
+
+        function updateOnlineStatus(sender) {
+            activeUsersList.add(sender);
+        }
+
+        function renderOrUpdateBubble(msg) {
+            let existingEl = document.getElementById('msg-' + msg.id);
+            if(existingEl) {
+                let textContainer = existingEl.querySelector('.msg-text-content');
+                if(textContainer) textContainer.innerText = msg.text;
+                let ticksContainer = existingEl.querySelector('.wa-ticks');
+                if(ticksContainer && msg.isRead) {
+                    ticksContainer.className = 'wa-ticks read';
+                    ticksContainer.innerText = '✓✓';
+                }
+            } else {
+                renderBubble(msg.id, msg.sender, msg.text, msg.time, msg.isRead);
+            }
+        }
+
+        function renderBubble(id, sender, text, time, isRead) {
+            const listDiv = document.getElementById('waMessagesList');
+            let myName = localStorage.getItem('sama_chat_user_name') || 'أنا';
+            let isMe = (sender === myName);
+
+            let div = document.createElement('div');
+            div.id = 'msg-' + id;
+            div.className = `wa-bubble ${isMe ? 'outgoing' : 'incoming'}`;
+            
+            let optionsHtml = '';
+            if(isMe) {
+                optionsHtml = `
+                    <span class="msg-options">
+                        <button class="msg-opt-btn" onclick="editMessage('${id}')">تعديل</button>
+                        <button class="msg-opt-btn" onclick="deleteMessage('${id}')">حذف</button>
+                    </span>
+                `;
+            }
+
+            div.innerHTML = `
+                <div class="wa-sender-name">${sender}</div>
+                <div class="msg-text-content">${text}</div>
+                <div class="wa-msg-footer">
+                    ${optionsHtml}
+                    <span class="wa-time">${time}</span>
+                    <span class="wa-ticks ${isRead ? 'read' : ''}">✓✓</span>
+                </div>
+            `;
+            listDiv.appendChild(div);
+            listDiv.scrollTop = listDiv.scrollHeight;
+
+            if(!isMe && !isRead) {
+                notifyRead(id);
+            }
+        }
+
+        function sendWhatsAppMessage() {
+            const textInput = document.getElementById('waText');
+            const text = textInput.value.trim();
+            if(!text) return;
+            sendTextMessage(text);
+            textInput.value = '';
+        }
+
+        function sendTextMessage(text) {
+            const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';
+            const timeNow = new Date().toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'});
+            const msgId = 'm_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7);
+            
+            const msgObj = {
+                type: 'chat',
+                id: msgId,
+                sender: sender,
+                text: text,
+                time: timeNow,
+                isRead: false
+            };
+
+            saveMessageToStorage(msgObj);
+            renderOrUpdateBubble(msgObj);
+
+            fetch(apiUrl, {
+                method: 'POST',
+                body: JSON.stringify(msgObj)
+            }).catch(err => {});
+        }
+
+        function editMessage(id) {
+            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
+            let msg = saved.find(m => m.id === id);
+            if(!msg) return;
+
+            let newText = prompt("عدل رسالتك:", msg.text);
+            if(newText !== null && newText.trim() !== "") {
+                msg.text = newText.trim();
+                saveMessageToStorage(msg);
+                renderOrUpdateBubble(msg);
+
+                fetch(apiUrl, {
+                    method: 'POST',
+                    body: JSON.stringify(msg)
+                }).catch(e => {});
+            }
+        }
+
+        function deleteMessage(id) {
+            if(confirm("هل تريد حذف هذه الرسالة؟")) {
+                removeMessageFromStorage(id);
+                let el = document.getElementById('msg-' + id);
+                if(el) el.remove();
+
+                fetch(apiUrl, {
+                    method: 'POST',
+                    body: JSON.stringify({ type: 'delete', id: id })
+                }).catch(e => {});
+            }
+        }
+
+        function removeMessageFromStorage(id) {
+            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
+            saved = saved.filter(m => m.id !== id);
+            localStorage.setItem('sama_saved_chat_history', JSON.stringify(saved));
+        }
+
+        function notifyRead(id) {
+            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
+            let msg = saved.find(m => m.id === id);
+            if(msg && !msg.isRead) {
+                msg.isRead = true;
+                saveMessageToStorage(msg);
+                
+                fetch(apiUrl, {
+                    method: 'POST',
+                    body: JSON.stringify({ type: 'read', id: id })
+                }).catch(e => {});
+            }
+        }
+
+        function markMessageReadLocal(id) {
+            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
+            let msg = saved.find(m => m.id === id);
+            if(msg) {
+                msg.isRead = true;
+                saveMessageToStorage(msg);
+                let ticks = document.querySelector(`#msg-${id} .wa-ticks`);
+                if(ticks) {
+                    ticks.className = 'wa-ticks read';
+                    ticks.innerText = '✓✓';
+                }
+            }
+        }
+
+        function markAllAsRead() {
+            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
+            let myName = localStorage.getItem('sama_chat_user_name');
+            saved.forEach(msg => {
+                if(msg.sender !== myName && !msg.isRead) {
+                    notifyRead(msg.id);
+                }
+            });
+        }
+
         function handleKeyPress(e) { if(e.key === 'Enter') sendWhatsAppMessage(); }
+
+        function createHeartAtClick(e) {
+            // منع تفجير القلوب نهائياً إذا كان النقر داخل واجهة الشات أو أزرار التحكم
+            if(e.target.closest('#whatsappBox') || e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT') return;
+            spawnHeart(e.clientX, e.clientY);
+        }
+
+        function spawnHeart(x, y) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-float');
+            const symbols = ['💖 سما 💖', '🌸 سما 🌸', '🌷 سما 🌷', '👑 سما 👑', '🌹 روحي سما 🌹', '✨ سما الحب ✨'];
+            heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+            heart.style.left = x + 'px';
+            heart.style.top = y + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 3800);
+        }
+
+        function triggerMegaExplosion(e) {
+            for (let i = 0; i < 90; i++) {
+                setTimeout(() => {
+                    spawnHeart(Math.random() * window.innerWidth, window.innerHeight - 30);
+                }, i * 25);
+            }
+        }
+
+        function showCrazyLovePopup() {
+            alert("إلى عقلي وروحي وأميرتي (سما): أحبكِ حباً يضيء عتمة أيامي، أنتِ الحكاية الجميلة التي أتمنى أن لا تنتهي أبداً! 💖🌹");
+        }
     </script>
 </body>
 </html>
