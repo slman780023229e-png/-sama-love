@@ -57,19 +57,19 @@
 
         .nav-places-grid {  
             display: grid;  
-            grid-template-columns: repeat(5, 1fr);  
-            gap: 12px;  
+            grid-template-columns: repeat(6, 1fr);  
+            gap: 10px;  
         }  
         .place-btn {  
             background: var(--box-bg);  
             border: 3px solid #fda4af;  
-            border-radius: 18px;  
-            padding: 16px 10px;  
+            border-radius: 16px;  
+            padding: 14px 6px;  
             text-align: center;  
             cursor: pointer;  
             transition: all 0.3s ease;  
             font-weight: 900;  
-            font-size: 13px;  
+            font-size: 12px;  
             color: var(--text-muted);  
             box-shadow: 0 6px 15px rgba(225, 29, 72, 0.08);  
         }  
@@ -104,6 +104,28 @@
         }  
         .display-card h2 { font-size: 26px; font-weight: 900; color: var(--primary); margin-bottom: 15px; }  
         .display-card p { font-size: 17px; line-height: 2.1; font-weight: 700; color: var(--text-main); background: #fff5f5; padding: 22px; border-radius: 16px; border: 2px solid #fecdd3; }  
+
+        /* --- واجهة الستوريات والحالات الملكية --- */  
+        .stories-container {  
+            display: none;  
+            flex-direction: column;  
+            gap: 20px;  
+        }  
+        .story-card {  
+            background: linear-gradient(135deg, #fff, #fff1f2);  
+            border: 3px solid #fda4af;  
+            border-radius: 20px;  
+            padding: 20px;  
+            box-shadow: 0 10px 25px rgba(225,29,72,0.1);  
+        }  
+        .story-header { font-weight: 900; color: var(--primary); font-size: 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }  
+        .story-text { font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 12px; }  
+        .story-input-box { display: flex; gap: 10px; }  
+        .story-input-box input { flex: 1; padding: 12px 16px; border: 2px solid #fda4af; border-radius: 14px; outline: none; font-family: 'Cairo', sans-serif; font-size: 14px; }  
+        .story-post-btn { background: var(--primary); color: #fff; border: none; padding: 0 20px; border-radius: 14px; font-weight: 900; cursor: pointer; transition: 0.2s; }  
+        .story-post-btn:hover { background: var(--accent); }  
+        .stories-list { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }  
+        .story-bubble { background: #fff; border: 2px solid #fecdd3; padding: 12px 16px; border-radius: 14px; font-weight: 700; font-size: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }  
 
         /* --- واجهة الشات الملكية السحابية (Firebase) --- */  
         .whatsapp-container {  
@@ -145,19 +167,6 @@
         .db-status-indicator { display: flex; align-items: center; gap: 8px; }  
         .db-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981; flex-shrink: 0; }  
         .db-dot.error { background: #ef4444; box-shadow: 0 0 8px #ef4444; }  
-
-        .wa-control-btn {  
-            background: #374248;  
-            color: #ff8888;  
-            border: none;  
-            padding: 7px 12px;  
-            border-radius: 10px;  
-            font-size: 12px;  
-            font-weight: 700;  
-            cursor: pointer;  
-            transition: 0.2s;  
-        }  
-        .wa-control-btn:hover { background: #4a575f; }  
 
         .wa-messages-area {  
             height: 400px;  
@@ -254,6 +263,8 @@
         .wa-input-footer input:focus { border-color: #00a884; background: #111b21; }  
         .wa-action-icon-btn { background: none; border: none; font-size: 22px; cursor: pointer; color: #8696a0; transition: 0.2s; flex-shrink: 0; }  
         .wa-action-icon-btn:hover { color: #00a884; transform: scale(1.1); }  
+        .wa-action-icon-btn.recording { color: #ef4444; animation: pulseRecord 1s infinite; }  
+        @keyframes pulseRecord { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }  
 
         .wa-send-btn {  
             background: linear-gradient(135deg, #00a884, #008f6f);  
@@ -340,7 +351,7 @@
 
 <div class="royal-header">  
     <div class="royal-title">👑 مملكة العشق والخلود المخصصة لـ: سما</div>  
-    <div class="royal-badge">النسخة السحابية الحية 🚀</div>  
+    <div class="royal-badge">النسخة الملكية الآمنة 🚀</div>  
 </div>  
 
 <div class="main-container">  
@@ -349,6 +360,7 @@
         <button class="place-btn" onclick="switchPage(1)">🔥 واحة الشوق</button>  
         <button class="place-btn" onclick="switchPage(2)" style="border-color: var(--gold); color: var(--gold);">💌 رسالة الوداع</button>  
         <button class="place-btn" onclick="switchPage(3)">💍 عهد الوفاء</button>  
+        <button class="place-btn" onclick="switchPage(4)">📖 الستوريات</button>  
         <button class="place-btn" onclick="openSecretModal()" style="background: #fff1f2; border-color: var(--primary); color: var(--primary);">🩷 دردشة سما</button>  
     </div>  
 
@@ -356,6 +368,21 @@
         <h2 id="pageTitle">✨ جنة العشق الأبدي (عرش روحي المطلق)</h2>  
         <p id="pageDesc">سما.. يا من ملأتِ أيامي نوراً وحياة. أنتِ لستِ مجرد شخص أحبه، أنتِ عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودكِ معي يجعل العالم مكاناً أجمل بكثير.</p>  
           
+        <!-- --- قسم الستوريات والحالات الملكية --- -->  
+        <div id="storiesBox" class="stories-container">  
+            <div class="story-card">  
+                <div class="story-header">📸 شارك حالة أو ستوري ملكي جديد</div>  
+                <div class="story-text">اكتب خاطرة أو حالة تظهر هنا للجميع لحظياً:</div>  
+                <div class="story-input-box">  
+                    <input type="text" id="storyTextInput" placeholder="اكتب حالتك هنا يا بطل...">  
+                    <button class="story-post-btn" onclick="postStory()">نشر 🌟</button>  
+                </div>  
+                <div id="storiesList" class="stories-list">  
+                    <!-- الحالات المنشورة سحابياً -->  
+                </div>  
+            </div>  
+        </div>  
+
         <!-- --- واجهة الشات المربوطة بـ Firebase Realtime Database --- -->  
         <div id="whatsappBox" class="whatsapp-container">  
             <div class="wa-chat-header">  
@@ -365,9 +392,6 @@
                         <div style="color:#fff; font-weight:900; font-size:15px;">مملكة سلمان وسما 🩷</div>  
                         <div id="onlineStatusText" class="wa-status-text">● جاري فحص الاتصال بالخادم...</div>  
                     </div>  
-                </div>  
-                <div class="wa-controls">  
-                    <button class="wa-control-btn" onclick="clearCloudChat()">🗑️ تصفير القاعدة</button>  
                 </div>  
             </div>  
 
@@ -379,7 +403,7 @@
             </div>  
 
             <div id="waMessagesList" class="wa-messages-area">  
-                <!-- الرسائل السحابية الحية -->  
+                <!-- الرسائل السحابية الحية (بدون تعديل أو حذف للجميع) -->  
             </div>  
 
             <div id="stickersPanel" class="stickers-panel">  
@@ -398,6 +422,7 @@
 
             <div class="wa-input-footer">  
                 <button class="wa-action-icon-btn" onclick="toggleStickersPanel()" title="الملصقات">😊</button>  
+                <button id="micBtn" class="wa-action-icon-btn" onclick="toggleVoiceRecording()" title="تسجيل صوتي">🎤</button>  
                 <input type="text" id="waText" placeholder="اكتب رسالتك الملكية هنا..." onkeypress="handleKeyPress(event)">  
                 <button class="wa-send-btn" onclick="sendWhatsAppMessage()" title="إرسال">➤</button>  
             </div>  
@@ -413,8 +438,8 @@
 <div id="secretModal" class="modal-overlay">  
     <div class="modal-card">  
         <h3>🩷 بوابة اللقاء السري</h3>  
-        <p style="font-size: 14px; margin-bottom: 15px; color: var(--text-muted); font-weight: 700;">أدخل الرمز السري (`ang_el99m`):</p>  
-        <input type="text" id="modalPasswordInput" placeholder="اكتب الرمز هنا...">  
+        <p style="font-size: 14px; margin-bottom: 15px; color: var(--text-muted); font-weight: 700;">أدخل الرمز الصحيح للمتابعة (`ang_el99m`):</p>  
+        <input type="password" id="modalPasswordInput" placeholder="أدخل الرمز السري هنا...">  
         <br>  
         <button class="action-btn" style="width: 100%; padding: 12px; justify-content: center;" onclick="verifySecretPassword()">فتح الدردشة 💕</button>  
         <button style="background: none; border: none; color: #999; margin-top: 10px; cursor: pointer; font-weight: 700;" onclick="closeSecretModal()">إلغاء</button>  
@@ -431,25 +456,24 @@
     </div>  
 </div>  
 
-<!-- ربط مكتبات Firebase عبر الـ CDN مع نظام فحص الأخطاء والاتصال -->  
+<!-- ربط مكتبات Firebase عبر الـ CDN -->  
 <script type="module">  
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";  
-    import { getDatabase, ref, push, set, onChildAdded, remove, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";  
+    import { getDatabase, ref, push, set, onChildAdded, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";  
 
-    // إعدادات قاعدة البيانات الخاصة بك في Firebase
     const firebaseConfig = {  
         databaseURL: "https://slmane-default-rtdb.firebaseio.com/"  
     };  
 
-    let db, messagesRef;
+    let db, messagesRef, storiesRef;
     let isListenerActive = false;  
 
     try {
         const app = initializeApp(firebaseConfig);  
         db = getDatabase(app);  
         messagesRef = ref(db, 'sama_royal_chat/messages');  
+        storiesRef = ref(db, 'sama_royal_chat/stories');  
 
-        // فحص حالة الاتصال بالخادم حياً (.info/connected)
         const connectedRef = ref(db, ".info/connected");
         onValue(connectedRef, (snap) => {
             const statusDot = document.getElementById('dbDotIndicator');
@@ -469,10 +493,6 @@
 
     } catch (err) {
         console.error("Firebase Init Error:", err);
-        const statusDot = document.getElementById('dbDotIndicator');
-        const statusMsg = document.getElementById('dbStatusMessage');
-        if(statusDot) statusDot.className = "db-dot error";
-        if(statusMsg) statusMsg.innerText = "حدث خطأ فادح في تهيئة قاعدة البيانات ❌";
     }
 
     window.initCloudChat = function() {  
@@ -482,23 +502,27 @@
         const listDiv = document.getElementById('waMessagesList');  
         listDiv.innerHTML = '';  
 
-        // جلب الرسائل الحية والتحديث الفوري بين الأجهزة
         onChildAdded(messagesRef, (snapshot) => {  
             const msg = snapshot.val();  
             if (msg) {  
-                renderCloudBubble(snapshot.key, msg.sender, msg.text, msg.time);  
+                renderCloudBubble(snapshot.key, msg.sender, msg.text, msg.time, msg.isVoice, msg.audioUrl);  
             }  
-        }, (error) => {
-            console.error("Read Error:", error);
-            alert("خطأ في قراءة الرسائل من القاعدة: " + error.message);
         });  
+
+        const storiesListDiv = document.getElementById('storiesList');
+        onChildAdded(storiesRef, (snapshot) => {
+            const st = snapshot.val();
+            if(st && storiesListDiv) {
+                let div = document.createElement('div');
+                div.className = 'story-bubble';
+                div.innerHTML = `<strong>${st.sender}:</strong> ${st.text} <span style="font-size:10px; color:#888; float:left;">${st.time}</span>`;
+                storiesListDiv.prepend(div);
+            }
+        });
     };  
 
-    window.sendCloudMessage = function(text) {  
-        if (!messagesRef) {
-            alert("خطأ: قاعدة البيانات غير متصلة بالشكل الصحيح! ❌");
-            return;
-        }
+    window.sendCloudMessage = function(text, isVoice = false, audioUrl = '') {  
+        if (!messagesRef) return;
         const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';  
         const timeNow = new Date().toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'});  
           
@@ -506,24 +530,25 @@
         set(newMsgRef, {  
             sender: sender,  
             text: text,  
+            isVoice: isVoice,
+            audioUrl: audioUrl,
             time: timeNow,  
             timestamp: Date.now()  
-        }).catch((err) => {
-            alert("خطأ خطير: فشل إرسال الرسالة إلى السحابة ❌: " + err.message);
         });  
     };  
 
-    window.clearCloudChat = function() {  
-        if(!messagesRef) return;
-        if(confirm('هل أنت متأكد من مسح جميع رسائل السحابة نهائياً؟')) {  
-            remove(messagesRef).then(() => {  
-                document.getElementById('waMessagesList').innerHTML = '';  
-                alert('تم تصفير ونظافة قاعدة البيانات بنجاح! ✨');
-            }).catch((err) => {
-                alert('حدث خطأ أثناء محاولة التصفير ❌: ' + err.message);
-            });  
-        }  
-    };  
+    window.postCloudStory = function(text) {
+        if(!storiesRef) return;
+        const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';
+        const timeNow = new Date().toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'});
+        const newStoryRef = push(storiesRef);
+        set(newStoryRef, {
+            sender: sender,
+            text: text,
+            time: timeNow,
+            timestamp: Date.now()
+        });
+    }
 </script>  
 
 <script>  
@@ -543,11 +568,16 @@
         {  
             title: "💍 عهد الوفاء والمصير (حتى نهاية الزمان)",  
             desc: "أقسم برب الكون يا سما، أنني سأبقى سندكِ وقوتكِ ومأمنكِ حتى آخر نبض في عمري. معكِ أدركتُ معنى الاستقرار الحقيقي، وللأبد نحن قصة عشق لا تنتهي."  
+        },  
+        {  
+            title: "📖 ستوريات وحالات المملكة الملكية الحية",  
+            desc: "شارك أفكارك، مشاعرك، وحالاتك الرومانسية لتظهر في السحابة فوراً وتخلد هنا للأبد."  
         }  
     ];  
 
     function switchPage(index) {  
         document.getElementById('whatsappBox').style.display = 'none';  
+        document.getElementById('storiesBox').style.display = 'none';  
         document.getElementById('pageTitle').style.display = 'block';  
         document.getElementById('pageDesc').style.display = 'block';  
 
@@ -559,6 +589,10 @@
           
         document.getElementById('pageTitle').innerText = pagesData[index].title;  
         document.getElementById('pageDesc').innerText = pagesData[index].desc;  
+
+        if(index === 4) {
+            document.getElementById('storiesBox').style.display = 'flex';
+        }
     }  
 
     function openSecretModal() {  
@@ -582,7 +616,7 @@
             closeSecretModal();  
             checkNameAndOpenChat();  
         } else {  
-            alert('الرمز السري غير صحيح (ang_el99m)! ❌');  
+            alert('الرمز السري غير صحيح! تأكد من كتابة (ang_el99m) بدقة ❌');  
         }  
     }  
 
@@ -609,6 +643,7 @@
           
         document.getElementById('pageTitle').style.display = 'none';  
         document.getElementById('pageDesc').style.display = 'none';  
+        document.getElementById('storiesBox').style.display = 'none';  
         document.getElementById('whatsappBox').style.display = 'block';  
           
         if(typeof window.initCloudChat === 'function') {  
@@ -626,20 +661,66 @@
         toggleStickersPanel();  
     }  
 
-    function renderCloudBubble(id, sender, text, time) {  
+    function postStory() {
+        const input = document.getElementById('storyTextInput');
+        const val = input.value.trim();
+        if(!val) { alert('اكتب شيئاً لنشره في الستوري! ✨'); return; }
+        window.postCloudStory(val);
+        input.value = '';
+        alert('تم نشر حالتك السحابية بنجاح! 🌟');
+    }
+
+    let mediaRecorder;
+    let audioChunks = [];
+    let isRecording = false;
+
+    function toggleVoiceRecording() {
+        const micBtn = document.getElementById('micBtn');
+        if (!isRecording) {
+            navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+                mediaRecorder.ondataavailable = event => {
+                    audioChunks.push(event.data);
+                };
+                mediaRecorder.onstop = () => {
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/mp3' });
+                    const audioUrl = URL.createObjectURL(audioBlob);
+                    sendCloudMessage('🎙️ رسالة صوتية ملكية', true, audioUrl);
+                };
+                mediaRecorder.start();
+                isRecording = true;
+                micBtn.classList.add('recording');
+                alert('جاري تسجيل الصوت... اضغط على الميكروفون مرة أخرى للإرسال 🎤');
+            }).catch(err => {
+                alert('عذراً، ميكروفون الجوال غير متاح أو مرفوض الإذن ❌');
+            });
+        } else {
+            mediaRecorder.stop();
+            isRecording = false;
+            micBtn.classList.remove('recording');
+        }
+    }
+
+    function renderCloudBubble(id, sender, text, time, isVoice, audioUrl) {  
         const listDiv = document.getElementById('waMessagesList');  
         let myName = localStorage.getItem('sama_chat_user_name') || 'أنا';  
         let isMe = (sender === myName);  
 
-        if(document.getElementById('msg-' + id)) return; // عدم تكرار الرسائل المعروضة مسبقاً
+        if(document.getElementById('msg-' + id)) return;  
 
         let div = document.createElement('div');  
         div.id = 'msg-' + id;  
         div.className = `wa-bubble ${isMe ? 'outgoing' : 'incoming'}`;  
 
+        let contentHTML = `<div class="msg-text-content">${text}</div>`;
+        if(isVoice && audioUrl) {
+            contentHTML = `<div>🎙️ رسالة صوتية</div><audio controls src="${audioUrl}" style="width:200px; margin-top:5px;"></audio>`;
+        }
+
         div.innerHTML = `  
             <div class="wa-sender-name">${sender}</div>  
-            <div class="msg-text-content">${text}</div>  
+            ${contentHTML}  
             <div class="wa-msg-footer">  
                 <span class="wa-time">${time}</span>  
                 <span class="wa-ticks read">✓✓</span>  
@@ -657,12 +738,12 @@
         const textInput = document.getElementById('waText');  
         const text = textInput.value.trim();  
         if(!text) return;  
-        window.sendCloudMessage(text);  
+        window.sendCloudMessage(text, false, '');  
         textInput.value = '';  
     }  
 
     function createHeartAtClick(e) {  
-        if(e.target.closest('#whatsappBox') || e.target.closest('button') || e.target.closest('input') || e.target.closest('.modal-card')) return;  
+        if(e.target.closest('#whatsappBox') || e.target.closest('button') || e.target.closest('input') || e.target.closest('.modal-card') || e.target.closest('#storiesBox')) return;  
         spawnHeart(e.clientX, e.clientY);  
     }  
 
