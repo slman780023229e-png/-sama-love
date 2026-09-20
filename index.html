@@ -75,6 +75,8 @@ button{
     -webkit-tap-highlight-color:transparent;
 }
 
+/* HEADER */
+
 .royal-header{
     width:100%;
     max-width:900px;
@@ -140,6 +142,8 @@ button{
     font-size:17px;
 }
 
+/* MAIN */
+
 .main-container{
     width:100%;
     max-width:900px;
@@ -178,6 +182,8 @@ button{
     box-shadow:0 8px 25px rgba(225,29,72,.3);
     transform:scale(1.02);
 }
+
+/* DISPLAY */
 
 .display-card{
     background:var(--card);
@@ -247,6 +253,8 @@ button{
     font-weight:800;
     color:var(--muted);
 }
+
+/* STORIES */
 
 .stories-container{
     display:none;
@@ -324,6 +332,8 @@ button{
     gap:10px;
 }
 
+/* WHATSAPP */
+
 .whatsapp-container{
     display:none;
     background:var(--wa-bg);
@@ -332,6 +342,7 @@ button{
     overflow:hidden;
     box-shadow:0 18px 45px rgba(0,0,0,.35);
     width:100%;
+    position:relative;
 }
 
 .wa-chat-header{
@@ -371,6 +382,12 @@ button{
     font-weight:800;
 }
 
+.header-chat-actions{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
 .members-button{
     background:#00a884;
     border:0;
@@ -382,6 +399,217 @@ button{
     cursor:pointer;
     white-space:nowrap;
 }
+
+/* NOTIFICATION BUTTON */
+
+.notification-wrapper{
+    position:relative;
+}
+
+.notification-bell-btn{
+    position:relative;
+    width:38px;
+    height:35px;
+    border:1px solid #3b4a52;
+    background:#111b21;
+    color:#fff;
+    border-radius:11px;
+    cursor:pointer;
+    font-size:17px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.notification-bell-btn:hover{
+    background:#26343c;
+}
+
+.notification-badge{
+    position:absolute;
+    top:-6px;
+    left:-5px;
+    min-width:18px;
+    height:18px;
+    padding:0 4px;
+    border-radius:20px;
+    background:#ef4444;
+    color:#fff;
+    font-size:9px;
+    font-weight:900;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    border:2px solid #1f2c34;
+    animation:badgePop .25s ease;
+}
+
+.notification-badge.show{
+    display:flex;
+}
+
+@keyframes badgePop{
+    0%{transform:scale(.4)}
+    80%{transform:scale(1.15)}
+    100%{transform:scale(1)}
+}
+
+/* NOTIFICATION PANEL */
+
+.notifications-panel{
+    display:none;
+    position:absolute;
+    top:52px;
+    left:10px;
+    right:10px;
+    width:min(390px,calc(100% - 20px));
+    margin:auto;
+    background:#202c33;
+    border:1px solid #3a4a52;
+    border-radius:17px;
+    box-shadow:0 18px 45px rgba(0,0,0,.55);
+    z-index:5000;
+    overflow:hidden;
+}
+
+.notifications-panel.open{
+    display:block;
+    animation:notificationPanelIn .2s ease;
+}
+
+@keyframes notificationPanelIn{
+    from{
+        opacity:0;
+        transform:translateY(-8px) scale(.98);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.notifications-head{
+    padding:11px 13px;
+    background:#111b21;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    border-bottom:1px solid #2a3942;
+}
+
+.notifications-title{
+    color:#fff;
+    font-size:12px;
+    font-weight:900;
+}
+
+.notifications-tools{
+    display:flex;
+    gap:5px;
+}
+
+.notification-small-btn{
+    border:1px solid #3a4a52;
+    background:#202c33;
+    color:#d1d5db;
+    border-radius:8px;
+    padding:5px 8px;
+    font-size:9px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.notification-small-btn:hover{
+    background:#2a3942;
+    color:#fff;
+}
+
+.notifications-list{
+    max-height:330px;
+    overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+}
+
+.notification-empty{
+    color:#8696a0;
+    text-align:center;
+    padding:28px 15px;
+    font-size:10px;
+    font-weight:700;
+}
+
+.notification-item{
+    display:flex;
+    align-items:flex-start;
+    gap:9px;
+    padding:11px 12px;
+    border-bottom:1px solid #2a3942;
+    cursor:pointer;
+    transition:.2s;
+    background:#202c33;
+}
+
+.notification-item:hover{
+    background:#26343c;
+}
+
+.notification-item.unread{
+    background:#26343c;
+    border-right:3px solid #00a884;
+}
+
+.notification-icon{
+    width:33px;
+    height:33px;
+    flex-shrink:0;
+    border-radius:50%;
+    background:linear-gradient(135deg,#00a884,#005c4b);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+}
+
+.notification-content{
+    flex:1;
+    min-width:0;
+}
+
+.notification-sender{
+    color:#53bdeb;
+    font-size:10.5px;
+    font-weight:900;
+    margin-bottom:2px;
+}
+
+.notification-preview{
+    color:#e9edef;
+    font-size:10.5px;
+    font-weight:600;
+    line-height:1.6;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.notification-time{
+    color:#8696a0;
+    font-size:8px;
+    margin-top:3px;
+}
+
+.notification-unread-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#00a884;
+    margin-top:7px;
+    flex-shrink:0;
+}
+
+/* DB */
 
 .db-status-bar{
     background:#111b21;
@@ -413,6 +641,8 @@ button{
     box-shadow:0 0 7px #ef4444;
 }
 
+/* MESSAGES */
+
 .wa-messages-area{
     height:410px;
     overflow-y:auto;
@@ -439,8 +669,14 @@ button{
 }
 
 @keyframes fadeBubble{
-    from{opacity:0;transform:translateY(5px)}
-    to{opacity:1;transform:translateY(0)}
+    from{
+        opacity:0;
+        transform:translateY(5px)
+    }
+    to{
+        opacity:1;
+        transform:translateY(0)
+    }
 }
 
 .wa-bubble.incoming{
@@ -508,6 +744,8 @@ button{
     color:#fff;
 }
 
+/* STICKERS */
+
 .stickers-panel{
     display:none;
     background:#1f2c34;
@@ -526,6 +764,8 @@ button{
     cursor:pointer;
     flex-shrink:0;
 }
+
+/* INPUT */
 
 .wa-input-footer{
     background:#202c33;
@@ -597,6 +837,8 @@ button{
     font-weight:700;
 }
 
+/* ACTIONS */
+
 .action-buttons-row{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -619,6 +861,8 @@ button{
 .action-btn:hover{
     transform:translateY(-2px);
 }
+
+/* MODALS */
 
 .modal-overlay{
     position:fixed;
@@ -690,6 +934,8 @@ button{
     font-size:12.5px;
 }
 
+/* SMALL SITE NOTIFICATION */
+
 .notification{
     position:fixed;
     bottom:20px;
@@ -717,6 +963,8 @@ button{
     transform:translateY(0);
     opacity:1;
 }
+
+/* HEARTS */
 
 .heart-float{
     position:fixed;
@@ -752,8 +1000,14 @@ button{
 }
 
 @keyframes sparkUp{
-    from{opacity:1;transform:translate(0,0) scale(1)}
-    to{opacity:0;transform:translate(var(--x),var(--y)) scale(.2)}
+    from{
+        opacity:1;
+        transform:translate(0,0) scale(1)
+    }
+    to{
+        opacity:0;
+        transform:translate(var(--x),var(--y)) scale(.2)
+    }
 }
 
 .empty-chat{
@@ -765,7 +1019,10 @@ button{
     padding:30px;
 }
 
+/* MOBILE */
+
 @media(max-width:768px){
+
     body{
         padding:9px;
     }
@@ -818,9 +1075,23 @@ button{
         min-height:350px;
         max-height:570px;
     }
+
+    .members-button{
+        padding:6px 8px;
+        font-size:9px;
+    }
+
+    .notification-bell-btn{
+        width:35px;
+    }
+
+    .notifications-panel{
+        top:51px;
+    }
 }
 
 @media(max-width:420px){
+
     .royal-title{
         max-width:190px;
     }
@@ -840,6 +1111,24 @@ button{
     .wa-bubble{
         max-width:84%;
     }
+
+    .wa-chat-header{
+        padding:9px;
+    }
+
+    .wa-avatar{
+        width:38px;
+        height:38px;
+    }
+
+    .header-chat-actions{
+        gap:3px;
+    }
+
+    .notification-small-btn{
+        padding:4px 6px;
+        font-size:8px;
+    }
 }
 </style>
 </head>
@@ -847,48 +1136,75 @@ button{
 <body onclick="createHeartAtClick(event)">
 
 <header class="royal-header">
-    <div class="royal-title">👑 مملكة العشق والخلود المخصصة لـ: سما</div>
+
+    <div class="royal-title">
+        👑 مملكة العشق والخلود المخصصة لـ: سما
+    </div>
 
     <div class="header-tools">
-        <button class="theme-btn" onclick="toggleDarkMode(event)" title="الوضع الليلي">🌙</button>
-        <div class="royal-badge">النسخة الملكية ✨</div>
+
+        <button
+            class="theme-btn"
+            onclick="toggleDarkMode(event)"
+            title="الوضع الليلي">
+            🌙
+        </button>
+
+        <div class="royal-badge">
+            النسخة الملكية ✨
+        </div>
+
     </div>
+
 </header>
 
 <div class="main-container">
 
     <div class="nav-places-grid">
 
-        <button class="place-btn active" onclick="switchPage(0)">
+        <button
+            class="place-btn active"
+            onclick="switchPage(0)">
             ✨ جنة العشق
         </button>
 
-        <button class="place-btn" onclick="switchPage(1)">
+        <button
+            class="place-btn"
+            onclick="switchPage(1)">
             🔥 واحة الشوق
         </button>
 
-        <button class="place-btn" onclick="switchPage(2)"
-                style="border-color:var(--gold);color:var(--gold)">
+        <button
+            class="place-btn"
+            onclick="switchPage(2)"
+            style="border-color:var(--gold);color:var(--gold)">
             💌 رسالة الوداع
         </button>
 
-        <button class="place-btn" onclick="switchPage(3)">
+        <button
+            class="place-btn"
+            onclick="switchPage(3)">
             💍 عهد الوفاء
         </button>
 
-        <button class="place-btn" onclick="switchPage(4)">
+        <button
+            class="place-btn"
+            onclick="switchPage(4)">
             📖 الستوريات
         </button>
 
-        <button class="place-btn"
-                onclick="openSecretModal()"
-                style="background:var(--card2);border-color:var(--primary);color:var(--primary)">
+        <button
+            class="place-btn"
+            onclick="openSecretModal()"
+            style="background:var(--card2);border-color:var(--primary);color:var(--primary)">
             🩷 دردشة سما
         </button>
 
     </div>
 
-    <div id="contentDisplayCard" class="display-card">
+    <div
+        id="contentDisplayCard"
+        class="display-card">
 
         <h2 id="pageTitle">
             ✨ جنة العشق الأبدي
@@ -902,6 +1218,7 @@ button{
         </p>
 
         <div class="love-stats">
+
             <div class="love-stat">
                 <strong id="heartCounter">∞</strong>
                 <span>نبضة حب</span>
@@ -916,9 +1233,12 @@ button{
                 <strong id="visitorCounter">0</strong>
                 <span>زيارة للجناح</span>
             </div>
+
         </div>
 
-        <div id="storiesBox" class="stories-container">
+        <div
+            id="storiesBox"
+            class="stories-container">
 
             <div class="story-card">
 
@@ -947,7 +1267,10 @@ button{
 
                 </div>
 
-                <div id="storiesList" class="stories-list"></div>
+                <div
+                    id="storiesList"
+                    class="stories-list">
+                </div>
 
             </div>
 
@@ -957,30 +1280,118 @@ button{
 
     <!-- CHAT -->
 
-    <div id="whatsappBox" class="whatsapp-container">
+    <div
+        id="whatsappBox"
+        class="whatsapp-container">
 
         <div class="wa-chat-header">
 
             <div class="wa-avatar-box">
 
-                <div class="wa-avatar">👑</div>
+                <div class="wa-avatar">
+                    👑
+                </div>
 
                 <div>
-                    <div style="color:#fff;font-weight:900;font-size:13px">
+
+                    <div
+                        style="color:#fff;font-weight:900;font-size:13px">
                         مملكة سلمان وسما 🩷
                     </div>
 
-                    <div id="onlineStatusText" class="wa-status-text">
+                    <div
+                        id="onlineStatusText"
+                        class="wa-status-text">
                         ● جاري فحص الاتصال...
                     </div>
+
                 </div>
 
             </div>
 
-            <button class="members-button" onclick="openMembersModal()">
-                👥 الأعضاء
-                (<span id="membersCountBadge">0</span>)
-            </button>
+            <div class="header-chat-actions">
+
+                <!-- زر الاشعارات -->
+
+                <div class="notification-wrapper">
+
+                    <button
+                        id="notificationBellBtn"
+                        class="notification-bell-btn"
+                        onclick="toggleNotificationsPanel(event)"
+                        title="الإشعارات">
+                        🔔
+
+                        <span
+                            id="notificationBadge"
+                            class="notification-badge">
+                            0
+                        </span>
+
+                    </button>
+
+                </div>
+
+                <button
+                    class="members-button"
+                    onclick="openMembersModal()">
+
+                    👥 الأعضاء
+                    (<span id="membersCountBadge">0</span>)
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- NOTIFICATIONS PANEL -->
+
+        <div
+            id="notificationsPanel"
+            class="notifications-panel">
+
+            <div class="notifications-head">
+
+                <div class="notifications-title">
+                    🔔 إشعارات المملكة
+                </div>
+
+                <div class="notifications-tools">
+
+                    <button
+                        id="browserNotificationBtn"
+                        class="notification-small-btn"
+                        onclick="enableBrowserNotifications(event)">
+                        🌐 تفعيل المتصفح
+                    </button>
+
+                    <button
+                        id="soundToggleBtn"
+                        class="notification-small-btn"
+                        onclick="toggleNotificationSound(event)">
+                        🔊 الصوت
+                    </button>
+
+                    <button
+                        class="notification-small-btn"
+                        onclick="clearAllNotifications(event)">
+                        🗑️ مسح
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div
+                id="notificationsList"
+                class="notifications-list">
+
+                <div class="notification-empty">
+                    🔔 لا توجد إشعارات جديدة
+                </div>
+
+            </div>
 
         </div>
 
@@ -988,7 +1399,10 @@ button{
 
             <div class="db-status-indicator">
 
-                <div id="dbDotIndicator" class="db-dot"></div>
+                <div
+                    id="dbDotIndicator"
+                    class="db-dot">
+                </div>
 
                 <span id="dbStatusMessage">
                     جاري الاتصال بقاعدة البيانات السحابية... ⏳
@@ -998,11 +1412,15 @@ button{
 
         </div>
 
-        <div id="typingIndicator" class="typing-indicator">
+        <div
+            id="typingIndicator"
+            class="typing-indicator">
             ✍️ هناك نشاط في المملكة...
         </div>
 
-        <div id="waMessagesList" class="wa-messages-area">
+        <div
+            id="waMessagesList"
+            class="wa-messages-area">
 
             <div class="empty-chat">
                 👑 مرحبا بك في مملكة سلمان وسما 🩷
@@ -1012,18 +1430,69 @@ button{
 
         </div>
 
-        <div id="stickersPanel" class="stickers-panel">
+        <div
+            id="stickersPanel"
+            class="stickers-panel">
 
-            <button class="sticker-item" onclick="sendSticker('💖')">💖</button>
-            <button class="sticker-item" onclick="sendSticker('👑')">👑</button>
-            <button class="sticker-item" onclick="sendSticker('🔥')">🔥</button>
-            <button class="sticker-item" onclick="sendSticker('🌹')">🌹</button>
-            <button class="sticker-item" onclick="sendSticker('✨')">✨</button>
-            <button class="sticker-item" onclick="sendSticker('💍')">💍</button>
-            <button class="sticker-item" onclick="sendSticker('🥺')">🥺</button>
-            <button class="sticker-item" onclick="sendSticker('🥰')">🥰</button>
-            <button class="sticker-item" onclick="sendSticker('🫶')">🫶</button>
-            <button class="sticker-item" onclick="sendSticker('💘')">💘</button>
+            <button
+                class="sticker-item"
+                onclick="sendSticker('💖')">
+                💖
+            </button>
+
+            <button
+                class="sticker-item"
+                onclick="sendSticker('👑')">
+                👑
+            </button>
+
+            <button
+                class="sticker-item"
+                onclick="sendSticker('🔥')">
+                🔥
+            </button>
+
+            <button
+                class="sticker-item"
+                onclick="sendSticker('🌹')">
+                🌹
+            </button>
+
+            <button
+                class="sticker-item"
+                onclick="sendSticker('✨')">
+                ✨
+            </button>
+
+            <button
+                class="sticker-item"
+                onclick="sendSticker('💍')">
+                💍
+            </button>
+
+            <button
+                class="sticker-item"
+                onclick="sendSticker('🥺')">
+                🥺
+            </button>
+
+            <button
+                class="sticker-item"
+                onclick="sendSticker('🥰')">
+                🥰
+            </button>
+
+            <button
+                class="sticker-item"
+                onclick="sendSticker('🫶')">
+                🫶
+            </button>
+
+            <button
+                class="sticker-item"
+                onclick="sendSticker('💘')">
+                💘
+            </button>
 
         </div>
 
@@ -1062,7 +1531,9 @@ button{
 
     <div class="action-buttons-row">
 
-        <button class="action-btn" onclick="triggerMegaExplosion(event)">
+        <button
+            class="action-btn"
+            onclick="triggerMegaExplosion(event)">
             💥 تفجير يملأ الشاشة باسم سما!
         </button>
 
@@ -1080,13 +1551,18 @@ button{
 
 <!-- PASSWORD MODAL -->
 
-<div id="secretModal" class="modal-overlay">
+<div
+    id="secretModal"
+    class="modal-overlay">
 
     <div class="modal-card">
 
-        <h3>🩷 بوابة اللقاء السري</h3>
+        <h3>
+            🩷 بوابة اللقاء السري
+        </h3>
 
-        <p style="font-size:12px;margin-bottom:12px;color:var(--muted);font-weight:700">
+        <p
+            style="font-size:12px;margin-bottom:12px;color:var(--muted);font-weight:700">
             أدخل الرمز الصحيح للمتابعة
         </p>
 
@@ -1116,13 +1592,18 @@ button{
 
 <!-- NAME MODAL -->
 
-<div id="nameModal" class="modal-overlay">
+<div
+    id="nameModal"
+    class="modal-overlay">
 
     <div class="modal-card">
 
-        <h3>✨ اسمك الكريم؟</h3>
+        <h3>
+            ✨ اسمك الكريم؟
+        </h3>
 
-        <p style="font-size:12px;margin-bottom:12px;color:var(--muted);font-weight:700">
+        <p
+            style="font-size:12px;margin-bottom:12px;color:var(--muted);font-weight:700">
             أدخل الاسم الذي سيظهر في الدردشة
         </p>
 
@@ -1147,7 +1628,9 @@ button{
 
 <!-- MEMBERS -->
 
-<div id="membersModal" class="modal-overlay">
+<div
+    id="membersModal"
+    class="modal-overlay">
 
     <div class="modal-card">
 
@@ -1156,13 +1639,18 @@ button{
             (<span id="modalTotalCount">0</span>)
         </h3>
 
-        <p style="font-size:11px;color:var(--muted);font-weight:700">
+        <p
+            style="font-size:11px;color:var(--muted);font-weight:700">
             سلمان محمي ولا يمكن حذفه
         </p>
 
-        <div id="membersListContainer" class="members-scroll-box"></div>
+        <div
+            id="membersListContainer"
+            class="members-scroll-box">
+        </div>
 
-        <h4 style="color:var(--primary);font-size:13px;text-align:right">
+        <h4
+            style="color:var(--primary);font-size:13px;text-align:right">
             🗑️ سلة المهملات
         </h4>
 
@@ -1183,13 +1671,17 @@ button{
 </div>
 
 
-<div id="notification" class="notification"></div>
+<div
+    id="notification"
+    class="notification">
+</div>
 
 
 <script type="module">
 
-import { initializeApp } from
-"https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 
 import {
     getDatabase,
@@ -1200,9 +1692,9 @@ import {
     onChildAdded,
     onChildRemoved,
     onValue,
-    update
-} from
-"https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    update,
+    get
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
 
 const firebaseConfig = {
@@ -1210,59 +1702,70 @@ const firebaseConfig = {
 };
 
 
-let db = null;
-let messagesRef = null;
-let storiesRef = null;
-let membersRef = null;
-let trashRef = null;
+let db=null;
+let messagesRef=null;
+let storiesRef=null;
+let membersRef=null;
+let trashRef=null;
 
-let isListenerActive = false;
+let isListenerActive=false;
+
+
+/* FIREBASE */
 
 try{
 
-    const app = initializeApp(firebaseConfig);
+    const app=initializeApp(firebaseConfig);
 
-    db = getDatabase(app);
+    db=getDatabase(app);
 
-    messagesRef =
+    messagesRef=
         ref(db,"sama_royal_chat/messages");
 
-    storiesRef =
+    storiesRef=
         ref(db,"sama_royal_chat/stories");
 
-    membersRef =
+    membersRef=
         ref(db,"sama_royal_chat/members");
 
-    trashRef =
+    trashRef=
         ref(db,"sama_royal_chat/trash");
 
 
-    const connectedRef =
+    const connectedRef=
         ref(db,".info/connected");
 
 
     onValue(connectedRef,(snap)=>{
 
-        const dot =
-            document.getElementById("dbDotIndicator");
+        const dot=
+            document.getElementById(
+                "dbDotIndicator"
+            );
 
-        const message =
-            document.getElementById("dbStatusMessage");
+        const message=
+            document.getElementById(
+                "dbStatusMessage"
+            );
 
-        const status =
-            document.getElementById("onlineStatusText");
+        const status=
+            document.getElementById(
+                "onlineStatusText"
+            );
 
 
-        if(snap.val() === true){
+        if(snap.val()===true){
 
             if(dot)
                 dot.className="db-dot";
 
             if(message)
-                message.innerText="الاتصال السحابي شغال ⚡";
+                message.innerText=
+                    "الاتصال السحابي شغال ⚡";
 
             if(status)
-                status.innerText="● متصل سحابيا";
+                status.innerText=
+                    "● متصل سحابيا";
 
         }else{
 
@@ -1270,11 +1773,12 @@ try{
                 dot.className="db-dot error";
 
             if(message)
-                message.innerText="الاتصال بالسحابة منقطع ❌";
+                message.innerText=
+                    "الاتصال بالسحابة منقطع ❌";
 
             if(status)
-                status.innerText="● منقطع";
-
+                status.innerText=
+                    "● منقطع";
         }
 
     });
@@ -1287,13 +1791,19 @@ try{
         const data=snapshot.val();
 
         const list=
-            document.getElementById("membersListContainer");
+            document.getElementById(
+                "membersListContainer"
+            );
 
         const badge=
-            document.getElementById("membersCountBadge");
+            document.getElementById(
+                "membersCountBadge"
+            );
 
         const total=
-            document.getElementById("modalTotalCount");
+            document.getElementById(
+                "modalTotalCount"
+            );
 
 
         if(list)
@@ -1301,6 +1811,7 @@ try{
 
 
         let count=0;
+
 
         if(data){
 
@@ -1331,9 +1842,9 @@ try{
 
                     nameSpan.innerHTML=
                         `👑 ${escapeHtml(member.name)}
-                         <small style="color:#888;font-size:9px">
-                         (${escapeHtml(member.time || "")})
-                         </small>`;
+                        <small style="color:#888;font-size:9px">
+                        (${escapeHtml(member.time || "")})
+                        </small>`;
 
 
                     row.appendChild(nameSpan);
@@ -1347,35 +1858,43 @@ try{
                         protectedText.innerText=
                             "محمي 🛡️";
 
-                        protectedText.style.color="#10b981";
-                        protectedText.style.fontSize="10px";
+                        protectedText.style.color=
+                            "#10b981";
 
-                        row.appendChild(protectedText);
+                        protectedText.style.fontSize=
+                            "10px";
+
+                        row.appendChild(
+                            protectedText
+                        );
 
                     }else{
 
                         const deleteBtn=
                             document.createElement("button");
 
-                        deleteBtn.innerText="حذف 🗑️";
+                        deleteBtn.innerText=
+                            "حذف 🗑️";
 
                         deleteBtn.style.cssText=
                             "background:#ef4444;color:#fff;border:0;padding:4px 9px;border-radius:8px;cursor:pointer;font-size:10px;font-weight:800";
 
                         deleteBtn.onclick=()=>{
+
                             window.removeMember(
                                 key,
                                 member.name,
                                 member.time || ""
                             );
+
                         };
 
-                        row.appendChild(deleteBtn);
-
+                        row.appendChild(
+                            deleteBtn
+                        );
                     }
 
                     list.appendChild(row);
-
                 }
 
             });
@@ -1399,7 +1918,9 @@ try{
         const data=snapshot.val();
 
         const box=
-            document.getElementById("trashListContainer");
+            document.getElementById(
+                "trashListContainer"
+            );
 
         if(box)
             box.innerHTML="";
@@ -1428,23 +1949,28 @@ try{
             const name=
                 document.createElement("span");
 
-            name.innerText="🗑️ "+item.name;
+            name.innerText=
+                "🗑️ "+item.name;
 
 
             const restore=
                 document.createElement("button");
 
-            restore.innerText="استرجاع ♻️";
+            restore.innerText=
+                "استرجاع ♻️";
 
             restore.style.cssText=
                 "background:#10b981;color:#fff;border:0;padding:4px 9px;border-radius:8px;cursor:pointer;font-size:10px;font-weight:800";
 
+
             restore.onclick=()=>{
+
                 window.restoreMember(
                     key,
                     item.name,
                     item.time || ""
                 );
+
             };
 
 
@@ -1460,151 +1986,268 @@ try{
 
 }catch(error){
 
-    console.error("Firebase Init Error:",error);
+    console.error(
+        "Firebase Init Error:",
+        error
+    );
 
     const message=
-        document.getElementById("dbStatusMessage");
+        document.getElementById(
+            "dbStatusMessage"
+        );
 
     if(message)
         message.innerText=
             "تعذر تشغيل قاعدة البيانات ❌";
-
 }
 
 
-/* CHAT LISTENER */
+/* CHAT INITIALIZATION */
 
-window.initCloudChat=function(){
+window.initCloudChat=async function(){
 
-    if(isListenerActive || !messagesRef)
+    if(
+        isListenerActive ||
+        !messagesRef
+    )
         return;
 
     isListenerActive=true;
 
 
     const list=
-        document.getElementById("waMessagesList");
+        document.getElementById(
+            "waMessagesList"
+        );
 
     if(list)
         list.innerHTML="";
 
 
-    onChildAdded(messagesRef,(snapshot)=>{
+    /*
+       مهم جدا:
+       onChildAdded يرجع الرسائل القديمة أيضا.
+       لذلك نقرأ الرسائل الموجودة أولا
+       حتى لا تتحول الرسائل القديمة إلى
+       إشعارات جديدة.
+    */
 
-        const msg=snapshot.val();
+    let knownMessageIds=new Set();
 
-        if(!msg)
-            return;
+    try{
 
+        const initialSnapshot=
+            await get(messagesRef);
 
-        renderCloudBubble(
-            snapshot.key,
-            msg.sender || "مجهول",
-            msg.text || "",
-            msg.time || "",
-            msg.isVoice || false,
-            msg.audioUrl || ""
-        );
+        initialSnapshot.forEach(child=>{
 
-    });
-
-
-    onChildRemoved(messagesRef,(snapshot)=>{
-
-        const el=
-            document.getElementById(
-                "msg-"+snapshot.key
+            knownMessageIds.add(
+                child.key
             );
 
-        if(el)
-            el.remove();
+        });
 
-    });
+    }catch(error){
+
+        console.warn(
+            "Initial messages sync error:",
+            error
+        );
+
+    }
+
+
+    /* CHAT */
+
+    onChildAdded(
+        messagesRef,
+        (snapshot)=>{
+
+            const msg=snapshot.val();
+
+            if(!msg)
+                return;
+
+
+            const wasKnown=
+                knownMessageIds.has(
+                    snapshot.key
+                );
+
+
+            /*
+               نضيف المفتاح دائما حتى لا
+               يتكرر الإشعار.
+            */
+
+            knownMessageIds.add(
+                snapshot.key
+            );
+
+
+            renderCloudBubble(
+                snapshot.key,
+                msg.sender || "مجهول",
+                msg.text || "",
+                msg.time || "",
+                msg.isVoice || false,
+                msg.audioUrl || "",
+                !wasKnown
+            );
+
+
+            /*
+               إذا كانت الرسالة جديدة
+               وليست من صاحب الصفحة
+               نصنع إشعارا.
+            */
+
+            const myName=
+                localStorage.getItem(
+                    "sama_chat_user_name"
+                ) || "سلمان";
+
+
+            const sender=
+                String(
+                    msg.sender || "مجهول"
+                );
+
+
+            if(
+                !wasKnown &&
+                sender.trim() !==
+                String(myName).trim()
+            ){
+
+                addMessageNotification({
+                    id:snapshot.key,
+                    sender:sender,
+                    text:msg.text || "",
+                    time:msg.time || "",
+                    timestamp:
+                        msg.timestamp ||
+                        Date.now()
+                });
+
+            }
+
+        }
+    );
+
+
+    /* REMOVE */
+
+    onChildRemoved(
+        messagesRef,
+        (snapshot)=>{
+
+            const el=
+                document.getElementById(
+                    "msg-"+snapshot.key
+                );
+
+            if(el)
+                el.remove();
+
+        }
+    );
 
 
     /* STORIES */
 
-    onChildAdded(storiesRef,(snapshot)=>{
+    onChildAdded(
+        storiesRef,
+        (snapshot)=>{
 
-        const st=snapshot.val();
+            const st=snapshot.val();
 
-        if(!st)
-            return;
-
-
-        const box=
-            document.getElementById("storiesList");
-
-        if(!box)
-            return;
+            if(!st)
+                return;
 
 
-        const div=
-            document.createElement("div");
+            const box=
+                document.getElementById(
+                    "storiesList"
+                );
 
-        div.id="story-"+snapshot.key;
-
-        div.className="story-bubble";
-
-
-        const content=
-            document.createElement("div");
-
-        content.innerHTML=
-            `<strong>${escapeHtml(st.sender || "مجهول")}:</strong>
-             ${escapeHtml(st.text || "")}`;
+            if(!box)
+                return;
 
 
-        const time=
-            document.createElement("span");
+            const div=
+                document.createElement("div");
 
-        time.innerText=st.time || "";
+            div.id=
+                "story-"+snapshot.key;
 
-        time.style.cssText=
-            "font-size:9px;color:#888;white-space:nowrap";
+            div.className=
+                "story-bubble";
 
 
-        div.appendChild(content);
-        div.appendChild(time);
+            const content=
+                document.createElement("div");
 
-        box.prepend(div);
+            content.innerHTML=
+                `<strong>
+                    ${escapeHtml(st.sender || "مجهول")}:
+                </strong>
+                ${escapeHtml(st.text || "")}`;
 
-    });
+
+            const time=
+                document.createElement("span");
+
+            time.innerText=
+                st.time || "";
+
+            time.style.cssText=
+                "font-size:9px;color:#888;white-space:nowrap";
+
+
+            div.appendChild(content);
+            div.appendChild(time);
+
+            box.prepend(div);
+
+        }
+    );
 
 };
 
 
 /* REGISTER MEMBER */
 
-window.registerMemberInCloud=function(name){
+window.registerMemberInCloud=
+function(name){
 
     if(!membersRef || !name)
         return;
 
 
-    const cleanName=name.trim();
+    const cleanName=
+        name.trim();
 
-
-    /*
-      منع إنشاء عضو جديد كل مرة يدخل فيها
-      بنفس الاسم
-    */
 
     onValue(
         membersRef,
         (snapshot)=>{
 
-            const data=snapshot.val() || {};
+            const data=
+                snapshot.val() || {};
 
             let exists=false;
+
 
             Object.keys(data).forEach(key=>{
 
                 if(
                     data[key] &&
-                    String(data[key].name || "")
-                        .trim()
-                        .toLowerCase()
+                    String(
+                        data[key].name || ""
+                    )
+                    .trim()
+                    .toLowerCase()
                     ===
                     cleanName.toLowerCase()
                 ){
@@ -1630,7 +2273,8 @@ window.registerMemberInCloud=function(name){
                 );
 
 
-            const newRef=push(membersRef);
+            const newRef=
+                push(membersRef);
 
 
             set(newRef,{
@@ -1640,7 +2284,9 @@ window.registerMemberInCloud=function(name){
             });
 
         },
-        {onlyOnce:true}
+        {
+            onlyOnce:true
+        }
     );
 
 };
@@ -1648,26 +2294,32 @@ window.registerMemberInCloud=function(name){
 
 /* DELETE MEMBER */
 
-window.removeMember=function(key,name,time){
+window.removeMember=
+function(key,name,time){
 
-    if(String(name).trim()==="سلمان"){
+    if(
+        String(name).trim()==="سلمان"
+    ){
 
         showNotification(
             "سلمان محمي للأبد ولا يمكن حذفه 🛡️👑"
         );
 
         return;
-
     }
 
 
-    if(!confirm(
-        "هل تريد نقل "+name+" إلى سلة المهملات؟"
-    ))
+    if(
+        !confirm(
+            "هل تريد نقل "+name+
+            " إلى سلة المهملات؟"
+        )
+    )
         return;
 
 
-    const newTrashRef=push(trashRef);
+    const newTrashRef=
+        push(trashRef);
 
 
     set(newTrashRef,{
@@ -1678,7 +2330,8 @@ window.removeMember=function(key,name,time){
     .then(()=>{
 
         return remove(
-            ref(db,
+            ref(
+                db,
                 "sama_royal_chat/members/"+key
             )
         );
@@ -1697,7 +2350,8 @@ window.removeMember=function(key,name,time){
 
 /* RESTORE */
 
-window.restoreMember=function(
+window.restoreMember=
+function(
     key,
     name,
     time
@@ -1719,7 +2373,8 @@ window.restoreMember=function(
     .then(()=>{
 
         return remove(
-            ref(db,
+            ref(
+                db,
                 "sama_royal_chat/trash/"+key
             )
         );
@@ -1731,7 +2386,8 @@ window.restoreMember=function(
 
 /* SEND MESSAGE */
 
-window.sendCloudMessage=function(
+window.sendCloudMessage=
+function(
     text,
     isVoice=false,
     audioUrl=""
@@ -1765,17 +2421,19 @@ window.sendCloudMessage=function(
 
         sender:sender,
 
-        text:String(text).slice(0,2000),
+        text:String(text)
+            .slice(0,2000),
 
         isVoice:Boolean(isVoice),
 
         /*
-          ملاحظة:
-          audioUrl المحلي سيعمل في نفس الصفحة فقط.
-          أبقيناه حتى لا تتغير بنية بياناتك الحالية.
+           ملاحظة:
+           audioUrl المحلي سيعمل في نفس الصفحة فقط.
+           أبقيناه حتى لا تتغير بنية بياناتك الحالية.
         */
 
-        audioUrl:audioUrl || "",
+        audioUrl:
+            audioUrl || "",
 
         time:timeNow,
 
@@ -1788,13 +2446,16 @@ window.sendCloudMessage=function(
 
 /* DELETE MESSAGE */
 
-window.deleteCloudMessage=function(id){
+window.deleteCloudMessage=
+function(id){
 
     if(!messagesRef)
         return;
 
 
-    if(!confirm("حذف الرسالة للجميع؟"))
+    if(!confirm(
+        "حذف الرسالة للجميع؟"
+    ))
         return;
 
 
@@ -1824,7 +2485,8 @@ window.deleteCloudMessage=function(id){
 
 /* STORY */
 
-window.postCloudStory=function(text){
+window.postCloudStory=
+function(text){
 
     if(!storiesRef || !text)
         return;
@@ -1854,7 +2516,8 @@ window.postCloudStory=function(text){
 
         sender:sender,
 
-        text:String(text).slice(0,500),
+        text:String(text)
+            .slice(0,500),
 
         time:timeNow,
 
@@ -1883,31 +2546,1057 @@ function escapeHtml(value){
 
 <script>
 
+/* =========================================================
+   NOTIFICATION SYSTEM
+   ========================================================= */
+
+
+/* STORAGE */
+
+const NOTIFICATIONS_STORAGE_KEY=
+    "sama_chat_notifications";
+
+const NOTIFICATION_SOUND_KEY=
+    "sama_notification_sound";
+
+let notificationSoundEnabled=
+    localStorage.getItem(
+        NOTIFICATION_SOUND_KEY
+    ) !== "false";
+
+let notificationAudioContext=null;
+
+
+/* GET NOTIFICATIONS */
+
+function getSavedNotifications(){
+
+    try{
+
+        const data=
+            JSON.parse(
+                localStorage.getItem(
+                    NOTIFICATIONS_STORAGE_KEY
+                ) || "[]"
+            );
+
+        return Array.isArray(data)
+            ? data
+            : [];
+
+    }catch{
+
+        return [];
+
+    }
+
+}
+
+
+/* SAVE NOTIFICATIONS */
+
+function saveNotifications(list){
+
+    try{
+
+        /*
+           نخزن آخر 100 إشعار فقط
+           حتى لا يكبر localStorage بلا حدود.
+        */
+
+        localStorage.setItem(
+            NOTIFICATIONS_STORAGE_KEY,
+            JSON.stringify(
+                list.slice(0,100)
+            )
+        );
+
+    }catch(error){
+
+        console.warn(
+            "Notification storage error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* COUNT UNREAD */
+
+function getUnreadCount(){
+
+    return getSavedNotifications()
+        .filter(item=>!item.read)
+        .length;
+
+}
+
+
+/* UPDATE BADGE */
+
+function updateNotificationBadge(){
+
+    const badge=
+        document.getElementById(
+            "notificationBadge"
+        );
+
+    if(!badge)
+        return;
+
+
+    const count=
+        getUnreadCount();
+
+
+    if(count>0){
+
+        badge.innerText=
+            count>99
+            ? "99+"
+            : count;
+
+        badge.classList.add(
+            "show"
+        );
+
+    }else{
+
+        badge.innerText="0";
+
+        badge.classList.remove(
+            "show"
+        );
+
+    }
+
+}
+
+
+/* FORMAT NOTIFICATION */
+
+function renderNotifications(){
+
+    const box=
+        document.getElementById(
+            "notificationsList"
+        );
+
+    if(!box)
+        return;
+
+
+    const list=
+        getSavedNotifications();
+
+
+    box.innerHTML="";
+
+
+    if(!list.length){
+
+        const empty=
+            document.createElement("div");
+
+        empty.className=
+            "notification-empty";
+
+        empty.innerHTML=
+            "🔔 لا توجد إشعارات جديدة";
+
+        box.appendChild(empty);
+
+        updateNotificationBadge();
+
+        return;
+    }
+
+
+    list.forEach(item=>{
+
+        const row=
+            document.createElement("div");
+
+        row.className=
+            "notification-item"+
+            (
+                item.read
+                ? ""
+                : " unread"
+            );
+
+
+        row.onclick=()=>{
+            openNotificationMessage(
+                item.id
+            );
+        };
+
+
+        const icon=
+            document.createElement("div");
+
+        icon.className=
+            "notification-icon";
+
+        icon.innerText=
+            item.isVoice
+            ? "🎙️"
+            : "💌";
+
+
+        const content=
+            document.createElement("div");
+
+        content.className=
+            "notification-content";
+
+
+        const sender=
+            document.createElement("div");
+
+        sender.className=
+            "notification-sender";
+
+        sender.innerText=
+            item.sender || "مجهول";
+
+
+        const preview=
+            document.createElement("div");
+
+        preview.className=
+            "notification-preview";
+
+        preview.innerText=
+            item.text ||
+            "رسالة جديدة";
+
+
+        const time=
+            document.createElement("div");
+
+        time.className=
+            "notification-time";
+
+        time.innerText=
+            item.time ||
+            "";
+
+
+        content.appendChild(sender);
+        content.appendChild(preview);
+        content.appendChild(time);
+
+
+        row.appendChild(icon);
+        row.appendChild(content);
+
+
+        if(!item.read){
+
+            const dot=
+                document.createElement("div");
+
+            dot.className=
+                "notification-unread-dot";
+
+            row.appendChild(dot);
+
+        }
+
+
+        box.appendChild(row);
+
+    });
+
+
+    updateNotificationBadge();
+
+}
+
+
+/* ADD MESSAGE NOTIFICATION */
+
+function addMessageNotification(data){
+
+    if(!data || !data.id)
+        return;
+
+
+    let list=
+        getSavedNotifications();
+
+
+    /*
+       منع تكرار نفس الرسالة
+    */
+
+    const exists=
+        list.some(
+            item=>item.id===data.id
+        );
+
+
+    if(exists)
+        return;
+
+
+    const item={
+
+        id:String(data.id),
+
+        sender:
+            String(
+                data.sender ||
+                "مجهول"
+            ),
+
+        text:
+            String(
+                data.text ||
+                ""
+            ).slice(0,500),
+
+        time:
+            String(
+                data.time ||
+                ""
+            ),
+
+        timestamp:
+            Number(
+                data.timestamp ||
+                Date.now()
+            ),
+
+        isVoice:
+            Boolean(data.isVoice),
+
+        read:false
+
+    };
+
+
+    list.unshift(item);
+
+
+    saveNotifications(list);
+
+    renderNotifications();
+
+
+    /*
+       صوت الرسالة
+    */
+
+    playNotificationSound();
+
+
+    /*
+       تنبيه داخل الصفحة
+    */
+
+    showNotification(
+        "💌 رسالة جديدة من "+
+        item.sender
+    );
+
+
+    /*
+       إشعار المتصفح
+       فقط عندما الصفحة ليست أمام المستخدم
+    */
+
+    showBrowserNotification(item);
+
+}
+
+
+/* BROWSER NOTIFICATION */
+
+async function enableBrowserNotifications(event){
+
+    if(event)
+        event.stopPropagation();
+
+
+    if(!("Notification" in window)){
+
+        showNotification(
+            "المتصفح لا يدعم إشعارات النظام ❌"
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        if(Notification.permission==="granted"){
+
+            showNotification(
+                "إشعارات المتصفح مفعلة بالفعل 🔔"
+            );
+
+            updateBrowserNotificationButton();
+
+            return;
+
+        }
+
+
+        if(Notification.permission==="denied"){
+
+            showNotification(
+                "الإشعارات مرفوضة من إعدادات المتصفح ⚠️"
+            );
+
+            return;
+
+        }
+
+
+        const permission=
+            await Notification.requestPermission();
+
+
+        if(permission==="granted"){
+
+            showNotification(
+                "تم تفعيل إشعارات المتصفح 🔔✨"
+            );
+
+        }else{
+
+            showNotification(
+                "لم يتم السماح بالإشعارات"
+            );
+
+        }
+
+
+        updateBrowserNotificationButton();
+
+    }catch(error){
+
+        console.warn(
+            "Browser notification error:",
+            error
+        );
+
+        showNotification(
+            "تعذر تفعيل إشعارات المتصفح ❌"
+        );
+
+    }
+
+}
+
+
+/* UPDATE BROWSER BUTTON */
+
+function updateBrowserNotificationButton(){
+
+    const btn=
+        document.getElementById(
+            "browserNotificationBtn"
+        );
+
+    if(!btn)
+        return;
+
+
+    if(!("Notification" in window)){
+
+        btn.innerText=
+            "🌐 غير مدعوم";
+
+        return;
+
+    }
+
+
+    if(
+        Notification.permission===
+        "granted"
+    ){
+
+        btn.innerText=
+            "✅ المتصفح مفعل";
+
+    }else if(
+        Notification.permission===
+        "denied"
+    ){
+
+        btn.innerText=
+            "🚫 محظور";
+
+    }else{
+
+        btn.innerText=
+            "🌐 تفعيل المتصفح";
+
+    }
+
+}
+
+
+/* SHOW BROWSER NOTIFICATION */
+
+function showBrowserNotification(item){
+
+    if(
+        !item ||
+        !("Notification" in window)
+    )
+        return;
+
+
+    /*
+       إذا الصفحة مفتوحة أمام المستخدم
+       يكفي إشعار الموقع والصوت.
+    */
+
+    if(
+        !document.hidden
+    )
+        return;
+
+
+    if(
+        Notification.permission!=="granted"
+    )
+        return;
+
+
+    try{
+
+        const title=
+            "💌 رسالة جديدة من "+
+            item.sender;
+
+
+        const body=
+            item.isVoice
+            ? "🎙️ أرسل رسالة صوتية ملكية"
+            : (
+                item.text ||
+                "لديك رسالة جديدة"
+            );
+
+
+        const browserNotification=
+            new Notification(
+                title,
+                {
+                    body:
+                        body.slice(0,150),
+
+                    icon:
+                        "",
+                    
+                    tag:
+                        "sama-message-"+item.id,
+
+                    renotify:true
+                }
+            );
+
+
+        browserNotification.onclick=()=>{
+
+            try{
+                window.focus();
+            }catch{}
+
+            browserNotification.close();
+
+            openChatRoom();
+
+            setTimeout(()=>{
+
+                scrollToMessage(
+                    item.id
+                );
+
+            },300);
+
+        };
+
+    }catch(error){
+
+        console.warn(
+            "Browser notification failed:",
+            error
+        );
+
+    }
+
+}
+
+
+/* AUDIO */
+
+function initNotificationAudio(){
+
+    try{
+
+        const AudioContext=
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+
+        if(!AudioContext)
+            return;
+
+
+        if(!notificationAudioContext){
+
+            notificationAudioContext=
+                new AudioContext();
+
+        }
+
+
+        if(
+            notificationAudioContext.state===
+            "suspended"
+        ){
+
+            notificationAudioContext.resume()
+                .catch(()=>{});
+
+        }
+
+    }catch(error){
+
+        console.warn(
+            "Audio init error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* PLAY NOTIFICATION SOUND */
+
+function playNotificationSound(){
+
+    if(!notificationSoundEnabled)
+        return;
+
+
+    try{
+
+        initNotificationAudio();
+
+
+        if(!notificationAudioContext)
+            return;
+
+
+        const ctx=
+            notificationAudioContext;
+
+
+        if(ctx.state==="suspended"){
+
+            ctx.resume()
+                .catch(()=>{});
+
+        }
+
+
+        const oscillator=
+            ctx.createOscillator();
+
+        const gain=
+            ctx.createGain();
+
+
+        oscillator.type=
+            "sine";
+
+
+        oscillator.frequency.setValueAtTime(
+            880,
+            ctx.currentTime
+        );
+
+
+        oscillator.frequency.exponentialRampToValueAtTime(
+            660,
+            ctx.currentTime+.12
+        );
+
+
+        gain.gain.setValueAtTime(
+            0.0001,
+            ctx.currentTime
+        );
+
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.18,
+            ctx.currentTime+.015
+        );
+
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.0001,
+            ctx.currentTime+.28
+        );
+
+
+        oscillator.connect(gain);
+        gain.connect(ctx.destination);
+
+
+        oscillator.start(
+            ctx.currentTime
+        );
+
+
+        oscillator.stop(
+            ctx.currentTime+.3
+        );
+
+
+    }catch(error){
+
+        console.warn(
+            "Notification sound error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* TOGGLE SOUND */
+
+function toggleNotificationSound(event){
+
+    if(event)
+        event.stopPropagation();
+
+
+    notificationSoundEnabled=
+        !notificationSoundEnabled;
+
+
+    localStorage.setItem(
+        NOTIFICATION_SOUND_KEY,
+        notificationSoundEnabled
+        ? "true"
+        : "false"
+    );
+
+
+    updateSoundButton();
+
+
+    if(notificationSoundEnabled){
+
+        initNotificationAudio();
+
+        playNotificationSound();
+
+        showNotification(
+            "🔊 صوت الإشعارات مفعل"
+        );
+
+    }else{
+
+        showNotification(
+            "🔕 تم كتم صوت الإشعارات"
+        );
+
+    }
+
+}
+
+
+/* UPDATE SOUND BUTTON */
+
+function updateSoundButton(){
+
+    const btn=
+        document.getElementById(
+            "soundToggleBtn"
+        );
+
+    if(!btn)
+        return;
+
+
+    btn.innerText=
+        notificationSoundEnabled
+        ? "🔊 الصوت"
+        : "🔕 مكتوم";
+
+}
+
+
+/* OPEN NOTIFICATION PANEL */
+
+function toggleNotificationsPanel(event){
+
+    if(event)
+        event.stopPropagation();
+
+
+    initNotificationAudio();
+
+
+    const panel=
+        document.getElementById(
+            "notificationsPanel"
+        );
+
+    if(!panel)
+        return;
+
+
+    const opening=
+        !panel.classList.contains(
+            "open"
+        );
+
+
+    panel.classList.toggle(
+        "open",
+        opening
+    );
+
+
+    if(opening){
+
+        renderNotifications();
+
+    }
+
+}
+
+
+/* CLEAR NOTIFICATIONS */
+
+function clearAllNotifications(event){
+
+    if(event)
+        event.stopPropagation();
+
+
+    const list=
+        getSavedNotifications();
+
+
+    if(!list.length){
+
+        showNotification(
+            "لا توجد إشعارات لمسحها"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        !confirm(
+            "هل تريد مسح جميع الإشعارات؟"
+        )
+    )
+        return;
+
+
+    localStorage.removeItem(
+        NOTIFICATIONS_STORAGE_KEY
+    );
+
+
+    renderNotifications();
+
+
+    showNotification(
+        "تم مسح الإشعارات 🗑️"
+    );
+
+}
+
+
+/* OPEN MESSAGE FROM NOTIFICATION */
+
+function openNotificationMessage(id){
+
+    const list=
+        getSavedNotifications();
+
+
+    const item=
+        list.find(
+            notification=>
+                notification.id===id
+        );
+
+
+    if(!item)
+        return;
+
+
+    item.read=true;
+
+
+    saveNotifications(list);
+
+    renderNotifications();
+
+
+    const panel=
+        document.getElementById(
+            "notificationsPanel"
+        );
+
+
+    if(panel)
+        panel.classList.remove(
+            "open"
+        );
+
+
+    openChatRoom();
+
+
+    setTimeout(()=>{
+
+        scrollToMessage(id);
+
+    },250);
+
+}
+
+
+/* SCROLL TO MESSAGE */
+
+function scrollToMessage(id){
+
+    const element=
+        document.getElementById(
+            "msg-"+id
+        );
+
+
+    if(!element)
+        return;
+
+
+    element.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
+
+    const oldShadow=
+        element.style.boxShadow;
+
+
+    element.style.boxShadow=
+        "0 0 0 3px rgba(0,168,132,.7),0 0 25px rgba(0,168,132,.45)";
+
+
+    setTimeout(()=>{
+
+        element.style.boxShadow=
+            oldShadow || "";
+
+    },1600);
+
+}
+
+
+/* INITIAL NOTIFICATION UI */
+
+function initNotificationUI(){
+
+    updateNotificationBadge();
+
+    renderNotifications();
+
+    updateSoundButton();
+
+    updateBrowserNotificationButton();
+
+}
+
+
+/* USER INTERACTION
+   مهم لتجاوز قيود الصوت في بعض المتصفحات
+*/
+
+document.addEventListener(
+    "click",
+    ()=>{
+        initNotificationAudio();
+    },
+    {
+        once:true,
+        passive:true
+    }
+);
+
+
+/* =========================================================
+   PAGES
+   ========================================================= */
+
 const pagesData=[
 
 {
-    title:"✨ جنة العشق الأبدي (عرش روحي المطلق)",
-    desc:"سما.. يا من ملأت أيامي نورا وحياة. أنت لست مجرد شخص أحبه، أنت عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودك معي يجعل العالم مكانا أجمل بكثير."
+    title:
+        "✨ جنة العشق الأبدي (عرش روحي المطلق)",
+
+    desc:
+        "سما.. يا من ملأت أيامي نورا وحياة. أنت لست مجرد شخص أحبه، أنت عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودك معي يجعل العالم مكانا أجمل بكثير."
 },
 
 {
-    title:"🔥 واحة الشوق والجنون (حيث يشتعل قلبي بحبك)",
-    desc:"أنا مغرم بك بجنون لا توصفه الكلمات يا سما. كل تفصيلة فيك تسرقني، صوتك، ابتسامتك، ونظراتك. حبك هو القوة الوحيدة التي تجعلني أواجه صعوبات هذه الحياة بكل ثبات."
+    title:
+        "🔥 واحة الشوق والجنون (حيث يشتعل قلبي بحبك)",
+
+    desc:
+        "أنا مغرم بك بجنون لا توصفه الكلمات يا سما. كل تفصيلة فيك تسرقني، صوتك، ابتسامتك، ونظراتك. حبك هو القوة الوحيدة التي تجعلني أواجه صعوبات هذه الحياة بكل ثبات."
 },
 
 {
-    title:"💌 رسالة الوداع والاعتذار الكبرى",
-    desc:"سما.. إذا حدث في يوم من الأيام واضطررنا للابتعاد، أو إن صدر مني تقصير أو خطأ دون قصد، فاعلمي جيدا أن قلبي لم يعرف طعم الصدق إلا معك. سامحيني على كل لحظة قصرت فيها، وتأكدي أن حبي لك لا يزول بل يزداد عمقا مع كل ثانية تمر."
+    title:
+        "💌 رسالة الوداع والاعتذار الكبرى",
+
+    desc:
+        "سما.. إذا حدث في يوم من الأيام واضطررنا للابتعاد، أو إن صدر مني تقصير أو خطأ دون قصد، فاعلمي جيدا أن قلبي لم يعرف طعم الصدق إلا معك. سامحيني على كل لحظة قصرت فيها، وتأكدي أن حبي لك لا يزول بل يزداد عمقا مع كل ثانية تمر."
 },
 
 {
-    title:"💍 عهد الوفاء والمصير",
-    desc:"أقسم برب الكون يا سما، أنني سأبقى سندك وقوتك ومأمنك حتى آخر نبض في عمري. معك أدركت معنى الاستقرار الحقيقي، وللأبد نحن قصة عشق لا تنتهي."
+    title:
+        "💍 عهد الوفاء والمصير",
+
+    desc:
+        "أقسم برب الكون يا سما، أنني سأبقى سندك وقوتك ومأمنك حتى آخر نبض في عمري. معك أدركت معنى الاستقرار الحقيقي، وللأبد نحن قصة عشق لا تنتهي."
 },
 
 {
-    title:"📖 ستوريات وحالات المملكة الملكية",
-    desc:"شارك أفكارك ومشاعرك وحالاتك الرومانسية لتظهر في السحابة وتخلد هنا."
+    title:
+        "📖 ستوريات وحالات المملكة الملكية",
+
+    desc:
+        "شارك أفكارك ومشاعرك وحالاتك الرومانسية لتظهر في السحابة وتخلد هنا."
 }
 
 ];
@@ -1915,52 +3604,75 @@ const pagesData=[
 
 function switchPage(index){
 
-    document.getElementById("whatsappBox")
-        .style.display="none";
-
-    document.getElementById("contentDisplayCard")
-        .style.display="block";
-
-    document.getElementById("storiesBox")
-        .style.display="none";
-
-    document.getElementById("pageTitle")
-        .style.display="block";
-
-    document.getElementById("pageDesc")
-        .style.display="block";
+    document.getElementById(
+        "whatsappBox"
+    ).style.display="none";
 
 
-    document.querySelectorAll(".place-btn")
-        .forEach((btn,i)=>{
-
-            btn.classList.toggle(
-                "active",
-                i===index
-            );
-
-        });
+    document.getElementById(
+        "contentDisplayCard"
+    ).style.display="block";
 
 
-    document.getElementById("pageTitle")
-        .innerText=pagesData[index].title;
+    document.getElementById(
+        "storiesBox"
+    ).style.display="none";
 
-    document.getElementById("pageDesc")
-        .innerText=pagesData[index].desc;
+
+    document.getElementById(
+        "pageTitle"
+    ).style.display="block";
+
+
+    document.getElementById(
+        "pageDesc"
+    ).style.display="block";
+
+
+    document.querySelectorAll(
+        ".place-btn"
+    )
+    .forEach((btn,i)=>{
+
+        btn.classList.toggle(
+            "active",
+            i===index
+        );
+
+    });
+
+
+    document.getElementById(
+        "pageTitle"
+    ).innerText=
+        pagesData[index].title;
+
+
+    document.getElementById(
+        "pageDesc"
+    ).innerText=
+        pagesData[index].desc;
 
 
     if(index===4){
 
-        document.getElementById("storiesBox")
-            .style.display="flex";
+        document.getElementById(
+            "storiesBox"
+        ).style.display="flex";
 
-        if(typeof window.initCloudChat==="function")
+
+        if(
+            typeof window.initCloudChat===
+            "function"
+        )
             window.initCloudChat();
 
     }
 
 }
 
+
+/* SECRET */
 
 function openSecretModal(){
 
@@ -1991,6 +3703,7 @@ function closeSecretModal(){
         "secretModal"
     ).style.display="none";
 
+
     document.getElementById(
         "modalPasswordInput"
     ).value="";
@@ -2012,6 +3725,7 @@ function verifySecretPassword(){
             "sama_chat_auth_verified",
             "true"
         );
+
 
         closeSecretModal();
 
@@ -2051,6 +3765,8 @@ function checkNameAndOpenChat(){
 }
 
 
+/* NAME */
+
 function saveMyName(){
 
     const input=
@@ -2059,7 +3775,8 @@ function saveMyName(){
         );
 
 
-    const name=input.value.trim();
+    const name=
+        input.value.trim();
 
 
     if(!name){
@@ -2069,7 +3786,6 @@ function saveMyName(){
         );
 
         return;
-
     }
 
 
@@ -2084,8 +3800,16 @@ function saveMyName(){
     ).style.display="none";
 
 
-    if(typeof window.registerMemberInCloud==="function")
-        window.registerMemberInCloud(name);
+    if(
+        typeof window.registerMemberInCloud===
+        "function"
+    ){
+
+        window.registerMemberInCloud(
+            name
+        );
+
+    }
 
 
     openChatRoom();
@@ -2093,10 +3817,18 @@ function saveMyName(){
 }
 
 
+/* OPEN CHAT */
+
 function openChatRoom(){
 
-    document.querySelectorAll(".place-btn")
-        .forEach(btn=>btn.classList.remove("active"));
+    document.querySelectorAll(
+        ".place-btn"
+    )
+    .forEach(btn=>
+        btn.classList.remove(
+            "active"
+        )
+    );
 
 
     document.getElementById(
@@ -2109,11 +3841,19 @@ function openChatRoom(){
     ).style.display="block";
 
 
-    if(typeof window.initCloudChat==="function")
+    initNotificationUI();
+
+
+    if(
+        typeof window.initCloudChat===
+        "function"
+    )
         window.initCloudChat();
 
 }
 
+
+/* MEMBERS */
 
 function openMembersModal(){
 
@@ -2133,6 +3873,8 @@ function closeMembersModal(){
 }
 
 
+/* STICKERS */
+
 function toggleStickersPanel(){
 
     const panel=
@@ -2151,7 +3893,10 @@ function toggleStickersPanel(){
 
 function sendSticker(emoji){
 
-    sendWhatsAppMessage(emoji);
+    sendWhatsAppMessage(
+        emoji
+    );
+
 
     document.getElementById(
         "stickersPanel"
@@ -2159,6 +3904,8 @@ function sendSticker(emoji){
 
 }
 
+
+/* STORY */
 
 function postStory(){
 
@@ -2168,7 +3915,8 @@ function postStory(){
         );
 
 
-    const value=input.value.trim();
+    const value=
+        input.value.trim();
 
 
     if(!value){
@@ -2182,11 +3930,18 @@ function postStory(){
     }
 
 
-    if(typeof window.postCloudStory==="function"){
+    if(
+        typeof window.postCloudStory===
+        "function"
+    ){
 
-        window.postCloudStory(value);
+        window.postCloudStory(
+            value
+        );
+
 
         input.value="";
+
 
         showNotification(
             "تم نشر الحالة في المملكة 🌟"
@@ -2197,6 +3952,8 @@ function postStory(){
 }
 
 
+/* VOICE */
+
 let mediaRecorder=null;
 let audioChunks=[];
 let isRecording=false;
@@ -2205,7 +3962,9 @@ let isRecording=false;
 async function toggleVoiceRecording(){
 
     const mic=
-        document.getElementById("micBtn");
+        document.getElementById(
+            "micBtn"
+        );
 
 
     if(!isRecording){
@@ -2220,7 +3979,9 @@ async function toggleVoiceRecording(){
 
 
             mediaRecorder=
-                new MediaRecorder(stream);
+                new MediaRecorder(
+                    stream
+                );
 
 
             audioChunks=[];
@@ -2230,7 +3991,9 @@ async function toggleVoiceRecording(){
                 event=>{
 
                     if(event.data.size>0)
-                        audioChunks.push(event.data);
+                        audioChunks.push(
+                            event.data
+                        );
 
                 };
 
@@ -2238,21 +4001,31 @@ async function toggleVoiceRecording(){
             mediaRecorder.onstop=()=>{
 
                 stream.getTracks()
-                    .forEach(track=>track.stop());
+                    .forEach(
+                        track=>
+                            track.stop()
+                    );
 
 
                 const blob=
                     new Blob(
                         audioChunks,
-                        {type:"audio/webm"}
+                        {
+                            type:"audio/webm"
+                        }
                     );
 
 
                 const url=
-                    URL.createObjectURL(blob);
+                    URL.createObjectURL(
+                        blob
+                    );
 
 
-                if(typeof window.sendCloudMessage==="function"){
+                if(
+                    typeof window.sendCloudMessage===
+                    "function"
+                ){
 
                     window.sendCloudMessage(
                         "🎙️ رسالة صوتية ملكية",
@@ -2269,7 +4042,10 @@ async function toggleVoiceRecording(){
 
             isRecording=true;
 
-            mic.classList.add("recording");
+            mic.classList.add(
+                "recording"
+            );
+
 
             showNotification(
                 "جاري التسجيل... اضغط الميكروفون للإرسال 🎤"
@@ -2284,20 +4060,25 @@ async function toggleVoiceRecording(){
 
         }
 
-
     }else{
 
         if(mediaRecorder)
             mediaRecorder.stop();
 
+
         isRecording=false;
 
-        mic.classList.remove("recording");
+
+        mic.classList.remove(
+            "recording"
+        );
 
     }
 
 }
 
+
+/* RENDER MESSAGE */
 
 function renderCloudBubble(
     id,
@@ -2305,7 +4086,8 @@ function renderCloudBubble(
     text,
     time,
     isVoice,
-    audioUrl
+    audioUrl,
+    isNewMessage=false
 ){
 
     const list=
@@ -2318,12 +4100,19 @@ function renderCloudBubble(
         return;
 
 
-    if(document.getElementById("msg-"+id))
+    if(
+        document.getElementById(
+            "msg-"+id
+        )
+    )
         return;
 
 
     const empty=
-        list.querySelector(".empty-chat");
+        list.querySelector(
+            ".empty-chat"
+        );
+
 
     if(empty)
         empty.remove();
@@ -2340,30 +4129,47 @@ function renderCloudBubble(
 
 
     const bubble=
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
-    bubble.id="msg-"+id;
+    bubble.id=
+        "msg-"+id;
+
 
     bubble.className=
         "wa-bubble "+
-        (isMe ? "outgoing":"incoming");
+        (
+            isMe
+            ? "outgoing"
+            : "incoming"
+        );
 
 
     const safeSender=
-        escapeForDisplay(sender);
+        escapeForDisplay(
+            sender
+        );
+
 
     const safeText=
-        escapeForDisplay(text);
+        escapeForDisplay(
+            text
+        );
 
 
     let content="";
 
 
-    if(isVoice && audioUrl){
+    if(
+        isVoice &&
+        audioUrl
+    ){
 
         content=`
             <div>🎙️ رسالة صوتية</div>
+
             <audio
                 controls
                 src="${audioUrl}"
@@ -2374,7 +4180,9 @@ function renderCloudBubble(
     }else{
 
         content=
-            `<div class="msg-text-content">${safeText}</div>`;
+            `<div class="msg-text-content">
+                ${safeText}
+            </div>`;
 
     }
 
@@ -2419,21 +4227,25 @@ function renderCloudBubble(
     `;
 
 
-    list.appendChild(bubble);
+    list.appendChild(
+        bubble
+    );
 
-    list.scrollTop=list.scrollHeight;
+
+    list.scrollTop=
+        list.scrollHeight;
 
 
-    if(!isMe){
-
-        showNotification(
-            "💌 رسالة جديدة من "+sender
-        );
-
-    }
+    /*
+       الإشعار يتم إنشاؤه في Firebase listener
+       وليس هنا، حتى لا يتم إنشاء إشعارات للرسائل
+       القديمة عند تحميل الصفحة.
+    */
 
 }
 
+
+/* ESCAPE */
 
 function escapeForDisplay(value){
 
@@ -2458,6 +4270,8 @@ function escapeForAttribute(value){
 }
 
 
+/* COPY */
+
 async function copyMessageText(text){
 
     try{
@@ -2468,11 +4282,15 @@ async function copyMessageText(text){
             .replace(/\\'/g,"'");
 
 
-        await navigator.clipboard.writeText(decoded);
+        await navigator.clipboard.writeText(
+            decoded
+        );
+
 
         showNotification(
             "تم نسخ الرسالة 📋"
         );
+
 
     }catch{
 
@@ -2485,13 +4303,20 @@ async function copyMessageText(text){
 }
 
 
+/* DELETE */
+
 function deleteMessageFromUI(id){
 
-    if(typeof window.deleteCloudMessage==="function")
+    if(
+        typeof window.deleteCloudMessage===
+        "function"
+    )
         window.deleteCloudMessage(id);
 
 }
 
+
+/* ENTER */
 
 function handleKeyPress(event){
 
@@ -2506,10 +4331,16 @@ function handleKeyPress(event){
 }
 
 
-function sendWhatsAppMessage(customText){
+/* SEND */
+
+function sendWhatsAppMessage(
+    customText
+){
 
     const input=
-        document.getElementById("waText");
+        document.getElementById(
+            "waText"
+        );
 
 
     const text=
@@ -2522,7 +4353,10 @@ function sendWhatsAppMessage(customText){
         return;
 
 
-    if(typeof window.sendCloudMessage==="function"){
+    if(
+        typeof window.sendCloudMessage===
+        "function"
+    ){
 
         window.sendCloudMessage(
             text,
@@ -2539,14 +4373,26 @@ function sendWhatsAppMessage(customText){
 }
 
 
+/* HEART CLICK */
+
 function createHeartAtClick(event){
 
     if(
-        event.target.closest("#whatsappBox") ||
-        event.target.closest("button") ||
-        event.target.closest("input") ||
-        event.target.closest(".modal-card") ||
-        event.target.closest("#storiesBox")
+        event.target.closest(
+            "#whatsappBox"
+        ) ||
+        event.target.closest(
+            "button"
+        ) ||
+        event.target.closest(
+            "input"
+        ) ||
+        event.target.closest(
+            ".modal-card"
+        ) ||
+        event.target.closest(
+            "#storiesBox"
+        )
     )
         return;
 
@@ -2559,46 +4405,64 @@ function createHeartAtClick(event){
 }
 
 
+/* HEART */
+
 function spawnHeart(x,y){
 
     const heart=
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
-    heart.className="heart-float";
+    heart.className=
+        "heart-float";
 
 
     const symbols=[
+
         "💖 سما 💖",
         "🌸 سما 🌸",
         "🌷 سما 🌷",
         "👑 سما 👑",
         "🌹 روحي سما 🌹",
         "✨ سما الحب ✨"
+
     ];
 
 
     heart.innerText=
         symbols[
             Math.floor(
-                Math.random()*symbols.length
+                Math.random()*
+                symbols.length
             )
         ];
 
 
-    heart.style.left=x+"px";
-    heart.style.top=y+"px";
+    heart.style.left=
+        x+"px";
 
 
-    document.body.appendChild(heart);
+    heart.style.top=
+        y+"px";
+
+
+    document.body.appendChild(
+        heart
+    );
 
 
     setTimeout(()=>{
+
         heart.remove();
+
     },3400);
 
 }
 
+
+/* EXPLOSION */
 
 function triggerMegaExplosion(event){
 
@@ -2607,9 +4471,18 @@ function triggerMegaExplosion(event){
 
 
     const symbols=[
-        "💖","💗","💓","💞",
-        "💕","🌹","🌸","✨",
-        "👑","🩷"
+
+        "💖",
+        "💗",
+        "💓",
+        "💞",
+        "💕",
+        "🌹",
+        "🌸",
+        "✨",
+        "👑",
+        "🩷"
+
     ];
 
 
@@ -2618,33 +4491,44 @@ function triggerMegaExplosion(event){
         setTimeout(()=>{
 
             const heart=
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
 
-            heart.className="heart-float";
+            heart.className=
+                "heart-float";
 
 
             heart.innerText=
                 symbols[
                     Math.floor(
-                        Math.random()*symbols.length
+                        Math.random()*
+                        symbols.length
                     )
                 ];
 
 
             heart.style.left=
-                Math.random()*window.innerWidth+"px";
+                Math.random()*
+                window.innerWidth+
+                "px";
 
 
             heart.style.top=
-                window.innerHeight-20+"px";
+                window.innerHeight-20+
+                "px";
 
 
-            document.body.appendChild(heart);
+            document.body.appendChild(
+                heart
+            );
 
 
             setTimeout(()=>{
+
                 heart.remove();
+
             },3400);
 
         },i*18);
@@ -2654,6 +4538,8 @@ function triggerMegaExplosion(event){
 }
 
 
+/* LOVE POPUP */
+
 function showCrazyLovePopup(){
 
     showNotification(
@@ -2662,6 +4548,8 @@ function showCrazyLovePopup(){
 
 }
 
+
+/* SITE NOTIFICATION */
 
 function showNotification(message){
 
@@ -2675,9 +4563,13 @@ function showNotification(message){
         return;
 
 
-    box.innerText=message;
+    box.innerText=
+        message;
 
-    box.classList.add("show");
+
+    box.classList.add(
+        "show"
+    );
 
 
     clearTimeout(
@@ -2688,7 +4580,9 @@ function showNotification(message){
     window.notificationTimer=
         setTimeout(()=>{
 
-            box.classList.remove("show");
+            box.classList.remove(
+                "show"
+            );
 
         },3000);
 
@@ -2703,26 +4597,36 @@ function toggleDarkMode(event){
         event.stopPropagation();
 
 
-    document.body.classList.toggle("dark");
+    document.body.classList.toggle(
+        "dark"
+    );
 
 
     const dark=
-        document.body.classList.contains("dark");
+        document.body.classList.contains(
+            "dark"
+        );
 
 
     localStorage.setItem(
         "sama_dark_mode",
-        dark ? "true":"false"
+        dark
+        ? "true"
+        : "false"
     );
 
 
     const button=
-        document.querySelector(".theme-btn");
+        document.querySelector(
+            ".theme-btn"
+        );
 
 
     if(button)
         button.innerText=
-            dark ? "☀️":"🌙";
+            dark
+            ? "☀️"
+            : "🌙";
 
 }
 
@@ -2737,10 +4641,16 @@ function toggleDarkMode(event){
 
     if(dark==="true"){
 
-        document.body.classList.add("dark");
+        document.body.classList.add(
+            "dark"
+        );
+
 
         const button=
-            document.querySelector(".theme-btn");
+            document.querySelector(
+                ".theme-btn"
+            );
+
 
         if(button)
             button.innerText="☀️";
@@ -2750,7 +4660,7 @@ function toggleDarkMode(event){
 })();
 
 
-/* VISITOR COUNTER LOCAL */
+/* VISITOR */
 
 (function(){
 
@@ -2783,7 +4693,7 @@ function toggleDarkMode(event){
 })();
 
 
-/* HEART COUNTER ANIMATION */
+/* HEART COUNTER */
 
 (function(){
 
@@ -2799,19 +4709,23 @@ function toggleDarkMode(event){
 
     let n=0;
 
+
     const timer=
         setInterval(()=>{
 
-            n+=Math.floor(
-                Math.random()*9
-            )+1;
+            n+=
+                Math.floor(
+                    Math.random()*9
+                )+1;
 
 
             if(n>=999){
 
                 n=999;
 
-                clearInterval(timer);
+                clearInterval(
+                    timer
+                );
 
             }
 
@@ -2823,19 +4737,71 @@ function toggleDarkMode(event){
 })();
 
 
-/* CLOSE MODALS WHEN CLICKING OUTSIDE */
+/* CLOSE MODALS */
 
-document.querySelectorAll(".modal-overlay")
+document.querySelectorAll(
+    ".modal-overlay"
+)
 .forEach(modal=>{
 
-    modal.addEventListener("click",event=>{
+    modal.addEventListener(
+        "click",
+        event=>{
 
-        if(event.target===modal)
-            modal.style.display="none";
+            if(
+                event.target===
+                modal
+            )
+                modal.style.display=
+                    "none";
 
-    });
+        }
+    );
 
 });
+
+
+/*
+   إغلاق لوحة الإشعارات عند الضغط خارجها
+*/
+
+document.addEventListener(
+    "click",
+    event=>{
+
+        const panel=
+            document.getElementById(
+                "notificationsPanel"
+            );
+
+        const bell=
+            document.getElementById(
+                "notificationBellBtn"
+            );
+
+
+        if(
+            !panel ||
+            !panel.classList.contains(
+                "open"
+            )
+        )
+            return;
+
+
+        if(
+            panel.contains(event.target) ||
+            bell.contains(event.target)
+        )
+            return;
+
+
+        panel.classList.remove(
+            "open"
+        );
+
+    }
+);
 
 
 /* STORY ENTER */
@@ -2861,11 +4827,19 @@ if(storyInput){
 }
 
 
+/* NOTIFICATION INIT */
+
+initNotificationUI();
+
+
 /* AUTO INITIALIZATION */
 
 setTimeout(()=>{
 
-    if(typeof window.initCloudChat==="function")
+    if(
+        typeof window.initCloudChat===
+        "function"
+    )
         window.initCloudChat();
 
 },700);
