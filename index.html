@@ -26,137 +26,128 @@
             flex-direction: column;   
             align-items: center;   
             justify-content: flex-start;   
-            padding: 20px;  
+            padding: 15px;  
             overflow-x: hidden;   
         }  
 
         .royal-header {  
             width: 100%;  
-            max-width: 950px;  
+            max-width: 850px;  
             background: var(--box-bg);  
             border: 3px solid var(--border-glow);  
-            border-radius: 24px;  
-            padding: 20px 30px;  
+            border-radius: 20px;  
+            padding: 15px 20px;  
             display: flex;  
             align-items: center;  
             justify-content: space-between;  
-            box-shadow: 0 15px 35px rgba(225, 29, 72, 0.15);  
-            margin-bottom: 25px;  
+            box-shadow: 0 10px 25px rgba(225, 29, 72, 0.15);  
+            margin-bottom: 20px;  
             backdrop-filter: blur(10px);  
         }  
-        .royal-title { font-size: 21px; font-weight: 900; color: var(--primary); display: flex; align-items: center; gap: 10px; }  
-        .royal-badge { font-size: 13px; background: var(--primary); color: #fff; padding: 6px 18px; border-radius: 20px; font-weight: 800; box-shadow: 0 4px 12px rgba(225,29,72,0.3); }  
+        .royal-title { font-size: 18px; font-weight: 900; color: var(--primary); display: flex; align-items: center; gap: 8px; }  
+        .royal-badge { font-size: 12px; background: var(--primary); color: #fff; padding: 5px 14px; border-radius: 20px; font-weight: 800; }  
 
         .main-container {  
             width: 100%;  
-            max-width: 950px;  
+            max-width: 850px;  
             display: flex;  
             flex-direction: column;  
-            gap: 25px;  
+            gap: 20px;  
         }  
 
         .nav-places-grid {  
             display: grid;  
             grid-template-columns: repeat(6, 1fr);  
-            gap: 10px;  
+            gap: 8px;  
         }  
         .place-btn {  
             background: var(--box-bg);  
-            border: 3px solid #fda4af;  
-            border-radius: 16px;  
-            padding: 14px 6px;  
+            border: 2px solid #fda4af;  
+            border-radius: 14px;  
+            padding: 12px 4px;  
             text-align: center;  
             cursor: pointer;  
             transition: all 0.3s ease;  
             font-weight: 900;  
-            font-size: 12px;  
+            font-size: 11px;  
             color: var(--text-muted);  
-            box-shadow: 0 6px 15px rgba(225, 29, 72, 0.08);  
+            box-shadow: 0 4px 10px rgba(225, 29, 72, 0.05);  
         }  
         .place-btn:hover {  
             border-color: var(--primary);  
             background: #fff;  
-            transform: translateY(-3px);  
+            transform: translateY(-2px);  
         }  
         .place-btn.active {  
             background: var(--primary);  
             color: #fff;  
             border-color: var(--accent);  
-            box-shadow: 0 0 25px rgba(225, 29, 72, 0.45);  
-            transform: scale(1.05);  
+            box-shadow: 0 0 20px rgba(225, 29, 72, 0.4);  
+            transform: scale(1.03);  
         }  
 
         .display-card {  
             background: var(--box-bg);  
-            border: 4px solid var(--primary);  
-            border-radius: 28px;  
-            padding: 35px;  
-            box-shadow: 0 20px 50px rgba(225, 29, 72, 0.2);  
+            border: 3px solid var(--primary);  
+            border-radius: 24px;  
+            padding: 25px;  
+            box-shadow: 0 15px 35px rgba(225, 29, 72, 0.15);  
             position: relative;  
             overflow: hidden;  
             backdrop-filter: blur(10px);  
         }  
-        .display-card::before {  
-            content: '';  
-            position: absolute;  
-            top: 0; right: 0; width: 10px; height: 100%;  
-            background: linear-gradient(to bottom, var(--primary), var(--accent));  
-        }  
-        .display-card h2 { font-size: 26px; font-weight: 900; color: var(--primary); margin-bottom: 15px; }  
-        .display-card p { font-size: 17px; line-height: 2.1; font-weight: 700; color: var(--text-main); background: #fff5f5; padding: 22px; border-radius: 16px; border: 2px solid #fecdd3; }  
+        .display-card h2 { font-size: 22px; font-weight: 900; color: var(--primary); margin-bottom: 12px; }  
+        .display-card p { font-size: 15px; line-height: 1.9; font-weight: 700; color: var(--text-main); background: #fff5f5; padding: 18px; border-radius: 14px; border: 2px solid #fecdd3; }  
 
         /* --- واجهة الستوريات والحالات الأسطورية --- */  
         .stories-container {  
             display: none;  
             flex-direction: column;  
-            gap: 20px;  
+            gap: 15px;  
         }  
         .story-card {  
             background: linear-gradient(135deg, #fff, #fff1f2);  
-            border: 3px solid #fda4af;  
-            border-radius: 20px;  
-            padding: 20px;  
-            box-shadow: 0 10px 25px rgba(225,29,72,0.1);  
+            border: 2px solid #fda4af;  
+            border-radius: 18px;  
+            padding: 18px;  
         }  
-        .story-header { font-weight: 900; color: var(--primary); font-size: 17px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }  
-        .story-text { font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 12px; }  
-        .story-input-box { display: flex; gap: 10px; }  
-        .story-input-box input { flex: 1; padding: 12px 16px; border: 2px solid #fda4af; border-radius: 14px; outline: none; font-family: 'Cairo', sans-serif; font-size: 14px; }  
-        .story-post-btn { background: var(--primary); color: #fff; border: none; padding: 0 20px; border-radius: 14px; font-weight: 900; cursor: pointer; transition: 0.2s; }  
-        .story-post-btn:hover { background: var(--accent); }  
-        .stories-list { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; max-height: 350px; overflow-y: auto; }  
-        .story-bubble { background: #fff; border: 2px solid #fecdd3; padding: 14px 18px; border-radius: 16px; font-weight: 700; font-size: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }  
+        .story-header { font-weight: 900; color: var(--primary); font-size: 15px; margin-bottom: 6px; }  
+        .story-text { font-size: 14px; font-weight: 700; color: var(--text-main); margin-bottom: 10px; }  
+        .story-input-box { display: flex; gap: 8px; }  
+        .story-input-box input { flex: 1; padding: 10px 14px; border: 2px solid #fda4af; border-radius: 12px; outline: none; font-size: 13px; }  
+        .story-post-btn { background: var(--primary); color: #fff; border: none; padding: 0 16px; border-radius: 12px; font-weight: 900; cursor: pointer; }  
+        .stories-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; max-height: 300px; overflow-y: auto; }  
+        .story-bubble { background: #fff; border: 2px solid #fecdd3; padding: 12px 15px; border-radius: 12px; font-weight: 700; font-size: 13px; display: flex; justify-content: space-between; align-items: center; }  
 
-        /* --- واجهة الشات الملكية السحابية شبيهة بالواتساب --- */  
+        /* --- واجهة الشات المنفصلة والمرتبة تماماً مثل الواتساب --- */  
         .whatsapp-container {  
             display: none;  
             background: #0b141a;  
-            border-radius: 24px;  
+            border-radius: 20px;  
             border: 3px solid #00a884;  
             overflow: hidden;  
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);  
-            margin-top: 5px;  
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);  
             width: 100%;  
         }  
         .wa-chat-header {  
             background: #1f2c34;  
             color: #fff;  
-            padding: 14px 20px;  
+            padding: 12px 18px;  
             display: flex;  
             align-items: center;  
             justify-content: space-between;  
             border-bottom: 1px solid #2a3942;  
         }  
-        .wa-avatar-box { display: flex; align-items: center; gap: 12px; }  
+        .wa-avatar-box { display: flex; align-items: center; gap: 10px; }  
         .wa-avatar {  
-            width: 45px; height: 45px; background: linear-gradient(135deg, #00a884, #005c4b); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 0 12px rgba(0,168,132,0.4); flex-shrink: 0;  
+            width: 40px; height: 40px; background: linear-gradient(135deg, #00a884, #005c4b); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 0 10px rgba(0,168,132,0.4); flex-shrink: 0;  
         }  
-        .wa-status-text { font-size: 11px; color: #00a884; font-weight: 700; margin-top: 2px; }  
+        .wa-status-text { font-size: 10px; color: #00a884; font-weight: 700; margin-top: 1px; }  
           
         .db-status-bar {  
             background: #111b21;  
-            padding: 8px 20px;  
-            font-size: 11px;  
+            padding: 6px 15px;  
+            font-size: 10.5px;  
             font-weight: 700;  
             display: flex;  
             align-items: center;  
@@ -164,158 +155,156 @@
             border-bottom: 1px solid #222d34;  
             color: #8696a0;  
         }  
-        .db-status-indicator { display: flex; align-items: center; gap: 8px; }  
-        .db-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981; flex-shrink: 0; }  
-        .db-dot.error { background: #ef4444; box-shadow: 0 0 8px #ef4444; }  
+        .db-status-indicator { display: flex; align-items: center; gap: 6px; }  
+        .db-dot { width: 7px; height: 7px; border-radius: 50%; background: #10b981; box-shadow: 0 0 6px #10b981; flex-shrink: 0; }  
+        .db-dot.error { background: #ef4444; box-shadow: 0 0 6px #ef4444; }  
 
         .wa-messages-area {  
-            height: 400px;  
+            height: 380px;  
             overflow-y: auto;  
-            padding: 20px;  
+            padding: 15px;  
             display: flex;  
             flex-direction: column;  
-            gap: 10px;  
+            gap: 8px;  
             background-color: #0b141a;  
             background-image: radial-gradient(#1f2c34 1px, transparent 1px);  
-            background-size: 24px 24px;  
+            background-size: 20px 20px;  
         }  
         .wa-bubble {  
             max-width: 75%;  
             padding: 8px 12px 6px 12px;  
-            border-radius: 12px;  
+            border-radius: 10px;  
             position: relative;  
-            font-size: 14.5px;  
+            font-size: 14px;  
             font-weight: 600;  
-            box-shadow: 0 1px 3px rgba(0,0,0,0.3);  
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3);  
             word-wrap: break-word;  
             animation: fadeInBubble 0.2s ease;  
         }  
         @keyframes fadeInBubble {  
-            from { opacity: 0; transform: translateY(6px); }  
+            from { opacity: 0; transform: translateY(4px); }  
             to { opacity: 1; transform: translateY(0); }  
         }  
         .wa-bubble.incoming {  
             background: #202c33;  
             align-self: flex-start;  
-            border-top-right-radius: 4px;  
+            border-top-right-radius: 3px;  
             color: #e9edef;  
         }  
         .wa-bubble.outgoing {  
             background: #005c4b;  
             align-self: flex-end;  
-            border-top-left-radius: 4px;  
+            border-top-left-radius: 3px;  
             color: #e9edef;  
         }  
-        .wa-sender-name { font-size: 11px; color: #53bdeb; font-weight: 800; margin-bottom: 2px; }  
+        .wa-sender-name { font-size: 10.5px; color: #53bdeb; font-weight: 800; margin-bottom: 2px; }  
           
         .wa-msg-footer {  
             display: flex;  
             align-items: center;  
             justify-content: flex-end;  
-            gap: 5px;  
+            gap: 4px;  
             margin-top: 2px;  
-            float: left;
-            position: relative;
-            bottom: -2px;
-            margin-right: 5px;
+            float: left;  
+            position: relative;  
+            bottom: -2px;  
+            margin-right: 4px;  
         }  
-        .wa-time { font-size: 9.5px; color: #8696a0; }  
-        .wa-ticks { font-size: 11px; font-weight: 900; color: #53bdeb; letter-spacing: -2px; }  
+        .wa-time { font-size: 9px; color: #8696a0; }  
+        .wa-ticks { font-size: 10px; font-weight: 900; color: #53bdeb; letter-spacing: -2px; }  
           
         .delete-msg-btn {  
             background: none;  
             border: none;  
             color: #ef4444;  
-            font-size: 12px;  
+            font-size: 11px;  
             cursor: pointer;  
-            margin-right: 8px;  
+            margin-right: 6px;  
             font-weight: 700;  
             opacity: 0.7;  
             transition: 0.2s;  
         }  
-        .delete-msg-btn:hover { opacity: 1; transform: scale(1.1); }  
+        .delete-msg-btn:hover { opacity: 1; }  
 
         .stickers-panel {  
             display: none;  
             background: #1f2c34;  
-            padding: 10px 15px;  
+            padding: 8px 12px;  
             border-top: 1px solid #2a3942;  
-            gap: 8px;  
+            gap: 6px;  
             overflow-x: auto;  
             white-space: nowrap;  
         }  
         .sticker-item {  
             background: #2a3942;  
             border: none;  
-            padding: 6px 10px;  
-            border-radius: 10px;  
-            font-size: 22px;  
+            padding: 4px 8px;  
+            border-radius: 8px;  
+            font-size: 20px;  
             cursor: pointer;  
-            transition: 0.2s;  
             flex-shrink: 0;  
         }  
-        .sticker-item:hover { transform: scale(1.15); background: #374248; }  
 
         .wa-input-footer {  
             background: #202c33;  
-            padding: 12px 18px;  
+            padding: 10px 14px;  
             display: flex;  
-            gap: 10px;  
+            gap: 8px;  
             align-items: center;  
             border-top: 1px solid #2a3942;  
         }  
         .wa-input-footer input {  
             flex: 1;  
-            padding: 12px 18px;  
+            padding: 10px 16px;  
             background: #2a3942;  
             border: 2px solid transparent;  
             color: #fff;  
             border-radius: 30px;  
             outline: none;  
             font-family: 'Cairo', sans-serif;  
-            font-size: 14px;  
+            font-size: 13.5px;  
+            text-align: right;  
+            direction: rtl;  
             transition: 0.3s;  
         }  
         .wa-input-footer input:focus { border-color: #00a884; background: #111b21; }  
-        .wa-action-icon-btn { background: none; border: none; font-size: 22px; cursor: pointer; color: #8696a0; transition: 0.2s; flex-shrink: 0; }  
-        .wa-action-icon-btn:hover { color: #00a884; transform: scale(1.1); }  
+        .wa-action-icon-btn { background: none; border: none; font-size: 20px; cursor: pointer; color: #8696a0; transition: 0.2s; flex-shrink: 0; }  
+        .wa-action-icon-btn:hover { color: #00a884; }  
         .wa-action-icon-btn.recording { color: #ef4444; animation: pulseRecord 1s infinite; }  
-        @keyframes pulseRecord { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }  
+        @keyframes pulseRecord { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }  
 
         .wa-send-btn {  
             background: linear-gradient(135deg, #00a884, #008f6f);  
             color: #fff;  
             border: none;  
-            width: 46px; height: 46px;  
+            width: 42px; height: 42px;  
             border-radius: 50%;  
             cursor: pointer;  
             display: flex; align-items: center; justify-content: center;  
-            font-size: 20px;  
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);  
-            box-shadow: 0 4px 15px rgba(0,168,132,0.4);  
+            font-size: 18px;  
+            box-shadow: 0 4px 10px rgba(0,168,132,0.4);  
             flex-shrink: 0;  
         }  
-        .wa-send-btn:hover { transform: scale(1.1); background: linear-gradient(135deg, #00b992, #00a884); }  
 
         .action-buttons-row {  
             display: grid;  
             grid-template-columns: 1fr 1fr;  
-            gap: 15px;  
+            gap: 12px;  
         }  
         .action-btn {  
             background: linear-gradient(135deg, var(--primary), var(--accent));  
             color: #fff;  
             border: none;  
-            padding: 18px;  
-            border-radius: 18px;  
+            padding: 15px;  
+            border-radius: 16px;  
             font-weight: 900;  
-            font-size: 15px;  
+            font-size: 14px;  
             cursor: pointer;  
-            box-shadow: 0 8px 25px rgba(225, 29, 72, 0.35);  
+            box-shadow: 0 6px 20px rgba(225, 29, 72, 0.3);  
             transition: 0.3s;  
-            display: flex; align-items: center; justify-content: center; gap: 10px;  
+            display: flex; align-items: center; justify-content: center; gap: 8px;  
         }  
-        .action-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(225, 29, 72, 0.5); }  
+        .action-btn:hover { transform: translateY(-2px); }  
 
         .modal-overlay {  
             position: fixed;  
@@ -325,41 +314,39 @@
             align-items: center;  
             justify-content: center;  
             z-index: 10000;  
-            backdrop-filter: blur(5px);  
+            backdrop-filter: blur(4px);  
         }  
         .modal-card {  
             background: #fff;  
-            padding: 30px;  
-            border-radius: 24px;  
+            padding: 25px;  
+            border-radius: 20px;  
             width: 90%;  
-            max-width: 400px;  
+            max-width: 380px;  
             text-align: center;  
             border: 3px solid var(--primary);  
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);  
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);  
         }  
-        .modal-card h3 { color: var(--primary); font-size: 22px; margin-bottom: 15px; font-weight: 900; }  
-        .modal-card input { width: 100%; padding: 14px; border: 2px solid #fda4af; border-radius: 30px; text-align: center; font-size: 16px; margin-bottom: 15px; outline: none; font-family: 'Cairo', sans-serif; }  
+        .modal-card h3 { color: var(--primary); font-size: 20px; margin-bottom: 12px; font-weight: 900; }  
+        .modal-card input { width: 100%; padding: 12px; border: 2px solid #fda4af; border-radius: 25px; text-align: center; font-size: 15px; margin-bottom: 12px; outline: none; }  
 
         .heart-float {  
             position: fixed;  
             color: #e11d48;  
-            font-size: 32px;  
-            animation: floatMegaUp 3.8s cubic-bezier(0.1, 1, 0.3, 1) forwards;  
+            font-size: 28px;  
+            animation: floatMegaUp 3.5s cubic-bezier(0.1, 1, 0.3, 1) forwards;  
             pointer-events: none;  
             z-index: 9999;  
-            text-shadow: 0 0 20px rgba(225, 29, 72, 0.8);  
             font-weight: 900;  
         }  
         @keyframes floatMegaUp {  
             0% { transform: translateY(0) scale(0.2) rotate(0deg); opacity: 1; }  
-            50% { transform: translateY(-450px) scale(1.8) rotate(20deg); opacity: 0.95; }  
-            100% { transform: translateY(-900px) scale(1.3) rotate(-20deg); opacity: 0; }  
+            50% { transform: translateY(-400px) scale(1.6) rotate(15deg); opacity: 0.95; }  
+            100% { transform: translateY(-800px) scale(1.2) rotate(-15deg); opacity: 0; }  
         }  
 
         @media(max-width: 768px) {  
             .nav-places-grid { grid-template-columns: repeat(3, 1fr); }  
             .action-buttons-row { grid-template-columns: 1fr; }  
-            .royal-header { flex-direction: column; gap: 10px; text-align: center; }  
         }  
     </style>
 </head>  
@@ -367,7 +354,7 @@
 
 <div class="royal-header">  
     <div class="royal-title">👑 مملكة العشق والخلود المخصصة لـ: سما</div>  
-    <div class="royal-badge">النسخة الملكية الآمنة 🚀</div>  
+    <div class="royal-badge">النسخة الملكية 🚀</div>  
 </div>  
 
 <div class="main-container">  
@@ -380,73 +367,70 @@
         <button class="place-btn" onclick="openSecretModal()" style="background: #fff1f2; border-color: var(--primary); color: var(--primary);">🩷 دردشة سما</button>  
     </div>  
 
-    <div class="display-card">  
+    <!-- حاوية العرض العامة (للصفحات العادية والستوريات) -->  
+    <div id="contentDisplayCard" class="display-card">  
         <h2 id="pageTitle">✨ جنة العشق الأبدي (عرش روحي المطلق)</h2>  
         <p id="pageDesc">سما.. يا من ملأتِ أيامي نوراً وحياة. أنتِ لستِ مجرد شخص أحبه، أنتِ عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودكِ معي يجعل العالم مكاناً أجمل بكثير.</p>  
           
-        <!-- --- قسم الستوريات والحالات الأسطورية الملكية --- -->  
+        <!-- قسم الستوريات والحالات -->  
         <div id="storiesBox" class="stories-container">  
             <div class="story-card">  
                 <div class="story-header">📸 شارك حالة أو ستوري ملكي جديد</div>  
                 <div class="story-text">اكتب خاطرة أو حالة أسطورية تظهر هنا للجميع لحظياً:</div>  
                 <div class="story-input-box">  
                     <input type="text" id="storyTextInput" placeholder="اكتب حالتك أو ستوريك الأسطوري هنا...">  
-                    <button class="story-post-btn" onclick="postStory()">نشر أسطوري 🌟</button>  
+                    <button class="story-post-btn" onclick="postStory()">نشر 🌟</button>  
                 </div>  
-                <div id="storiesList" class="stories-list">  
-                    <!-- الحالات المنشورة سحابياً -->  
-                </div>  
-            </div>  
-        </div>  
-
-        <!-- --- واجهة الشات المربوطة بـ Firebase Realtime Database --- -->  
-        <div id="whatsappBox" class="whatsapp-container">  
-            <div class="wa-chat-header">  
-                <div class="wa-avatar-box">  
-                    <div class="wa-avatar">👑</div>  
-                    <div>  
-                        <div style="color:#fff; font-weight:900; font-size:15px;">مملكة سلمان وسما 🩷</div>  
-                        <div id="onlineStatusText" class="wa-status-text">● جاري فحص الاتصال بالخادم...</div>  
-                    </div>  
-                </div>  
-            </div>  
-
-            <div class="db-status-bar">  
-                <div class="db-status-indicator">  
-                    <div id="dbDotIndicator" class="db-dot"></div>  
-                    <span id="dbStatusMessage">جاري الاتصال بقاعدة البيانات السحابية... ⏳</span>  
-                </div>  
-            </div>  
-
-            <div id="waMessagesList" class="wa-messages-area">  
-                <!-- الرسائل السحابية الحية مع زر الحذف للجميع -->  
-            </div>  
-
-            <div id="stickersPanel" class="stickers-panel">  
-                <button class="sticker-item" onclick="sendSticker('💖')">💖</button>  
-                <button class="sticker-item" onclick="sendSticker('👑')">👑</button>  
-                <button class="sticker-item" onclick="sendSticker('🔥')">🔥</button>  
-                <button class="sticker-item" onclick="sendSticker('🌹')">🌹</button>  
-                <button class="sticker-item" onclick="sendSticker('✨')">✨</button>  
-                <button class="sticker-item" onclick="sendSticker('💍')">💍</button>  
-                <button class="sticker-item" onclick="sendSticker('🥺')">🥺</button>  
-                <button class="sticker-item" onclick="sendSticker('💋')">💋</button>  
-                <button class="sticker-item" onclick="sendSticker('🥰')">🥰</button>  
-                <button class="sticker-item" onclick="sendSticker('🫶')">🫶</button>  
-                <button class="sticker-item" onclick="sendSticker('💘')">💘</button>  
-            </div>  
-
-            <div class="wa-input-footer">  
-                <button class="wa-action-icon-btn" onclick="toggleStickersPanel()" title="الملصقات">😊</button>  
-                <button id="micBtn" class="wa-action-icon-btn" onclick="toggleVoiceRecording()" title="تسجيل صوتي">🎤</button>  
-                <input type="text" id="waText" placeholder="اكتب رسالتك الملكية هنا..." onkeypress="handleKeyPress(event)">  
-                <button class="wa-send-btn" onclick="sendWhatsAppMessage()" title="إرسال">➤</button>  
+                <div id="storiesList" class="stories-list"></div>  
             </div>  
         </div>  
     </div>  
 
+    <!-- واجهة الشات المنفصلة بالكامل (تظهر بدلاً من display-card عند فتح الدردشة لتجنب التداخل) -->  
+    <div id="whatsappBox" class="whatsapp-container">  
+        <div class="wa-chat-header">  
+            <div class="wa-avatar-box">  
+                <div class="wa-avatar">👑</div>  
+                <div>  
+                    <div style="color:#fff; font-weight:900; font-size:14px;">مملكة سلمان وسما 🩷</div>  
+                    <div id="onlineStatusText" class="wa-status-text">● جاري فحص الاتصال...</div>  
+                </div>  
+            </div>  
+        </div>  
+
+        <div class="db-status-bar">  
+            <div class="db-status-indicator">  
+                <div id="dbDotIndicator" class="db-dot"></div>  
+                <span id="dbStatusMessage">جاري الاتصال بقاعدة البيانات السحابية... ⏳</span>  
+            </div>  
+        </div>  
+
+        <div id="waMessagesList" class="wa-messages-area"></div>  
+
+        <div id="stickersPanel" class="stickers-panel">  
+            <button class="sticker-item" onclick="sendSticker('💖')">💖</button>  
+            <button class="sticker-item" onclick="sendSticker('👑')">👑</button>  
+            <button class="sticker-item" onclick="sendSticker('🔥')">🔥</button>  
+            <button class="sticker-item" onclick="sendSticker('🌹')">🌹</button>  
+            <button class="sticker-item" onclick="sendSticker('✨')">✨</button>  
+            <button class="sticker-item" onclick="sendSticker('💍')">💍</button>  
+            <button class="sticker-item" onclick="sendSticker('🥺')">🥺</button>  
+            <button class="sticker-item" onclick="sendSticker('💋')">💋</button>  
+            <button class="sticker-item" onclick="sendSticker('🥰')">🥰</button>  
+            <button class="sticker-item" onclick="sendSticker('🫶')">🫶</button>  
+            <button class="sticker-item" onclick="sendSticker('💘')">💘</button>  
+        </div>  
+
+        <div class="wa-input-footer">  
+            <button class="wa-action-icon-btn" onclick="toggleStickersPanel()" title="الملصقات">😊</button>  
+            <button id="micBtn" class="wa-action-icon-btn" onclick="toggleVoiceRecording()" title="تسجيل صوتي">🎤</button>  
+            <input type="text" id="waText" placeholder="اكتب رسالتك الملكية هنا..." onkeypress="handleKeyPress(event)">  
+            <button class="wa-send-btn" onclick="sendWhatsAppMessage()" title="إرسال">➤</button>  
+        </div>  
+    </div>  
+
     <div class="action-buttons-row">  
-        <button class="action-btn" onclick="triggerMegaExplosion(event)">💥 تفجير يملأ الشاشة باسم سما بالكامل!</button>  
+        <button class="action-btn" onclick="triggerMegaExplosion(event)">💥 تفجير يملأ الشاشة باسم سما!</button>  
         <button class="action-btn" style="background: linear-gradient(135deg, var(--gold), #d97706);" onclick="showCrazyLovePopup()">💌 رسالة الحب السرية</button>  
     </div>  
 </div>  
@@ -454,21 +438,21 @@
 <div id="secretModal" class="modal-overlay">  
     <div class="modal-card">  
         <h3>🩷 بوابة اللقاء السري</h3>  
-        <p style="font-size: 14px; margin-bottom: 15px; color: var(--text-muted); font-weight: 700;">أدخل الرمز الصحيح للمتابعة (`ang_el99m`):</p>  
+        <p style="font-size: 13px; margin-bottom: 12px; color: var(--text-muted); font-weight: 700;">أدخل الرمز الصحيح للمتابعة (`ang_el99m`):</p>  
         <input type="password" id="modalPasswordInput" placeholder="أدخل الرمز السري هنا...">  
         <br>  
-        <button class="action-btn" style="width: 100%; padding: 12px; justify-content: center;" onclick="verifySecretPassword()">فتح الدردشة 💕</button>  
-        <button style="background: none; border: none; color: #999; margin-top: 10px; cursor: pointer; font-weight: 700;" onclick="closeSecretModal()">إلغاء</button>  
+        <button class="action-btn" style="width: 100%; padding: 10px; justify-content: center;" onclick="verifySecretPassword()">فتح الدردشة 💕</button>  
+        <button style="background: none; border: none; color: #999; margin-top: 8px; cursor: pointer; font-weight: 700;" onclick="closeSecretModal()">إلغاء</button>  
     </div>  
 </div>  
 
 <div id="nameModal" class="modal-overlay">  
     <div class="modal-card">  
         <h3>✨ اسمك الكريم؟</h3>  
-        <p style="font-size: 14px; margin-bottom: 15px; color: var(--text-muted); font-weight: 700;">أدخل اسمك (مثل: سلمان أو سما):</p>  
+        <p style="font-size: 13px; margin-bottom: 12px; color: var(--text-muted); font-weight: 700;">أدخل اسمك (مثل: سلمان أو سما):</p>  
         <input type="text" id="myNameInput" placeholder="اكتب اسمك هنا...">  
         <br>  
-        <button class="action-btn" style="width: 100%; padding: 12px; justify-content: center;" onclick="saveMyName()">حفظ ودخول الدردشة 🚀</button>  
+        <button class="action-btn" style="width: 100%; padding: 10px; justify-content: center;" onclick="saveMyName()">حفظ ودخول الدردشة 🚀</button>  
     </div>  
 </div>  
 
@@ -498,15 +482,14 @@
 
             if (snap.val() === true) {
                 if(statusDot) statusDot.className = "db-dot";
-                if(statusMsg) statusMsg.innerText = "الاتصال بالخادم السحابي شغال ⚡ (متصل بنجاح)";
-                if(statusText) statusText.innerText = "● متصل سحابياً وبشكل مباشر";
+                if(statusMsg) statusMsg.innerText = "الاتصال سحابياً شغال ⚡";
+                if(statusText) statusText.innerText = "● متصل سحابياً";
             } else {
                 if(statusDot) statusDot.className = "db-dot error";
-                if(statusMsg) statusMsg.innerText = "خطأ في الاتصال بالخادم ❌ (جاري إعادة المحاولة...)";
-                if(statusText) statusText.innerText = "● منقطع عن الخادم";
+                if(statusMsg) statusMsg.innerText = "خطأ في الاتصال ❌";
+                if(statusText) statusText.innerText = "● منقطع";
             }
         });
-
     } catch (err) {
         console.error("Firebase Init Error:", err);
     }
@@ -537,7 +520,7 @@
                 let div = document.createElement('div');
                 div.id = 'story-' + snapshot.key;
                 div.className = 'story-bubble';
-                div.innerHTML = `<div><strong>${st.sender}:</strong> ${st.text}</div> <span style="font-size:11px; color:#888;">${st.time}</span>`;
+                div.innerHTML = `<div><strong>${st.sender}:</strong> ${st.text}</div> <span style="font-size:10px; color:#888;">${st.time}</span>`;
                 storiesListDiv.prepend(div);
             }
         });
@@ -565,7 +548,7 @@
         remove(targetRef).then(() => {
             const el = document.getElementById('msg-' + id);
             if(el) el.remove();
-        }).catch(err => {
+        }).catch(() => {
             alert('تعذر حذف الرسالة ❌');
         });
     };
@@ -610,6 +593,7 @@
 
     function switchPage(index) {  
         document.getElementById('whatsappBox').style.display = 'none';  
+        document.getElementById('contentDisplayCard').style.display = 'block';  
         document.getElementById('storiesBox').style.display = 'none';  
         document.getElementById('pageTitle').style.display = 'block';  
         document.getElementById('pageDesc').style.display = 'block';  
@@ -674,9 +658,8 @@
         let buttons = document.querySelectorAll('.place-btn');  
         buttons.forEach(btn => btn.classList.remove('active'));  
           
-        document.getElementById('pageTitle').style.display = 'none';  
-        document.getElementById('pageDesc').style.display = 'none';  
-        document.getElementById('storiesBox').style.display = 'none';  
+        // إخفاء بطاقة المحتوى العادية وإظهار شات الواتساب بشكل مستقل ونظيف
+        document.getElementById('contentDisplayCard').style.display = 'none';  
         document.getElementById('whatsappBox').style.display = 'block';  
           
         if(typeof window.initCloudChat === 'function') {  
@@ -725,7 +708,7 @@
                 isRecording = true;
                 micBtn.classList.add('recording');
                 alert('جاري تسجيل الصوت... اضغط على الميكروفون مرة أخرى للإرسال 🎤');
-            }).catch(err => {
+            }).catch(() => {
                 alert('عذراً، ميكروفون الجوال غير متاح أو مرفوض الإذن ❌');
             });
         } else {
@@ -748,7 +731,7 @@
 
         let contentHTML = `<div class="msg-text-content">${text}</div>`;
         if(isVoice && audioUrl) {
-            contentHTML = `<div>🎙️ رسالة صوتية</div><audio controls src="${audioUrl}" style="width:200px; margin-top:5px;"></audio>`;
+            contentHTML = `<div>🎙️ رسالة صوتية</div><audio controls src="${audioUrl}" style="width:180px; margin-top:4px;"></audio>`;
         }
 
         div.innerHTML = `  
@@ -790,14 +773,14 @@
         heart.style.left = x + 'px';  
         heart.style.top = y + 'px';  
         document.body.appendChild(heart);  
-        setTimeout(() => { heart.remove(); }, 3800);  
+        setTimeout(() => { heart.remove(); }, 3500);  
     }  
 
     function triggerMegaExplosion(e) {  
-        for (let i = 0; i < 90; i++) {  
+        for (let i = 0; i < 70; i++) {  
             setTimeout(() => {  
                 spawnHeart(Math.random() * window.innerWidth, window.innerHeight - 30);  
-            }, i * 25);  
+            }, i * 20);  
         }  
     }  
 
