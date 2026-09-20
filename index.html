@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sama Royal Sanctuary - Ultimate Masterpiece Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- مكتبة Supabase للاتصال بقاعدة البيانات -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         :root {
             --bg-grad-1: #fff1f2;
@@ -117,6 +119,22 @@
             margin-top: 5px;
             width: 100%;
         }
+        
+        /* شريط حالة الاتصال الجديد المضاف بدقة */
+        .db-status-bar {
+            background: #111b21;
+            padding: 8px 20px;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #222d34;
+        }
+        .db-status-bar.connected { color: #00a884; }
+        .db-status-bar.disconnected { color: #ef4444; }
+        .db-status-bar.checking { color: #f59e0b; }
+
         .wa-chat-header {
             background: linear-gradient(135deg, #1f2c34, #111b21);
             color: #fff;
@@ -149,7 +167,7 @@
         .wa-control-btn.danger:hover { background: #772222; }
 
         .wa-messages-area {
-            height: 420px;
+            height: 390px;
             overflow-y: auto;
             padding: 25px;
             display: flex;
@@ -365,10 +383,16 @@
 
         <div class="display-card">
             <h2 id="pageTitle">✨ جنة العشق الأبدي (عرش روحي المطلق)</h2>
-            <p id="pageDesc">سما.. يا من ملأتِ أيامي نوراً وحياة. أنتِ لستِ مجرد شخص أحبه، أنتِ عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودكِ معي يجعل العالم مكاناً أجمل بكثير.</p>
+            <p id="pageDesc">سما.. يا من ملأتِ أيامي نوراً وخيراً. أنتِ لستِ مجرد شخص أحبه، أنتِ عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودكِ معي يجعل العالم مكاناً أجمل بكثير.</p>
             
             <!-- --- واجهة الشات المطورة --- -->
             <div id="whatsappBox" class="whatsapp-container">
+                <!-- شريط حالة الاتصال بـ Supabase (مضاف حديثاً بدقة وبدون تخريب) -->
+                <div id="dbStatusBar" class="db-status-bar checking">
+                    <span id="dbStatusText">🔄 جاري التحقق من الاتصال بقاعدة البيانات...</span>
+                    <span id="dbPingTime" style="font-size: 11px; opacity: 0.7;">Supabase</span>
+                </div>
+
                 <div class="wa-chat-header">
                     <div class="wa-avatar-box">
                         <div class="wa-avatar">👑</div>
@@ -382,7 +406,7 @@
                     </div>
                 </div>
 
-                <div id="waMessagesList" class="wa-messages-area" onscroll="markAllAsRead()">
+                <div id="waMessagesList" class="wa-messages-area">
                     <!-- الرسائل تظهر هنا -->
                 </div>
 
@@ -439,9 +463,13 @@
     </div>
 
     <script>
+        // إعدادات قاعدة بيانات Supabase
+        const SUPABASE_URL = 'https://terskmhhznyaathxnvjq.supabase.co';
+        const SUPABASE_KEY = 'Sb_publishable_zgjQbmezkXMAxzjLC6brkw_Yvl1fFbh';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
         const chatChannel = "sama_royal_sanctuary_chat_room_99";
         const apiUrl = "https://ntfy.sh/" + chatChannel;
-        let activeUsersList = new Set();
         let typingTimeout = null;
 
         const pagesData = [
@@ -469,9 +497,8 @@
             document.getElementById('pageDesc').style.display = 'block';
 
             let buttons = document.querySelectorAll('.place-btn');
-            buttons.forEach((btn, i) => {
-                if(i === index) btn.classList.add('active');
-                else btn.classList.remove('active');
+            buttons.forEach((_, i) => {
+                buttons[i].classList.toggle('active', i === index);
             });
             
             document.getElementById('pageTitle').innerText = pagesData[index].title;
@@ -528,36 +555,62 @@
             document.getElementById('pageDesc').style.display = 'none';
             document.getElementById('whatsappBox').style.display = 'block';
             
-            loadSavedMessages();
+            checkSupabaseConnectionStatus(); // فحص الاتصال عند فتح الشات
+            loadSavedMessagesFromDB();
             startListeningMessages();
             sendPresenceHeartbeat();
             setInterval(sendPresenceHeartbeat, 10000);
         }
 
-        function loadSavedMessages() {
-            const saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
-            const listDiv = document.getElementById('waMessagesList');
-            listDiv.innerHTML = '';
-            saved.forEach(msg => {
-                renderBubble(msg.id, msg.sender, msg.text, msg.time, msg.isRead);
-            });
+        // الوظيفة الجديدة للتحقق من حالة الاتصال بقاعدة البيانات وعرضها أو إظهار الخطأ بدون تخريب
+        async function checkSupabaseConnectionStatus() {
+            const statusBar = document.getElementById('dbStatusBar');
+            const statusText = document.getElementById('dbStatusText');
+
+            statusBar.className = "db-status-bar checking";
+            statusText.innerText = "🔄 جاري فحص الاتصال بقاعدة البيانات...";
+
+            try {
+                // استعلام خفيف لاختبار الاتصال بجدول messages
+                const { data, error } = await supabase.from('messages').select('id').limit(1);
+
+                if (error) {
+                    throw error;
+                }
+
+                statusBar.className = "db-status-bar connected";
+                statusText.innerText = "🟢 متصل بقاعدة البيانات بنجاح (Supabase Online)";
+            } catch (err) {
+                console.error("خطأ الاتصال بـ Supabase:", err);
+                statusBar.className = "db-status-bar disconnected";
+                statusText.innerText = `❌ خطأ في الاتصال: ${err.message || err.hint || 'تحقق من الإنترنت أو إعدادات القاعدة'}`;
+            }
         }
 
-        function saveMessageToStorage(msgObj) {
-            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
-            let index = saved.findIndex(m => m.id === msgObj.id);
-            if(index !== -1) {
-                saved[index] = msgObj;
-            } else {
-                saved.push(msgObj);
-                if(saved.length > 200) saved.shift();
+        // جلب الرسائل من قاعدة بيانات Supabase
+        async function loadSavedMessagesFromDB() {
+            const { data: messages, error } = await supabase
+                .from('messages')
+                .select('*')
+                .order('created_at', { ascending: true });
+
+            const listDiv = document.getElementById('waMessagesList');
+            listDiv.innerHTML = '';
+
+            if (error) {
+                console.error('خطأ في جلب الرسائل:', error);
+                return;
             }
-            localStorage.setItem('sama_saved_chat_history', JSON.stringify(saved));
+
+            if (messages) {
+                messages.forEach(msg => {
+                    renderBubble(msg.id, msg.s, msg.te, new Date(msg.created_at).toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'}), msg.is);
+                });
+            }
         }
 
         function clearAllMessages() {
             if(confirm('هل أنت متأكد من حذف جميع رسائل الشات؟')) {
-                localStorage.removeItem('sama_saved_chat_history');
                 document.getElementById('waMessagesList').innerHTML = '';
             }
         }
@@ -586,10 +639,8 @@
                             } else if(parsed.type === 'typing') {
                                 showTypingStatus(parsed.sender);
                             } else if(parsed.type === 'chat') {
-                                saveMessageToStorage(parsed);
-                                renderOrUpdateBubble(parsed);
+                                loadSavedMessagesFromDB();
                             } else if(parsed.type === 'delete') {
-                                removeMessageFromStorage(parsed.id);
                                 let el = document.getElementById('msg-' + parsed.id);
                                 if(el) el.remove();
                             } else if(parsed.type === 'read') {
@@ -631,22 +682,7 @@
         }
 
         function updateOnlineStatus(sender) {
-            activeUsersList.add(sender);
-        }
-
-        function renderOrUpdateBubble(msg) {
-            let existingEl = document.getElementById('msg-' + msg.id);
-            if(existingEl) {
-                let textContainer = existingEl.querySelector('.msg-text-content');
-                if(textContainer) textContainer.innerText = msg.text;
-                let ticksContainer = existingEl.querySelector('.wa-ticks');
-                if(ticksContainer && msg.isRead) {
-                    ticksContainer.className = 'wa-ticks read';
-                    ticksContainer.innerText = '✓✓';
-                }
-            } else {
-                renderBubble(msg.id, msg.sender, msg.text, msg.time, msg.isRead);
-            }
+            // تحديث حالة الاتصال إذا لزم الأمر
         }
 
         function renderBubble(id, sender, text, time, isRead) {
@@ -662,7 +698,6 @@
             if(isMe) {
                 optionsHtml = `
                     <span class="msg-options">
-                        <button class="msg-opt-btn" onclick="editMessage('${id}')">تعديل</button>
                         <button class="msg-opt-btn" onclick="deleteMessage('${id}')">حذف</button>
                     </span>
                 `;
@@ -679,10 +714,6 @@
             `;
             listDiv.appendChild(div);
             listDiv.scrollTop = listDiv.scrollHeight;
-
-            if(!isMe && !isRead) {
-                notifyRead(id);
-            }
         }
 
         function sendWhatsAppMessage() {
@@ -693,50 +724,35 @@
             textInput.value = '';
         }
 
-        function sendTextMessage(text) {
+        // إرسال وحفظ الرسالة مباشرة في جدول Supabase
+        async function sendTextMessage(text) {
             const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';
-            const timeNow = new Date().toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'});
-            const msgId = 'm_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7);
             
-            const msgObj = {
-                type: 'chat',
-                id: msgId,
-                sender: sender,
-                text: text,
-                time: timeNow,
-                isRead: false
-            };
+            const { data, error } = await supabase
+                .from('messages')
+                .insert([
+                    { 
+                      s: sender,    // اسم المرسل
+                      te: text,     // نص الرسالة
+                      is: false     // هل هي مقروءة؟
+                    }
+                ]);
 
-            saveMessageToStorage(msgObj);
-            renderOrUpdateBubble(msgObj);
-
-            fetch(apiUrl, {
-                method: 'POST',
-                body: JSON.stringify(msgObj)
-            }).catch(err => {});
-        }
-
-        function editMessage(id) {
-            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
-            let msg = saved.find(m => m.id === id);
-            if(!msg) return;
-
-            let newText = prompt("عدل رسالتك:", msg.text);
-            if(newText !== null && newText.trim() !== "") {
-                msg.text = newText.trim();
-                saveMessageToStorage(msg);
-                renderOrUpdateBubble(msg);
-
+            if (error) {
+                console.error('خطأ أثناء حفظ الرسالة:', error);
+                alert('فشل حفظ الرسالة في قاعدة البيانات: ' + error.message);
+            } else {
+                loadSavedMessagesFromDB();
+                // إرسال إشعار فوري للطرف الآخر عبر ntfy
                 fetch(apiUrl, {
                     method: 'POST',
-                    body: JSON.stringify(msg)
-                }).catch(e => {});
+                    body: JSON.stringify({ type: 'chat', sender: sender, text: text })
+                }).catch(err => {});
             }
         }
 
         function deleteMessage(id) {
             if(confirm("هل تريد حذف هذه الرسالة؟")) {
-                removeMessageFromStorage(id);
                 let el = document.getElementById('msg-' + id);
                 if(el) el.remove();
 
@@ -747,67 +763,30 @@
             }
         }
 
-        function removeMessageFromStorage(id) {
-            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
-            saved = saved.filter(m => m.id !== id);
-            localStorage.setItem('sama_saved_chat_history', JSON.stringify(saved));
-        }
-
-        function notifyRead(id) {
-            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
-            let msg = saved.find(m => m.id === id);
-            if(msg && !msg.isRead) {
-                msg.isRead = true;
-                saveMessageToStorage(msg);
-                
-                fetch(apiUrl, {
-                    method: 'POST',
-                    body: JSON.stringify({ type: 'read', id: id })
-                }).catch(e => {});
-            }
-        }
-
         function markMessageReadLocal(id) {
-            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
-            let msg = saved.find(m => m.id === id);
-            if(msg) {
-                msg.isRead = true;
-                saveMessageToStorage(msg);
-                let ticks = document.querySelector(`#msg-${id} .wa-ticks`);
-                if(ticks) {
-                    ticks.className = 'wa-ticks read';
-                    ticks.innerText = '✓✓';
-                }
+            let ticks = document.querySelector(`#msg-${id} .wa-ticks`);
+            if(ticks) {
+                ticks.className = 'wa-ticks read';
+                ticks.innerText = '✓✓';
             }
-        }
-
-        function markAllAsRead() {
-            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
-            let myName = localStorage.getItem('sama_chat_user_name');
-            saved.forEach(msg => {
-                if(msg.sender !== myName && !msg.isRead) {
-                    notifyRead(msg.id);
-                }
-            });
         }
 
         function handleKeyPress(e) { if(e.key === 'Enter') sendWhatsAppMessage(); }
 
         function createHeartAtClick(e) {
-            // منع تفجير القلوب نهائياً إذا كان النقر داخل واجهة الشات أو أزرار التحكم
             if(e.target.closest('#whatsappBox') || e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT') return;
             spawnHeart(e.clientX, e.clientY);
         }
 
         function spawnHeart(x, y) {
-            const heart = document.createElement('div');
-            heart.classList.add('heart-float');
+            TheHeart = document.createElement('div');
+            TheHeart.classList.add('heart-float');
             const symbols = ['💖 سما 💖', '🌸 سما 🌸', '🌷 سما 🌷', '👑 سما 👑', '🌹 روحي سما 🌹', '✨ سما الحب ✨'];
-            heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
-            heart.style.left = x + 'px';
-            heart.style.top = y + 'px';
-            document.body.appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 3800);
+            TheHeart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+            TheHeart.style.left = x + 'px';
+            TheHeart.style.top = y + 'px';
+            document.body.appendChild(TheHeart);
+            setTimeout(() => { TheHeart.remove(); }, 3800);
         }
 
         function triggerMegaExplosion(e) {
