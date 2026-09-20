@@ -3,7 +3,7 @@
 <head>  
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Sama Royal Sanctuary - Ultimate Masterpiece Edition</title>  
+    <title>Sama Royal Sanctuary - Ultimate WhatsApp Edition</title>  
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">  
     <style>  
         :root {  
@@ -105,7 +105,7 @@
         .display-card h2 { font-size: 26px; font-weight: 900; color: var(--primary); margin-bottom: 15px; }  
         .display-card p { font-size: 17px; line-height: 2.1; font-weight: 700; color: var(--text-main); background: #fff5f5; padding: 22px; border-radius: 16px; border: 2px solid #fecdd3; }  
 
-        /* --- واجهة الستوريات والحالات الملكية --- */  
+        /* --- واجهة الستوريات والحالات الأسطورية --- */  
         .stories-container {  
             display: none;  
             flex-direction: column;  
@@ -118,16 +118,16 @@
             padding: 20px;  
             box-shadow: 0 10px 25px rgba(225,29,72,0.1);  
         }  
-        .story-header { font-weight: 900; color: var(--primary); font-size: 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }  
+        .story-header { font-weight: 900; color: var(--primary); font-size: 17px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }  
         .story-text { font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 12px; }  
         .story-input-box { display: flex; gap: 10px; }  
         .story-input-box input { flex: 1; padding: 12px 16px; border: 2px solid #fda4af; border-radius: 14px; outline: none; font-family: 'Cairo', sans-serif; font-size: 14px; }  
         .story-post-btn { background: var(--primary); color: #fff; border: none; padding: 0 20px; border-radius: 14px; font-weight: 900; cursor: pointer; transition: 0.2s; }  
         .story-post-btn:hover { background: var(--accent); }  
-        .stories-list { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }  
-        .story-bubble { background: #fff; border: 2px solid #fecdd3; padding: 12px 16px; border-radius: 14px; font-weight: 700; font-size: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }  
+        .stories-list { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; max-height: 350px; overflow-y: auto; }  
+        .story-bubble { background: #fff; border: 2px solid #fecdd3; padding: 14px 18px; border-radius: 16px; font-weight: 700; font-size: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }  
 
-        /* --- واجهة الشات الملكية السحابية (Firebase) --- */  
+        /* --- واجهة الشات الملكية السحابية شبيهة بالواتساب --- */  
         .whatsapp-container {  
             display: none;  
             background: #0b141a;  
@@ -174,24 +174,24 @@
             padding: 20px;  
             display: flex;  
             flex-direction: column;  
-            gap: 12px;  
+            gap: 10px;  
             background-color: #0b141a;  
             background-image: radial-gradient(#1f2c34 1px, transparent 1px);  
             background-size: 24px 24px;  
         }  
         .wa-bubble {  
             max-width: 75%;  
-            padding: 10px 14px;  
-            border-radius: 14px;  
+            padding: 8px 12px 6px 12px;  
+            border-radius: 12px;  
             position: relative;  
-            font-size: 15px;  
+            font-size: 14.5px;  
             font-weight: 600;  
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);  
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);  
             word-wrap: break-word;  
-            animation: fadeInBubble 0.25s ease;  
+            animation: fadeInBubble 0.2s ease;  
         }  
         @keyframes fadeInBubble {  
-            from { opacity: 0; transform: translateY(8px); }  
+            from { opacity: 0; transform: translateY(6px); }  
             to { opacity: 1; transform: translateY(0); }  
         }  
         .wa-bubble.incoming {  
@@ -206,18 +206,34 @@
             border-top-left-radius: 4px;  
             color: #e9edef;  
         }  
-        .wa-sender-name { font-size: 11px; color: #53bdeb; font-weight: 800; margin-bottom: 3px; }  
+        .wa-sender-name { font-size: 11px; color: #53bdeb; font-weight: 800; margin-bottom: 2px; }  
           
         .wa-msg-footer {  
             display: flex;  
             align-items: center;  
             justify-content: flex-end;  
-            gap: 6px;  
-            margin-top: 4px;  
+            gap: 5px;  
+            margin-top: 2px;  
+            float: left;
+            position: relative;
+            bottom: -2px;
+            margin-right: 5px;
         }  
-        .wa-time { font-size: 9px; color: #8696a0; }  
-        .wa-ticks { font-size: 12px; font-weight: 900; color: #8696a0; letter-spacing: -3px; }  
-        .wa-ticks.read { color: #53bdeb; }  
+        .wa-time { font-size: 9.5px; color: #8696a0; }  
+        .wa-ticks { font-size: 11px; font-weight: 900; color: #53bdeb; letter-spacing: -2px; }  
+          
+        .delete-msg-btn {  
+            background: none;  
+            border: none;  
+            color: #ef4444;  
+            font-size: 12px;  
+            cursor: pointer;  
+            margin-right: 8px;  
+            font-weight: 700;  
+            opacity: 0.7;  
+            transition: 0.2s;  
+        }  
+        .delete-msg-btn:hover { opacity: 1; transform: scale(1.1); }  
 
         .stickers-panel {  
             display: none;  
@@ -368,14 +384,14 @@
         <h2 id="pageTitle">✨ جنة العشق الأبدي (عرش روحي المطلق)</h2>  
         <p id="pageDesc">سما.. يا من ملأتِ أيامي نوراً وحياة. أنتِ لستِ مجرد شخص أحبه، أنتِ عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودكِ معي يجعل العالم مكاناً أجمل بكثير.</p>  
           
-        <!-- --- قسم الستوريات والحالات الملكية --- -->  
+        <!-- --- قسم الستوريات والحالات الأسطورية الملكية --- -->  
         <div id="storiesBox" class="stories-container">  
             <div class="story-card">  
                 <div class="story-header">📸 شارك حالة أو ستوري ملكي جديد</div>  
-                <div class="story-text">اكتب خاطرة أو حالة تظهر هنا للجميع لحظياً:</div>  
+                <div class="story-text">اكتب خاطرة أو حالة أسطورية تظهر هنا للجميع لحظياً:</div>  
                 <div class="story-input-box">  
-                    <input type="text" id="storyTextInput" placeholder="اكتب حالتك هنا يا بطل...">  
-                    <button class="story-post-btn" onclick="postStory()">نشر 🌟</button>  
+                    <input type="text" id="storyTextInput" placeholder="اكتب حالتك أو ستوريك الأسطوري هنا...">  
+                    <button class="story-post-btn" onclick="postStory()">نشر أسطوري 🌟</button>  
                 </div>  
                 <div id="storiesList" class="stories-list">  
                     <!-- الحالات المنشورة سحابياً -->  
@@ -403,7 +419,7 @@
             </div>  
 
             <div id="waMessagesList" class="wa-messages-area">  
-                <!-- الرسائل السحابية الحية (بدون تعديل أو حذف للجميع) -->  
+                <!-- الرسائل السحابية الحية مع زر الحذف للجميع -->  
             </div>  
 
             <div id="stickersPanel" class="stickers-panel">  
@@ -459,7 +475,7 @@
 <!-- ربط مكتبات Firebase عبر الـ CDN -->  
 <script type="module">  
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";  
-    import { getDatabase, ref, push, set, onChildAdded, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";  
+    import { getDatabase, ref, push, set, remove, onChildAdded, onChildRemoved, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";  
 
     const firebaseConfig = {  
         databaseURL: "https://slmane-default-rtdb.firebaseio.com/"  
@@ -509,13 +525,19 @@
             }  
         });  
 
+        onChildRemoved(messagesRef, (snapshot) => {
+            const msgEl = document.getElementById('msg-' + snapshot.key);
+            if(msgEl) msgEl.remove();
+        });
+
         const storiesListDiv = document.getElementById('storiesList');
         onChildAdded(storiesRef, (snapshot) => {
             const st = snapshot.val();
             if(st && storiesListDiv) {
                 let div = document.createElement('div');
+                div.id = 'story-' + snapshot.key;
                 div.className = 'story-bubble';
-                div.innerHTML = `<strong>${st.sender}:</strong> ${st.text} <span style="font-size:10px; color:#888; float:left;">${st.time}</span>`;
+                div.innerHTML = `<div><strong>${st.sender}:</strong> ${st.text}</div> <span style="font-size:11px; color:#888;">${st.time}</span>`;
                 storiesListDiv.prepend(div);
             }
         });
@@ -536,6 +558,17 @@
             timestamp: Date.now()  
         });  
     };  
+
+    window.deleteCloudMessage = function(id) {
+        if(!messagesRef) return;
+        const targetRef = ref(db, 'sama_royal_chat/messages/' + id);
+        remove(targetRef).then(() => {
+            const el = document.getElementById('msg-' + id);
+            if(el) el.remove();
+        }).catch(err => {
+            alert('تعذر حذف الرسالة ❌');
+        });
+    };
 
     window.postCloudStory = function(text) {
         if(!storiesRef) return;
@@ -570,7 +603,7 @@
             desc: "أقسم برب الكون يا سما، أنني سأبقى سندكِ وقوتكِ ومأمنكِ حتى آخر نبض في عمري. معكِ أدركتُ معنى الاستقرار الحقيقي، وللأبد نحن قصة عشق لا تنتهي."  
         },  
         {  
-            title: "📖 ستوريات وحالات المملكة الملكية الحية",  
+            title: "📖 ستوريات وحالات المملكة الملكية الأسطورية",  
             desc: "شارك أفكارك، مشاعرك، وحالاتك الرومانسية لتظهر في السحابة فوراً وتخلد هنا للأبد."  
         }  
     ];  
@@ -664,10 +697,10 @@
     function postStory() {
         const input = document.getElementById('storyTextInput');
         const val = input.value.trim();
-        if(!val) { alert('اكتب شيئاً لنشره في الستوري! ✨'); return; }
+        if(!val) { alert('اكتب شيئاً لنشره في الستوري الأسطوري! ✨'); return; }
         window.postCloudStory(val);
         input.value = '';
-        alert('تم نشر حالتك السحابية بنجاح! 🌟');
+        alert('تم نشر حالتك الأسطورية السحابية بنجاح! 🌟');
     }
 
     let mediaRecorder;
@@ -722,9 +755,11 @@
             <div class="wa-sender-name">${sender}</div>  
             ${contentHTML}  
             <div class="wa-msg-footer">  
+                <button class="delete-msg-btn" onclick="window.deleteCloudMessage('${id}')" title="حذف للجميع">🗑️ حذف</button>  
                 <span class="wa-time">${time}</span>  
-                <span class="wa-ticks read">✓✓</span>  
+                <span class="wa-ticks">✓✓</span>  
             </div>  
+            <div style="clear: both;"></div>
         `;  
         listDiv.appendChild(div);  
         listDiv.scrollTop = listDiv.scrollHeight;  
