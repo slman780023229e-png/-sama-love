@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <title>Sama Royal Sanctuary - Ultimate Masterpiece Edition</title>  
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">  
-    <!-- مكتبة Supabase للاتصال بقاعدة البيانات الحقيقية -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>  
         :root {  
             --bg-grad-1: #fff1f2;  
@@ -107,7 +105,7 @@
         .display-card h2 { font-size: 26px; font-weight: 900; color: var(--primary); margin-bottom: 15px; }  
         .display-card p { font-size: 17px; line-height: 2.1; font-weight: 700; color: var(--text-main); background: #fff5f5; padding: 22px; border-radius: 16px; border: 2px solid #fecdd3; }  
 
-        /* --- واجهة الشات الملكية الاحترافية المرتبة وخالية من التداخل --- */  
+        /* --- واجهة الشات الملكية السحابية (Firebase) --- */  
         .whatsapp-container {  
             display: none;  
             background: #0b141a;  
@@ -133,7 +131,6 @@
         }  
         .wa-status-text { font-size: 11px; color: #00a884; font-weight: 700; margin-top: 2px; }  
           
-        /* لوحة حالة قاعدة البيانات الحقيقية المميزة */  
         .db-status-bar {  
             background: #111b21;  
             padding: 8px 20px;  
@@ -146,8 +143,7 @@
             color: #8696a0;  
         }  
         .db-status-indicator { display: flex; align-items: center; gap: 8px; }  
-        .db-dot { width: 8px; height: 8px; border-radius: 50%; background: #f59e0b; transition: 0.3s; flex-shrink: 0; }  
-        .db-dot.connected { background: #10b981; box-shadow: 0 0 8px #10b981; }  
+        .db-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981; flex-shrink: 0; }  
         .db-dot.error { background: #ef4444; box-shadow: 0 0 8px #ef4444; }  
 
         .wa-control-btn {  
@@ -214,26 +210,6 @@
         .wa-ticks { font-size: 12px; font-weight: 900; color: #8696a0; letter-spacing: -3px; }  
         .wa-ticks.read { color: #53bdeb; }  
 
-        .msg-options {  
-            display: inline-flex;  
-            gap: 4px;  
-            margin-right: 8px;  
-            opacity: 0;  
-            transition: 0.2s;  
-        }  
-        .wa-bubble:hover .msg-options { opacity: 1; }  
-        .msg-opt-btn {  
-            background: rgba(0,0,0,0.4);  
-            border: none;  
-            color: #ccc;  
-            font-size: 10px;  
-            padding: 2px 5px;  
-            border-radius: 4px;  
-            cursor: pointer;  
-        }  
-        .msg-opt-btn:hover { background: #00a884; color: #fff; }  
-
-        /* لوحة الملصقات المدمجة */  
         .stickers-panel {  
             display: none;  
             background: #1f2c34;  
@@ -279,7 +255,6 @@
         .wa-action-icon-btn { background: none; border: none; font-size: 22px; cursor: pointer; color: #8696a0; transition: 0.2s; flex-shrink: 0; }  
         .wa-action-icon-btn:hover { color: #00a884; transform: scale(1.1); }  
 
-        /* زر إرسال فخم وخاص بالشات */  
         .wa-send-btn {  
             background: linear-gradient(135deg, #00a884, #008f6f);  
             color: #fff;  
@@ -365,7 +340,7 @@
 
 <div class="royal-header">  
     <div class="royal-title">👑 مملكة العشق والخلود المخصصة لـ: سما</div>  
-    <div class="royal-badge">النسخة النهائية المثالية 🚀</div>  
+    <div class="royal-badge">النسخة السحابية الحية 🚀</div>  
 </div>  
 
 <div class="main-container">  
@@ -381,35 +356,32 @@
         <h2 id="pageTitle">✨ جنة العشق الأبدي (عرش روحي المطلق)</h2>  
         <p id="pageDesc">سما.. يا من ملأتِ أيامي نوراً وحياة. أنتِ لستِ مجرد شخص أحبه، أنتِ عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودكِ معي يجعل العالم مكاناً أجمل بكثير.</p>  
           
-        <!-- --- واجهة الشات المطورة والفخمة والخالية من التداخل --- -->  
+        <!-- --- واجهة الشات المربوطة بـ Firebase Realtime Database --- -->  
         <div id="whatsappBox" class="whatsapp-container">  
             <div class="wa-chat-header">  
                 <div class="wa-avatar-box">  
                     <div class="wa-avatar">👑</div>  
                     <div>  
                         <div style="color:#fff; font-weight:900; font-size:15px;">مملكة سلمان وسما 🩷</div>  
-                        <div id="onlineStatusText" class="wa-status-text">● متصل الآن...</div>  
+                        <div id="onlineStatusText" class="wa-status-text">● جاري فحص الاتصال بالخادم...</div>  
                     </div>  
                 </div>  
                 <div class="wa-controls">  
-                    <button class="wa-control-btn" onclick="clearAllMessages()">🗑️ حذف الشات</button>  
+                    <button class="wa-control-btn" onclick="clearCloudChat()">🗑️ تصفير القاعدة</button>  
                 </div>  
             </div>  
 
-            <!-- شريط فحص وحالة قاعدة البيانات الحقيقية (Supabase + LocalStorage) -->  
             <div class="db-status-bar">  
                 <div class="db-status-indicator">  
-                    <div id="dbDot" class="db-dot"></div>  
-                    <span id="dbStatusText">جاري فحص اتصال قاعدة البيانات...</span>  
+                    <div id="dbDotIndicator" class="db-dot"></div>  
+                    <span id="dbStatusMessage">جاري الاتصال بقاعدة البيانات السحابية... ⏳</span>  
                 </div>  
-                <span id="dbSyncMode" style="font-size: 10px;">حفظ مزدوج (آمن 100%)</span>  
             </div>  
 
             <div id="waMessagesList" class="wa-messages-area">  
-                <!-- الرسائل -->  
+                <!-- الرسائل السحابية الحية -->  
             </div>  
 
-            <!-- لوحة الملصقات المدمجة -->  
             <div id="stickersPanel" class="stickers-panel">  
                 <button class="sticker-item" onclick="sendSticker('💖')">💖</button>  
                 <button class="sticker-item" onclick="sendSticker('👑')">👑</button>  
@@ -438,7 +410,6 @@
     </div>  
 </div>  
 
-<!-- نافذة كلمة المرور -->  
 <div id="secretModal" class="modal-overlay">  
     <div class="modal-card">  
         <h3>🩷 بوابة اللقاء السري</h3>  
@@ -450,7 +421,6 @@
     </div>  
 </div>  
 
-<!-- نافذة إدخال الاسم -->  
 <div id="nameModal" class="modal-overlay">  
     <div class="modal-card">  
         <h3>✨ اسمك الكريم؟</h3>  
@@ -461,21 +431,102 @@
     </div>  
 </div>  
 
-<script>  
-    // إعدادات قاعدة بيانات Supabase الحقيقية (الرابط والمفتاح العام والمفتاح السري والجدول messagesm)
-    const SUPABASE_URL = 'https://terskmhhznyaathxnvjq.supabase.co';
-    const SUPABASE_KEY = 'Sb_publishable_zgjQbmezkXMAxzjLC6brkw_Yvl1fFbh';
-    const SUPABASE_SECRET_KEY = 'sb_secret_qRMFWf6_4iOLGAork05JWQ_4tr7KoxC';
-    const TABLE_NAME = 'messagesm';
+<!-- ربط مكتبات Firebase عبر الـ CDN مع نظام فحص الأخطاء والاتصال -->  
+<script type="module">  
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";  
+    import { getDatabase, ref, push, set, onChildAdded, remove, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";  
 
-    let supabaseClient = null;
+    // إعدادات قاعدة البيانات الخاصة بك في Firebase
+    const firebaseConfig = {  
+        databaseURL: "https://slmane-default-rtdb.firebaseio.com/"  
+    };  
+
+    let db, messagesRef;
+    let isListenerActive = false;  
 
     try {
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-    } catch(e) {
-        console.error("خطأ في تهيئة Supabase:", e);
+        const app = initializeApp(firebaseConfig);  
+        db = getDatabase(app);  
+        messagesRef = ref(db, 'sama_royal_chat/messages');  
+
+        // فحص حالة الاتصال بالخادم حياً (.info/connected)
+        const connectedRef = ref(db, ".info/connected");
+        onValue(connectedRef, (snap) => {
+            const statusDot = document.getElementById('dbDotIndicator');
+            const statusMsg = document.getElementById('dbStatusMessage');
+            const statusText = document.getElementById('onlineStatusText');
+
+            if (snap.val() === true) {
+                if(statusDot) statusDot.className = "db-dot";
+                if(statusMsg) statusMsg.innerText = "الاتصال بالخادم السحابي شغال ⚡ (متصل بنجاح)";
+                if(statusText) statusText.innerText = "● متصل سحابياً وبشكل مباشر";
+            } else {
+                if(statusDot) statusDot.className = "db-dot error";
+                if(statusMsg) statusMsg.innerText = "خطأ في الاتصال بالخادم ❌ (جاري إعادة المحاولة...)";
+                if(statusText) statusText.innerText = "● منقطع عن الخادم";
+            }
+        });
+
+    } catch (err) {
+        console.error("Firebase Init Error:", err);
+        const statusDot = document.getElementById('dbDotIndicator');
+        const statusMsg = document.getElementById('dbStatusMessage');
+        if(statusDot) statusDot.className = "db-dot error";
+        if(statusMsg) statusMsg.innerText = "حدث خطأ فادح في تهيئة قاعدة البيانات ❌";
     }
 
+    window.initCloudChat = function() {  
+        if (isListenerActive || !messagesRef) return;  
+        isListenerActive = true;  
+
+        const listDiv = document.getElementById('waMessagesList');  
+        listDiv.innerHTML = '';  
+
+        // جلب الرسائل الحية والتحديث الفوري بين الأجهزة
+        onChildAdded(messagesRef, (snapshot) => {  
+            const msg = snapshot.val();  
+            if (msg) {  
+                renderCloudBubble(snapshot.key, msg.sender, msg.text, msg.time);  
+            }  
+        }, (error) => {
+            console.error("Read Error:", error);
+            alert("خطأ في قراءة الرسائل من القاعدة: " + error.message);
+        });  
+    };  
+
+    window.sendCloudMessage = function(text) {  
+        if (!messagesRef) {
+            alert("خطأ: قاعدة البيانات غير متصلة بالشكل الصحيح! ❌");
+            return;
+        }
+        const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';  
+        const timeNow = new Date().toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'});  
+          
+        const newMsgRef = push(messagesRef);  
+        set(newMsgRef, {  
+            sender: sender,  
+            text: text,  
+            time: timeNow,  
+            timestamp: Date.now()  
+        }).catch((err) => {
+            alert("خطأ خطير: فشل إرسال الرسالة إلى السحابة ❌: " + err.message);
+        });  
+    };  
+
+    window.clearCloudChat = function() {  
+        if(!messagesRef) return;
+        if(confirm('هل أنت متأكد من مسح جميع رسائل السحابة نهائياً؟')) {  
+            remove(messagesRef).then(() => {  
+                document.getElementById('waMessagesList').innerHTML = '';  
+                alert('تم تصفير ونظافة قاعدة البيانات بنجاح! ✨');
+            }).catch((err) => {
+                alert('حدث خطأ أثناء محاولة التصفير ❌: ' + err.message);
+            });  
+        }  
+    };  
+</script>  
+
+<script>  
     const pagesData = [  
         {  
             title: "✨ جنة العشق الأبدي (عرش روحي المطلق)",  
@@ -560,76 +611,8 @@
         document.getElementById('pageDesc').style.display = 'none';  
         document.getElementById('whatsappBox').style.display = 'block';  
           
-        checkDatabaseConnection();
-        loadMessagesFromDatabase();
-    }  
-
-    // فحص اتصال قاعدة البيانات Supabase فعلياً وعرض الحالة باستخدام جدول messagesm
-    async function checkDatabaseConnection() {
-        const dotEl = document.getElementById('dbDot');
-        const textEl = document.getElementById('dbStatusText');
-
-        if (!supabaseClient) {
-            dotEl.className = "db-dot error";
-            textEl.innerText = "فشل تهيئة قاعدة البيانات (Supabase Offline)";
-            return;
-        }
-
-        try {
-            const { data, error } = await supabaseClient.from(TABLE_NAME).select('id').limit(1);
-            if (error) throw error;
-
-            dotEl.className = "db-dot connected";
-            textEl.innerText = "قاعدة البيانات متصلة وتعمل بنجاح (Supabase Online)";
-        } catch (err) {
-            console.error("خطأ الاتصال:", err);
-            dotEl.className = "db-dot error";
-            textEl.innerText = "خطأ في اتصال قاعدة البيانات: " + (err.message || 'تحقق من الجدول messagesm');
-        }
-    }
-
-    // جلب الرسائل من جدول messagesm مع دعم التخزين المحلي كاحتياط
-    async function loadMessagesFromDatabase() {
-        const listDiv = document.getElementById('waMessagesList');
-        listDiv.innerHTML = '<div style="color: #8696a0; text-align: center; padding: 15px; font-size: 12px;">جاري جلب رسائل المملكة... 🩷</div>';
-
-        try {
-            if (supabaseClient) {
-                const { data, error } = await supabaseClient
-                    .from(TABLE_NAME)
-                    .select('*')
-                    .order('created_at', { ascending: true });
-
-                if (!error && data) {
-                    listDiv.innerHTML = '';
-                    data.forEach(msg => {
-                        let timeStr = new Date(msg.created_at || Date.now()).toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'});
-                        renderBubble(msg.id, msg.s, msg.te, timeStr, true);
-                    });
-                    return;
-                }
-            }
-        } catch(e) {
-            console.warn("الاعتماد على التخزين المحلي مؤقتاً:", e);
-        }
-
-        const savedLocal = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
-        listDiv.innerHTML = '';
-        savedLocal.forEach(msg => {
-            renderBubble(msg.id, msg.sender, msg.text, msg.time, true);
-        });
-    }  
-
-    async function clearAllMessages() {  
-        if(confirm('هل أنت متأكد من مسح رسائل الشات؟')) {  
-            localStorage.removeItem('sama_saved_chat_history');  
-            document.getElementById('waMessagesList').innerHTML = '';  
-            
-            if (supabaseClient) {
-                try {
-                    await supabaseClient.from(TABLE_NAME).delete().neq('id', 0);
-                } catch(e) {}
-            }
+        if(typeof window.initCloudChat === 'function') {  
+            window.initCloudChat();  
         }  
     }  
 
@@ -639,33 +622,25 @@
     }  
 
     function sendSticker(stickerEmoji) {  
-        sendTextMessage(stickerEmoji);  
+        sendCloudMessage(stickerEmoji);  
         toggleStickersPanel();  
     }  
 
-    function renderBubble(id, sender, text, time, isRead) {  
+    function renderCloudBubble(id, sender, text, time) {  
         const listDiv = document.getElementById('waMessagesList');  
         let myName = localStorage.getItem('sama_chat_user_name') || 'أنا';  
         let isMe = (sender === myName);  
 
+        if(document.getElementById('msg-' + id)) return; // عدم تكرار الرسائل المعروضة مسبقاً
+
         let div = document.createElement('div');  
         div.id = 'msg-' + id;  
         div.className = `wa-bubble ${isMe ? 'outgoing' : 'incoming'}`;  
-          
-        let optionsHtml = '';  
-        if(isMe) {  
-            optionsHtml = `  
-                <span class="msg-options">  
-                    <button class="msg-opt-btn" onclick="deleteMessage('${id}')">حذف</button>  
-                </span>  
-            `;  
-        }  
 
         div.innerHTML = `  
             <div class="wa-sender-name">${sender}</div>  
             <div class="msg-text-content">${text}</div>  
             <div class="wa-msg-footer">  
-                ${optionsHtml}  
                 <span class="wa-time">${time}</span>  
                 <span class="wa-ticks read">✓✓</span>  
             </div>  
@@ -674,50 +649,16 @@
         listDiv.scrollTop = listDiv.scrollHeight;  
     }  
 
-    function handleKeyPress(e) { 
-        if(e.key === 'Enter') sendWhatsAppMessage(); 
+    function handleKeyPress(e) {   
+        if(e.key === 'Enter') sendWhatsAppMessage();   
     }  
 
     function sendWhatsAppMessage() {  
         const textInput = document.getElementById('waText');  
         const text = textInput.value.trim();  
         if(!text) return;  
-        sendTextMessage(text);  
+        window.sendCloudMessage(text);  
         textInput.value = '';  
-    }  
-
-    // إرسال الرسالة وحفظها في جدول messagesm بقاعدة بيانات Supabase فوراَ
-    async function sendTextMessage(text) {  
-        const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';  
-        const timeNow = new Date().toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'});  
-          
-        let localSaved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
-        let msgObj = { id: 'm_' + Date.now(), sender: sender, text: text, time: timeNow };
-        localSaved.push(msgObj);
-        localStorage.setItem('sama_saved_chat_history', JSON.stringify(localSaved));
-
-        renderBubble(msgObj.id, sender, text, timeNow, true);
-
-        if (supabaseClient) {
-            try {
-                const { error } = await supabaseClient
-                    .from(TABLE_NAME)
-                    .insert([{ s: sender, te: text, is: true }]);
-
-                if (error) {
-                    console.error("خطأ في رفع الرسالة لقاعدة البيانات:", error);
-                }
-            } catch(err) {
-                console.error("فشل الاتصال بقاعدة البيانات أثناء الإرسال:", err);
-            }
-        }
-    }  
-
-    async function deleteMessage(id) {  
-        if(confirm("هل تريد حذف هذه الرسالة؟")) {  
-            let el = document.getElementById('msg-' + id);  
-            if(el) el.remove();  
-        }  
     }  
 
     function createHeartAtClick(e) {  
