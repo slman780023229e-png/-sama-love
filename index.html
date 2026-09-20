@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sama Royal Sanctuary - Live Edition</title>
+    <title>Sama Royal Sanctuary - Ultimate Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- مكتبة Socket.io المجانية للربط المباشر اللحظي -->
-    <script src="https://cdnjs.cloudflare.com/ajax5/libs/socket.io/4.7.2/socket.io.min.js"></script>
     <style>
         :root {
             --bg-grad-1: #fff1f2;
@@ -47,7 +45,7 @@
             margin-bottom: 25px;
             backdrop-filter: blur(10px);
         }
-        .royal-title { font-size: 22px; font-weight: 900; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .royal-title { font-size: 20px; font-weight: 900; color: var(--primary); display: flex; align-items: center; gap: 10px; }
         .royal-badge { font-size: 13px; background: var(--primary); color: #fff; padding: 6px 18px; border-radius: 20px; font-weight: 800; box-shadow: 0 4px 12px rgba(225,29,72,0.3); }
 
         .main-container {
@@ -108,7 +106,7 @@
         .display-card h2 { font-size: 26px; font-weight: 900; color: var(--primary); margin-bottom: 15px; }
         .display-card p { font-size: 17px; line-height: 2.1; font-weight: 700; color: var(--text-main); background: #fff5f5; padding: 22px; border-radius: 16px; border: 2px solid #fecdd3; }
 
-        /* --- واجهة واتساب سحابية حقيقية --- */
+        /* --- واجهة واتساب سحابية متقدمة --- */
         .whatsapp-container {
             display: none;
             background: #111b21;
@@ -122,7 +120,7 @@
         .wa-chat-header {
             background: linear-gradient(135deg, #1f2c34, #111b21);
             color: #fff;
-            padding: 20px 25px;
+            padding: 15px 25px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -130,24 +128,40 @@
         }
         .wa-avatar-box { display: flex; align-items: center; gap: 15px; }
         .wa-avatar {
-            width: 52px; height: 52px; background: linear-gradient(135deg, #00a884, #005c4b); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 0 15px rgba(0,168,132,0.4);
+            width: 48px; height: 48px; background: linear-gradient(135deg, #00a884, #005c4b); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 0 15px rgba(0,168,132,0.4);
         }
         .wa-status-text { font-size: 12px; color: #00a884; font-weight: 700; }
+        
+        .wa-controls { display: flex; gap: 10px; }
+        .wa-control-btn {
+            background: #2a3942;
+            color: #e9edef;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .wa-control-btn:hover { background: #374248; }
+        .wa-control-btn.danger { background: #552222; color: #ff8888; }
+        .wa-control-btn.danger:hover { background: #772222; }
 
         .wa-messages-area {
-            height: 520px;
+            height: 440px;
             overflow-y: auto;
-            padding: 30px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
             background-color: #0b141a;
             background-image: radial-gradient(#222d34 1.2px, transparent 1.2px);
             background-size: 26px 26px;
         }
         .wa-bubble {
             max-width: 75%;
-            padding: 14px 20px;
+            padding: 12px 18px;
             border-radius: 18px;
             position: relative;
             font-size: 16px;
@@ -174,53 +188,94 @@
             color: #e9edef;
             border-left: 4px solid #00a884;
         }
-        .wa-sender-name {
-            font-size: 13px;
-            color: #00a884;
-            font-weight: 900;
-            margin-bottom: 5px;
+        .wa-sender-name { font-size: 12px; color: #00a884; font-weight: 900; margin-bottom: 4px; }
+        
+        .wa-msg-footer {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 5px;
         }
-        .wa-time {
+        .wa-time { font-size: 10px; color: #8696a0; }
+        .wa-ticks { font-size: 13px; font-weight: 900; color: #8696a0; letter-spacing: -3px; }
+        .wa-ticks.read { color: #53bdeb; }
+
+        .msg-options {
+            display: inline-flex;
+            gap: 5px;
+            margin-right: 10px;
+            opacity: 0;
+            transition: 0.2s;
+        }
+        .wa-bubble:hover .msg-options { opacity: 1; }
+        .msg-opt-btn {
+            background: rgba(0,0,0,0.3);
+            border: none;
+            color: #ccc;
             font-size: 11px;
-            color: #8696a0;
-            margin-top: 6px;
-            text-align: left;
+            padding: 2px 6px;
+            border-radius: 6px;
+            cursor: pointer;
         }
+        .msg-opt-btn:hover { background: #00a884; color: #fff; }
+
+        /* --- لوحة الملصقات --- */
+        .stickers-panel {
+            display: none;
+            background: #1f2c34;
+            padding: 12px 20px;
+            border-top: 1px solid #222d34;
+            gap: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .sticker-item {
+            background: #2a3942;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 14px;
+            font-size: 22px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .sticker-item:hover { transform: scale(1.15); background: #374248; }
+
         .wa-input-footer {
             background: #202c33;
-            padding: 20px 25px;
+            padding: 15px 25px;
             display: flex;
-            gap: 15px;
+            gap: 12px;
             align-items: center;
             border-top: 1px solid #222d34;
         }
         .wa-input-footer input {
             flex: 1;
-            padding: 16px 22px;
+            padding: 14px 20px;
             background: #2a3942;
             border: 2px solid transparent;
             color: #fff;
             border-radius: 35px;
             outline: none;
             font-family: 'Cairo', sans-serif;
-            font-size: 16px;
+            font-size: 15px;
             transition: 0.3s;
         }
-        .wa-input-footer input:focus {
-            border-color: #00a884;
-            background: #111b21;
-        }
+        .wa-input-footer input:focus { border-color: #00a884; background: #111b21; }
+        .wa-action-icon-btn { background: none; border: none; font-size: 24px; cursor: pointer; color: #8696a0; transition: 0.2s; }
+        .wa-action-icon-btn:hover { color: #00a884; }
+
         .wa-send-btn {
             background: #00a884;
             color: #fff;
             border: none;
-            width: 56px; height: 56px;
+            width: 50px; height: 50px;
             border-radius: 50%;
             cursor: pointer;
             display: flex; align-items: center; justify-content: center;
-            font-size: 22px;
+            font-size: 20px;
             transition: 0.3s;
-            box-shadow: 0 4px 18px rgba(0,168,132,0.5);
+            box-shadow: 0 4px 15px rgba(0,168,132,0.4);
         }
         .wa-send-btn:hover { background: #008f6f; transform: scale(1.1); }
 
@@ -294,7 +349,7 @@
 
     <div class="royal-header">
         <div class="royal-title">👑 مملكة العشق والخلود المخصصة لـ: سما</div>
-        <div class="royal-badge">إصدار مباشر ومزحوط 🚀</div>
+        <div class="royal-badge">إصدار الحفظ الدائم 🚀</div>
     </div>
 
     <div class="main-container">
@@ -310,21 +365,40 @@
             <h2 id="pageTitle">✨ جنة العشق الأبدي (عرش روحي المطلق)</h2>
             <p id="pageDesc">سما.. يا من ملأتِ أيامي نوراً وخياة. أنتِ لستِ مجرد شخص أحبه، أنتِ عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودكِ معي يجعل العالم مكاناً أجمل بكثير.</p>
             
-            <!-- --- واجهة واتساب سحابية لحظية --- -->
+            <!-- --- واجهة الشات المطورة --- -->
             <div id="whatsappBox" class="whatsapp-container">
                 <div class="wa-chat-header">
                     <div class="wa-avatar-box">
                         <div class="wa-avatar">👑</div>
                         <div>
-                            <div style="color:#fff; font-weight:900; font-size:17px;">مملكة سلمان وسما 🩷</div>
-                            <div class="wa-status-text">● متصل أونلاين لحظياً</div>
+                            <div style="color:#fff; font-weight:900; font-size:16px;">مملكة سلمان وسما 🩷</div>
+                            <div id="onlineStatusText" class="wa-status-text">● متصل الآن: جاري التحقق...</div>
                         </div>
                     </div>
+                    <div class="wa-controls">
+                        <button class="wa-control-btn danger" onclick="clearAllMessages()">🗑️ حذف الشات</button>
+                    </div>
                 </div>
-                <div id="waMessagesList" class="wa-messages-area">
-                    <!-- تتحدث الرسائل تلقائياً وفورياً بين الجهازين -->
+
+                <div id="waMessagesList" class="wa-messages-area" onscroll="markAllAsRead()">
+                    <!-- الرسائل تظهر هنا -->
                 </div>
+
+                <!-- لوحة الملصقات -->
+                <div id="stickersPanel" class="stickers-panel">
+                    <button class="sticker-item" onclick="sendSticker('💖')">💖</button>
+                    <button class="sticker-item" onclick="sendSticker('👑')">👑</button>
+                    <button class="sticker-item" onclick="sendSticker('🔥')">🔥</button>
+                    <button class="sticker-item" onclick="sendSticker('🌹')">🌹</button>
+                    <button class="sticker-item" onclick="sendSticker('✨')">✨</button>
+                    <button class="sticker-item" onclick="sendSticker('💍')">💍</button>
+                    <button class="sticker-item" onclick="sendSticker('🥺')">🥺</button>
+                    <button class="sticker-item" onclick="sendSticker('💋')">💋</button>
+                    <button class="sticker-item" onclick="sendSticker('🥰')">🥰</button>
+                </div>
+
                 <div class="wa-input-footer">
+                    <button class="wa-action-icon-btn" onclick="toggleStickersPanel()" title="الملصقات">😊</button>
                     <input type="text" id="waText" placeholder="اكتب رسالتك هنا..." onkeypress="handleKeyPress(event)">
                     <button class="wa-send-btn" onclick="sendWhatsAppMessage()">➤</button>
                 </div>
@@ -340,7 +414,7 @@
     <div id="secretModal" class="modal-overlay">
         <div class="modal-card">
             <h3>🩷 بوابة اللقاء السري</h3>
-            <p style="font-size: 14px; margin-bottom: 15px; color: var(--text-muted); font-weight: 700;">أدخل الرمز السري (`....`):</p>
+            <p style="font-size: 14px; margin-bottom: 15px; color: var(--text-muted); font-weight: 700;">أدخل الرمز السري (`ang_el99m`):</p>
             <input type="text" id="modalPasswordInput" placeholder="اكتب الرمز هنا...">
             <br>
             <button class="action-btn" style="width: 100%; padding: 12px;" onclick="verifySecretPassword()">فتح الدردشة 💕</button>
@@ -359,9 +433,9 @@
     </div>
 
     <script>
-        // قناة اتصال سحابية مجانية ومباشرة بدون إعدادات معقدة
         const chatChannel = "sama_royal_sanctuary_chat_room_99";
         const apiUrl = "https://ntfy.sh/" + chatChannel;
+        let activeUsersList = new Set();
 
         const pagesData = [
             {
@@ -398,8 +472,15 @@
         }
 
         function openSecretModal() {
-            document.getElementById('secretModal').style.display = 'flex';
+            // التحقق إذا كان قد أدخل كلمة المرور من قبل، يتم الدخول مباشرة بدون طلبها مجدداً!
+            const isPasswordSaved = localStorage.getItem('sama_chat_auth_verified');
+            if (isPasswordSaved === 'true') {
+                checkNameAndOpenChat();
+            } else {
+                document.getElementById('secretModal').style.display = 'flex';
+            }
         }
+
         function closeSecretModal() {
             document.getElementById('secretModal').style.display = 'none';
             document.getElementById('modalPasswordInput').value = '';
@@ -407,25 +488,28 @@
 
         function verifySecretPassword() {
             const val = document.getElementById('modalPasswordInput').value.trim();
-            if(val === 'awari_96') {
+            if(val === 'ang_el99m') {
+                // حفظ الرمز في المتصفح للأبد بحيث لا يطلبه مرة أخرى
+                localStorage.setItem('sama_chat_auth_verified', 'true');
                 closeSecretModal();
-                let savedName = localStorage.getItem('sama_chat_user_name');
-                if(!savedName) {
-                    document.getElementById('nameModal').style.display = 'flex';
-                } else {
-                    openChatRoom();
-                }
+                checkNameAndOpenChat();
             } else {
-                alert('الرمز السري غير صحيح، دقيقي بالحروف (...)! ❌');
+                alert('الرمز السري غير صحيح (ang_el99m)! ❌');
+            }
+        }
+
+        function checkNameAndOpenChat() {
+            let savedName = localStorage.getItem('sama_chat_user_name');
+            if(!savedName) {
+                document.getElementById('nameModal').style.display = 'flex';
+            } else {
+                openChatRoom();
             }
         }
 
         function saveMyName() {
             const nameVal = document.getElementById('myNameInput').value.trim();
-            if(!nameVal) {
-                alert('الرجاء كتابة اسمك أولاً! ✨');
-                return;
-            }
+            if(!nameVal) { alert('الرجاء كتابة اسمك أولاً! ✨'); return; }
             localStorage.setItem('sama_chat_user_name', nameVal);
             document.getElementById('nameModal').style.display = 'none';
             openChatRoom();
@@ -439,72 +523,252 @@
             document.getElementById('pageDesc').style.display = 'none';
             document.getElementById('whatsappBox').style.display = 'block';
             
+            loadSavedMessages();
             startListeningMessages();
+            sendPresenceHeartbeat();
+            setInterval(sendPresenceHeartbeat, 10000);
         }
 
-        // استقبال الرسائل بشكل لحظي ومباشر
+        function loadSavedMessages() {
+            const saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
+            const listDiv = document.getElementById('waMessagesList');
+            listDiv.innerHTML = '';
+            saved.forEach(msg => {
+                renderBubble(msg.id, msg.sender, msg.text, msg.time, msg.isRead);
+            });
+        }
+
+        function saveMessageToStorage(msgObj) {
+            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
+            let index = saved.findIndex(m => m.id === msgObj.id);
+            if(index !== -1) {
+                saved[index] = msgObj;
+            } else {
+                saved.push(msgObj);
+                if(saved.length > 200) saved.shift();
+            }
+            localStorage.setItem('sama_saved_chat_history', JSON.stringify(saved));
+        }
+
+        function clearAllMessages() {
+            if(confirm('هل أنت متأكد من حذف جميع رسائل الشات؟')) {
+                localStorage.removeItem('sama_saved_chat_history');
+                document.getElementById('waMessagesList').innerHTML = '';
+            }
+        }
+
+        function toggleStickersPanel() {
+            const panel = document.getElementById('stickersPanel');
+            panel.style.display = (panel.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        function sendSticker(stickerEmoji) {
+            sendTextMessage(stickerEmoji);
+            toggleStickersPanel();
+        }
+
         function startListeningMessages() {
             const eventSource = new EventSource(apiUrl + "/sse");
-            
             eventSource.onmessage = function(event) {
                 try {
                     const data = JSON.parse(event.data);
                     if (data.message) {
-                        const parsedData = JSON.parse(data.message);
-                        appendMessageToUI(parsedData.sender, parsedData.text, parsedData.time);
+                        const parsed = JSON.parse(data.message);
+                        
+                        if(parsed.type === 'presence') {
+                            updateOnlineStatus(parsed.sender);
+                        } else if(parsed.type === 'chat') {
+                            saveMessageToStorage(parsed);
+                            renderOrUpdateBubble(parsed);
+                        } else if(parsed.type === 'delete') {
+                            removeMessageFromStorage(parsed.id);
+                            let el = document.getElementById('msg-' + parsed.id);
+                            if(el) el.remove();
+                        } else if(parsed.type === 'read') {
+                            markMessageReadLocal(parsed.id);
+                        }
                     }
-                } catch(e) {
-                    // تجاهل أي رسائل النظام الفارغة
-                }
+                } catch(e) {}
             };
         }
 
-        function appendMessageToUI(sender, text, time) {
+        function sendPresenceHeartbeat() {
+            const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';
+            fetch(apiUrl, {
+                method: 'POST',
+                body: JSON.stringify({ type: 'presence', sender: sender })
+            }).catch(e => {});
+        }
+
+        function updateOnlineStatus(sender) {
+            activeUsersList.add(sender);
+            let myName = localStorage.getItem('sama_chat_user_name');
+            let others = Array.from(activeUsersList).filter(n => n !== myName);
+            let statusEl = document.getElementById('onlineStatusText');
+            if(others.length > 0) {
+                statusEl.innerText = `● متصل الآن: ${others.join(', ')}`;
+            } else {
+                statusEl.innerText = `● في انتظار انضمام الطرف الآخر...`;
+            }
+        }
+
+        function renderOrUpdateBubble(msg) {
+            let existingEl = document.getElementById('msg-' + msg.id);
+            if(existingEl) {
+                let textContainer = existingEl.querySelector('.msg-text-content');
+                if(textContainer) textContainer.innerText = msg.text;
+                let ticksContainer = existingEl.querySelector('.wa-ticks');
+                if(ticksContainer && msg.isRead) {
+                    ticksContainer.className = 'wa-ticks read';
+                    ticksContainer.innerText = '✓✓';
+                }
+            } else {
+                renderBubble(msg.id, msg.sender, msg.text, msg.time, msg.isRead);
+            }
+        }
+
+        function renderBubble(id, sender, text, time, isRead) {
             const listDiv = document.getElementById('waMessagesList');
             let myName = localStorage.getItem('sama_chat_user_name') || 'أنا';
             let isMe = (sender === myName);
 
             let div = document.createElement('div');
+            div.id = 'msg-' + id;
             div.className = `wa-bubble ${isMe ? 'outgoing' : 'incoming'}`;
+            
+            let optionsHtml = '';
+            if(isMe) {
+                optionsHtml = `
+                    <span class="msg-options">
+                        <button class="msg-opt-btn" onclick="editMessage('${id}')">تعديل</button>
+                        <button class="msg-opt-btn" onclick="deleteMessage('${id}')">حذف</button>
+                    </span>
+                `;
+            }
+
             div.innerHTML = `
                 <div class="wa-sender-name">${sender}</div>
-                <div>${text}</div>
-                <div class="wa-time">${time}</div>
+                <div class="msg-text-content">${text}</div>
+                <div class="wa-msg-footer">
+                    ${optionsHtml}
+                    <span class="wa-time">${time}</span>
+                    <span class="wa-ticks ${isRead ? 'read' : ''}">✓✓</span>
+                </div>
             `;
             listDiv.appendChild(div);
             listDiv.scrollTop = listDiv.scrollHeight;
+
+            if(!isMe && !isRead) {
+                notifyRead(id);
+            }
         }
 
         function sendWhatsAppMessage() {
             const text = document.getElementById('waText').value.trim();
-            const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';
-
             if(!text) return;
+            sendTextMessage(text);
+            document.getElementById('waText').value = '';
+        }
 
+        function sendTextMessage(text) {
+            const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';
             const timeNow = new Date().toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'});
+            const msgId = 'm_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7));
             
-            const payload = JSON.stringify({
+            const msgObj = {
+                type: 'chat',
+                id: msgId,
                 sender: sender,
                 text: text,
-                time: timeNow
-            });
+                time: timeNow,
+                isRead: false
+            };
 
-            // إرسال الرسالة للسحابة لتصل فوراً عند الطرف الآخر
+            saveMessageToStorage(msgObj);
+            renderOrUpdateBubble(msgObj);
+
             fetch(apiUrl, {
                 method: 'POST',
-                body: payload
-            }).then(() => {
-                document.getElementById('waText').value = '';
-            }).catch(err => {
-                alert('خطأ في إرسال الرسالة، تأكد من اتصال الإنترنت.');
+                body: JSON.stringify(msgObj)
+            }).catch(err => {});
+        }
+
+        function editMessage(id) {
+            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
+            let msg = saved.find(m => m.id === id);
+            if(!msg) return;
+
+            let newText = prompt("عدل رسالتك:", msg.text);
+            if(newText !== null && newText.trim() !== "") {
+                msg.text = newText.trim();
+                saveMessageToStorage(msg);
+                renderOrUpdateBubble(msg);
+
+                fetch(apiUrl, {
+                    method: 'POST',
+                    body: JSON.stringify(msg)
+                }).catch(e => {});
+            }
+        }
+
+        function deleteMessage(id) {
+            if(confirm("هل تريد حذف هذه الرسالة؟")) {
+                removeMessageFromStorage(id);
+                let el = document.getElementById('msg-' + id);
+                if(el) el.remove();
+
+                fetch(apiUrl, {
+                    method: 'POST',
+                    body: JSON.stringify({ type: 'delete', id: id })
+                }).catch(e => {});
+            }
+        }
+
+        function removeMessageFromStorage(id) {
+            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
+            saved = saved.filter(m => m.id !== id);
+            localStorage.setItem('sama_saved_chat_history', JSON.stringify(saved));
+        }
+
+        function notifyRead(id) {
+            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
+            let msg = saved.find(m => m.id === id);
+            if(msg && !msg.isRead) {
+                msg.isRead = true;
+                saveMessageToStorage(msg);
+                
+                fetch(apiUrl, {
+                    method: 'POST',
+                    body: JSON.stringify({ type: 'read', id: id })
+                }).catch(e => {});
+            }
+        }
+
+        function markMessageReadLocal(id) {
+            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
+            let msg = saved.find(m => m.id === id);
+            if(msg) {
+                msg.isRead = true;
+                saveMessageToStorage(msg);
+                let ticks = document.querySelector(`#msg-${id} .wa-ticks`);
+                if(ticks) {
+                    ticks.className = 'wa-ticks read';
+                    ticks.innerText = '✓✓';
+                }
+            }
+        }
+
+        function markAllAsRead() {
+            let saved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
+            let myName = localStorage.getItem('sama_chat_user_name');
+            saved.forEach(msg => {
+                if(msg.sender !== myName && !msg.isRead) {
+                    notifyRead(msg.id);
+                }
             });
         }
 
-        function handleKeyPress(e) {
-            if(e.key === 'Enter') {
-                sendWhatsAppMessage();
-            }
-        }
+        function handleKeyPress(e) { if(e.key === 'Enter') sendWhatsAppMessage(); }
 
         function createHeartAtClick(e) {
             if(e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT') return;
@@ -516,20 +780,16 @@
             heart.classList.add('heart-float');
             const symbols = ['💖 سما 💖', '🌸 سما 🌸', '🌷 سما 🌷', '👑 سما 👑', '🌹 روحي سما 🌹', '✨ سما الحب ✨'];
             heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
-            
             heart.style.left = x + 'px';
             heart.style.top = y + 'px';
             document.body.appendChild(heart);
-
             setTimeout(() => { heart.remove(); }, 3800);
         }
 
         function triggerMegaExplosion(e) {
             for (let i = 0; i < 80; i++) {
                 setTimeout(() => {
-                    let randomX = Math.random() * window.innerWidth;
-                    let randomY = window.innerHeight - 30;
-                    spawnHeart(randomX, randomY);
+                    spawnHeart(Math.random() * window.innerWidth, window.innerHeight - 30);
                 }, i * 25);
             }
         }
