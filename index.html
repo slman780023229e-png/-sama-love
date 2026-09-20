@@ -462,9 +462,12 @@
 </div>  
 
 <script>  
-    // إعدادات قاعدة بيانات Supabase الحقيقية الخاصة بك
+    // إعدادات قاعدة بيانات Supabase الحقيقية (الرابط والمفتاح العام والمفتاح السري والجدول messagesm)
     const SUPABASE_URL = 'https://terskmhhznyaathxnvjq.supabase.co';
     const SUPABASE_KEY = 'Sb_publishable_zgjQbmezkXMAxzjLC6brkw_Yvl1fFbh';
+    const SUPABASE_SECRET_KEY = 'sb_secret_qRMFWf6_4iOLGAork05JWQ_4tr7KoxC';
+    const TABLE_NAME = 'messagesm';
+
     let supabaseClient = null;
 
     try {
@@ -561,7 +564,7 @@
         loadMessagesFromDatabase();
     }  
 
-    // فحص اتصال قاعدة البيانات Supabase فعلياً وعرض الحالة
+    // فحص اتصال قاعدة البيانات Supabase فعلياً وعرض الحالة باستخدام جدول messagesm
     async function checkDatabaseConnection() {
         const dotEl = document.getElementById('dbDot');
         const textEl = document.getElementById('dbStatusText');
@@ -573,7 +576,7 @@
         }
 
         try {
-            const { data, error } = await supabaseClient.from('messages').select('id').limit(1);
+            const { data, error } = await supabaseClient.from(TABLE_NAME).select('id').limit(1);
             if (error) throw error;
 
             dotEl.className = "db-dot connected";
@@ -581,11 +584,11 @@
         } catch (err) {
             console.error("خطأ الاتصال:", err);
             dotEl.className = "db-dot error";
-            textEl.innerText = "خطأ في اتصال قاعدة البيانات: " + (err.message || 'تحقق من الجدول');
+            textEl.innerText = "خطأ في اتصال قاعدة البيانات: " + (err.message || 'تحقق من الجدول messagesm');
         }
     }
 
-    // جلب الرسائل من جدول Supabase مع دعم التخزين المحلي كاحتياط
+    // جلب الرسائل من جدول messagesm مع دعم التخزين المحلي كاحتياط
     async function loadMessagesFromDatabase() {
         const listDiv = document.getElementById('waMessagesList');
         listDiv.innerHTML = '<div style="color: #8696a0; text-align: center; padding: 15px; font-size: 12px;">جاري جلب رسائل المملكة... 🩷</div>';
@@ -593,14 +596,13 @@
         try {
             if (supabaseClient) {
                 const { data, error } = await supabaseClient
-                    .from('messages')
+                    .from(TABLE_NAME)
                     .select('*')
                     .order('created_at', { ascending: true });
 
                 if (!error && data) {
                     listDiv.innerHTML = '';
                     data.forEach(msg => {
-                        // دعم الحقول (s: المرسل, te: النص, created_at: الوقت)
                         let timeStr = new Date(msg.created_at || Date.now()).toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'});
                         renderBubble(msg.id, msg.s, msg.te, timeStr, true);
                     });
@@ -611,7 +613,6 @@
             console.warn("الاعتماد على التخزين المحلي مؤقتاً:", e);
         }
 
-        // الطريقة الاحتياطية (LocalStorage) إن حدث أي ظرف
         const savedLocal = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
         listDiv.innerHTML = '';
         savedLocal.forEach(msg => {
@@ -626,7 +627,7 @@
             
             if (supabaseClient) {
                 try {
-                    await supabaseClient.from('messages').delete().neq('id', 0);
+                    await supabaseClient.from(TABLE_NAME).delete().neq('id', 0);
                 } catch(e) {}
             }
         }  
@@ -685,12 +686,11 @@
         textInput.value = '';  
     }  
 
-    // إرسال الرسالة وحفظها في قاعدة بيانات Supabase الحقيقية فوراَ
+    // إرسال الرسالة وحفظها في جدول messagesm بقاعدة بيانات Supabase فوراَ
     async function sendTextMessage(text) {  
         const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';  
         const timeNow = new Date().toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'});  
           
-        // حفظ محلياً لضمان الظهور الفوري
         let localSaved = JSON.parse(localStorage.getItem('sama_saved_chat_history') || '[]');
         let msgObj = { id: 'm_' + Date.now(), sender: sender, text: text, time: timeNow };
         localSaved.push(msgObj);
@@ -698,11 +698,10 @@
 
         renderBubble(msgObj.id, sender, text, timeNow, true);
 
-        // حفظ سحابي دائم في قاعدة البيانات Supabase
         if (supabaseClient) {
             try {
                 const { error } = await supabaseClient
-                    .from('messages')
+                    .from(TABLE_NAME)
                     .insert([{ s: sender, te: text, is: true }]);
 
                 if (error) {
