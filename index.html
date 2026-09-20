@@ -46,9 +46,9 @@ button,input{font-family:Cairo,sans-serif}button{-webkit-tap-highlight-color:tra
 
 <div id="contentDisplayCard" class="display-card">
 <h2 id="pageTitle">✨ جنة العشق الأبدي</h2>
-<p id="pageDesc">سما.. يا من ملأت أيامي نورا وحياة. أنت لست مجرد شخص أحبه، أنت عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودك معي يجعل العالم مكانا أجمل بكثير.</p>
+<p id="pageDesc">سما.. يا من ملأت أيامي نورا وخياة. أنت لست مجرد شخص أحبه، أنت عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودك معي يجعل العالم مكانا أجمل بكثير.</p>
 <div class="love-stats"><div class="love-stat"><strong id="heartCounter">∞</strong><span>نبضة حب</span></div><div class="love-stat"><strong>🩷</strong><span>للأبد</span></div><div class="love-stat"><strong id="visitorCounter">0</strong><span>زيارة للجناح</span></div></div>
-<div id="storiesBox" class="stories-container"><div class="story-card"><div class="story-header">📸 شارك حالة أو ستوري ملكي جديد</div><div class="story-text">اكتب خاطرة أو حالة وستظهر في المملكة السحابية.</div><div class="story-input-box"><input type="text" id="storyTextInput" maxlength="500" placeholder="اكتب حالتك الأسطورية هنا..."><button class="story-post-btn" onclick="postStory()">نشر 🌟</button></div><div id="storiesList" class="stories-list"></div></div></div>
+<div id="storiesBox" class="stories-container"><div class="story-card"><div class="story-header">📸 شارك حالة أو ستوري ملكي جديد</div><div class="story-text">اكتب خاطرة حالة وستظهر في المملكة السحابية.</div><div class="story-input-box"><input type="text" id="storyTextInput" maxlength="500" placeholder="اكتب حالتك الأسطورية هنا..."><button class="story-post-btn" onclick="postStory()">نشر 🌟</button></div><div id="storiesList" class="stories-list"></div></div></div>
 </div>
 
 <div id="whatsappBox" class="whatsapp-container">
@@ -81,8 +81,8 @@ button,input{font-family:Cairo,sans-serif}button{-webkit-tap-highlight-color:tra
 <div class="action-buttons-row"><button class="action-btn" onclick="triggerMegaExplosion(event)">💥 تفجير يملأ الشاشة باسم سما!</button><button class="action-btn" style="background:linear-gradient(135deg,var(--gold),#d97706)" onclick="showCrazyLovePopup()">💌 رسالة الحب السرية</button></div>
 </div>
 
-<div id="secretModal" class="modal-overlay"><div class="modal-card"><h3>🩷 بوابة اللقاء السري</h3><p style="font-size:12px;margin-bottom:12px;color:var(--muted);font-weight:700">أدخل الرمز الصحيح للمتابعة</p><input type="password" id="modalPasswordInput" placeholder="أدخل الرمز السري هنا..." onkeypress="if(event.key==='Enter')verifySecretPassword()"><button class="action-btn" onclick="verifySecretPassword()">فتح الدردشة 💕</button><button style="background:none;border:0;color:#999;margin-top:8px;cursor:pointer;font-weight:700" onclick="closeSecretModal()">إلغاء</button></div></div>
-<div id="nameModal" class="modal-overlay"><div class="modal-card"><h3>✨ اسمك الكريم؟</h3><p style="font-size:12px;margin-bottom:12px;color:var(--muted);font-weight:700">أدخل الاسم الذي سيظهر في الدردشة</p><input type="text" id="myNameInput" maxlength="30" placeholder="مثل: سلمان أو سما..." onkeypress="if(event.key==='Enter')saveMyName()"><button class="action-btn" onclick="saveMyName()">حفظ ودخول الدردشة 🚀</button></div></div>
+<div id="secretModal" class="modal-overlay"><div class="modal-card"><h3>🩷 بوابة اللقاء السري</h3><p style="font-size:12px;margin-bottom:12px;color:var(--muted);font-weight:700">أدخل الرمز السري الصحيح للمتابعة</p><input type="password" id="modalPasswordInput" placeholder="أدخل الرمز السري هنا..." onkeypress="if(event.key==='Enter')verifySecretPassword()"><button class="action-btn" onclick="verifySecretPassword()">فتح الدردشة 💕</button><button style="background:none;border:0;color:#999;margin-top:8px;cursor:pointer;font-weight:700" onclick="closeSecretModal()">إلغاء</button></div></div>
+<div id="nameModal" class="modal-overlay"><div class="modal-card"><h3>✨ اسمك الكريم؟</h3><p style="font-size:12px;margin-bottom:12px;color:var(--muted);font-weight:700">أدخل اسمك لتسجيله (يُطلب مرة واحدة فقط)</p><input type="text" id="myNameInput" maxlength="30" placeholder="مثل: سلمان أو سما..." onkeypress="if(event.key==='Enter')saveMyName()"><button class="action-btn" onclick="saveMyName()">حفظ ودخول الدردشة 🚀</button></div></div>
 <div id="membersModal" class="modal-overlay"><div class="modal-card"><h3>👥 الأعضاء المسجلون (<span id="modalTotalCount">0</span>)</h3><p style="font-size:11px;color:var(--muted);font-weight:700">سلمان محمي ولا يمكن حذفه</p><div id="membersListContainer" class="members-scroll-box"></div><h4 style="color:var(--primary);font-size:13px;text-align:right">🗑️ سلة المهملات</h4><div id="trashListContainer" class="members-scroll-box" style="max-height:140px"></div><button style="background:var(--primary);color:#fff;border:0;padding:10px;border-radius:14px;font-weight:900;cursor:pointer" onclick="closeMembersModal()">إغلاق ❌</button></div></div>
 <div id="notification" class="notification"></div>
 
@@ -94,13 +94,24 @@ import {getMessaging,getToken,onMessage,isSupported} from "https://www.gstatic.c
 const firebaseConfig={apiKey:"AIzaSyCEXxF2WsyCa_ebK3PJ5yraCikCIkBgm8Q",authDomain:"slmane.firebaseapp.com",databaseURL:"https://slmane-default-rtdb.firebaseio.com",projectId:"slmane",storageBucket:"slmane.firebasestorage.app",messagingSenderId:"957015187792",appId:"1:957015187792:web:56ca1c0567d6228cba4c55",measurementId:"G-WF8MN20DLV"};
 const VAPID_KEY="BKjGBcIzn-o05QhOGUwsQNU-M05tCc6aszXhdWfkGsPC8AZjOErdpWPyT-E";
 let db=null,messagesRef=null,storiesRef=null,membersRef=null,trashRef=null,messaging=null,messagingSupported=false,isListenerActive=false;
+let cloudMembersCache={};
 const clientId=(()=>{let x=localStorage.getItem("sama_fcm_client_id");if(!x){x=(crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2));localStorage.setItem("sama_fcm_client_id",x)}return x})();
 
 try{
  const app=initializeApp(firebaseConfig); db=getDatabase(app);
  messagesRef=ref(db,"sama_royal_chat/messages");storiesRef=ref(db,"sama_royal_chat/stories");membersRef=ref(db,"sama_royal_chat/members");trashRef=ref(db,"sama_royal_chat/trash");
+ 
+ // تصفير البيانات القديمة عند أول تشغيل لإجبار الجميع على التسجيل الجديد
+ if(!localStorage.getItem("sama_forced_reset_v2")) {
+   localStorage.removeItem("sama_chat_auth_verified");
+   localStorage.removeItem("sama_chat_user_name");
+   localStorage.setItem("sama_forced_reset_v2", "true");
+   // حذف الأسماء من قاعدة البيانات السحابية تلقائياً لتصفير القائمة القديمة للجميع
+   set(membersRef, null);
+ }
+
  onValue(ref(db,".info/connected"),s=>{const d=document.getElementById("dbDotIndicator"),m=document.getElementById("dbStatusMessage"),st=document.getElementById("onlineStatusText");if(s.val()){d?.classList.remove("error");if(m)m.innerText="الاتصال السحابي شغال ⚡";if(st)st.innerText="● متصل سحابيا"}else{d?.classList.add("error");if(m)m.innerText="الاتصال بالسحابة منقطع ❌";if(st)st.innerText="● منقطع"}});
- onValue(membersRef,s=>{const data=s.val()||{},list=document.getElementById("membersListContainer");if(list)list.innerHTML="";let count=0;Object.entries(data).forEach(([key,member])=>{if(!member?.name)return;count++;if(list){const row=document.createElement("div");row.className="member-row";const span=document.createElement("span");span.innerHTML=`👑 ${escapeHtml(member.name)} <small style="color:#888;font-size:9px">(${escapeHtml(member.time||"")})</small>`;row.appendChild(span);if(member.name.trim()==="سلمان"){const p=document.createElement("span");p.innerText="محمي 🛡️";p.style.cssText="color:#10b981;font-size:10px";row.appendChild(p)}else{const b=document.createElement("button");b.innerText="حذف 🗑️";b.style.cssText="background:#ef4444;color:#fff;border:0;padding:4px 9px;border-radius:8px;cursor:pointer;font-size:10px;font-weight:800";b.onclick=()=>window.removeMember(key,member.name,member.time||"");row.appendChild(b)}list.appendChild(row)}});document.getElementById("membersCountBadge").innerText=count;document.getElementById("modalTotalCount").innerText=count});
+ onValue(membersRef,s=>{const data=s.val()||{};cloudMembersCache=data;const list=document.getElementById("membersListContainer");if(list)list.innerHTML="";let count=0;Object.entries(data).forEach(([key,member])=>{if(!member?.name)return;count++;if(list){const row=document.createElement("div");row.className="member-row";const span=document.createElement("span");span.innerHTML=`👑 ${escapeHtml(member.name)} <small style="color:#888;font-size:9px">(${escapeHtml(member.time||"")})</small>`;row.appendChild(span);if(member.name.trim()==="سلمان"){const p=document.createElement("span");p.innerText="محمي 🛡️";p.style.cssText="color:#10b981;font-size:10px";row.appendChild(p)}else{const b=document.createElement("button");b.innerText="حذف 🗑️";b.style.cssText="background:#ef4444;color:#fff;border:0;padding:4px 9px;border-radius:8px;cursor:pointer;font-size:10px;font-weight:800";b.onclick=()=>window.removeMember(key,member.name,member.time||"");row.appendChild(b)}list.appendChild(row)}});document.getElementById("membersCountBadge").innerText=count;document.getElementById("modalTotalCount").innerText=count});
  onValue(trashRef,s=>{const data=s.val()||{},box=document.getElementById("trashListContainer");if(!box)return;box.innerHTML="";Object.entries(data).forEach(([key,item])=>{if(!item?.name)return;const row=document.createElement("div");row.className="member-row";const n=document.createElement("span");n.innerText="🗑️ "+item.name;const b=document.createElement("button");b.innerText="استرجاع ♻️";b.style.cssText="background:#10b981;color:#fff;border:0;padding:4px 9px;border-radius:8px;cursor:pointer;font-size:10px;font-weight:800";b.onclick=()=>window.restoreMember(key,item.name,item.time||"");row.append(n,b);box.appendChild(row)})});
  if(await isSupported()){messagingSupported=true;messaging=getMessaging(app)}
 }catch(e){console.error("Firebase Init Error",e);document.getElementById("dbStatusMessage").innerText="تعذر تشغيل قاعدة البيانات ❌"}
@@ -129,7 +140,7 @@ window.initCloudChat=async function(){
  onChildAdded(storiesRef,s=>{const st=s.val();if(!st)return;const box=document.getElementById("storiesList");if(!box||document.getElementById("story-"+s.key))return;const d=document.createElement("div");d.id="story-"+s.key;d.className="story-bubble";d.innerHTML=`<div><strong>${escapeHtml(st.sender||"مجهول")}:</strong> ${escapeHtml(st.text||"")}</div><span style="font-size:9px;color:#888;white-space:nowrap">${escapeHtml(st.time||"")}</span>`;box.prepend(d)});
 };
 
-window.registerMemberInCloud=name=>{if(!membersRef||!name)return;onValue(membersRef,s=>{const data=s.val()||{};if(Object.values(data).some(x=>x?.name?.trim().toLowerCase()===name.trim().toLowerCase()))return;set(push(membersRef),{name:name.trim(),time:new Date().toLocaleTimeString("ar-SA",{hour:"2-digit",minute:"2-digit"}),timestamp:Date.now()})},{onlyOnce:true})};
+window.registerMemberInCloud=name=>{if(!membersRef||!name)return;set(push(membersRef),{name:name.trim(),time:new Date().toLocaleTimeString("ar-SA",{hour:"2-digit",minute:"2-digit"}),timestamp:Date.now()})};
 window.removeMember=(key,name,time)=>{if(String(name).trim()==="سلمان"){showNotification("سلمان محمي للأبد ولا يمكن حذفه 🛡️👑");return}if(!confirm("هل تريد نقل "+name+" إلى سلة المهملات؟"))return;set(push(trashRef),{name,time,timestamp:Date.now()}).then(()=>remove(ref(db,"sama_royal_chat/members/"+key))).catch(()=>showNotification("تعذر حذف العضو ❌"))};
 window.restoreMember=(key,name,time)=>{set(push(membersRef),{name,time,timestamp:Date.now()}).then(()=>remove(ref(db,"sama_royal_chat/trash/"+key)))};
 window.sendCloudMessage=(text,isVoice=false,audioUrl="")=>{if(!messagesRef||!text)return;const sender=localStorage.getItem("sama_chat_user_name")||"سلمان";const time=new Date().toLocaleTimeString("ar-SA",{hour:"2-digit",minute:"2-digit"});set(push(messagesRef),{sender,text:String(text).slice(0,2000),isVoice:Boolean(isVoice),audioUrl:audioUrl||"",time,timestamp:Date.now(),clientId})};
@@ -140,7 +151,7 @@ function escapeHtml(v){return String(v).replace(/&/g,"&amp;").replace(/</g,"&lt;
 
 <script>
 const pagesData=[
-{title:"✨ جنة العشق الأبدي (عرش روحي المطلق)",desc:"سما.. يا من ملأت أيامي نورا وحياة. أنت لست مجرد شخص أحبه، أنت عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودك معي يجعل العالم مكانا أجمل بكثير."},
+{title:"✨ جنة العشق الأبدي (عرش روحي المطلق)",desc:"سما.. يا من ملأت أيامي نورا وخياة. أنت لست مجرد شخص أحبه، أنت عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودك معي يجعل العالم مكانا أجمل بكثير."},
 {title:"🔥 واحة الشوق والجنون (حيث يشتعل قلبي بحبك)",desc:"أنا مغرم بك بجنون لا توصفه الكلمات يا سما. كل تفصيلة فيك تسرقني، صوتك، ابتسامتك، ونظراتك. حبك هو القوة الوحيدة التي تجعلني أواجه صعوبات هذه الحياة بكل ثبات."},
 {title:"💌 رسالة الوداع والاعتذار الكبرى",desc:"سما.. إذا حدث في يوم من الأيام واضطررنا للابتعاد، أو إن صدر مني تقصير أو خطأ دون قصد، فاعلمي جيدا أن قلبي لم يعرف طعم الصدق إلا معك. سامحيني على كل لحظة قصرت فيها، وتأكدي أن حبي لك لا يزول بل يزداد عمقا مع كل ثانية تمر."},
 {title:"💍 عهد الوفاء والمصير",desc:"أقسم برب الكون يا سما, أنني سأبقى سندك وقوتك ومأمنك حتى آخر نبض في عمري. معك أدركت معنى الاستقرار الحقيقي، وللأبد نحن قصة عشق لا تنتهي."},
@@ -148,7 +159,11 @@ const pagesData=[
 
 function switchPage(i){document.getElementById("whatsappBox").style.display="none";document.getElementById("contentDisplayCard").style.display="block";document.getElementById("storiesBox").style.display="none";document.querySelectorAll(".place-btn").forEach((b,n)=>b.classList.toggle("active",n===i));document.getElementById("pageTitle").innerText=pagesData[i].title;document.getElementById("pageDesc").innerText=pagesData[i].desc;if(i===4){document.getElementById("storiesBox").style.display="flex";window.initCloudChat?.()}}
 function openSecretModal(){
-  // تم فرض مطالبة جميع المستخدمين (الجدد والقدامى) بإدخال الرمز السري في كل مرة ما لم يتم التحقق منه في الجلسة أو إعادة ضبطه
+  // بما أننا صفرنا البيانات، فلن يتم تخطي كلمة المرور إلا إذا قام المستخدم بالتسجيل ودخل مسبقاً بهذا الجهاز
+  if(localStorage.getItem("sama_chat_auth_verified")==="true"){
+    checkNameAndOpenChat();
+    return;
+  }
   document.getElementById("secretModal").style.display="flex";
 }
 function closeSecretModal(){document.getElementById("secretModal").style.display="none";document.getElementById("modalPasswordInput").value=""}
@@ -162,7 +177,15 @@ function verifySecretPassword(){
   }
 }
 function checkNameAndOpenChat(){const n=localStorage.getItem("sama_chat_user_name");if(!n)document.getElementById("nameModal").style.display="flex";else openChatRoom()}
-async function saveMyName(){const n=document.getElementById("myNameInput").value.trim();if(!n){showNotification("اكتب اسمك أولا ✨");return}localStorage.setItem("sama_chat_user_name",n);document.getElementById("nameModal").style.display="none";window.registerMemberInCloud?.(n);openChatRoom();if("Notification"in window&&Notification.permission==="granted")await window.enableFCM?.(new Event("click"))}
+async function saveMyName(){
+  const n=document.getElementById("myNameInput").value.trim();
+  if(!n){showNotification("اكتب اسمك أولا ✨");return}
+  localStorage.setItem("sama_chat_user_name",n);
+  document.getElementById("nameModal").style.display="none";
+  window.registerMemberInCloud?.(n);
+  openChatRoom();
+  if("Notification"in window&&Notification.permission==="granted")await window.enableFCM?.(new Event("click"));
+}
 function openChatRoom(){document.querySelectorAll(".place-btn").forEach(b=>b.classList.remove("active"));document.getElementById("contentDisplayCard").style.display="none";document.getElementById("whatsappBox").style.display="block";initNotificationUI();window.initCloudChat?.();updateBrowserNotificationButton()}
 function openMembersModal(){document.getElementById("membersModal").style.display="flex"}function closeMembersModal(){document.getElementById("membersModal").style.display="none"}
 function toggleStickersPanel(){const p=document.getElementById("stickersPanel");p.style.display=p.style.display==="flex"?"none":"flex"}function sendSticker(e){sendWhatsAppMessage(e);document.getElementById("stickersPanel").style.display="none"}
@@ -175,7 +198,7 @@ async function copyMessageText(t){try{await navigator.clipboard.writeText(t.repl
 function sendWhatsAppMessage(t){const i=document.getElementById("waText"),v=(typeof t==="string"?t:i.value).trim();if(!v)return;window.sendCloudMessage?.(v,false,"");if(!t)i.value=""}
 function createHeartAtClick(e){if(e.target.closest("#whatsappBox,button,input,.modal-card,#storiesBox"))return;spawnHeart(e.clientX,e.clientY)}
 function spawnHeart(x,y){const h=document.createElement("div");h.className="heart-float";h.innerText=["💖 سما 💖","🌸 سما 🌸","🌷 سما 🌷","👑 سما 👑","🌹 روحي سما 🌹","✨ سما الحب ✨"][Math.floor(Math.random()*6)];h.style.left=x+"px";h.style.top=y+"px";document.body.appendChild(h);setTimeout(()=>h.remove(),3400)}
-function triggerMegaExplosion(e){e?.stopPropagation();["💖","💗","💓","💞","💕","🌹","🌸","✨","👑","🩷"].forEach((s)=>{});for(let i=0;i<70;i++)setTimeout(()=>spawnHeart(Math.random()*innerWidth,innerHeight-20),i*18)}
+function triggerMegaExplosion(e){e?.stopPropagation();for(let i=0;i<70;i++)setTimeout(()=>spawnHeart(Math.random()*innerWidth,innerHeight-20),i*18)}
 function showCrazyLovePopup(){showNotification("إلى عقلي وروحي وأميرتي سما 🩷 أحبك حبا يضيء عتمة أيامي وأنت الحكاية الجميلة التي أتمنى ألا تنتهي أبدا 🌹")}
 function showNotification(m){const b=document.getElementById("notification");if(!b)return;b.innerText=m;b.classList.add("show");clearTimeout(window.notificationTimer);window.notificationTimer=setTimeout(()=>b.classList.remove("show"),3000)}
 function toggleDarkMode(e){e?.stopPropagation();document.body.classList.toggle("dark");const d=document.body.classList.contains("dark");localStorage.setItem("sama_dark_mode",d?"true":"false");document.querySelector(".theme-btn").innerText=d?"☀️":"🌙"}
