@@ -99,7 +99,7 @@
         .display-card h2 { font-size: 22px; font-weight: 900; color: var(--primary); margin-bottom: 12px; }  
         .display-card p { font-size: 15px; line-height: 1.9; font-weight: 700; color: var(--text-main); background: #fff5f5; padding: 18px; border-radius: 14px; border: 2px solid #fecdd3; }  
 
-        /* --- واجهة الستوريات والحالات الأسطورية --- */  
+        /* --- واجهة الستوريات والحالات --- */  
         .stories-container {  
             display: none;  
             flex-direction: column;  
@@ -119,7 +119,7 @@
         .stories-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; max-height: 300px; overflow-y: auto; }  
         .story-bubble { background: #fff; border: 2px solid #fecdd3; padding: 12px 15px; border-radius: 12px; font-weight: 700; font-size: 13px; display: flex; justify-content: space-between; align-items: center; }  
 
-        /* --- واجهة الشات المنفصلة والمرتبة تماماً مثل الواتساب --- */  
+        /* --- واجهة الشات المنفصلة والمرتبة --- */  
         .whatsapp-container {  
             display: none;  
             background: #0b141a;  
@@ -321,13 +321,39 @@
             padding: 25px;  
             border-radius: 20px;  
             width: 90%;  
-            max-width: 380px;  
+            max-width: 420px;  
             text-align: center;  
             border: 3px solid var(--primary);  
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);  
+            max-height: 85vh;  
+            display: flex;  
+            flex-direction: column;  
         }  
         .modal-card h3 { color: var(--primary); font-size: 20px; margin-bottom: 12px; font-weight: 900; }  
         .modal-card input { width: 100%; padding: 12px; border: 2px solid #fda4af; border-radius: 25px; text-align: center; font-size: 15px; margin-bottom: 12px; outline: none; }  
+
+        .members-scroll-box {  
+            flex: 1;  
+            overflow-y: auto;  
+            margin-top: 10px;  
+            margin-bottom: 15px;  
+            display: flex;  
+            flex-direction: column;  
+            gap: 8px;  
+            text-align: right;  
+            max-height: 250px;  
+        }  
+        .member-row {  
+            background: #fff5f5;  
+            padding: 10px 14px;  
+            border-radius: 12px;  
+            border: 2px solid #fecdd3;  
+            display: flex;  
+            justify-content: space-between;  
+            align-items: center;  
+            font-weight: 800;  
+            font-size: 13.5px;  
+        }  
 
         .heart-float {  
             position: fixed;  
@@ -367,7 +393,7 @@
         <button class="place-btn" onclick="openSecretModal()" style="background: #fff1f2; border-color: var(--primary); color: var(--primary);">🩷 دردشة سما</button>  
     </div>  
 
-    <!-- حاوية العرض العامة (للصفحات العادية والستوريات) -->  
+    <!-- حاوية العرض العامة -->  
     <div id="contentDisplayCard" class="display-card">  
         <h2 id="pageTitle">✨ جنة العشق الأبدي (عرش روحي المطلق)</h2>  
         <p id="pageDesc">سما.. يا من ملأتِ أيامي نوراً وحياة. أنتِ لستِ مجرد شخص أحبه، أنتِ عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودكِ معي يجعل العالم مكاناً أجمل بكثير.</p>  
@@ -386,7 +412,7 @@
         </div>  
     </div>  
 
-    <!-- واجهة الشات المنفصلة بالكامل (تظهر بدلاً من display-card عند فتح الدردشة لتجنب التداخل) -->  
+    <!-- واجهة الشات المنفصلة بالكامل -->  
     <div id="whatsappBox" class="whatsapp-container">  
         <div class="wa-chat-header">  
             <div class="wa-avatar-box">  
@@ -396,6 +422,10 @@
                     <div id="onlineStatusText" class="wa-status-text">● جاري فحص الاتصال...</div>  
                 </div>  
             </div>  
+            <!-- زر الأعضاء المتواجدين مع عدادهم -->  
+            <button onclick="openMembersModal()" style="background: #00a884; border: none; color: #fff; padding: 6px 12px; border-radius: 12px; font-weight: 900; font-size: 11.5px; cursor: pointer; box-shadow: 0 0 10px rgba(0,168,132,0.4);">
+                👥 الأعضاء (<span id="membersCountBadge">0</span>)
+            </button>  
         </div>  
 
         <div class="db-status-bar">  
@@ -435,6 +465,7 @@
     </div>  
 </div>  
 
+<!-- مودال كلمة السر -->  
 <div id="secretModal" class="modal-overlay">  
     <div class="modal-card">  
         <h3>🩷 بوابة اللقاء السري</h3>  
@@ -446,6 +477,7 @@
     </div>  
 </div>  
 
+<!-- مودال إدخال الاسم بعد كلمة السر -->  
 <div id="nameModal" class="modal-overlay">  
     <div class="modal-card">  
         <h3>✨ اسمك الكريم؟</h3>  
@@ -453,6 +485,21 @@
         <input type="text" id="myNameInput" placeholder="اكتب اسمك هنا...">  
         <br>  
         <button class="action-btn" style="width: 100%; padding: 10px; justify-content: center;" onclick="saveMyName()">حفظ ودخول الدردشة 🚀</button>  
+    </div>  
+</div>  
+
+<!-- مودال إدارة الأعضاء المتواجدين وسلة المهملات -->  
+<div id="membersModal" class="modal-overlay">  
+    <div class="modal-card">  
+        <h3>👥 الأعضاء المسجلون (<span id="modalTotalCount">0</span>)</h3>  
+        <p style="font-size: 12px; color: var(--text-muted); font-weight: 700; margin-bottom: 5px;">يمكنك حذف أي عضو (ما عدا سلمان محمي للأبد):</p>  
+        
+        <div id="membersListContainer" class="members-scroll-box"></div>  
+
+        <h4 style="color: var(--primary); font-size: 14px; margin-top: 5px; font-weight: 900; text-align: right;">🗑️ سلة المهملات (لاسترجاع المحذوفين):</h4>  
+        <div id="trashListContainer" class="members-scroll-box" style="max-height: 140px; background: #fffdfd;"></div>  
+
+        <button style="background: var(--primary); color: #fff; border: none; padding: 10px; border-radius: 14px; font-weight: 900; cursor: pointer; margin-top: 5px;" onclick="closeMembersModal()">إغلاق القائمة ❌</button>  
     </div>  
 </div>  
 
@@ -465,7 +512,7 @@
         databaseURL: "https://slmane-default-rtdb.firebaseio.com/"  
     };  
 
-    let db, messagesRef, storiesRef;
+    let db, messagesRef, storiesRef, membersRef, trashRef;
     let isListenerActive = false;  
 
     try {
@@ -473,6 +520,8 @@
         db = getDatabase(app);  
         messagesRef = ref(db, 'sama_royal_chat/messages');  
         storiesRef = ref(db, 'sama_royal_chat/stories');  
+        membersRef = ref(db, 'sama_royal_chat/members');
+        trashRef = ref(db, 'sama_royal_chat/trash');
 
         const connectedRef = ref(db, ".info/connected");
         onValue(connectedRef, (snap) => {
@@ -490,6 +539,56 @@
                 if(statusText) statusText.innerText = "● منقطع";
             }
         });
+
+        // مزامنة الأعضاء وحساب العدد
+        onValue(membersRef, (snapshot) => {
+            const data = snapshot.val();
+            const listEl = document.getElementById('membersListContainer');
+            const countBadge = document.getElementById('membersCountBadge');
+            const modalTotalCount = document.getElementById('modalTotalCount');
+            if(listEl) listEl.innerHTML = '';
+            
+            let count = 0;
+            if(data) {
+                Object.keys(data).forEach(key => {
+                    const m = data[key];
+                    count++;
+                    if(listEl) {
+                        let isSalman = (m.name.trim() === 'سلمان');
+                        let row = document.createElement('div');
+                        row.className = 'member-row';
+                        row.innerHTML = `
+                            <span>👑 ${m.name} <small style="color:#888; font-size:10px;">(${m.time})</small></span>
+                            ${isSalman ? '<span style="color:#059669; font-size:12px;">محمي للأبد 🛡️</span>' : `<button onclick="window.removeMember('${key}', '${m.name}', '${m.time}')" style="background:#ef4444; color:#fff; border:none; padding:4px 10px; border-radius:8px; cursor:pointer; font-size:11px; font-weight:800;">حذف 🗑️</button>`}
+                        `;
+                        listEl.appendChild(row);
+                    }
+                });
+            }
+            if(countBadge) countBadge.innerText = count;
+            if(modalTotalCount) modalTotalCount.innerText = count;
+        });
+
+        // مزامنة سلة المهملات
+        onValue(trashRef, (snapshot) => {
+            const data = snapshot.val();
+            const trashEl = document.getElementById('trashListContainer');
+            if(trashEl) trashEl.innerHTML = '';
+            if(data) {
+                Object.keys(data).forEach(key => {
+                    const t = data[key];
+                    let row = document.createElement('div');
+                    row.className = 'member-row';
+                    row.style.background = '#f3f4f6';
+                    row.innerHTML = `
+                        <span>🗑️ ${t.name}</span>
+                        <button onclick="window.restoreMember('${key}', '${t.name}', '${t.time}')" style="background:#10b981; color:#fff; border:none; padding:4px 10px; border-radius:8px; cursor:pointer; font-size:11px; font-weight:800;">استرجاع ♻️</button>
+                    `;
+                    trashEl.appendChild(row);
+                });
+            }
+        });
+
     } catch (err) {
         console.error("Firebase Init Error:", err);
     }
@@ -525,6 +624,39 @@
             }
         });
     };  
+
+    window.registerMemberInCloud = function(name) {
+        if(!membersRef) return;
+        const timeNow = new Date().toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'});
+        const newRef = push(membersRef);
+        set(newRef, {
+            name: name,
+            time: timeNow,
+            timestamp: Date.now()
+        });
+    };
+
+    window.removeMember = function(key, name, time) {
+        if(name.trim() === 'سلمان') {
+            alert('عذراً، اسم (سلمان) محمي للأبد ولا يمكن حذفه نهائياً! 🛡️👑');
+            return;
+        }
+        // نقله إلى المهملات أولاً
+        const newTrashRef = push(trashRef);
+        set(newTrashRef, { name: name, time: time });
+
+        // حذفه من الأعضاء النشطين
+        remove(ref(db, 'sama_royal_chat/members/' + key));
+    };
+
+    window.restoreMember = function(key, name, time) {
+        // إعادته لقائمة الأعضاء
+        const newMemberRef = push(membersRef);
+        set(newMemberRef, { name: name, time: time, timestamp: Date.now() });
+
+        // حذفه من المهملات
+        remove(ref(db, 'sama_royal_chat/trash/' + key));
+    };
 
     window.sendCloudMessage = function(text, isVoice = false, audioUrl = '') {  
         if (!messagesRef) return;
@@ -651,6 +783,12 @@
         if(!nameVal) { alert('الرجاء كتابة اسمك أولاً! ✨'); return; }  
         localStorage.setItem('sama_chat_user_name', nameVal);  
         document.getElementById('nameModal').style.display = 'none';  
+        
+        // تسجيل العضو في قاعدة البيانات سحابياً عند كتابة كلمة السر والاسم
+        if(typeof window.registerMemberInCloud === 'function') {
+            window.registerMemberInCloud(nameVal);
+        }
+
         openChatRoom();  
     }  
 
@@ -658,7 +796,6 @@
         let buttons = document.querySelectorAll('.place-btn');  
         buttons.forEach(btn => btn.classList.remove('active'));  
           
-        // إخفاء بطاقة المحتوى العادية وإظهار شات الواتساب بشكل مستقل ونظيف
         document.getElementById('contentDisplayCard').style.display = 'none';  
         document.getElementById('whatsappBox').style.display = 'block';  
           
@@ -666,6 +803,14 @@
             window.initCloudChat();  
         }  
     }  
+
+    function openMembersModal() {
+        document.getElementById('membersModal').style.display = 'flex';
+    }
+
+    function closeMembersModal() {
+        document.getElementById('membersModal').style.display = 'none';
+    }
 
     function toggleStickersPanel() {  
         const panel = document.getElementById('stickersPanel');  
