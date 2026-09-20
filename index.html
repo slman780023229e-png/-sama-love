@@ -349,7 +349,7 @@
 
     <div class="royal-header">
         <div class="royal-title">👑 مملكة العشق والخلود المخصصة لـ: سما</div>
-        <div class="royal-badge">إصدار الحفظ الدائم 🚀</div>
+        <div class="royal-badge">الإصدار المصلح 🚀</div>
     </div>
 
     <div class="main-container">
@@ -372,7 +372,7 @@
                         <div class="wa-avatar">👑</div>
                         <div>
                             <div style="color:#fff; font-weight:900; font-size:16px;">مملكة سلمان وسما 🩷</div>
-                            <div id="onlineStatusText" class="wa-status-text">● متصل الآن: جاري التحقق...</div>
+                            <div id="onlineStatusText" class="wa-status-text">● متصل الآن...</div>
                         </div>
                     </div>
                     <div class="wa-controls">
@@ -411,24 +411,26 @@
         </div>
     </div>
 
+    <!-- نافذة كلمة المرور -->
     <div id="secretModal" class="modal-overlay">
         <div class="modal-card">
             <h3>🩷 بوابة اللقاء السري</h3>
             <p style="font-size: 14px; margin-bottom: 15px; color: var(--text-muted); font-weight: 700;">أدخل الرمز السري (`ang_el99m`):</p>
             <input type="text" id="modalPasswordInput" placeholder="اكتب الرمز هنا...">
             <br>
-            <button class="action-btn" style="width: 100%; padding: 12px;" onclick="verifySecretPassword()">فتح الدردشة 💕</button>
+            <button class="action-btn" style="width: 100%; padding: 12px; justify-content: center;" onclick="verifySecretPassword()">فتح الدردشة 💕</button>
             <button style="background: none; border: none; color: #999; margin-top: 10px; cursor: pointer; font-weight: 700;" onclick="closeSecretModal()">إلغاء</button>
         </div>
     </div>
 
+    <!-- نافذة إدخال الاسم -->
     <div id="nameModal" class="modal-overlay">
         <div class="modal-card">
             <h3>✨ اسمك الكريم؟</h3>
             <p style="font-size: 14px; margin-bottom: 15px; color: var(--text-muted); font-weight: 700;">أدخل اسمك (مثل: سلمان أو سما):</p>
             <input type="text" id="myNameInput" placeholder="اكتب اسمك هنا...">
             <br>
-            <button class="action-btn" style="width: 100%; padding: 12px;" onclick="saveMyName()">حفظ ودخول الدردشة 🚀</button>
+            <button class="action-btn" style="width: 100%; padding: 12px; justify-content: center;" onclick="saveMyName()">حفظ ودخول الدردشة 🚀</button>
         </div>
     </div>
 
@@ -472,7 +474,6 @@
         }
 
         function openSecretModal() {
-            // التحقق إذا كان قد أدخل كلمة المرور من قبل، يتم الدخول مباشرة بدون طلبها مجدداً!
             const isPasswordSaved = localStorage.getItem('sama_chat_auth_verified');
             if (isPasswordSaved === 'true') {
                 checkNameAndOpenChat();
@@ -489,7 +490,6 @@
         function verifySecretPassword() {
             const val = document.getElementById('modalPasswordInput').value.trim();
             if(val === 'ang_el99m') {
-                // حفظ الرمز في المتصفح للأبد بحيث لا يطلبه مرة أخرى
                 localStorage.setItem('sama_chat_auth_verified', 'true');
                 closeSecretModal();
                 checkNameAndOpenChat();
@@ -568,28 +568,30 @@
         }
 
         function startListeningMessages() {
-            const eventSource = new EventSource(apiUrl + "/sse");
-            eventSource.onmessage = function(event) {
-                try {
-                    const data = JSON.parse(event.data);
-                    if (data.message) {
-                        const parsed = JSON.parse(data.message);
-                        
-                        if(parsed.type === 'presence') {
-                            updateOnlineStatus(parsed.sender);
-                        } else if(parsed.type === 'chat') {
-                            saveMessageToStorage(parsed);
-                            renderOrUpdateBubble(parsed);
-                        } else if(parsed.type === 'delete') {
-                            removeMessageFromStorage(parsed.id);
-                            let el = document.getElementById('msg-' + parsed.id);
-                            if(el) el.remove();
-                        } else if(parsed.type === 'read') {
-                            markMessageReadLocal(parsed.id);
+            try {
+                const eventSource = new EventSource(apiUrl + "/sse");
+                eventSource.onmessage = function(event) {
+                    try {
+                        const data = JSON.parse(event.data);
+                        if (data.message) {
+                            const parsed = JSON.parse(data.message);
+                            
+                            if(parsed.type === 'presence') {
+                                updateOnlineStatus(parsed.sender);
+                            } else if(parsed.type === 'chat') {
+                                saveMessageToStorage(parsed);
+                                renderOrUpdateBubble(parsed);
+                            } else if(parsed.type === 'delete') {
+                                removeMessageFromStorage(parsed.id);
+                                let el = document.getElementById('msg-' + parsed.id);
+                                if(el) el.remove();
+                            } else if(parsed.type === 'read') {
+                                markMessageReadLocal(parsed.id);
+                            }
                         }
-                    }
-                } catch(e) {}
-            };
+                    } catch(e) {}
+                };
+            } catch(e) {}
         }
 
         function sendPresenceHeartbeat() {
@@ -664,16 +666,17 @@
         }
 
         function sendWhatsAppMessage() {
-            const text = document.getElementById('waText').value.trim();
+            const textInput = document.getElementById('waText');
+            const text = textInput.value.trim();
             if(!text) return;
             sendTextMessage(text);
-            document.getElementById('waText').value = '';
+            textInput.value = '';
         }
 
         function sendTextMessage(text) {
             const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';
             const timeNow = new Date().toLocaleTimeString('ar-SA', {hour: '2-digit', minute:'2-digit'});
-            const msgId = 'm_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7));
+            const msgId = 'm_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7);
             
             const msgObj = {
                 type: 'chat',
