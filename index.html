@@ -3,143 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sama Royal Sanctuary - Ultimate Masterpiece Edition</title>
+    <title>WhatsApp Fullscreen + Profile & Status - سما</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-grad-1: #fff1f2;
-            --bg-grad-2: #ffe4e6;
-            --box-bg: rgba(255, 255, 255, 0.96);
-            --border-glow: #f43f5e;
-            --primary: #e11d48;
-            --accent: #db2777;
-            --gold: #b45309;
-            --text-main: #881337;
-            --text-muted: #9f1239;
-        }
-
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
         body { 
-            background: linear-gradient(135deg, var(--bg-grad-1), var(--bg-grad-2)); 
-            color: var(--text-main); 
-            min-height: 100vh; 
+            background: #0b141a; 
+            color: #e9edef; 
+            height: 100vh; 
             display: flex; 
             flex-direction: column; 
-            align-items: center; 
-            justify-content: flex-start; 
-            padding: 20px;
-            overflow-x: hidden; 
+            overflow: hidden; 
         }
 
-        .royal-header {
-            width: 100%;
-            max-width: 950px;
-            background: var(--box-bg);
-            border: 3px solid var(--border-glow);
-            border-radius: 24px;
-            padding: 20px 30px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 15px 35px rgba(225, 29, 72, 0.15);
-            margin-bottom: 25px;
-            backdrop-filter: blur(10px);
-        }
-        .royal-title { font-size: 21px; font-weight: 900; color: var(--primary); display: flex; align-items: center; gap: 10px; }
-        .royal-badge { font-size: 13px; background: var(--primary); color: #fff; padding: 6px 18px; border-radius: 20px; font-weight: 800; box-shadow: 0 4px 12px rgba(225,29,72,0.3); }
-
-        .main-container {
-            width: 100%;
-            max-width: 950px;
+        /* --- واجهة القائمة الرئيسية --- */
+        #homeMainView {
             display: flex;
             flex-direction: column;
-            gap: 25px;
-        }
-
-        .nav-places-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 12px;
-        }
-        .place-btn {
-            background: var(--box-bg);
-            border: 3px solid #fda4af;
-            border-radius: 18px;
-            padding: 16px 10px;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #fff1f2, #ffe4e6);
+            color: #881337;
+            padding: 20px;
             text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 900;
-            font-size: 13px;
-            color: var(--text-muted);
-            box-shadow: 0 6px 15px rgba(225, 29, 72, 0.08);
-        }
-        .place-btn:hover {
-            border-color: var(--primary);
-            background: #fff;
-            transform: translateY(-3px);
-        }
-        .place-btn.active {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--accent);
-            box-shadow: 0 0 25px rgba(225, 29, 72, 0.45);
-            transform: scale(1.05);
-        }
-
-        .display-card {
-            background: var(--box-bg);
-            border: 4px solid var(--primary);
-            border-radius: 28px;
-            padding: 35px;
-            box-shadow: 0 20px 50px rgba(225, 29, 72, 0.2);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-        .display-card::before {
-            content: '';
             position: absolute;
-            top: 0; right: 0; width: 10px; height: 100%;
-            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            top: 0; left: 0; width: 100%; z-index: 500;
         }
-        .display-card h2 { font-size: 26px; font-weight: 900; color: var(--primary); margin-bottom: 15px; }
-        .display-card p { font-size: 17px; line-height: 2.1; font-weight: 700; color: var(--text-main); background: #fff5f5; padding: 22px; border-radius: 16px; border: 2px solid #fecdd3; }
-
-        /* --- واجهة الشات الملكية الاحترافية --- */
-        .whatsapp-container {
-            display: none;
-            background: #0b141a;
-            border-radius: 24px;
-            border: 4px solid #00a884;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-            margin-top: 5px;
+        .home-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 30px;
+            border: 4px solid #e11d48;
+            box-shadow: 0 20px 50px rgba(225, 29, 72, 0.2);
+            max-width: 500px;
             width: 100%;
         }
-        .wa-chat-header {
-            background: linear-gradient(135deg, #1f2c34, #111b21);
+        .home-card h1 { font-size: 26px; font-weight: 900; color: #e11d48; margin-bottom: 15px; }
+        .home-card p { font-size: 16px; font-weight: 700; color: #9f1239; margin-bottom: 25px; line-height: 1.8; }
+        .enter-chat-btn {
+            background: #00a884;
             color: #fff;
-            padding: 16px 25px;
+            border: none;
+            padding: 16px 30px;
+            border-radius: 35px;
+            font-size: 18px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0,168,132,0.4);
+            transition: 0.3s;
+            width: 100%;
+        }
+        .enter-chat-btn:hover { background: #008f6f; transform: scale(1.03); }
+
+        /* --- واجهة واتساب الكاملة --- */
+        #whatsappBox {
+            display: none;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+            background: #0b141a;
+            position: absolute;
+            top: 0; left: 0; z-index: 1000;
+        }
+        .wa-chat-header {
+            background: #1f2c34;
+            color: #fff;
+            padding: 12px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             border-bottom: 1px solid #222d34;
+            height: 75px;
         }
-        .wa-avatar-box { display: flex; align-items: center; gap: 15px; }
+        .wa-avatar-box { display: flex; align-items: center; gap: 12px; cursor: pointer; }
         .wa-avatar {
-            width: 50px; height: 50px; background: linear-gradient(135deg, #00a884, #005c4b); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 0 15px rgba(0,168,132,0.4);
+            width: 48px; height: 48px; background: linear-gradient(135deg, #00a884, #005c4b); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 0 10px rgba(0,168,132,0.4);
         }
-        .wa-status-text { font-size: 12px; color: #00a884; font-weight: 700; }
+        .wa-chat-info { display: flex; flex-direction: column; }
+        .wa-title-name { color: #fff; font-weight: 900; font-size: 15px; }
+        .wa-status-text { font-size: 12px; color: #00a884; font-weight: 700; max-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         
-        .wa-controls { display: flex; gap: 10px; }
+        .wa-controls { display: flex; gap: 8px; }
         .wa-control-btn {
             background: #2a3942;
             color: #e9edef;
             border: none;
-            padding: 8px 14px;
-            border-radius: 12px;
-            font-size: 13px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 12px;
             font-weight: 700;
             cursor: pointer;
             transition: 0.2s;
@@ -149,29 +101,29 @@
         .wa-control-btn.danger:hover { background: #772222; }
 
         .wa-messages-area {
-            height: 420px;
+            flex: 1;
             overflow-y: auto;
-            padding: 25px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
             background-color: #0b141a;
             background-image: radial-gradient(#1f2c34 1.2px, transparent 1.2px);
             background-size: 26px 26px;
         }
         .wa-bubble {
             max-width: 75%;
-            padding: 12px 18px;
-            border-radius: 18px;
+            padding: 10px 16px;
+            border-radius: 14px;
             position: relative;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             word-wrap: break-word;
-            animation: fadeInBubble 0.3s ease;
+            animation: fadeInBubble 0.2s ease;
         }
         @keyframes fadeInBubble {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .wa-bubble.incoming {
@@ -188,23 +140,23 @@
             color: #e9edef;
             border-left: 4px solid #00a884;
         }
-        .wa-sender-name { font-size: 12px; color: #00a884; font-weight: 900; margin-bottom: 4px; }
+        .wa-sender-name { font-size: 11px; color: #00a884; font-weight: 900; margin-bottom: 3px; }
         
         .wa-msg-footer {
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            gap: 8px;
-            margin-top: 5px;
+            gap: 6px;
+            margin-top: 4px;
         }
         .wa-time { font-size: 10px; color: #8696a0; }
-        .wa-ticks { font-size: 13px; font-weight: 900; color: #8696a0; letter-spacing: -3px; }
+        .wa-ticks { font-size: 12px; font-weight: 900; color: #8696a0; letter-spacing: -3px; }
         .wa-ticks.read { color: #53bdeb; }
 
         .msg-options {
             display: inline-flex;
-            gap: 5px;
-            margin-right: 10px;
+            gap: 4px;
+            margin-right: 8px;
             opacity: 0;
             transition: 0.2s;
         }
@@ -213,29 +165,29 @@
             background: rgba(0,0,0,0.3);
             border: none;
             color: #ccc;
-            font-size: 11px;
-            padding: 2px 6px;
-            border-radius: 6px;
+            font-size: 10px;
+            padding: 2px 5px;
+            border-radius: 4px;
             cursor: pointer;
         }
         .msg-opt-btn:hover { background: #00a884; color: #fff; }
 
-        /* --- لوحة الملصقات المدمجة داخل الشات --- */
+        /* لوحة الملصقات المدمجة */
         .stickers-panel {
             display: none;
             background: #1f2c34;
-            padding: 12px 20px;
+            padding: 10px 15px;
             border-top: 1px solid #222d34;
-            gap: 10px;
+            gap: 8px;
             overflow-x: auto;
             white-space: nowrap;
         }
         .sticker-item {
             background: #2a3942;
             border: none;
-            padding: 8px 14px;
-            border-radius: 14px;
-            font-size: 24px;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 22px;
             cursor: pointer;
             transition: 0.2s;
             flex-shrink: 0;
@@ -244,71 +196,52 @@
 
         .wa-input-footer {
             background: #202c33;
-            padding: 15px 25px;
+            padding: 12px 20px;
             display: flex;
-            gap: 12px;
+            gap: 10px;
             align-items: center;
             border-top: 1px solid #222d34;
         }
         .wa-input-footer input {
             flex: 1;
-            padding: 14px 20px;
+            padding: 12px 18px;
             background: #2a3942;
             border: 2px solid transparent;
             color: #fff;
-            border-radius: 35px;
+            border-radius: 30px;
             outline: none;
             font-family: 'Cairo', sans-serif;
             font-size: 15px;
             transition: 0.3s;
         }
         .wa-input-footer input:focus { border-color: #00a884; background: #111b21; }
-        .wa-action-icon-btn { background: none; border: none; font-size: 24px; cursor: pointer; color: #8696a0; transition: 0.2s; }
+        .wa-action-icon-btn { background: none; border: none; font-size: 22px; cursor: pointer; color: #8696a0; transition: 0.2s; }
         .wa-action-icon-btn:hover { color: #00a884; }
 
         .wa-send-btn {
             background: #00a884;
             color: #fff;
             border: none;
-            width: 50px; height: 50px;
+            width: 45px; height: 45px;
             border-radius: 50%;
             cursor: pointer;
             display: flex; align-items: center; justify-content: center;
-            font-size: 20px;
+            font-size: 18px;
             transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0,168,132,0.4);
+            box-shadow: 0 4px 12px rgba(0,168,132,0.4);
             flex-shrink: 0;
         }
-        .wa-send-btn:hover { background: #008f6f; transform: scale(1.1); }
+        .wa-send-btn:hover { background: #008f6f; transform: scale(1.08); }
 
-        .action-buttons-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-        .action-btn {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: #fff;
-            border: none;
-            padding: 18px;
-            border-radius: 18px;
-            font-weight: 900;
-            font-size: 15px;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(225, 29, 72, 0.35);
-            transition: 0.3s;
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-        }
-        .action-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(225, 29, 72, 0.5); }
-
+        /* النوافذ المنبثقة */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.7);
             display: none;
             align-items: center;
             justify-content: center;
-            z-index: 10000;
+            z-index: 2000;
             backdrop-filter: blur(5px);
         }
         .modal-card {
@@ -316,102 +249,69 @@
             padding: 30px;
             border-radius: 24px;
             width: 90%;
-            max-width: 400px;
+            max-width: 380px;
             text-align: center;
-            border: 3px solid var(--primary);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 3px solid #e11d48;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
-        .modal-card h3 { color: var(--primary); font-size: 22px; margin-bottom: 15px; font-weight: 900; }
-        .modal-card input { width: 100%; padding: 14px; border: 2px solid #fda4af; border-radius: 30px; text-align: center; font-size: 16px; margin-bottom: 15px; outline: none; font-family: 'Cairo', sans-serif; }
-
-        .heart-float {
-            position: fixed;
-            color: #e11d48;
-            font-size: 32px;
-            animation: floatMegaUp 3.8s cubic-bezier(0.1, 1, 0.3, 1) forwards;
-            pointer-events: none;
-            z-index: 9999;
-            text-shadow: 0 0 20px rgba(225, 29, 72, 0.8);
-            font-weight: 900;
-        }
-        @keyframes floatMegaUp {
-            0% { transform: translateY(0) scale(0.2) rotate(0deg); opacity: 1; }
-            50% { transform: translateY(-450px) scale(1.8) rotate(20deg); opacity: 0.95; }
-            100% { transform: translateY(-900px) scale(1.3) rotate(-20deg); opacity: 0; }
-        }
-
-        @media(max-width: 768px) {
-            .nav-places-grid { grid-template-columns: repeat(3, 1fr); }
-            .action-buttons-row { grid-template-columns: 1fr; }
-            .royal-header { flex-direction: column; gap: 10px; text-align: center; }
+        .modal-card h3 { color: #e11d48; font-size: 20px; margin-bottom: 12px; font-weight: 900; }
+        .modal-card input, .modal-card select { width: 100%; padding: 12px; border: 2px solid #fda4af; border-radius: 20px; text-align: center; font-size: 15px; margin-bottom: 15px; outline: none; font-family: 'Cairo', sans-serif; background: #fff; }
+        .modal-btn {
+            background: linear-gradient(135deg, #e11d48, #db2777);
+            color: #fff; border: none; padding: 12px; width: 100%; border-radius: 25px; font-weight: 900; font-size: 15px; cursor: pointer;
         }
     </style>
 </head>
-<body onclick="createHeartAtClick(event)">
+<body>
 
-    <div class="royal-header">
-        <div class="royal-title">👑 مملكة العشق والخلود المخصصة لـ: سما</div>
-        <div class="royal-badge">النسخة النهائية المثالية 🚀</div>
+    <!-- الواجهة الرئيسية -->
+    <div id="homeMainView">
+        <div class="home-card">
+            <h1>👑 مملكة سما وسلمان</h1>
+            <p>انقر للدخول إلى شات واتساب الشامل مع إمكانية تعديل بروفايلك الشخصي وحالتك الخاصة بلحظتها!</p>
+            <button class="enter-chat-btn" onclick="openSecretModal()">💬 الدخول إلى شات واتساب</button>
+        </div>
     </div>
 
-    <div class="main-container">
-        <div class="nav-places-grid">
-            <button class="place-btn active" onclick="switchPage(0)">✨ جنة العشق</button>
-            <button class="place-btn" onclick="switchPage(1)">🔥 واحة الشوق</button>
-            <button class="place-btn" onclick="switchPage(2)" style="border-color: var(--gold); color: var(--gold);">💌 رسالة الوداع</button>
-            <button class="place-btn" onclick="switchPage(3)">💍 عهد الوفاء</button>
-            <button class="place-btn" onclick="openSecretModal()" style="background: #fff1f2; border-color: var(--primary); color: var(--primary);">🩷 دردشة سما</button>
-        </div>
-
-        <div class="display-card">
-            <h2 id="pageTitle">✨ جنة العشق الأبدي (عرش روحي المطلق)</h2>
-            <p id="pageDesc">سما.. يا من ملأتِ أيامي نوراً وحياة. أنتِ لستِ مجرد شخص أحبه، أنتِ عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودكِ معي يجعل العالم مكاناً أجمل بكثير.</p>
-            
-            <!-- --- واجهة الشات المطورة --- -->
-            <div id="whatsappBox" class="whatsapp-container">
-                <div class="wa-chat-header">
-                    <div class="wa-avatar-box">
-                        <div class="wa-avatar">👑</div>
-                        <div>
-                            <div style="color:#fff; font-weight:900; font-size:16px;">مملكة سلمان وسما 🩷</div>
-                            <div id="onlineStatusText" class="wa-status-text">● متصل الآن...</div>
-                        </div>
-                    </div>
-                    <div class="wa-controls">
-                        <button class="wa-control-btn danger" onclick="clearAllMessages()">🗑️ حذف الشات</button>
-                    </div>
+    <!-- واجهة واتساب الكاملة -->
+    <div id="whatsappBox">
+        <div class="wa-chat-header">
+            <div class="wa-avatar-box" onclick="openProfileModal()" title="تعديل البروفايل والحالة">
+                <div id="headerUserAvatar" class="wa-avatar">👑</div>
+                <div class="wa-chat-info">
+                    <div id="headerChatTitle" class="wa-title-name">مملكة سلمان وسما 🩷</div>
+                    <div id="onlineStatusText" class="wa-status-text">● متصل الآن...</div>
                 </div>
-
-                <div id="waMessagesList" class="wa-messages-area" onscroll="markAllAsRead()">
-                    <!-- الرسائل تظهر هنا -->
-                </div>
-
-                <!-- لوحة الملصقات المدمجة -->
-                <div id="stickersPanel" class="stickers-panel">
-                    <button class="sticker-item" onclick="sendSticker('💖')">💖</button>
-                    <button class="sticker-item" onclick="sendSticker('👑')">👑</button>
-                    <button class="sticker-item" onclick="sendSticker('🔥')">🔥</button>
-                    <button class="sticker-item" onclick="sendSticker('🌹')">🌹</button>
-                    <button class="sticker-item" onclick="sendSticker('✨')">✨</button>
-                    <button class="sticker-item" onclick="sendSticker('💍')">💍</button>
-                    <button class="sticker-item" onclick="sendSticker('🥺')">🥺</button>
-                    <button class="sticker-item" onclick="sendSticker('💋')">💋</button>
-                    <button class="sticker-item" onclick="sendSticker('🥰')">🥰</button>
-                    <button class="sticker-item" onclick="sendSticker('🫶')">🫶</button>
-                    <button class="sticker-item" onclick="sendSticker('💘')">💘</button>
-                </div>
-
-                <div class="wa-input-footer">
-                    <button class="wa-action-icon-btn" onclick="toggleStickersPanel()" title="الملصقات">😊</button>
-                    <input type="text" id="waText" placeholder="اكتب رسالتك هنا..." oninput="sendTypingIndicator()" onkeypress="handleKeyPress(event)">
-                    <button class="wa-send-btn" onclick="sendWhatsAppMessage()">➤</button>
-                </div>
+            </div>
+            <div class="wa-controls">
+                <button class="wa-control-btn" onclick="openProfileModal()">👤 بروفايلي</button>
+                <button class="wa-control-btn" onclick="exitToHome()">🏠 الرئيسية</button>
+                <button class="wa-control-btn danger" onclick="clearAllMessages()">🗑️ حذف</button>
             </div>
         </div>
 
-        <div class="action-buttons-row">
-            <button class="action-btn" onclick="triggerMegaExplosion(event)">💥 تفجير يملأ الشاشة باسم سما بالكامل!</button>
-            <button class="action-btn" style="background: linear-gradient(135deg, var(--gold), #d97706);" onclick="showCrazyLovePopup()">💌 رسالة الحب السرية</button>
+        <div id="waMessagesList" class="wa-messages-area" onscroll="markAllAsRead()">
+            <!-- الرسائل -->
+        </div>
+
+        <!-- لوحة الملصقات -->
+        <div id="stickersPanel" class="stickers-panel">
+            <button class="sticker-item" onclick="sendSticker('💖')">💖</button>
+            <button class="sticker-item" onclick="sendSticker('👑')">👑</button>
+            <button class="sticker-item" onclick="sendSticker('🔥')">🔥</button>
+            <button class="sticker-item" onclick="sendSticker('🌹')">🌹</button>
+            <button class="sticker-item" onclick="sendSticker('✨')">✨</button>
+            <button class="sticker-item" onclick="sendSticker('💍')">💍</button>
+            <button class="sticker-item" onclick="sendSticker('🥺')">🥺</button>
+            <button class="sticker-item" onclick="sendSticker('💋')">💋</button>
+            <button class="sticker-item" onclick="sendSticker('🥰')">🥰</button>
+            <button class="sticker-item" onclick="sendSticker('🫶')">🫶</button>
+        </div>
+
+        <div class="wa-input-footer">
+            <button class="wa-action-icon-btn" onclick="toggleStickersPanel()" title="الملصقات">😊</button>
+            <input type="text" id="waText" placeholder="اكتب رسالتك هنا..." oninput="sendTypingIndicator()" onkeypress="handleKeyPress(event)">
+            <button class="wa-send-btn" onclick="sendWhatsAppMessage()">➤</button>
         </div>
     </div>
 
@@ -419,64 +319,52 @@
     <div id="secretModal" class="modal-overlay">
         <div class="modal-card">
             <h3>🩷 بوابة اللقاء السري</h3>
-            <p style="font-size: 14px; margin-bottom: 15px; color: var(--text-muted); font-weight: 700;">أدخل الرمز السري (`ang_el99m`):</p>
+            <p style="font-size: 13px; margin-bottom: 12px; color: #881337; font-weight: 700;">أدخل الرمز السري (`ang_el99m`):</p>
             <input type="text" id="modalPasswordInput" placeholder="اكتب الرمز هنا...">
-            <br>
-            <button class="action-btn" style="width: 100%; padding: 12px; justify-content: center;" onclick="verifySecretPassword()">فتح الدردشة 💕</button>
-            <button style="background: none; border: none; color: #999; margin-top: 10px; cursor: pointer; font-weight: 700;" onclick="closeSecretModal()">إلغاء</button>
+            <button class="modal-btn" onclick="verifySecretPassword()">فتح الدردشة 💕</button>
+            <button style="background: none; border: none; color: #888; margin-top: 10px; cursor: pointer; font-weight: 700;" onclick="closeSecretModal()">إلغاء</button>
         </div>
     </div>
 
-    <!-- نافذة إدخال الاسم -->
+    <!-- نافذة إدخال الاسم لأول مرة -->
     <div id="nameModal" class="modal-overlay">
         <div class="modal-card">
             <h3>✨ اسمك الكريم؟</h3>
-            <p style="font-size: 14px; margin-bottom: 15px; color: var(--text-muted); font-weight: 700;">أدخل اسمك (مثل: سلمان أو سما):</p>
+            <p style="font-size: 13px; margin-bottom: 12px; color: #881337; font-weight: 700;">أدخل اسمك (سلمان أو سما):</p>
             <input type="text" id="myNameInput" placeholder="اكتب اسمك هنا...">
-            <br>
-            <button class="action-btn" style="width: 100%; padding: 12px; justify-content: center;" onclick="saveMyName()">حفظ ودخول الدردشة 🚀</button>
+            <button class="modal-btn" onclick="saveMyName()">حفظ والدخول للشات 🚀</button>
+        </div>
+    </div>
+
+    <!-- نافذة تعديل البروفايل والحالة الشخصية -->
+    <div id="profileModal" class="modal-overlay">
+        <div class="modal-card">
+            <h3>👤 تعديل البروفايل والحالة</h3>
+            <p style="font-size: 12px; color: #881337; font-weight: 700; margin-bottom: 5px; text-align: right;">اسمك:</p>
+            <input type="text" id="editProfileName" placeholder="اسمك...">
+            
+            <p style="font-size: 12px; color: #881337; font-weight: 700; margin-bottom: 5px; text-align: right;">حالتك الشخصية (Bio):</p>
+            <input type="text" id="editProfileStatus" placeholder="مثلاً: متواجد في مملكة العشق 👑">
+
+            <p style="font-size: 12px; color: #881337; font-weight: 700; margin-bottom: 5px; text-align: right;">أيقونة البروفايل:</p>
+            <select id="editProfileAvatar">
+                <option value="👑">👑 تاج الملك</option>
+                <option value="🩷">🩷 قلب وردي</option>
+                <option value="🌹">🌹 وردة حمراء</option>
+                <option value="✨">✨ نجمة متألقة</option>
+                <option value="🔥">🔥 شعلة نار</option>
+                <option value="💎">💎 جوهرة ثمينة</option>
+            </select>
+
+            <button class="modal-btn" onclick="saveProfileChanges()" style="margin-top: 10px;">حفظ التغييرات ✨</button>
+            <button style="background: none; border: none; color: #888; margin-top: 10px; cursor: pointer; font-weight: 700;" onclick="closeProfileModal()">إلغاء</button>
         </div>
     </div>
 
     <script>
         const chatChannel = "sama_royal_sanctuary_chat_room_99";
         const apiUrl = "https://ntfy.sh/" + chatChannel;
-        let activeUsersList = new Set();
         let typingTimeout = null;
-
-        const pagesData = [
-            {
-                title: "✨ جنة العشق الأبدي (عرش روحي المطلق)",
-                desc: "سما.. يا من ملأتِ أيامي نوراً وحياة. أنتِ لستِ مجرد شخص أحبه، أنتِ عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودكِ معي يجعل العالم مكاناً أجمل بكثير."
-            },
-            {
-                title: "🔥 واحة الشوق والجنون (حيث يشتعل قلبي بحبكِ)",
-                desc: "أنا مغرم بكِ بجنون لا توصفه الكلمات يا سما! كل تفصيلة فيكِ تسرقني، صوتكِ، ابتسامتكِ، ونظراتكِ. حبكِ هو القوة الوحيدة التي تجعلني أواجه صعوبات هذه الحياة بكل ثبات."
-            },
-            {
-                title: "💌 رسالة الوداع والاعتذار الكبرى (أعمق أسرار الروح)",
-                desc: "سما.. إذا حدث في يوم من الأيام واضطررنا للابتعاد، أو إن صدر مني تقصير أو خطأ دون قصد، فاعلمي جيداً أن قلبي لم يعرف طعم الصدق إلا معكِ. هذه الرسالة هي عهد مني بأنني حتى في أقصى لحظات الوداع والفراق — إن حدث — لن أندم أبداً على أنني عشقتكِ بكل ما أملك من قوة. أنتِ الجزء الأعظم في حياتي، وإن غابت الأجساد فستبقين أنتِ الروح التي تسكنني للأبد. سامحيني على كل لحظة قصرت فيها، وتأكدي أن حبي لكِ لا يزول بل يزداد عمقاً مع كل ثانية تمر."
-            },
-            {
-                title: "💍 عهد الوفاء والمصير (حتى نهاية الزمان)",
-                desc: "أقسم برب الكون يا سما، أنني سأبقى سندكِ وقوتكِ ومأمنكِ حتى آخر نبض في عمري. معكِ أدركتُ معنى الاستقرار الحقيقي، وللأبد نحن قصة عشق لا تنتهي."
-            }
-        ];
-
-        function switchPage(index) {
-            document.getElementById('whatsappBox').style.display = 'none';
-            document.getElementById('pageTitle').style.display = 'block';
-            document.getElementById('pageDesc').style.display = 'block';
-
-            let buttons = document.querySelectorAll('.place-btn');
-            buttons.forEach((btn, i) => {
-                if(i === index) btn.classList.add('active');
-                else btn.classList.remove('active');
-            });
-            
-            document.getElementById('pageTitle').innerText = pagesData[index].title;
-            document.getElementById('pageDesc').innerText = pagesData[index].desc;
-        }
 
         function openSecretModal() {
             const isPasswordSaved = localStorage.getItem('sama_chat_auth_verified');
@@ -508,7 +396,7 @@
             if(!savedName) {
                 document.getElementById('nameModal').style.display = 'flex';
             } else {
-                openChatRoom();
+                launchWhatsAppFullscreen();
             }
         }
 
@@ -516,22 +404,75 @@
             const nameVal = document.getElementById('myNameInput').value.trim();
             if(!nameVal) { alert('الرجاء كتابة اسمك أولاً! ✨'); return; }
             localStorage.setItem('sama_chat_user_name', nameVal);
+            if(!localStorage.getItem('sama_chat_user_status')) {
+                localStorage.setItem('sama_chat_user_status', 'متصل في مملكة العشق 🩷');
+            }
+            if(!localStorage.getItem('sama_chat_user_avatar')) {
+                localStorage.setItem('sama_chat_user_avatar', '👑');
+            }
             document.getElementById('nameModal').style.display = 'none';
-            openChatRoom();
+            launchWhatsAppFullscreen();
         }
 
-        function openChatRoom() {
-            let buttons = document.querySelectorAll('.place-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
+        function launchWhatsAppFullscreen() {
+            document.getElementById('homeMainView').style.display = 'none';
+            document.getElementById('whatsappBox').style.display = 'flex';
             
-            document.getElementById('pageTitle').style.display = 'none';
-            document.getElementById('pageDesc').style.display = 'none';
-            document.getElementById('whatsappBox').style.display = 'block';
-            
+            updateHeaderProfileUI();
             loadSavedMessages();
             startListeningMessages();
-            sendPresenceHeartbeat();
-            setInterval(sendPresenceHeartbeat, 10000);
+            sendProfileBroadcast();
+            setInterval(sendProfileBroadcast, 15000);
+        }
+
+        function exitToHome() {
+            document.getElementById('whatsappBox').style.display = 'none';
+            document.getElementById('homeMainView').style.display = 'flex';
+        }
+
+        function openProfileModal() {
+            document.getElementById('editProfileName').value = localStorage.getItem('sama_chat_user_name') || '';
+            document.getElementById('editProfileStatus').value = localStorage.getItem('sama_chat_user_status') || 'متصل الآن';
+            document.getElementById('editProfileAvatar').value = localStorage.getItem('sama_chat_user_avatar') || '👑';
+            document.getElementById('profileModal').style.display = 'flex';
+        }
+
+        function closeProfileModal() {
+            document.getElementById('profileModal').style.display = 'none';
+        }
+
+        function saveProfileChanges() {
+            const name = document.getElementById('editProfileName').value.trim();
+            const status = document.getElementById('editProfileStatus').value.trim();
+            const avatar = document.getElementById('editProfileAvatar').value;
+
+            if(!name) { alert('الرجاء كتابة الاسم!'); return; }
+
+            localStorage.setItem('sama_chat_user_name', name);
+            localStorage.setItem('sama_chat_user_status', status || 'متصل الآن');
+            localStorage.setItem('sama_chat_user_avatar', avatar);
+
+            closeProfileModal();
+            updateHeaderProfileUI();
+            sendProfileBroadcast();
+        }
+
+        function updateHeaderProfileUI() {
+            const avatar = localStorage.getItem('sama_chat_user_avatar') || '👑';
+            const status = localStorage.getItem('sama_chat_user_status') || 'متصل الآن...';
+            document.getElementById('headerUserAvatar').innerText = avatar;
+            document.getElementById('onlineStatusText').innerText = `● ${status}`;
+        }
+
+        function sendProfileBroadcast() {
+            const name = localStorage.getItem('sama_chat_user_name') || 'سلمان';
+            const status = localStorage.getItem('sama_chat_user_status') || 'متصل الآن';
+            const avatar = localStorage.getItem('sama_chat_user_avatar') || '👑';
+
+            fetch(apiUrl, {
+                method: 'POST',
+                body: JSON.stringify({ type: 'profile', sender: name, status: status, avatar: avatar })
+            }).catch(e => {});
         }
 
         function loadSavedMessages() {
@@ -581,8 +522,11 @@
                         if (data.message) {
                             const parsed = JSON.parse(data.message);
                             
-                            if(parsed.type === 'presence') {
-                                updateOnlineStatus(parsed.sender);
+                            if(parsed.type === 'profile') {
+                                let myName = localStorage.getItem('sama_chat_user_name');
+                                if(parsed.sender !== myName) {
+                                    document.getElementById('onlineStatusText').innerText = `● ${parsed.status} (${parsed.sender})`;
+                                }
                             } else if(parsed.type === 'typing') {
                                 showTypingStatus(parsed.sender);
                             } else if(parsed.type === 'chat') {
@@ -599,14 +543,6 @@
                     } catch(e) {}
                 };
             } catch(e) {}
-        }
-
-        function sendPresenceHeartbeat() {
-            const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';
-            fetch(apiUrl, {
-                method: 'POST',
-                body: JSON.stringify({ type: 'presence', sender: sender })
-            }).catch(e => {});
         }
 
         function sendTypingIndicator() {
@@ -626,12 +562,9 @@
             let statusEl = document.getElementById('onlineStatusText');
             statusEl.innerText = `● ${sender} يكتب الآن...`;
             setTimeout(() => {
-                statusEl.innerText = `● متصل الآن...`;
+                let status = localStorage.getItem('sama_chat_user_status') || 'متصل الآن';
+                statusEl.innerText = `● ${status}`;
             }, 3000);
-        }
-
-        function updateOnlineStatus(sender) {
-            activeUsersList.add(sender);
         }
 
         function renderOrUpdateBubble(msg) {
@@ -792,35 +725,6 @@
         }
 
         function handleKeyPress(e) { if(e.key === 'Enter') sendWhatsAppMessage(); }
-
-        function createHeartAtClick(e) {
-            // منع تفجير القلوب نهائياً إذا كان النقر داخل واجهة الشات أو أزرار التحكم
-            if(e.target.closest('#whatsappBox') || e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT') return;
-            spawnHeart(e.clientX, e.clientY);
-        }
-
-        function spawnHeart(x, y) {
-            const heart = document.createElement('div');
-            heart.classList.add('heart-float');
-            const symbols = ['💖 سما 💖', '🌸 سما 🌸', '🌷 سما 🌷', '👑 سما 👑', '🌹 روحي سما 🌹', '✨ سما الحب ✨'];
-            heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
-            heart.style.left = x + 'px';
-            heart.style.top = y + 'px';
-            document.body.appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 3800);
-        }
-
-        function triggerMegaExplosion(e) {
-            for (let i = 0; i < 90; i++) {
-                setTimeout(() => {
-                    spawnHeart(Math.random() * window.innerWidth, window.innerHeight - 30);
-                }, i * 25);
-            }
-        }
-
-        function showCrazyLovePopup() {
-            alert("إلى عقلي وروحي وأميرتي (سما): أحبكِ حباً يضيء عتمة أيامي، أنتِ الحكاية الجميلة التي أتمنى أن لا تنتهي أبداً! 💖🌹");
-        }
     </script>
 </body>
 </html>
