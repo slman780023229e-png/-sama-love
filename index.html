@@ -120,7 +120,6 @@
             width: 100%;
         }
         
-        /* شريط حالة الاتصال الجديد المضاف بدقة */
         .db-status-bar {
             background: #111b21;
             padding: 8px 20px;
@@ -238,7 +237,6 @@
         }
         .msg-opt-btn:hover { background: #00a884; color: #fff; }
 
-        /* --- لوحة الملصقات المدمجة داخل الشات --- */
         .stickers-panel {
             display: none;
             background: #1f2c34;
@@ -383,14 +381,13 @@
 
         <div class="display-card">
             <h2 id="pageTitle">✨ جنة العشق الأبدي (عرش روحي المطلق)</h2>
-            <p id="pageDesc">سما.. يا من ملأتِ أيامي نوراً وخيراً. أنتِ لستِ مجرد شخص أحبه، أنتِ عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودكِ معي يجعل العالم مكاناً أجمل بكثير.</p>
+            <p id="pageDesc">سما.. يا من ملأتِ أيامي نوراً وحياة. أنتِ لستِ مجرد شخص أحبه، أنتِ عمري كله، والجوهرة الثمينة التي أخشى عليها من نسمة الهواء. وجودكِ معي يجعل العالم مكاناً أجمل بكثير.</p>
             
             <!-- --- واجهة الشات المطورة --- -->
             <div id="whatsappBox" class="whatsapp-container">
-                <!-- شريط حالة الاتصال بـ Supabase (مضاف حديثاً بدقة وبدون تخريب) -->
                 <div id="dbStatusBar" class="db-status-bar checking">
                     <span id="dbStatusText">🔄 جاري التحقق من الاتصال بقاعدة البيانات...</span>
-                    <span id="dbPingTime" style="font-size: 11px; opacity: 0.7;">Supabase</span>
+                    <span style="font-size: 11px; opacity: 0.7;">Supabase</span>
                 </div>
 
                 <div class="wa-chat-header">
@@ -410,7 +407,6 @@
                     <!-- الرسائل تظهر هنا -->
                 </div>
 
-                <!-- لوحة الملصقات المدمجة -->
                 <div id="stickersPanel" class="stickers-panel">
                     <button class="sticker-item" onclick="sendSticker('💖')">💖</button>
                     <button class="sticker-item" onclick="sendSticker('👑')">👑</button>
@@ -463,7 +459,6 @@
     </div>
 
     <script>
-        // إعدادات قاعدة بيانات Supabase
         const SUPABASE_URL = 'https://terskmhhznyaathxnvjq.supabase.co';
         const SUPABASE_KEY = 'Sb_publishable_zgjQbmezkXMAxzjLC6brkw_Yvl1fFbh';
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -555,14 +550,13 @@
             document.getElementById('pageDesc').style.display = 'none';
             document.getElementById('whatsappBox').style.display = 'block';
             
-            checkSupabaseConnectionStatus(); // فحص الاتصال عند فتح الشات
+            checkSupabaseConnectionStatus();
             loadSavedMessagesFromDB();
             startListeningMessages();
             sendPresenceHeartbeat();
             setInterval(sendPresenceHeartbeat, 10000);
         }
 
-        // الوظيفة الجديدة للتحقق من حالة الاتصال بقاعدة البيانات وعرضها أو إظهار الخطأ بدون تخريب
         async function checkSupabaseConnectionStatus() {
             const statusBar = document.getElementById('dbStatusBar');
             const statusText = document.getElementById('dbStatusText');
@@ -571,23 +565,18 @@
             statusText.innerText = "🔄 جاري فحص الاتصال بقاعدة البيانات...";
 
             try {
-                // استعلام خفيف لاختبار الاتصال بجدول messages
                 const { data, error } = await supabase.from('messages').select('id').limit(1);
-
-                if (error) {
-                    throw error;
-                }
+                if (error) throw error;
 
                 statusBar.className = "db-status-bar connected";
                 statusText.innerText = "🟢 متصل بقاعدة البيانات بنجاح (Supabase Online)";
             } catch (err) {
                 console.error("خطأ الاتصال بـ Supabase:", err);
                 statusBar.className = "db-status-bar disconnected";
-                statusText.innerText = `❌ خطأ في الاتصال: ${err.message || err.hint || 'تحقق من الإنترنت أو إعدادات القاعدة'}`;
+                statusText.innerText = `❌ خطأ في الاتصال: ${err.message || err.hint || 'تحقق من الإنترنت'}`;
             }
         }
 
-        // جلب الرسائل من قاعدة بيانات Supabase
         async function loadSavedMessagesFromDB() {
             const { data: messages, error } = await supabase
                 .from('messages')
@@ -633,7 +622,6 @@
                         const data = JSON.parse(event.data);
                         if (data.message) {
                             const parsed = JSON.parse(data.message);
-                            
                             if(parsed.type === 'presence') {
                                 updateOnlineStatus(parsed.sender);
                             } else if(parsed.type === 'typing') {
@@ -681,9 +669,7 @@
             }, 3000);
         }
 
-        function updateOnlineStatus(sender) {
-            // تحديث حالة الاتصال إذا لزم الأمر
-        }
+        function updateOnlineStatus(sender) {}
 
         function renderBubble(id, sender, text, time, isRead) {
             const listDiv = document.getElementById('waMessagesList');
@@ -724,26 +710,18 @@
             textInput.value = '';
         }
 
-        // إرسال وحفظ الرسالة مباشرة في جدول Supabase
         async function sendTextMessage(text) {
             const sender = localStorage.getItem('sama_chat_user_name') || 'سلمان';
             
             const { data, error } = await supabase
                 .from('messages')
-                .insert([
-                    { 
-                      s: sender,    // اسم المرسل
-                      te: text,     // نص الرسالة
-                      is: false     // هل هي مقروءة؟
-                    }
-                ]);
+                .insert([{ s: sender, te: text, is: false }]);
 
             if (error) {
                 console.error('خطأ أثناء حفظ الرسالة:', error);
                 alert('فشل حفظ الرسالة في قاعدة البيانات: ' + error.message);
             } else {
                 loadSavedMessagesFromDB();
-                // إرسال إشعار فوري للطرف الآخر عبر ntfy
                 fetch(apiUrl, {
                     method: 'POST',
                     body: JSON.stringify({ type: 'chat', sender: sender, text: text })
@@ -779,14 +757,14 @@
         }
 
         function spawnHeart(x, y) {
-            TheHeart = document.createElement('div');
-            TheHeart.classList.add('heart-float');
+            const heart = document.createElement('div');
+            heart.classList.add('heart-float');
             const symbols = ['💖 سما 💖', '🌸 سما 🌸', '🌷 سما 🌷', '👑 سما 👑', '🌹 روحي سما 🌹', '✨ سما الحب ✨'];
-            TheHeart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
-            TheHeart.style.left = x + 'px';
-            TheHeart.style.top = y + 'px';
-            document.body.appendChild(TheHeart);
-            setTimeout(() => { TheHeart.remove(); }, 3800);
+            heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+            heart.style.left = x + 'px';
+            heart.style.top = y + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 3800);
         }
 
         function triggerMegaExplosion(e) {
