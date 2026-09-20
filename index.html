@@ -3,45 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مملكة سما وسلمان - الانتقال لواتساب</title>
+    <title>مملكة سما وسلمان - شات واتساب الملكي</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
         body { 
-            background: #fff1f2; 
-            color: #881337; 
+            background: #0f172a; 
+            color: #f8fafc; 
             height: 100vh; 
             display: flex; 
             flex-direction: column; 
             overflow: hidden; 
         }
 
-        /* --- الواجهة الرئيسية السابقة كما كانت --- */
+        /* --- واجهة الغزل والمملكة الرئيسية --- */
         #homeMainView {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background: linear-gradient(135deg, #fff1f2, #ffe4e6);
+            background: linear-gradient(135deg, #4c0519, #881337, #1e1b4b);
             padding: 20px;
             text-align: center;
             position: absolute;
             top: 0; left: 0; width: 100%; z-index: 500;
         }
         .home-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
             padding: 40px;
-            border-radius: 30px;
-            border: 4px solid #e11d48;
-            box-shadow: 0 20px 50px rgba(225, 29, 72, 0.2);
-            max-width: 500px;
+            border-radius: 35px;
+            border: 3px solid #fb7185;
+            box-shadow: 0 0 50px rgba(251, 113, 133, 0.3);
+            max-width: 520px;
             width: 100%;
         }
-        .home-card h1 { font-size: 26px; font-weight: 900; color: #e11d48; margin-bottom: 15px; }
-        .home-card p { font-size: 16px; font-weight: 700; color: #9f1239; margin-bottom: 25px; line-height: 1.8; }
+        .home-card h1 { font-size: 28px; font-weight: 900; color: #fda4af; margin-bottom: 15px; text-shadow: 0 2px 10px rgba(225,29,72,0.5); }
+        .home-card p { font-size: 16px; font-weight: 700; color: #fecdd3; margin-bottom: 25px; line-height: 1.8; }
         .enter-chat-btn {
-            background: #00a884;
+            background: linear-gradient(135deg, #00a884, #005c4b);
             color: #fff;
             border: none;
             padding: 16px 30px;
@@ -53,9 +54,9 @@
             transition: 0.3s;
             width: 100%;
         }
-        .enter-chat-btn:hover { background: #008f6f; transform: scale(1.03); }
+        .enter-chat-btn:hover { transform: scale(1.04); background: linear-gradient(135deg, #00bf9a, #006b57); }
 
-        /* --- واجهة واتساب الجديدة التي تظهر عند الضغط --- */
+        /* --- واجهة واتساب الكاملة (عند الضغط للدخول) --- */
         #whatsappBox {
             display: none;
             flex-direction: column;
@@ -96,7 +97,6 @@
             transition: 0.2s;
         }
         .wa-control-btn:hover { background: #374248; }
-        .wa-control-btn.danger { background: #552222; color: #ff8888; }
 
         .wa-messages-area {
             flex: 1;
@@ -124,8 +124,7 @@
         
         .wa-msg-footer { display: flex; align-items: center; justify-content: flex-end; gap: 6px; margin-top: 4px; }
         .wa-time { font-size: 10px; color: #8696a0; }
-        .wa-ticks { font-size: 12px; font-weight: 900; color: #8696a0; }
-        .wa-ticks.read { color: #53bdeb; }
+        .wa-ticks { font-size: 12px; font-weight: 900; color: #53bdeb; }
 
         .wa-input-footer {
             background: #202c33;
@@ -144,6 +143,7 @@
             border-radius: 30px;
             outline: none;
             font-size: 15px;
+            font-family: 'Cairo', sans-serif;
         }
         .wa-input-footer input:focus { border-color: #00a884; background: #111b21; }
         .wa-send-btn {
@@ -157,34 +157,34 @@
             font-size: 18px;
         }
 
-        /* النوافذ المنبثقة للبروفايل والحماية */
+        /* نافذة إدخال الاسم فقط (أول مرة) */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.7); display: none; align-items: center; justify-content: center; z-index: 2000;
         }
         .modal-card {
-            background: #fff; padding: 30px; border-radius: 24px; width: 90%; max-width: 380px; text-align: center; border: 3px solid #e11d48;
+            background: #1e1b4b; padding: 30px; border-radius: 24px; width: 90%; max-width: 380px; text-align: center; border: 3px solid #fb7185; box-shadow: 0 0 30px rgba(251,113,133,0.3);
         }
-        .modal-card h3 { color: #e11d48; font-size: 20px; margin-bottom: 12px; font-weight: 900; }
-        .modal-card input, .modal-card select { width: 100%; padding: 12px; border: 2px solid #fda4af; border-radius: 20px; text-align: center; font-size: 15px; margin-bottom: 15px; outline: none; background: #fff; }
-        .modal-btn { background: #e11d48; color: #fff; border: none; padding: 12px; width: 100%; border-radius: 25px; font-weight: 900; cursor: pointer; }
+        .modal-card h3 { color: #fda4af; font-size: 20px; margin-bottom: 12px; font-weight: 900; }
+        .modal-card input, .modal-card select { width: 100%; padding: 12px; border: 2px solid #fb7185; border-radius: 20px; text-align: center; font-size: 15px; margin-bottom: 15px; outline: none; background: #0f172a; color: #fff; font-family: 'Cairo', sans-serif; }
+        .modal-btn { background: linear-gradient(135deg, #e11d48, #db2777); color: #fff; border: none; padding: 12px; width: 100%; border-radius: 25px; font-weight: 900; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <!-- الواجهة الرئيسية كما كانت -->
+    <!-- الواجهة الرئيسية الكلاسيكية مع الغزل والتفاصيل السابقة -->
     <div id="homeMainView">
         <div class="home-card">
-            <h1>👑 مملكة سما وسلمان</h1>
-            <p>اضغط على زر غرفة الدردشة أدناه للانتقال الفوري لواجهة واتساب الخاصة بكم!</p>
-            <button class="enter-chat-btn" onclick="openSecretModal()">💬 غرفة الدردشة (واتساب)</button>
+            <h1>👑 مملكة العشق والصفاء</h1>
+            <p>حيث يلتقي نبض سلمان بسما في واحة من الجمال والأحاسيس الراقية... اضغط أدناه للانتقال لغرفة الشات الخاصة بكم.</p>
+            <button class="enter-chat-btn" onclick="checkNameAndOpenChat()">💬 الدخول إلى غرفة الشات (واتساب)</button>
         </div>
     </div>
 
-    <!-- واجهة واتساب الكاملة التي ستفتح -->
+    <!-- واجهة واتساب الكاملة -->
     <div id="whatsappBox">
         <div class="wa-chat-header">
-            <div class="wa-avatar-box" onclick="openProfileModal()">
+            <div class="wa-avatar-box" onclick="openProfileModal()" title="اضغط لتعديل بروفايلك وحالتك">
                 <div id="headerUserAvatar" class="wa-avatar">👑</div>
                 <div class="wa-chat-info">
                     <div class="wa-title-name">مملكة سلمان وسما 🩷</div>
@@ -205,38 +205,27 @@
         </div>
     </div>
 
-    <!-- نافذة كلمة المرور -->
-    <div id="secretModal" class="modal-overlay">
-        <div class="modal-card">
-            <h3>🩷 بوابة اللقاء السري</h3>
-            <p style="font-size: 13px; margin-bottom: 12px; color: #881337; font-weight: 700;">أدخل الرمز السري (`ang_el99m`):</p>
-            <input type="text" id="modalPasswordInput" placeholder="اكتب الرمز هنا...">
-            <button class="modal-btn" onclick="verifySecretPassword()">فتح الدردشة 💕</button>
-            <button style="background: none; border: none; color: #888; margin-top: 10px; cursor: pointer; font-weight: 700;" onclick="closeSecretModal()">إلغاء</button>
-        </div>
-    </div>
-
-    <!-- نافذة إدخال الاسم لأول مرة -->
+    <!-- نافذة إدخال الاسم (تظهر أول مرة فقط بدون كلمة سر معقدة) -->
     <div id="nameModal" class="modal-overlay">
         <div class="modal-card">
-            <h3>✨ اسمك الكريم؟</h3>
-            <p style="font-size: 13px; margin-bottom: 12px; color: #881337; font-weight: 700;">أدخل اسمك (سلمان أو سما):</p>
+            <h3>✨ من أنتَ / من أنتِ؟</h3>
+            <p style="font-size: 13px; margin-bottom: 12px; color: #fecdd3; font-weight: 700;">أدخل اسمك (سلمان أو سما):</p>
             <input type="text" id="myNameInput" placeholder="اكتب اسمك هنا...">
-            <button class="modal-btn" onclick="saveMyName()">حفظ والدخول للشات 🚀</button>
+            <button class="modal-btn" onclick="saveMyName()">دخول المملكة 🚀</button>
         </div>
     </div>
 
-    <!-- نافذة تعديل البروفايل والحالة -->
+    <!-- نافذة تعديل البروفايل والحالة الشخصية -->
     <div id="profileModal" class="modal-overlay">
         <div class="modal-card">
             <h3>👤 تعديل البروفايل والحالة</h3>
-            <p style="font-size: 12px; color: #881337; font-weight: 700; margin-bottom: 5px; text-align: right;">اسمك:</p>
+            <p style="font-size: 12px; color: #fecdd3; font-weight: 700; margin-bottom: 5px; text-align: right;">اسمك:</p>
             <input type="text" id="editProfileName" placeholder="اسمك...">
             
-            <p style="font-size: 12px; color: #881337; font-weight: 700; margin-bottom: 5px; text-align: right;">حالتك الشخصية (Bio):</p>
+            <p style="font-size: 12px; color: #fecdd3; font-weight: 700; margin-bottom: 5px; text-align: right;">حالتك الشخصية (Bio):</p>
             <input type="text" id="editProfileStatus" placeholder="مثلاً: متواجد في مملكة العشق 👑">
 
-            <p style="font-size: 12px; color: #881337; font-weight: 700; margin-bottom: 5px; text-align: right;">الأيقونة:</p>
+            <p style="font-size: 12px; color: #fecdd3; font-weight: 700; margin-bottom: 5px; text-align: right;">الأيقونة:</p>
             <select id="editProfileAvatar">
                 <option value="👑">👑 تاج الملك</option>
                 <option value="🩷">🩷 قلب وردي</option>
@@ -253,28 +242,6 @@
         const chatChannel = "sama_royal_sanctuary_chat_room_99";
         const apiUrl = "https://ntfy.sh/" + chatChannel;
 
-        function openSecretModal() {
-            if (localStorage.getItem('sama_chat_auth_verified') === 'true') {
-                checkNameAndOpenChat();
-            } else {
-                document.getElementById('secretModal').style.display = 'flex';
-            }
-        }
-
-        function closeSecretModal() {
-            document.getElementById('secretModal').style.display = 'none';
-        }
-
-        function verifySecretPassword() {
-            if(document.getElementById('modalPasswordInput').value.trim() === 'ang_el99m') {
-                localStorage.setItem('sama_chat_auth_verified', 'true');
-                closeSecretModal();
-                checkNameAndOpenChat();
-            } else {
-                alert('الرمز السري غير صحيح! ❌');
-            }
-        }
-
         function checkNameAndOpenChat() {
             if(!localStorage.getItem('sama_chat_user_name')) {
                 document.getElementById('nameModal').style.display = 'flex';
@@ -287,7 +254,7 @@
             const nameVal = document.getElementById('myNameInput').value.trim();
             if(!nameVal) { alert('الرجاء كتابة اسمك!'); return; }
             localStorage.setItem('sama_chat_user_name', nameVal);
-            localStorage.setItem('sama_chat_user_status', 'متصل الآن 🩷');
+            localStorage.setItem('sama_chat_user_status', 'متصل في مملكة العشق 🩷');
             localStorage.setItem('sama_chat_user_avatar', '👑');
             document.getElementById('nameModal').style.display = 'none';
             launchWhatsAppFullscreen();
@@ -347,7 +314,7 @@
                 <div>${msg.text}</div>
                 <div class="wa-msg-footer">
                     <span class="wa-time">${msg.time}</span>
-                    <span class="wa-ticks read">✓✓</span>
+                    <span class="wa-ticks">✓✓</span>
                 </div>
             `;
             listDiv.appendChild(div);
